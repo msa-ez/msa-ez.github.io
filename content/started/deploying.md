@@ -30,7 +30,7 @@ Driven Design** 이다.
  주문한 뒤에도 배송 전이면 배송지 주소를 변경하거나 주문을 취소할 수 있다. 이 주문 도메인을 객체 모델로 구성하면
  아래와 같다.
  
-> ![](/Users/kibum0405/Desktop/msaeasy-intro/src/img/image6.png)
+> ![](../../src/img/image6.png)
 > <p align="center">그림 1 객체 기반 주문도메인 모델</p>
 
  위 그림은 객체를 이용한 도메인 모델이다. 도메인을 이해하려면 도메인이 제공하는 기능과 도메인의 주요 데이터 구성을 파악해야
@@ -73,7 +73,7 @@ SW 도메인과 건축 도메인에서도 동일한 용어지만 두 도메인 �
 ‘아키텍처’란 용어도 SW도메인에서는 서버, 네트워크, 소프트웨어 구성도나 ERD, UML과 같은 다이어그램 등을 지칭하나, 건축
 도메인에서의 ‘아키텍처’는 건축물 구축에 필요한 평면도와 같은 설계 도면을 의미한다.
 
-> ![](/Users/kibum0405/Desktop/msaeasy-intro/src/img/image7.png)
+> ![](../../src/img/image7.png)
 <p align="center">그림 2 동일 용어이나 서로 다른 도메인마다 상이한 의미</p>
 
 이렇듯, 도메인마다 같은 용어라도 의미가 다르고, 같은 대상이라도 지칭하는 용어가 다를 수 있기 때문에 한 개의 모델로 모든
@@ -94,7 +94,7 @@ SW 도메인과 건축 도메인에서도 동일한 용어지만 두 도메인 �
 주문/결제 도메인과 배송 도메인 각각 서로 의미하는 바가 다르기 때문에, 두 도메인은 서로 다른 컨텍스트로 분리된다.
 
 
-> ![https://cdn-images-1.medium.com/max/2400/1\*zfZayosLl8oSYOAtY-NYcQ.png](/Users/kibum0405/Desktop/msaeasy-intro/src/img/image8.png)
+> ![https://cdn-images-1.medium.com/max/2400/1\*zfZayosLl8oSYOAtY-NYcQ.png](../../src/img/image8.png)
 > <p align="center"> 그림 3 경계가 구분된 두 개의 바운디드 컨텍스트 </p>
 
 바운디드 컨텍스트는 도메인 모델을 구분하는 경계가 되기 때문에 바운디드 컨텍스트는 구현하는 서브 도메인에 알맞은 모델을 포함한다.
@@ -106,7 +106,7 @@ SW 도메인과 건축 도메인에서도 동일한 용어지만 두 도메인 �
 전문가, 개발이 가능한 뼈대를 세우는 아키텍트, 실제 서브 도메인 서비스를 구축하는 개발자가 포함될 수 있으며, 이들은
 담당하는 각 서브 도메인의 모든 권한을 가진다.
   
-> <img src="/Users/kibum0405/Desktop/msaeasy-intro/src/img/image9.png" align="right" width="220" height="220"></img>
+> <img src="../../src/img/image9.png" align="right" width="220" height="220"></img>
   
 이러한 각 도메인별 소속 구성원들 간에는 원활한 의사 소통에 필요한 보편적 언어가 사용되는데 이를 도메인 언어, 또는 유비쿼터스
 언어(Ubiquitous Language)라고 한다.
@@ -120,7 +120,7 @@ SW 도메인과 건축 도메인에서도 동일한 용어지만 두 도메인 �
   
   ---
   
-> ![](/Users/kibum0405/Desktop/msaeasy-intro/src/img/image10.png)
+> ![](../../src/img/image10.png)
 > <p align="center">그림 8 유비쿼터스 언어는 바운디드 컨텍스트내에 통용되는 도메인 언어</p>
 
 구성원들이 각자의 언어를 사용하는 경우, 의사소통이 힘들어 상대방이 내뱉은 단어를 내가 사용하는 단어로 번역해서
@@ -141,7 +141,7 @@ Event-driven한 MSA 기반 시스템을 분석에서 개발까지 필요한 도�
 기존의 유즈케이스나 클래스 다이어그래밍 방식은 고객 인터뷰를 통해 요구사항을 정제하고, 상세 설계를 통한 엔티티 구조를 인지하는
 방식이었으나, 이벤트스토밍은 별다른 사전 훈련된 지식과 도구없이 진행할 수 있다.
 
-> ![](/Users/kibum0405/Desktop/msaeasy-intro/src/img/image11.png)
+> ![](../../src/img/image11.png)
 > <p align="center">그림 9 UML객체 기반 모델링과 이벤트스토밍 방법론 비교</p>
 
 진행 과정은 참여자 워크숍 방식의 방법론으로 결과는 스티키 노트를 벽에 붙힌 것으로 결과가 남으며, 오렌지 스티키 노트들의 연결로

@@ -80,7 +80,7 @@ print("policy: {{name}}");
 3.  해당 Template을 넣어 준 뒤, 코드 프리뷰에서 템플릿 선택 부분을 확인하면 아래 그림과 같이 HelloWorld
     템플릿이 추가된 것을 확인 할 수 있다.
 
-> ![](/Users/kibum0405/Desktop/intro-msaeasy/src/img/image67.png)
+> ![](../../src/img/image67.png)
 > <p align="center">그림 HelloWorld 템플릿 선택</p>
 
 4.  각 Bounded Context 이름으로 된 폴더 안에 HelloWorld.py라는 파일이 생성 된 것을 확인 할 수
@@ -88,20 +88,20 @@ print("policy: {{name}}");
 
 5.  2개의 HelloWorld.py를 각각 확인 해본다.
 
-> ![](/Users/kibum0405/Desktop/intro-msaeasy/src/img/image68.png)
+> ![](../../src/img/image68.png)
 > <p align="center"> 그림 Order 폴더 하위의 HelloWorld.py </p>
 
-> ![](/Users/kibum0405/Desktop/intro-msaeasy/src/img/image69.png)
+> ![](../../src/img/image69.png)
 > <p align="center"> 그림 Delivery 폴더 하위의 HelloWorld.py </p>
 
 각각의 Bounded Context에 입력된 요소들의 이름을 정상적으로 print함수 안에 입력이 된 것을 확인 할 수 있다.
 
 6.  해당 Template으로 작업된 내용을 다운로드 받아 실행해본다.
 
-> ![](/Users/kibum0405/Desktop/intro-msaeasy/src/img/image70.png)
+> ![](../../src/img/image70.png)
 > <p align="center"> 그림 Delivery 폴더 하위의 HelloWorld 실행 결과</p>
 
-> ![](/Users/kibum0405/Desktop/intro-msaeasy/src/img/image71.png)
+> ![](../../src/img/image71.png)
 > <p align="center"> 그림 Order 폴더 하위의 HelloWorld.py 실행 결과</p>
 
 7.  작성된 EventStorming을 통해, 각각의 Bounded Context 별로 HelloWorld.py가 생성되며,
