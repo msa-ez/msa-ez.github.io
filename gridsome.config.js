@@ -5,12 +5,12 @@
 // To restart press CTRL + C in terminal and run `gridsome develop`
 
 module.exports = {
-  siteName: 'intro-msae',
+  siteName: '',
   icon: {
     favicon: './src/assets/favicon.png',
     touchicon: './src/assets/favicon.png'
   },
-  siteUrl: (process.env.SITE_URL ? process.env.SITE_URL : 'https://msa-ez.github.io'),
+  siteUrl: (process.env.SITE_URL ? process.env.SITE_URL : 'https://example.com'),
   settings: {
     web: process.env.URL_WEB || false,
     twitter: process.env.URL_TWITTER || false,
