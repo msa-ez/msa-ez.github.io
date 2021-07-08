@@ -6,7 +6,7 @@ next: '/started/writing-content/'
 ---
 # 도구 사용법
 
-## MSAEasy로 MSA 개발하기
+## MSA Easy로 MSA 개발하기
 
 ## 서비스 접속
 [eventstorming2code.io](http://eventstorming2code.io) 에 접속한다. 크롬추천.
