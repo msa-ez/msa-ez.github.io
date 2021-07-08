@@ -21,7 +21,7 @@ next: '/started/writing-content/'
 
 EventStorming2Code 도구의 전체 화면 레이아웃은 다음과 같다.
 
-> ![](/Users/kibum0405/Desktop/msaeasy-intro/src/img/image30.png)
+> ![](/Users/kibum0405/Desktop/intro-msaeasy/src/img/image30.png)
 > <p align="center"> 그림 1 도구 전체 레이아웃 </p>
 
 | 번호 | 이름               | 기능 설명                                           |
@@ -43,10 +43,10 @@ EventStorming2Code 도구의 전체 화면 레이아웃은 다음과 같다.
 
 스티커 팔레트에서 주황색 아이콘을 캔버스로 Drag & Drop하여 추가한다.
 
-> ![](/Users/kibum0405/Desktop/msaeasy-intro/src/img/image31.png)
+> ![](/Users/kibum0405/Desktop/intro-msaeasy/src/img/image31.png)
 > <p align="center">그림 2 Event Drag</p>
 
-> ![](/Users/kibum0405/Desktop/msaeasy-intro/src/img/image32.png)
+> ![](/Users/kibum0405/Desktop/intro-msaeasy/src/img/image32.png)
 > <p align="center">그림 3 Event Drop</p>
 
 #### Event 속성 설정
@@ -54,7 +54,7 @@ EventStorming2Code 도구의 전체 화면 레이아웃은 다음과 같다.
 추가된 Event 스티커를 더블 클릭하게 되면, 오른쪽에 아래와 같이 속성 창이 나타나며, 각 속성 설정에 대한 값은 아래와
 같다.
 
-> ![](/Users/kibum0405/Desktop/msaeasy-intro/src/img/image33.png)
+> ![](/Users/kibum0405/Desktop/intro-msaeasy/src/img/image33.png)
 > <p align="center">그림 4 Event Property Panel</p>
 
 | 번호 | 이름                   | 기능 설명                     |
@@ -94,11 +94,11 @@ Policy는 스티커 팔레트에서 라일락색 아이콘이 지칭한다.
 
 스티커 팔레트에서 라일락색 아이콘을 캔버스로 Drag & Drop하여 Policy를 추가한다
 
-> ![](/Users/kibum0405/Desktop/msaeasy-intro/src/img/image35.png)
+> ![](/Users/kibum0405/Desktop/intro-msaeasy/src/img/image35.png)
 > <p align="center">그림 5 Policy Drag</p>
 
 
-> [](/Users/kibum0405/Desktop/msaeasy-intro/src/img/image36.png)
+> [](/Users/kibum0405/Desktop/intro-msaeasy/src/img/image36.png)
 > <p align="center">그림 6 Policy Drop</p>
 
 #### Policy 속성 설정
@@ -106,7 +106,7 @@ Policy는 스티커 팔레트에서 라일락색 아이콘이 지칭한다.
 추가된 Policy 스티커를 더블 클릭하게 되면, 오른쪽에 아래와 같이 속성 창이 나타나며, 각 속성 설정에 대한 값은 아래와
 같다.
 
-> ![](/Users/kibum0405/Desktop/msaeasy-intro/src/img/image37.png)
+> ![](/Users/kibum0405/Desktop/intro-msaeasy/src/img/image37.png)
 > <p align="center">그림 7 Policy Property Panel</p>
 
 | 번호 | 이름                   | 기능 설명                      |
@@ -128,10 +128,10 @@ Command는 스티커 팔레트에서 파란색 아이콘이 지칭한다.
 
 스티커 팔레트에서 파란색 아이콘을 캔버스로 Drag & Drop하여 Command를 추가한다
 
-> ![](/Users/kibum0405/Desktop/msaeasy-intro/src/img/image38.png)
+> ![](/Users/kibum0405/Desktop/intro-msaeasy/src/img/image38.png)
 > <p align="center">그림 8 Command Drag</p>
 
-> ![](/Users/kibum0405/Desktop/msaeasy-intro/src/img/image39.png)
+> ![](/Users/kibum0405/Desktop/intro-msaeasy/src/img/image39.png)
 > <p align="center">그림 9 Command Drop</p>
 
 #### Command 속성 설정
@@ -139,7 +139,7 @@ Command는 스티커 팔레트에서 파란색 아이콘이 지칭한다.
 추가된 Command 스티커를 더블 클릭하게 되면, 오른쪽에 아래와 같이 속성 창이 나타나며, 각 속성 설정에 대한 값은 아래와
 같다.
 
-> ![](/Users/kibum0405/Desktop/msaeasy-intro/src/img/image40.png)
+> ![](/Users/kibum0405/Desktop/intro-msaeasy/src/img/image40.png)
 > <p align="center">그림 10 Command Property Panel</p>
 
 | 번호 | 이름                   | 기능 설명                       |
@@ -164,10 +164,10 @@ Aggregate는 스티커 팔레트에서 노란색 아이콘이 지칭한다.
 
 스티커 팔레트에서 노란색 아이콘을 캔버스로 Drag & Drop하여 Aggregate를 추가한다
 
-> ![](/Users/kibum0405/Desktop/msaeasy-intro/src/img/image41.png)
+> ![](/Users/kibum0405/Desktop/intro-msaeasy/src/img/image41.png)
 > <p align="center"> 그림 10 Aggregate Drag</p>
 
-> ![](/Users/kibum0405/Desktop/msaeasy-intro/src/img/image42.png)
+> ![](/Users/kibum0405/Desktop/intro-msaeasy/src/img/image42.png)
 > <p align="center">그림 11 Aggregate Drop</p>
 
 #### 어그리게잇 속성 설정
@@ -175,7 +175,7 @@ Aggregate는 스티커 팔레트에서 노란색 아이콘이 지칭한다.
 추가된 Aggregate 스티커를 더블 클릭하게 되면, 오른쪽에 아래와 같이 속성 창이 나타나며, 각 속성 설정에 대한 값은
 아래와 같다.
 
-> ![](/Users/kibum0405/Desktop/msaeasy-intro/src/img/image43.png)
+> ![](/Users/kibum0405/Desktop/intro-msaeasy/src/img/image43.png)
 > <p align="center">그림 12 Aggregate Property Panel</p>
 
 | 번호 | 이름             | 기능 설명                                   |
@@ -208,16 +208,16 @@ Bounded Context는 스티커 팔레트에서 점선 모양의 아이콘이 지�
 
 스티커 팔레트에서 점선 모양의 아이콘을 캔버스로 Drag & Drop하여 Bounded Context를 추가한다
 
-> ![](/Users/kibum0405/Desktop/msaeasy-intro/src/img/image44.png)
+> ![](/Users/kibum0405/Desktop/intro-msaeasy/src/img/image44.png)
 > <p align="center">그림 13 Bounded Context Drag</p>
 
 
-> ![](/Users/kibum0405/Desktop/msaeasy-intro/src/img/image45.png)
+> ![](/Users/kibum0405/Desktop/intro-msaeasy/src/img/image45.png)
 > <p align="center">그림 14 Bounded Context Drop</p>
 
 #### Bounded Context 속성 설정
 
-> ![](/Users/kibum0405/Desktop/msaeasy-intro/src/img/image46.png)
+> ![](/Users/kibum0405/Desktop/intro-msaeasy/src/img/image46.png)
 > <p align="center">그림 15 Bounded Context Property Panel</p>
 
 | 번호 | 이름                   | 기능 설명                   |
@@ -238,15 +238,15 @@ Relation은Event 스티커에서 Policy 스티커로 연결되는 선을 지칭�
 Event 스티커에서 화살표 모양 아이콘을 선택, 또는 Drag 하여 연결될 Policy 스티커를 선택 또는 Drop하면
 연결된다.
 
-> ![](/Users/kibum0405/Desktop/msaeasy-intro/src/img/image47.png)
+> ![](/Users/kibum0405/Desktop/intro-msaeasy/src/img/image47.png)
 > <p align="center">그림  16 Relation 선택 또는 Drag</p>
 
-> ![](/Users/kibum0405/Desktop/msaeasy-intro/src/img/image2.png)
+> ![](/Users/kibum0405/Desktop/intro-msaeasy/src/img/image2.png)
 > <p align="center">그림 17 Policy 선택 또는 Drop</p>
 
 #### Relation 속성 설정
 
-> ![](/Users/kibum0405/Desktop/msaeasy-intro/src/img/image48.png)
+> ![](/Users/kibum0405/Desktop/intro-msaeasy/src/img/image48.png)
 > <p align="center">그림 18 Relation Property Panel</p>
 
 | 번호 | 이름           | 기능 설명                                                                                     |
@@ -263,7 +263,7 @@ StartDelivery를 시작하게 할 것인지를 설정하여 준다.
 
 위의 이벤트 스토밍이 완료되면 아래 그림과 같이 나온다.
 
-> ![](/Users/kibum0405/Desktop/msaeasy-intro/src/img/image49.png)
+> ![](/Users/kibum0405/Desktop/intro-msaeasy/src/img/image49.png)
 > <p align="center">그림 19 EventStorming 결과</p>
 
 ### 코드 프리뷰
@@ -273,7 +273,7 @@ Code Preview를 선택하면 EventStorming 된 결과를 Code Preview를 통하�
 
 #### 코드 프리뷰 레이아웃
 
-> ![](/Users/kibum0405/Desktop/msaeasy-intro/src/img/image50.png)
+> ![](/Users/kibum0405/Desktop/intro-msaeasy/src/img/image50.png)
 > <p align="center">그림 20 코드 프리뷰 레이아웃</p>
 
 | 번호 | 이름              | 기능 설명                                                  |
@@ -287,7 +287,7 @@ Code Preview를 선택하면 EventStorming 된 결과를 Code Preview를 통하�
 Download Archive를 선택하면 Template을 선택할 수 있으며, EventStroming 된 결과를 Zip파일로
 다운로드 받을 수 있다.
 
-> ![](/Users/kibum0405/Desktop/msaeasy-intro/src/img/image51.png)
+> ![](/Users/kibum0405/Desktop/intro-msaeasy/src/img/image51.png)
 > <p align="center">그림 21 Download Archive 템플릿 선택</p>
 
 | 번호 | 이름              | 기능 설명                                                  |
@@ -301,7 +301,7 @@ Download Archive를 선택하면 Template을 선택할 수 있으며, EventStrom
   - Bounded Context 에 설정한 이름별(Order, Delivery)로 프로젝트가 생성이 되었고, 압축을 풀었을 시
     아래와 같은 구조를 가진다.
 
-  - ![스크린샷%202019-11-28%20오전%2011](/Users/kibum0405/Desktop/msaeasy-intro/src/img/image52.png)
+  - ![스크린샷%202019-11-28%20오전%2011](/Users/kibum0405/Desktop/intro-msaeasy/src/img/image52.png)
 
   - gateway 는 기본 제공되는 템플릿으로 spring-cloud-gateway 를 설정하는 방법을 나타내고있다.
     정상적으로 사용시에는 gateway/src/main/resource 의 application.yaml
@@ -311,7 +311,7 @@ Download Archive를 선택하면 Template을 선택할 수 있으며, EventStrom
     spring-boot 기반의 프로젝트 이며, maven 으로 리소스 관리를 한다.  
     파일 생성 위치나, 파일 안의 기본 내용을 생성시마다 변경을 하려면 다음 장의 커스텀 템플릿을 활용하면 된다.
 
-> ![스크린샷%202019-11-28%20오후%2012](/Users/kibum0405/Desktop/msaeasy-intro/src/img/image53.png)
+> ![스크린샷%202019-11-28%20오후%2012](/Users/kibum0405/Desktop/intro-msaeasy/src/img/image53.png)
 
   - application.yaml
     
@@ -394,21 +394,21 @@ GCB 트리거 생성은 아래와 같은 순서대로 진행을
 한다.
 
 1. GCP 의 GCB 메뉴로 들어가서 트리거 메뉴를 클릭한다.  
-> ![](/Users/kibum0405/Desktop/msaeasy-intro/src/img/image54.png)
+> ![](/Users/kibum0405/Desktop/intro-msaeasy/src/img/image54.png)
 2. 상단의 저장소 연결 버튼을 클릭한다.
-> ![](/Users/kibum0405/Desktop/msaeasy-intro/src/img/image55.png)
+> ![](/Users/kibum0405/Desktop/intro-msaeasy/src/img/image55.png)
 3. 저장소 선택에서 github을 선택한다.
-> ![](/Users/kibum0405/Desktop/msaeasy-intro/src/img/image56.png)
+> ![](/Users/kibum0405/Desktop/intro-msaeasy/src/img/image56.png)
 4. 깃헙 인증을 하여 진행한다.
-> ![](/Users/kibum0405/Desktop/msaeasy-intro/src/img/image57.png)
+> ![](/Users/kibum0405/Desktop/intro-msaeasy/src/img/image57.png)
 5. 연결할 프로젝트를 선택하여 저장소 연결을 마무리 한다.
-> ![](/Users/kibum0405/Desktop/msaeasy-intro/src/img/image58.png)
+> ![](/Users/kibum0405/Desktop/intro-msaeasy/src/img/image58.png)
 6. 상단의 트리거 생성 버튼을 클릭하여 트리거를 생성한다.
-> ![](/Users/kibum0405/Desktop/msaeasy-intro/src/img/image59.png)
+> ![](/Users/kibum0405/Desktop/intro-msaeasy/src/img/image59.png)
 7. 트리거 생성 화면의 하단에 빌드 구성을 CloudBuild 로 선택한다.
->![](/Users/kibum0405/Desktop/msaeasy-intro/src/img/image60.png)
+>![](/Users/kibum0405/Desktop/intro-msaeasy/src/img/image60.png)
 8. 트리거 만들기 버튼을 클릭하여 트리거생성을 완료한다. 오른쪽의 트리거 실행버튼으로 바로 트리거 실행을 할 수 있다. 
-> ![](/Users/kibum0405/Desktop/msaeasy-intro/src/img/image61.png)
+> ![](/Users/kibum0405/Desktop/intro-msaeasy/src/img/image61.png)
 
 위와 같이 트리거를 생성하였으면, github 에 push 명령을 실행할 때마다, 트리거가 작동하는 것을 확인 할 수 있다.
 
@@ -418,28 +418,28 @@ GCB 트리거 생성은 아래와 같은 순서대로 진행을
 
   - 트리거가 정상적으로 실행을 하였으면 기록 메뉴에서 빌드 성공/실패 여부를 확인 할 수있다.
 
-> ![](/Users/kibum0405/Desktop/msaeasy-intro/src/img/image62.png)
+> ![](/Users/kibum0405/Desktop/intro-msaeasy/src/img/image62.png)
 
   - 빌드 기록에 녹색으로 성공화면이 떠있으면 GKE 에 성공적으로 배포가 된 것이다. GKE 메뉴의 작업 부하 항목에서 현재
     동작하는 서비스를 확인 할 수
 있다.
 
-> ![](/Users/kibum0405/Desktop/msaeasy-intro/src/img/image63.png)
+> ![](/Users/kibum0405/Desktop/intro-msaeasy/src/img/image63.png)
 
 ##### 배포 실패시 해결방법
 
 * 빌드 실패시 기록 항목에서 아래와 같이 빨간색으로 빌드 실패가 나타나고, 클릭시 어떤 step 에서 에러가 났는지 확인이 가능하다. 로그 다운로드 버튼을 눌러서 상세 로그를 확인하면서 해결이 가능하다.
 
-> ![](/Users/kibum0405/Desktop/msaeasy-intro/src/img/image64.png)
+> ![](/Users/kibum0405/Desktop/intro-msaeasy/src/img/image64.png)
 
-> ![](/Users/kibum0405/Desktop/msaeasy-intro/src/img/image65.png)
+> ![](/Users/kibum0405/Desktop/intro-msaeasy/src/img/image65.png)
 
 * deploy 단계에서 에러가 났을 경우 첫번째로 GCB 에서 GKE 로 배포를 하는 권한이 있는지 체크해 보고, 없을 때 권한 설정을 해준다.
 
 > Cloud빌드 – 설정 메뉴에서 Kubernetes Engine 개발자가 사용설정됨 으로 상태가 보이는지 확인하고,
 > 안되어있을시 사용 설정한다.
 
-> ![](/Users/kibum0405/Desktop/msaeasy-intro/src/img/image66.png)
+> ![](/Users/kibum0405/Desktop/intro-msaeasy/src/img/image66.png)
 
 * cloudBuild.yaml 파일의 option 부분에 클러스터 Zone 과 이름이 일치하는지 확인 한다.
 

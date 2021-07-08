@@ -5,11 +5,11 @@ next: '/started/installation/'
 ---
 # 소개
 
-MSA Easy는 마이크로서비스 구축에서 운영에 필요한 분석, 설계, 구현 및 모니터링을 지원하는 도구로써, 이벤트스토밍 기반 협업을 통해 도메인을 분석/설계하고, 설계된 도메인 모델에서 MSA 소스코드를 자동으로 생성해 준다.<br/>
+MSAEasy는 마이크로서비스 구축에서 운영에 필요한 분석, 설계, 구현 및 모니터링을 지원하는 도구로써, 이벤트스토밍 기반 협업을 통해 도메인을 분석/설계하고, 설계된 도메인 모델에서 MSA 소스코드를 자동으로 생성해 준다.<br/>
 
 최근 IBM, Pivotal 등 MSA를 선도하는 글로벌 기업들이 채택하고 있는 Event-driven한 도메인 분석기법의 모델링 환경을 제공하고, 모델링 결과로부터 개발자가 비즈니스 로직을 구현할 수 있도록 MSA 템플릿 코드와 클라우드 배포에 필요한 파일들을 동시에 생성해 준다.<br/>
 
-> ![](/Users/kibum0405/Desktop/msaeasy-intro/src/img/image2.png)
+> ![](~/src/image2.png)
 > <p align="center"> 그림 1 MSAEasy 화면 (예시) </p>
 
 '이벤트스토밍(Event Storming)'은 Event와 BrainStorming의 합성어로서, 이벤트 기반 시스템의 설계와 개발을 빠르게 할 수 있는 기법이다. 
@@ -17,11 +17,11 @@ UML, BPMN 등 IT 전문성을 갖추지 않더라도 현업, 업무전문가, �
 
 이벤트를 유발시키는 행위(사용자의 의사결정)와 해당 이벤트에 연이어 반응하는 액션들을 1)모든 이해 관계자들이, 2)짧은 시간 내에, 3)시각적으로 모델링 한다. 궁극적으로 마이크로서비스를 여러 개로  쪼개는데 활용 가능하다.
 
-MSA Easy는 오프라인 이벤트스토밍이 공간적인 제약과 화이트보드 벽면에 부착된 스티커가 물리적 요인으로 쉽게 떨어질 수 있다는 점을 보완해 준다.
+MSAEasy는 오프라인 이벤트스토밍이 공간적인 제약과 화이트보드 벽면에 부착된 스티커가 물리적 요인으로 쉽게 떨어질 수 있다는 점을 보완해 준다.
 
 또한, 결과 모델을 순공학(Forward Engineering) 기능을 통해 단위 마이크로서비스 코드 생성이 가능하고, 마이크로서비스가 운영될 클라우드 환경에 필요한 도커 파일(Docker file)과 CI(Continuous Integration), CD(Continuous Deployment) 배포 파이프라인(Pipeline) 등 자동화된 환경 구성(Configuration) 파일도 생성해 준다.
 
-MSA Easy의 커스텀 템플릿은 이를 적용하는 기업의 표준 프레임워크(Framework)에 맞도록 커스터마이징 할 수 있는 확장 기능을 제공한다.
+MSAEasy의 커스텀 템플릿은 이를 적용하는 기업의 표준 프레임워크(Framework)에 맞도록 커스터마이징 할 수 있는 확장 기능을 제공한다.
 
 --- 
 
@@ -63,12 +63,12 @@ MSA Easy의 커스텀 템플릿은 이를 적용하는 기업의 표준 프레�
 타임 커플링된 서비스들은 서비스 블로킹(Blocking) 우려와 한 서비스에서 발생한 장애가 타 서비스로 전파될 수 있는 구조로 인해 웹 스케일 기반 시스템에서는 치명적인 단점이 있어, 이를 회로 차단(Circuit Breaking) 등의 방법으로 극복하려 하였다.
  
 
-> ![](/Users/kibum0405/Desktop/msaeasy-intro/src/img/image3.png)
+> ![](/Users/kibum0405/Desktop/intro-msaeasy/src/img/image3.png)
 > <p align="center"> 그림 2 1세대 마이크로서비스 아키텍처 예시</p>
 
  이를 보완한 것이, 최근 각광받고 있는 이벤트 기반(EDA)의 3세대 MSA로, 도메인에서 발생하는 이벤트를 큐를 통하여 브로드캐스팅(BroadCasting)하는 마이크로서비스간 Pub/Sub을 통해 상호 커뮤니케이션하는 아키텍처를 따른다.
 
-> ![](/Users/kibum0405/Desktop/msaeasy-intro/src/img/image4.png)
+> ![](/Users/kibum0405/Desktop/intro-msaeasy/src/img/image4.png)
 > <p align="center"> 그림 3 EDA기반 3세대 마이크로서비스 아키텍처 예시 </p>
 
 
@@ -90,7 +90,7 @@ REST방식(직접 호출)으로 서로 통신할 경우, 요청자는 다음 액
 
 서비스 규모에 비례하여 더 크고 넓은 협업 공간과 이벤트스토밍이 종료되는 시점까지 해당 공간을 점유하고 있어야 한다.
 
-> ![](/Users/kibum0405/Desktop/msaeasy-intro/src/img/evtstrm.jpg)
+> ![](/Users/kibum0405/Desktop/intro-msaeasy/src/img/evtstrm.jpg)
 > <p align="left"> 이미지 출처 : Pivotal_Methodology 이벤트스토밍 예시</p>
 
 그러나, MSAEasy를 사용하게 되면, 현업, 도메인 전문가, 시스템 개발자의 협업이 도구가 제공하는 브라우저 기반 전자적 화이트보드 상에서 가능하므로 시공간적 제약이 없어진다.
