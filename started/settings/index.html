@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html data-html-server-rendered="true" lang="en" data-vue-tag="%7B%22lang%22:%7B%22ssr%22:%22en%22%7D%7D">
+  <head>
+    <title>이벤트스토밍 학습 - intro-msae</title><meta name="gridsome:hash" content="98acb6c1e2eef1196c55bc7149a513e11da6f6ad"><meta data-vue-tag="ssr" charset="utf-8"><meta data-vue-tag="ssr" name="generator" content="Gridsome v0.7.22"><meta data-vue-tag="ssr" data-key="viewport" name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"><meta data-vue-tag="ssr" data-key="format-detection" name="format-detection" content="telephone=no"><meta data-vue-tag="ssr" data-key="og:url" name="og:url" content="undefined/started/writing-content/"><meta data-vue-tag="ssr" name="description" content="undefined"><meta data-vue-tag="ssr" data-key="og:title" name="og:title" content="이벤트스토밍 학습"><meta data-vue-tag="ssr" data-key="twitter:title" name="twitter:title" content="이벤트스토밍 학습"><meta data-vue-tag="ssr" data-key="og:description" name="og:description" content="undefined"><meta data-vue-tag="ssr" data-key="twitter:description" name="twitter:description" content="undefined"><meta data-vue-tag="ssr" data-key="og:type" name="og:type" content="website"><meta data-vue-tag="ssr" data-key="twitter:card" name="twitter:card" content="summary_large_image"><meta data-vue-tag="ssr" data-key="og:image" name="og:image" content="undefined/logo.jpg"><meta data-vue-tag="ssr" data-key="twitter:image" name="twitter:image" content="undefined/logo.jpg"><link data-vue-tag="ssr" rel="icon" href="data:,"><link data-vue-tag="ssr" rel="icon" type="image/png" sizes="16x16" href="/assets/static/favicon.ce0531f.f0886199c685a75a52fccefb5e72c094.png"><link data-vue-tag="ssr" rel="icon" type="image/png" sizes="32x32" href="/assets/static/favicon.ac8d93a.f0886199c685a75a52fccefb5e72c094.png"><link data-vue-tag="ssr" rel="icon" type="image/png" sizes="96x96" href="/assets/static/favicon.b9532cc.f0886199c685a75a52fccefb5e72c094.png"><link data-vue-tag="ssr" rel="apple-touch-icon" type="image/png" sizes="76x76" href="/assets/static/favicon.f22e9f3.f0886199c685a75a52fccefb5e72c094.png"><link data-vue-tag="ssr" rel="apple-touch-icon" type="image/png" sizes="152x152" href="/assets/static/favicon.62d22cb.f0886199c685a75a52fccefb5e72c094.png"><link data-vue-tag="ssr" rel="apple-touch-icon" type="image/png" sizes="120x120" href="/assets/static/favicon.1539b60.f0886199c685a75a52fccefb5e72c094.png"><link data-vue-tag="ssr" rel="apple-touch-icon" type="image/png" sizes="167x167" href="/assets/static/favicon.dc0cdc5.f0886199c685a75a52fccefb5e72c094.png"><link data-vue-tag="ssr" rel="apple-touch-icon" type="image/png" sizes="180x180" href="/assets/static/favicon.7b22250.f0886199c685a75a52fccefb5e72c094.png"><link rel="preload" href="/assets/css/0.styles.8fa3adb2.css" as="style"><link rel="preload" href="/assets/js/app.6b8199dd.js" as="script"><link rel="preload" href="/assets/js/page--src--templates--markdown-page-vue.990fbd8f.js" as="script"><link rel="prefetch" href="/assets/js/page--src--pages--404-vue.b6f14833.js"><link rel="prefetch" href="/assets/js/page--src--pages--index-vue.4125d4da.js"><link rel="prefetch" href="/assets/js/search.1ac868e5.js"><link rel="stylesheet" href="/assets/css/0.styles.8fa3adb2.css"><noscript data-vue-tag="ssr"><style>.g-image--loading{display:none;}</style></noscript>
+  </head>
+  <body >
+    <div data-server-rendered="true" id="app" class="font-sans antialiased text-ui-typo bg-ui-background"><div class="flex flex-col justify-start min-h-screen"><header class="sticky top-0 z-10 w-full border-b bg-ui-background border-ui-border"><div class="py-2 border-t-2 border-ui-primary"><div class="container"><div class="flex items-center justify-between -mx-2 sm:-mx-4"><div class="flex flex-col items-center px-2 mr-auto sm:px-4 sm:flex-row"><a href="/" title="Home" class="flex items-center text-ui-primary active"><img src="data:image/svg+xml,%3csvg fill='none' viewBox='0 0 200 77' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink'%3e%3cdefs%3e%3cfilter id='__svg-blur-1e4d93a72a1a499242f507254483f626'%3e%3cfeGaussianBlur in='SourceGraphic' stdDeviation='40'/%3e%3c/filter%3e%3c/defs%3e%3cimage x='0' y='0' filter='url(%23__svg-blur-1e4d93a72a1a499242f507254483f626)' width='200' height='77' xlink:href='data:image/png%3bbase64%2ciVBORw0KGgoAAAANSUhEUgAAAEAAAAAZCAYAAACB6CjhAAAACXBIWXMAABJ0AAASdAHeZh94AAAMjUlEQVRYw7VYaXhU5RWePtoWWyCasJgEMhBABSsqooKgolRL0ZYiCkURrVgtdauKto8iS/aEBIImGBYJAYGArCFhlSSSBTIJS0RQEYTZMjPZJstkI/i8Pe8395JhCDzWtj%2b%2b5977ree85z3Ldw1hcXb0jbWBT//G/p8y5r9nZ/P0vqvtcbX1/6tm8BXkxmhpUTb0lhYac6mAwT5jITEdAhm1sd7aGOdwjdEPpD6xHeN9/JTnMzTmHEKjz6FP9KXP/wSonwSAvnm/eDuGfeTA3SkO3JPqwKBEEdoHhKHJFbg31Ts%2beGGF6tOVuvNDB%2b772In7ljjVnPAEu%2bo3aodw3sAFdjV2T4p33BcEzhu4qBkDk9swIPmCtHaEq%2bcFGBNc/18G8PBekTaMT6/Em9m1mLC6Es9uqMbMrTUKAFqXSs/KceOPGZWYJmOcx3VUZMamGkxdX6XG/iRruf6FTdX43ScuZW2jBsDMbTV4am0Vpsv6GTJOtvUX0IMibJiQ4YD92Ds4W/wMrMWTYDs4CeaiJ1B/5Cm8t%2b0wboisFANZLzLOeAU38o79eJfltwKgpwBA4YeLogNEKbKBSg0Ty14/z4on1lRhlFj4N4sqFFgEgcJTUfbfJuyYLMpNXFOJsctdeG5jNSavq1L7EkCyg8rfklShhOT6O2RvAhwYYcfT6xzAoS5AvgGe0rFoOPQA3AfvB46NwfwdJgGgSuQyo2%2bMGcFR3hYWa1bK9o0Veal0bMcYXccYZ1XA94mhG1l8lLZIn/kiAy8ygMLfJS7wN7E8rUVFxq5wIUAAoEKk7nJTI24S13hawCErCBKBeD2rFrcKOLcvduBhWacDFKbAteKZzGrlQvM/r1PvI8RVCGrvKCt6RNoxZa0LOBgIj%2bl%2bjFsL3JzchKGprRia0iqu6EJItBUBkXUIS2rDbSktuEPG%2bizwoFcUjWVTewTHN8kY14grLW5HUFQN%2bic4MWBRK8ISajQGWNX7gEUtwl6HgGbrAIAMoO/z%2bcFet/LrKWJFWpBCU7GFBfUwxncAwH76Ot2ALkTmdJtrVazRfZ9u8pfPqhVL/rq5RrnAIIkHfA%2bL8zLAC0B3NJXch2FLga4RbvSMbUSPmHq1/5BFlVixdztspunCiofQLEAdK4nA4%2bk2dJ/nwMQMO0qLI3H%2b8ANA%2bRjUloxHRu5upBeUo7J0Kjbkb0NIbJW0aqzL3YraYy9idvbXCIx0XQrASLHMb8Xqc/fVKYvRwqQ9gaBPzxMLUsnpwgg%2bqdhDy1yK6o/K%2bEtbvApyTYiWGQgcwXlwqTdIPr6qUrGFe44QwLvOtWGqcoFeuFAQiHNlb%2bDUwZn4tvgluL58B5NXn8HAhXXwfPMejubPwNrdqTAX/B4oMqCoOAkhSYC59BWgxIC8/Ais3bkQ7tIJ2FWYgZc22VR/e9m9uGeJG7enNMj7CKA0QBjolPhjvxQACjhmmROzdrqVhem3f5DgRuUoMAMjs8M0zYpcSxDYSGtanOvoEsPFnW6Yb1VjQyRrvCJuxTO4x2OrvGwjwF0%2bsHljQEkwfsj/BVpLR6PFNBKeQ3cDJ8bhxQ2n8es5dgxdcgGjVwLD09qQnPedMMaA04VTMUr6PCWjgIJrsSzPhFGfALcsAfrGV8OY1IxTh14FTAbM3HgSz60/A5QZYCqai%2bCEFnGBc5czYIxYlPSk5Wj117bXYnSaUwnL7MBARurzySgfKEoyWDIIvipzaX1a%2bPnPvHGArOgR4Z0zbqVLgUkQ6SKMNzf4uEBzyUhMzATuTHFjRFojRqY1SPqUFJpUg6x80bTsNuDkYODoECDPgIqSKRgk/r5m/xbgSJBSFGUhovRreGH9t/jl3Dok7ipU/du/WI3MvM0KgA%2byDiMggvHLejkAFJBWZ5AivZMLGxQznvy0SjGC1iQDmC0YEKlYDwl0XedYVa6flVOrlJussYcgEpQXBVTuyT2YPVhMPZNZJbHBiYmrneICAWLJkRiS8gOued%2bFrvNrpFXj2tlV%2bMeWb5TgnsJb8Pbmo0jblyfzr4X50DSEJzWge6RbUXrpro04UzBJ2GBA9dEZ6JdYJ0DW4bxpOFrKxqKtfILEmZG4N80jxrMoBl8EgPmbyjD60w0oKOlMCtN/qQgVoOJkA5V9XqM/AdEVGy0pjwGULPmzuA33J3MIJsGj9dnPbwbG8asEqFXiAsUBaC4ahGW5hYjL2oUF2XuxZHcOJq4y432pBUh5c/EU3LUCSMz5XMUApspx6XV487MyvLbBhGEfn8e8PQJmcRc0mh7GXal16B5Rh5wD6QoUHDAg%2b4uVCIpplNRp7kiDTFW0MEFggKPi9HkGrAELvGmOwlNBugZpTR9/d5db1QHM83QdxoH7xV1IbSpI9yF7%2bM1AybzPwHizuM/fJSYwtc7c5sZzGwSA4zeJktcIvX8lkf46eXYDvjJgZ%2bE6jFreKtH9URXQcELc4MSTaCgbL7Q3IL%2b8AOby%2beIaUkecoHv0lv4QrNy/G8GxNWJcK6auZTDsL6wJxIwNZ8XtHCp9qkKIKDBiswZgvqflaOU7JKczok%2bTb9YITIdkB0Ggu/CuQGpPEuCYFgnY05leJoRr7sG1ZAlLYK43%2btwdmBmel/O4nkC8vfUE3tr8Jd7YdFy116XN2lKOJzLMkq6ceCzdiYU5e5G0IwuPrHBgzIo6VSQ9mfG9fNsxe2sxPtyxUcazMX29BaFxtSKjGddJAJ30abVE/l7iMs9iUHKL6r/sMkQQAiVYBUV4Kyj6KN8ZwOjjnNNbC3o9tW/O4ThdKFSzrr6eje/ckwr7l6NcE6TtzfHu853SXFqrVM9u8gyKrBC6cp7MiahVlO4ZyfUWdJ1Xpcb53U3iRUBUvYy75cwKYZsFQxc78eDKdhQWRAoABgmIRRL8qlXwC9NKZoNvLc3c3i%2b%2bo1bWv9n0SwvfjfE%2b9Xd8R21u1L791xs7uR4b/c7rH29TgoUneJ9681LVW/H1j7cgXOtjGez7rubHWdScgQkWXC%2bBMasoS9woXALoz1FuipYKs14MpZfFPgD8N3dvX2X8x/S%2bH7unzqKryaNfy6%2b2DwEJjnHhzU1HkLlvOeZsN2GwKH%2bjlN7%2bxjBc6bDO7uz6zc73mmvUXIN09l3LRvrTTQhEH58bW2f7U3kGWgZRX1fR2ac3VqgMwPpNU%2b/Xz9CNwfvDnR/JjTaxRdxDyuBoi6pLyKawuE4AuBgLYrz%2bz0CoH0Lh9ODF9NdT81sGO8aARyRFMnuwj7Hk5sQK9c/gZckWFJjgcD/uy2sw92M65HxdQb5TMVaK3FNXiGcphWQNA/MnpY3Yf7pF7iUNUntYlAxUjLGEslFm7sVLXO7pZqkxHHK%2bWZPbdnUG8ECWuB8fasT2E01IKW5AfH69ivofFjWo2xwPf1uKnWUljdh7qkWNrzvmgaPhglJ4%2b8lmte79PW40tv2AqNw6lQYPfN%2bi%2blk35J9pUfeNNUc82PVtM7JkzebjTSq98r7BPffI3ulljSpb7Pi6WZ3LjPGzf5nxsuyXL/tRrgNnWzFH9uJ%2bBfLO81iA5XzTjDM17ZKZqvCRnPv5dy0q1evgXgZAP/VzwqpSnsXdjqWiYKos3PhlkxI0TUA5Ym/DqsMeLDnYgGwRiqXvJhE8Yn%2bdsgitlCfKrZb5PGynCMFof1jWsaYgUDmybrXsQYvkylyuzdD2ZD8tTEDeyq7FNjHCF997Aee5TMFk0m4B7VZh2D5RikUWZT/uPI8HpGDj%2bUflPIJJmSmLydqKT4968E%2bpW8iM/p0BoFOc9UCptU0tYAVIq9nrL6jfZblihfWiBPM7Lc3DM8s96rCTrvPqm9YzC4C0dKFYhKyhIHtONSswk%2bRKvczUqNhG678rFy8qn3igHivF4gSebOAVm0/2E%2bRicyve2FGL8oo2FJ5rVS6XolmWhdqWr5oU4JQ7Jq9e9ZdYWhV4ZAb/ZbDM9/1Vd1kM4MCNmi/qdT8vNiyAaEn%2b8KBlWTKzuOH4iFSnsgCpygBGSxM4HsRLFC9AHOc6lsisArmWZ/LuoQc17sk/UjQAx3kub4y3L67AbHGns7XtqlAbI3uT%2bjyH8pKxPI%2bXM/6F4pNxiG7wiFztOYcVKt1nsIyFxtgu/ynaGQi8yoZqAZGBiPk9WOvXU5GetvpqRU8vLRvowYZj9DmO6%2bu4Rk9j%2bh9mnqf2jO74M61nEYIWJ6xi6awXZ3rjvizMemmy6DJzb68c3jk8x3fsikHwSnnd2Em/b/HjWxAZ/eYb/WoC//18f3Qa/X566tGfwrPp6a5f/KVzOj3Dr0C7Uk3ybxUVEGK/tBGOAAAAAElFTkSuQmCC' /%3e%3c/svg%3e" width="200" data-src="/assets/static/logo_white11.7ba8522.cd845b4ef56f84889e007cfefad2a5b8.png" data-srcset="/assets/static/logo_white11.7ba8522.cd845b4ef56f84889e007cfefad2a5b8.png 200w" data-sizes="(max-width: 200px) 100vw, 200px" class="text-ui-primary g-image g-image--lazy g-image--loading"><noscript><img src="/assets/static/logo_white11.7ba8522.cd845b4ef56f84889e007cfefad2a5b8.png" class="text-ui-primary g-image g-image--loaded" width="200"></noscript></a></div><div class="w-full px-2 sm:px-4 max-w-screen-xs"><!----></div><div class="flex items-center justify-end px-2 sm:px-4"><!----><!----><!----><button aria-label="Toggle Darkmode" title="Toggle Darkmode" class="ml-2 sm:ml-8"><svg xmlns="http://www.w3.org/2000/svg" width="1.5em" height="1.5em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-sun"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg></button></div></div></div></div></header><main class="container relative flex flex-wrap justify-start flex-1 w-full bg-ui-background"><!----><div class="w-full pb-24"><div class="flex flex-wrap items-start justify-start"><div class="order-2 w-full md:w-1/3 sm:pl-4 md:pl-6 lg:pl-8 sticky" style="top:4rem;"><div class="mt-8 sm:pl-4 md:pl-6 md:pt-12 lg:pl-8 sm:pb-16 sm:border-l border-ui-border md:mt-0"><h3 class="pt-0 mt-0 text-sm tracking-wide uppercase border-none">On this page</h3><div><ul><li class="font-semibold depth-2"><a href="/started/settings/#개념" class="relative flex items-center py-1 text-sm transition transform hover:translate-x-1"><span class="absolute w-2 h-2 -ml-3 rounded-full opacity-0 bg-ui-primary transition transform scale-0 origin-center"></span>
+          개념
+        </a></li><li class="border-t border-dashed border-ui-border pt-2 mt-2 font-semibold depth-2"><a href="/started/settings/#수행-방법" class="relative flex items-center py-1 text-sm transition transform hover:translate-x-1"><span class="absolute w-2 h-2 -ml-3 rounded-full opacity-0 bg-ui-primary transition transform scale-0 origin-center"></span>
+          수행 방법
+        </a></li><li class="depth-3"><a href="/started/settings/#스티커-유형" class="relative flex items-center py-1 text-sm transition transform hover:translate-x-1 pl-2"><span class="absolute w-2 h-2 -ml-3 rounded-full opacity-0 bg-ui-primary transition transform scale-0 origin-center"></span>
+          스티커 유형
+        </a></li><li class="depth-4"><a href="/started/settings/#event-orange-sticker" class="relative flex items-center py-1 text-sm transition transform hover:translate-x-1 pl-3"><span class="absolute w-2 h-2 -ml-3 rounded-full opacity-0 bg-ui-primary transition transform scale-0 origin-center"></span>
+          Event (Orange Sticker)
+        </a></li><li class="depth-4"><a href="/started/settings/#policy-lilac-sticker" class="relative flex items-center py-1 text-sm transition transform hover:translate-x-1 pl-3"><span class="absolute w-2 h-2 -ml-3 rounded-full opacity-0 bg-ui-primary transition transform scale-0 origin-center"></span>
+          Policy (Lilac Sticker)
+        </a></li><li class="depth-4"><a href="/started/settings/#command-blue-sticker" class="relative flex items-center py-1 text-sm transition transform hover:translate-x-1 pl-3"><span class="absolute w-2 h-2 -ml-3 rounded-full opacity-0 bg-ui-primary transition transform scale-0 origin-center"></span>
+          Command (Blue Sticker)
+        </a></li><li class="depth-4"><a href="/started/settings/#actor-yellow-sticker" class="relative flex items-center py-1 text-sm transition transform hover:translate-x-1 pl-3"><span class="absolute w-2 h-2 -ml-3 rounded-full opacity-0 bg-ui-primary transition transform scale-0 origin-center"></span>
+          Actor (Yellow Sticker)
+        </a></li><li class="depth-4"><a href="/started/settings/#aggregate-yellow-sticker" class="relative flex items-center py-1 text-sm transition transform hover:translate-x-1 pl-3"><span class="absolute w-2 h-2 -ml-3 rounded-full opacity-0 bg-ui-primary transition transform scale-0 origin-center"></span>
+          Aggregate (Yellow Sticker)
+        </a></li><li class="depth-3"><a href="/started/settings/#bounded-context-도출" class="relative flex items-center py-1 text-sm transition transform hover:translate-x-1 pl-2"><span class="absolute w-2 h-2 -ml-3 rounded-full opacity-0 bg-ui-primary transition transform scale-0 origin-center"></span>
+          Bounded Context 도출
+        </a></li><li class="depth-3"><a href="/started/settings/#context-mapping" class="relative flex items-center py-1 text-sm transition transform hover:translate-x-1 pl-2"><span class="absolute w-2 h-2 -ml-3 rounded-full opacity-0 bg-ui-primary transition transform scale-0 origin-center"></span>
+          Context Mapping
+        </a></li><li class="depth-4"><a href="/started/settings/#orchestration" class="relative flex items-center py-1 text-sm transition transform hover:translate-x-1 pl-3"><span class="absolute w-2 h-2 -ml-3 rounded-full opacity-0 bg-ui-primary transition transform scale-0 origin-center"></span>
+          Orchestration
+        </a></li><li class="depth-4"><a href="/started/settings/#choreography" class="relative flex items-center py-1 text-sm transition transform hover:translate-x-1 pl-3"><span class="absolute w-2 h-2 -ml-3 rounded-full opacity-0 bg-ui-primary transition transform scale-0 origin-center"></span>
+          Choreography
+        </a></li><li class="depth-3"><a href="/started/settings/#마이크로서비스-구현" class="relative flex items-center py-1 text-sm transition transform hover:translate-x-1 pl-2"><span class="absolute w-2 h-2 -ml-3 rounded-full opacity-0 bg-ui-primary transition transform scale-0 origin-center"></span>
+          마이크로서비스 구현
+        </a></li><li class="depth-4"><a href="/started/settings/#hexagonal-architecture" class="relative flex items-center py-1 text-sm transition transform hover:translate-x-1 pl-3"><span class="absolute w-2 h-2 -ml-3 rounded-full opacity-0 bg-ui-primary transition transform scale-0 origin-center"></span>
+          Hexagonal Architecture
+        </a></li><li class="depth-4"><a href="/started/settings/#msa-chassis" class="relative flex items-center py-1 text-sm transition transform hover:translate-x-1 pl-3"><span class="absolute w-2 h-2 -ml-3 rounded-full opacity-0 bg-ui-primary transition transform scale-0 origin-center"></span>
+          MSA Chassis
+        </a></li><li class="depth-4"><a href="/started/settings/#이벤트스토밍-스티키-노트별-구현기술-적용" class="relative flex items-center py-1 text-sm transition transform hover:translate-x-1 pl-3"><span class="absolute w-2 h-2 -ml-3 rounded-full opacity-0 bg-ui-primary transition transform scale-0 origin-center"></span>
+          이벤트스토밍 스티키 노트별 구현기술 적용
+        </a></li><li class="depth-5"><a href="/started/settings/#aggregate---yellow" class="relative flex items-center py-1 text-sm transition transform hover:translate-x-1 pl-4"><span class="absolute w-2 h-2 -ml-3 rounded-full opacity-0 bg-ui-primary transition transform scale-0 origin-center"></span>
+          Aggregate - Yellow
+        </a></li><li class="depth-5"><a href="/started/settings/#command--sky-blue" class="relative flex items-center py-1 text-sm transition transform hover:translate-x-1 pl-4"><span class="absolute w-2 h-2 -ml-3 rounded-full opacity-0 bg-ui-primary transition transform scale-0 origin-center"></span>
+          Command – Sky Blue
+        </a></li><li class="depth-5"><a href="/started/settings/#event---orange" class="relative flex items-center py-1 text-sm transition transform hover:translate-x-1 pl-4"><span class="absolute w-2 h-2 -ml-3 rounded-full opacity-0 bg-ui-primary transition transform scale-0 origin-center"></span>
+          Event - Orange
+        </a></li><li class="depth-5"><a href="/started/settings/#policy---lilac" class="relative flex items-center py-1 text-sm transition transform hover:translate-x-1 pl-4"><span class="absolute w-2 h-2 -ml-3 rounded-full opacity-0 bg-ui-primary transition transform scale-0 origin-center"></span>
+          Policy - Lilac
+        </a></li><li class="depth-5"><a href="/started/settings/#bounded-context" class="relative flex items-center py-1 text-sm transition transform hover:translate-x-1 pl-4"><span class="absolute w-2 h-2 -ml-3 rounded-full opacity-0 bg-ui-primary transition transform scale-0 origin-center"></span>
+          Bounded Context
+        </a></li></ul></div></div></div><div class="order-1 w-full md:w-2/3"><div class="content"><h1 id="이벤트스토밍-학습"><a href="#%EC%9D%B4%EB%B2%A4%ED%8A%B8%EC%8A%A4%ED%86%A0%EB%B0%8D-%ED%95%99%EC%8A%B5" aria-hidden="true"><span class="icon icon-link"></span></a>이벤트스토밍 학습</h1>
+<h1 id="오프라인-이벤트스토밍event-storming-기반-msa-개발"><a href="#%EC%98%A4%ED%94%84%EB%9D%BC%EC%9D%B8-%EC%9D%B4%EB%B2%A4%ED%8A%B8%EC%8A%A4%ED%86%A0%EB%B0%8Devent-storming-%EA%B8%B0%EB%B0%98-msa-%EA%B0%9C%EB%B0%9C" aria-hidden="true"><span class="icon icon-link"></span></a>오프라인 이벤트스토밍(Event-Storming) 기반 MSA 개발</h1>
+<h2 id="개념"><a href="#%EA%B0%9C%EB%85%90" aria-hidden="true"><span class="icon icon-link"></span></a>개념</h2>
+<p>이벤트스토밍은 도메인에 관련된 모든 이해 관련자가 모여, 화이트보드 벽면에 주요 이벤트(Event)를 중심으로 업무들 간의 상호
+연관성을 찾기 위해, 유일한 도구인 스티키 노트(Sticky Notes)로 진행하는 MSA DDD를 위한 워크숍 기반 최상의
+실천 방법론이다.</p>
+<h2 id="수행-방법"><a href="#%EC%88%98%ED%96%89-%EB%B0%A9%EB%B2%95" aria-hidden="true"><span class="icon icon-link"></span></a>수행 방법</h2>
+<blockquote>
+<p><img src="/Users/kibum0405/Desktop/msaeasy-intro/src/img/image12.jpeg"></p>
+</blockquote>
+<ol>
+<li>이벤트스토밍에 필요한 화이트 보드 벽면과 수행에 필요한 오렌지, 라일락, 스카이블루, 노랑, 초록, 퍼플, 분홍색의 스티커를 준비한다.<br>
+</li>
+<li>Domain expert 와 기획자, 개발 전문가와 함께 사용자 시나리오, 또는 업무 요건을 리뷰한다.</li>
+<li>가장 먼저, 발생 가능한 Event 를 무작위로 도출하고, Policy, Command, Aggregate 순서로 이벤트를
+중심으로 스티커별 해당 내용을 정의하고 발생시간 순서로 벽면에 부착한다.</li>
+<li>Bounded Context 를 설정하고 서브 도메인 간의 컨텍스트 매핑을 통해 BC간의 정보 참조의 릴레이션을 정의한다.</li>
+</ol>
+<h3 id="스티커-유형"><a href="#%EC%8A%A4%ED%8B%B0%EC%BB%A4-%EC%9C%A0%ED%98%95" aria-hidden="true"><span class="icon icon-link"></span></a>스티커 유형</h3>
+<p>이벤트스토밍에 필요한 스티커 색상별 내포하는 의미는 아래와 같다.</p>
+<blockquote>
+<p><img src="/Users/kibum0405/Desktop/msaeasy-intro/src/img/image13.png"></p>
+<p align="center">그림 1 이벤트스토밍에 사용되는 스티커 유형 및 설명</p>
+</blockquote>
+<h4 id="event-orange-sticker"><a href="#event-orange-sticker" aria-hidden="true"><span class="icon icon-link"></span></a>Event (Orange Sticker)</h4>
+<p>가장 먼저 우리 서비스에서 발생하는 비즈니스 이벤트를 도출한다. 용어의 네임스페이스를 구지 나누려 하지 말고 가급적 현업이
+사용하는 용어를 그대로 사용(Ubiquitous Language)하여 오렌지색 스티커에 이벤트를 기술하여 이를
+벽면에 붙인다.</p>
+<p>비즈니스 이벤트는 과거형으로 작성하는데 도메인 내부에 상태가 변화되고 난 결과가 이벤트 이다.</p>
+<blockquote>
+<p><img src="/Users/kibum0405/Desktop/msaeasy-intro/src/img/image14.png"></p>
+<p align="center">그림 2 Event 예시</p>
+</blockquote>
+<h4 id="policy-lilac-sticker"><a href="#policy-lilac-sticker" aria-hidden="true"><span class="icon icon-link"></span></a>Policy (Lilac Sticker)</h4>
+<p>이벤트스토밍의 두번째 수행 대상은 폴리시(Policy) 도출이다.</p>
+<p>폴리시(Policy)는 이벤트가 발생한 후 연이어 발생하는 반응형 액션으로, 한 서비스 이벤트에 대해 수행되어야 할 타 서비스의
+액션들로, 먼저 정의된 이벤트 아래에 덧대어 붙인다. 하나의 이벤트에 반응하여 수행되어야 할 폴리시는 여러 팀에서 도출된 멀티
+액션이 존재할 수 있다.</p>
+<blockquote>
+<p><img src="/Users/kibum0405/Desktop/msaeasy-intro/src/img/image15.png"></p>
+<p align="center">그림 3 Policy 예시</p>
+</blockquote>
+<h4 id="command-blue-sticker"><a href="#command-blue-sticker" aria-hidden="true"><span class="icon icon-link"></span></a>Command (Blue Sticker)</h4>
+<p>세번째로 Event를 발생시키는 행위인 커맨드를 도출하는데, 도메인 내의 어떠한 상태 변화를 일으키는 서비스를 말한다. 웹 페이지
+내에서 버튼을 클릭하는 User Decision이 여기에 해당된다. 도출된 커맨드는 이벤트 스티커 앞쪽에 붙여, 스티커를 통한
+나레이션(Narration)이 되도록 정렬한다.</p>
+<blockquote>
+<p><img src="/Users/kibum0405/Desktop/msaeasy-intro/src/img/image16.png"></p>
+<p align="center">그림 4 Command 예시</p>
+</blockquote>
+<h4 id="actor-yellow-sticker"><a href="#actor-yellow-sticker" aria-hidden="true"><span class="icon icon-link"></span></a>Actor (Yellow Sticker)</h4>
+<p>Actor는 커맨드를 발생시키는 주체(사람, 시스템, 등)를 말한다. 액터는 담당자 또는 시스템이 될 수 있으며, 직관적으로
+파악될 수 있는 액터의 경우, 표시하지 않아도 무방하다. 도출된 액터는 유저 스토리에 가까운 나레이션이 가능하도록 해당
+커맨드 스티커 왼쪽에 배치한다.</p>
+<blockquote>
+<p><img src="/Users/kibum0405/Desktop/msaeasy-intro/src/img/image17.png"></p>
+<p align="center">그림 5 Actor 예시</p>
+</blockquote>
+<h4 id="aggregate-yellow-sticker"><a href="#aggregate-yellow-sticker" aria-hidden="true"><span class="icon icon-link"></span></a>Aggregate (Yellow Sticker)</h4>
+<p> 다섯번째로, 어그리게잇을 도출한다. 어그리게잇은 ‘결합물’을 의미하는데 어떠한 도메인 객체를 중심으로 하나의 ACID한
+트랜잭션에 묶여 변화되어야 할 객체의 묶음을 도출하고, 그것들을 커맨드, 이벤트와 함께 묶는다.</p>
+<blockquote>
+<p><img src="/Users/kibum0405/Desktop/msaeasy-intro/src/img/image18.png"></p>
+<p align="center">그림 6 Aggregate 예시</p>
+</blockquote>
+<h3 id="bounded-context-도출"><a href="#bounded-context-%EB%8F%84%EC%B6%9C" aria-hidden="true"><span class="icon icon-link"></span></a>Bounded Context 도출</h3>
+<p>Bounded Context는 동일한 문맥으로 효율적으로 업무 용어(도메인 클래스)를 사용할 수 있는 객체 범위를 뜻한다. 하나의
+BC는 하나 이상의 어그리게잇을 원소로 구성될 수 있다. 이 BC를 마이크로서비스 구성 단위로 정하게 되면 이를 담당하는 팀 내의
+커뮤니케이션이 효율화 된다.</p>
+<blockquote>
+<p><img src="/Users/kibum0405/Desktop/msaeasy-intro/src/img/image19.png"></p>
+<p align="center">그림 7 Bounded Context 예시</p>
+</blockquote>
+<h3 id="context-mapping"><a href="#context-mapping" aria-hidden="true"><span class="icon icon-link"></span></a>Context Mapping</h3>
+<p>바운디드 컨텍스트까지 도출된 이후에 BC간 정보 참조 릴레이션 설정 (혹은, 이벤트가 발생한 이후 동반된 행위의 호출 관계를
+선으로 표시)하는 작업을 ‘컨텍스트 매핑’이라고 한다. 컨텍스트간 매핑 정보만 보더라도 전체 도메인 서비스의 참조
+토폴로지(Topology)를 한 눈에 파악 가능하다.</p>
+<blockquote>
+<p><img src="/Users/kibum0405/Desktop/msaeasy-intro/src/img/image20.png"></p>
+<p align="center">그림 8 Context Mapping 예시</p>
+</blockquote>
+<p>위 예시에서 ‘주문이력에 추가’라는 폴리시(비즈니스 업무) 시작 주체에 따라 크게 2가지 토폴로지를 고려할 수 있는데, 이벤트를
+발행하는 주체인 주문관리에서 해당 폴리시를 시작하는 ‘오케스트레이션’ 방식과 이벤트를 수신하는 주체인 마케팅관리에서 폴리시를
+시작하는 ‘코레오그래피’ 방식으로 구분한다.</p>
+<h4 id="orchestration"><a href="#orchestration" aria-hidden="true"><span class="icon icon-link"></span></a>Orchestration</h4>
+<p>오케스트레이션은 이벤트를 발행하는 주체인 주문관리에서 모든 폴리시를 호출하는 방식이다.</p>
+<blockquote>
+<p><img src="/Users/kibum0405/Desktop/msaeasy-intro/src/img/image21.png"></p>
+<p align="center">그림 9 Policy Topology – Orchestration</p>
+</blockquote>
+<p>이는 주문관리 서비스에서 발생한 이벤트인 ‘주문 생성됨’, ‘주문정보 변경됨’, ‘주문상태 변경됨’에 붙여진 모든 폴리시의
+Owner 서비스마다 커맨드를 노출하고, 이벤트를 생성하는 주문 서비스에서 이 커맨드를 동기 방식(Request &#x26;
+Response)으로 호출하는 방식으로 구현된다.</p>
+<p>그러나, 이러한 방식은 서비스간 커플링이 높으며, 폴리시를 호출한 서비스(여기서는 주문관리)는 폴리시가 수행 완료될 때까지
+대기상태에 빠지게 되므로, 시스템 블로킹(Blocking)이 생길 우려가 높다.</p>
+<p>또한, 호출당하는 폴리시를 가진 시스템이 얘기치않은 장애(System Fault)에 빠진 경우, 이를 호출하는 서비스에까지 장애가
+전파되는 악순환의 우려가 있다.</p>
+<h4 id="choreography"><a href="#choreography" aria-hidden="true"><span class="icon icon-link"></span></a>Choreography</h4>
+<p>코레오그래피는 폴리시를 구현하는 주체인 배송, 또는 상품관리에서 자율적으로 폴리시를 실행하는 방식이다.</p>
+<p>주문관리 서비스에서 발생(Publish)하는 이벤트들에 대해, 폴리시 Owner 서비스들이 관심 있는 이벤트에
+반응(Subscribe)하여 자율적으로 서비스를 구동함으로써 Orchestration방식이 가진 서비스간 커플링이 전혀
+없으며, 이벤트를 수신하는 신규 서비스의 추가 및 이벤트를 수신하던 기존 서비스의 삭제가 아주 자유롭게 수행 가능하다.</p>
+<p>또한, 주문관리 서비스 입장에서도 호출당하는 폴리시를 가진 시스템의 얘기치않은 장애(System Fault)에 대해, 이 방식은
+완전히 자유롭다는 것이 가장 큰 장점이다.</p>
+<blockquote>
+<p><img src="/Users/kibum0405/Desktop/msaeasy-intro/src/img/image22.png"></p>
+<p align="center">그림 10 Policy Topology - Choreography</p>
+</blockquote>
+<h3 id="마이크로서비스-구현"><a href="#%EB%A7%88%EC%9D%B4%ED%81%AC%EB%A1%9C%EC%84%9C%EB%B9%84%EC%8A%A4-%EA%B5%AC%ED%98%84" aria-hidden="true"><span class="icon icon-link"></span></a>마이크로서비스 구현</h3>
+<h4 id="hexagonal-architecture"><a href="#hexagonal-architecture" aria-hidden="true"><span class="icon icon-link"></span></a>Hexagonal Architecture</h4>
+<p>아래와 같은 육각형 모형의 아키텍처 도형을 헥사고날 아키텍쳐라고 한다. 이는 가운데 영역인 비지니스 로직 (도메인 영역) 을
+손상시키지 않고 프로그램을 구성하도록 고안된 아키텍처이다. 비지니스 로직을 손상시키지 않고 프로그램을 구현하기 위해서는
+비지니스 로직에 특정 프로토콜이나 프로그램에 종속적인 코드가 들어가면 안된다. 예를 들어 데이터베이스에 종속적인 Query 를
+직접 사용하였다면, 데이터베이스가 변경되는 상황이 발생한다면 해당 로직은 모두 다시 만들어야 한다. 마찬가지로
+메세지브로커를 사용하는 경우 특정 브로커의 코드를 직접적으로 사용하면 변경이 생길 때나, 여러 브로커를
+사용하는 경우가 생기면, 다시 구현을 해야하는 이슈가 생기게 된다.</p>
+<p>이처럼 비지니스 로직은 순수한 형태로 구현을 하고, 그 이외의 것을 adapter 형식으로 설계를 하여 해당 비지니스 로직이 어느
+환경에서도 잘 동작하도록 설계한 모형이 헥사고날 아키텍처이고, 마이크로 서비스 아키텍쳐에서는 이와 같은 방식을 지향한다.</p>
+<blockquote>
+<p><img src="/Users/kibum0405/Desktop/msaeasy-intro/src/img/image23.png" alt="스크린샷%202019-11-27%20오후%202"></p>
+</blockquote>
+<h4 id="msa-chassis"><a href="#msa-chassis" aria-hidden="true"><span class="icon icon-link"></span></a>MSA Chassis</h4>
+<p>MSA Chassis 라는 말은 마이크로 서비스를 구축할때 필요한 주변 요소들을 일컫는다. 마치 ‘창틀처럼 이것저것 끼워
+넣는다’로 해석할 수도 있다. 위에 설명한 헥사고날 아키텍처로 설계를 하여 비지니스 로직에 영향이 없는 개발을
+맨땅에서 하려면 많은 공수가 필요하다. 이에 많은 프레임워크들이 이와 같은 패턴들을 구성해 놓고 제공중이다.</p>
+<p>Java 계열에서 가장 선두주자인 Spring 프레임워크에서 마이크로 서비스에 적합한 spring-boot 프레임워크를 내어
+놓았고, 이에 여러가지 어뎁터들에 해당하는 프로젝트들이 존재한다. 아래 그림은 헥사고날 아키텍쳐에 spring-boot
+를 기반으로 한 MSA Chassis 를 입힌 모형이다. Spring-Data-Rest 를 사용하여 Data 를 외부와 Rest
+방식으로 연결시키고 , String-Cloud-Stream 으로 메세지 처리를 하는 로직을 구현하여 특정 브로커에 종속적이지
+않은 adapter 패턴으로 구현된 모형이다.</p>
+<blockquote>
+<p><img src="/Users/kibum0405/Desktop/msaeasy-intro/src/img/image24.png" alt="스크린샷%202019-11-27%20오후%202"></p>
+</blockquote>
+<h4 id="이벤트스토밍-스티키-노트별-구현기술-적용"><a href="#%EC%9D%B4%EB%B2%A4%ED%8A%B8%EC%8A%A4%ED%86%A0%EB%B0%8D-%EC%8A%A4%ED%8B%B0%ED%82%A4-%EB%85%B8%ED%8A%B8%EB%B3%84-%EA%B5%AC%ED%98%84%EA%B8%B0%EC%88%A0-%EC%A0%81%EC%9A%A9" aria-hidden="true"><span class="icon icon-link"></span></a>이벤트스토밍 스티키 노트별 구현기술 적용</h4>
+<h5 id="aggregate---yellow"><a href="#aggregate---yellow" aria-hidden="true"><span class="icon icon-link"></span></a>Aggregate - Yellow</h5>
+<ul>
+<li>이벤트 스토밍의 첫번째 구현은 도메인 모델을 정의하는 단계이다.<br>
+노란색 스티커로 붙여진 Aggregate 의 변화에 의하여 이벤트가 생성되고, 커맨드 요청을 받아서 Aggregate 가
+변화를 하기 때문에, Aggregate 는 가장 중요하고, 가장 먼저 구현을 한다.</li>
+<li>Aggregate 를 구현 시, Java 언어로 Spring-boot 를 사용하여 구현을 한다면 아래와 같이 Java 클래스에
+@Entity 어노테이션을 선언해 주면 준비가 완료된다.</li>
+<li>Entity 라는 말은 객체 혹은 개체 라는 의미로 사용되는데 연필이나 컴퓨터 처럼 서로 구별이 되는 하나하나의 대상을
+지칭한다. 즉 우리가 사용하는 도메인 언어이다. Spring 에서는 이런 도메인을 손쉽게 사용할 수 있도록
+어노테이션을 제공하여 준다.</li>
+<li>어노테이션 선언 후에 Entity 구성에 필요한 속성들을 정의하여 주면 된다. 속성들은 java 언어에서는 변수로 선언을
+해주면 된다.</li>
+<li>모든 Entity 는 각 개체마다의 생성되고, 변화되고, 사라지는 lifecycle 을 가지고 있고, 속성이 있기에,
+프로그래밍 언어로 보았을 때 데이터베이스와 API 와의 매칭이 당연시 된다.</li>
+<li>Aggregate 에 포함된 특정 Entity 를 RootEntity 혹은 AggregateRoot 라고 부른다,</li>
+<li>아래 그림은 노란색의 이벤트 스토밍 스티커인 Aggregate 를 구현한 모습이다.</li>
+</ul>
+<blockquote>
+<p><img src="/Users/kibum0405/Desktop/msaeasy-intro/src/img/image25.png" alt="스크린샷%202019-11-27%20오후%203"></p>
+</blockquote>
+<h5 id="command--sky-blue"><a href="#command--sky-blue" aria-hidden="true"><span class="icon icon-link"></span></a>Command – Sky Blue</h5>
+<ul>
+<li>Aggregate 를 구성하였으면, 해당 Aggregate 를 변화시키는 커맨드를 작성한다.</li>
+<li>파란색 스티커에 해당하는 Command 는 구현관점으로 보았을 때 외부로부터 들어오는 API 에 해당한다.</li>
+<li>DDD 에서는 Aggregate 를 변화시키는 채널을 Repository 라고 한다. 그리고 RootEntity 에서만
+Repository 를 제공하라고 한다.</li>
+<li>Spring-Data-Rest 에서는 해당 Repository 를 구성하는 방법을 @Repository 라는 어노테이션
+선언하여 구성하거나 혹은 extends Repository 같은 방식으로 구현하도록 guide 되어있다.</li>
+<li>Spring-Data-Rest 를 사용하여 Repository Pattern 으로 프로그램을 구현하면 Entity 의
+lifecycle 에 해당하는 기본적인 CRUD 가 바로 생성이 되고, 해당 CRUD 에 해당하는 API (커맨드) 가
+자동으로 생성된다.</li>
+<li>Repository Pattern 으로 구성이 안되고 복잡한 비지니스 로직이 있으면 Spring 에서 MVC 패턴으로 나온
+Controller 와 Service 로 구현하면 된다</li>
+<li>아래는 파란색 스티커인 커맨드를 구현한 코드이다.</li>
+</ul>
+<blockquote>
+<p><img src="/Users/kibum0405/Desktop/msaeasy-intro/src/img/image26.png" alt="스크린샷%202019-11-27%20오후%204"></p>
+</blockquote>
+<h5 id="event---orange"><a href="#event---orange" aria-hidden="true"><span class="icon icon-link"></span></a>Event - Orange</h5>
+<ul>
+<li>주황색 스티커인 이벤트는 pojo 객체인 Java Class 로 생성을 한다.</li>
+<li>실제로 메세지로 주고 받을 때는 json 객체 형식으로 통신하는 방법을 추천한다. Json 객체를 직접 만들거나, String
+변수처럼 바로 선언을 할 수도 있으나, 클래스 파일로 구성을 해 놓았을 시, 명시적이고 쉽게변경하기 어렵다.</li>
+</ul>
+<blockquote>
+<p><img src="/Users/kibum0405/Desktop/msaeasy-intro/src/img/image27.png" alt="스크린샷%202019-11-27%20오후%205"></p>
+</blockquote>
+<ul>
+<li>이벤트는 Aggregate 의 변화에 의해서 발생하기 때문에, 이벤트를 보내는 로직은 Entity의 lifecycle 에
+작성을 하게 된다. 물론 비지니스 로직의 중간중간에 이벤트를 발생시켜야 한다면, 따로 서비스에서 처리를 하는 것이
+맞으나, DDD 에서 말하는 주요 문구인 도메인을 보았을 때 비지니스가 보여야 한다는 원칙에 맞추어 Entity
+에서 이벤트를 발생하는 방법을 추천한다.</li>
+<li>JPA 에서는 이러한 Entity 의 lifecycle에 해당하는 listener 를 어노테이션으로 생성하여 놓았다.
+대표적으로 @PostPersist (저장후) @PrePersist(저장전) @PostUpdate (업데이트후) 등이 있다.
+</li>
+<li>메시지를 send 하는 방법은 어떤 라이브러리를 쓰고, 설정에 따라 달라지지만 메시지 브로커를 kafka 를 사용한다면
+topic 을 설정하고, 마지막에 send 하는 형식으로 이벤트를 발행한다.</li>
+</ul>
+<blockquote>
+<p><img src="/Users/kibum0405/Desktop/msaeasy-intro/src/img/image28.png" alt="스크린샷%202019-11-27%20오후%205"></p>
+</blockquote>
+<h5 id="policy---lilac"><a href="#policy---lilac" aria-hidden="true"><span class="icon icon-link"></span></a>Policy - Lilac</h5>
+<ul>
+<li>보라색 스티커는 이벤트에 반응하여 작동하는 Policy 이다. 이벤트에 반응하기 때문에 이벤트를 수신하는 리스너가
+필요하다. Spring-cloud-Stream 을 사용시 아래처럼 @StreamListener 어노테이션으로
+선언을 하여 주면, 이벤트가 생성될 때마다 INPUT 으로 들어오는 데이터를 한 개씩 수신이 된다.</li>
+<li>Processor.INPUT 은 메시지를 수신하는 채널인데, kafka 의 구현체를 가진다면 topic 을 의미한다. 만약
+Topic 을 여러 이벤트에서 공유를 한다면 아래 리스너에서 내가 원하는 이벤트만 선별하여 작업을 해야하기 때문에 이벤트의
+속성값에서 정해진 이벤트 명을 찾던가, header 에서 찾는 등 이벤트를 구분하는 로직이 필요하다.</li>
+</ul>
+<blockquote>
+<p><img src="/Users/kibum0405/Desktop/msaeasy-intro/src/img/image29.png" alt="스크린샷%202019-11-27%20오후%205"></p>
+</blockquote>
+<h5 id="bounded-context"><a href="#bounded-context" aria-hidden="true"><span class="icon icon-link"></span></a>Bounded Context</h5>
+<ul>
+<li>이벤트 스토밍을 하고 난 후에 여러 Aggregate 들이 관련된 Context 끼리 묶여서 Bounded Context
+가 형성이 된다. 이것은 마이크로 서비스 단위로 쪼갤 수 있는 후보가 된다.<br>
+</li>
+<li>마이크로 서비스는 java 언어로 구현 시 가장 적합한 프레임워크는 Spring-boot 이다. 내장된
+톰켓(Tomcat)으로 자체 서버를 띄울 수 있고, 라이브러리를 추가하는 방식으로 Chassis 구성을 손쉽게
+할 수 있다.</li>
+</ul>
+</div><div class="mt-8 pt-8 lg:mt-12 lg:pt-12 border-t border-ui-border"><div><div class="flex flex-col sm:flex-row justify-between items-center"><a href="/started/deploying/" class="mb-4 sm:mb-0 flex items-center mr-auto text-ui-primary font-bold px-4 py-2 border border-ui-border rounded-lg hover:bg-ui-primary hover:text-white transition-colors"><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mr-2 feather feather-arrow-left"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+      도메인 주도 설계 학습
+    </a><a href="/started/sidebar/" class="flex items-center ml-auto text-ui-primary font-bold px-4 py-2 border border-ui-border rounded-lg hover:bg-ui-primary hover:text-white transition-colors">
+      Sidebar
+      <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="ml-2 feather feather-arrow-right"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></a></div></div></div></div></div></div></main></div><!----></div>
+    <script>window.__INITIAL_STATE__={"data":{"markdownPage":{"id":"186b5648a57992eb80418c40b8f3e328","title":"이벤트스토밍 학습","description":"","path":"\u002Fstarted\u002Fsettings\u002F","timeToRead":6,"content":"\u003Ch1 id=\"이벤트스토밍-학습\"\u003E\u003Ca href=\"#%EC%9D%B4%EB%B2%A4%ED%8A%B8%EC%8A%A4%ED%86%A0%EB%B0%8D-%ED%95%99%EC%8A%B5\" aria-hidden=\"true\"\u003E\u003Cspan class=\"icon icon-link\"\u003E\u003C\u002Fspan\u003E\u003C\u002Fa\u003E이벤트스토밍 학습\u003C\u002Fh1\u003E\n\u003Ch1 id=\"오프라인-이벤트스토밍event-storming-기반-msa-개발\"\u003E\u003Ca href=\"#%EC%98%A4%ED%94%84%EB%9D%BC%EC%9D%B8-%EC%9D%B4%EB%B2%A4%ED%8A%B8%EC%8A%A4%ED%86%A0%EB%B0%8Devent-storming-%EA%B8%B0%EB%B0%98-msa-%EA%B0%9C%EB%B0%9C\" aria-hidden=\"true\"\u003E\u003Cspan class=\"icon icon-link\"\u003E\u003C\u002Fspan\u003E\u003C\u002Fa\u003E오프라인 이벤트스토밍(Event-Storming) 기반 MSA 개발\u003C\u002Fh1\u003E\n\u003Ch2 id=\"개념\"\u003E\u003Ca href=\"#%EA%B0%9C%EB%85%90\" aria-hidden=\"true\"\u003E\u003Cspan class=\"icon icon-link\"\u003E\u003C\u002Fspan\u003E\u003C\u002Fa\u003E개념\u003C\u002Fh2\u003E\n\u003Cp\u003E이벤트스토밍은 도메인에 관련된 모든 이해 관련자가 모여, 화이트보드 벽면에 주요 이벤트(Event)를 중심으로 업무들 간의 상호\n연관성을 찾기 위해, 유일한 도구인 스티키 노트(Sticky Notes)로 진행하는 MSA DDD를 위한 워크숍 기반 최상의\n실천 방법론이다.\u003C\u002Fp\u003E\n\u003Ch2 id=\"수행-방법\"\u003E\u003Ca href=\"#%EC%88%98%ED%96%89-%EB%B0%A9%EB%B2%95\" aria-hidden=\"true\"\u003E\u003Cspan class=\"icon icon-link\"\u003E\u003C\u002Fspan\u003E\u003C\u002Fa\u003E수행 방법\u003C\u002Fh2\u003E\n\u003Cblockquote\u003E\n\u003Cp\u003E\u003Cimg src=\"\u002FUsers\u002Fkibum0405\u002FDesktop\u002Fmsaeasy-intro\u002Fsrc\u002Fimg\u002Fimage12.jpeg\"\u003E\u003C\u002Fp\u003E\n\u003C\u002Fblockquote\u003E\n\u003Col\u003E\n\u003Cli\u003E이벤트스토밍에 필요한 화이트 보드 벽면과 수행에 필요한 오렌지, 라일락, 스카이블루, 노랑, 초록, 퍼플, 분홍색의 스티커를 준비한다.\u003Cbr\u003E\n\u003C\u002Fli\u003E\n\u003Cli\u003EDomain expert 와 기획자, 개발 전문가와 함께 사용자 시나리오, 또는 업무 요건을 리뷰한다.\u003C\u002Fli\u003E\n\u003Cli\u003E가장 먼저, 발생 가능한 Event 를 무작위로 도출하고, Policy, Command, Aggregate 순서로 이벤트를\n중심으로 스티커별 해당 내용을 정의하고 발생시간 순서로 벽면에 부착한다.\u003C\u002Fli\u003E\n\u003Cli\u003EBounded Context 를 설정하고 서브 도메인 간의 컨텍스트 매핑을 통해 BC간의 정보 참조의 릴레이션을 정의한다.\u003C\u002Fli\u003E\n\u003C\u002Fol\u003E\n\u003Ch3 id=\"스티커-유형\"\u003E\u003Ca href=\"#%EC%8A%A4%ED%8B%B0%EC%BB%A4-%EC%9C%A0%ED%98%95\" aria-hidden=\"true\"\u003E\u003Cspan class=\"icon icon-link\"\u003E\u003C\u002Fspan\u003E\u003C\u002Fa\u003E스티커 유형\u003C\u002Fh3\u003E\n\u003Cp\u003E이벤트스토밍에 필요한 스티커 색상별 내포하는 의미는 아래와 같다.\u003C\u002Fp\u003E\n\u003Cblockquote\u003E\n\u003Cp\u003E\u003Cimg src=\"\u002FUsers\u002Fkibum0405\u002FDesktop\u002Fmsaeasy-intro\u002Fsrc\u002Fimg\u002Fimage13.png\"\u003E\u003C\u002Fp\u003E\n\u003Cp align=\"center\"\u003E그림 1 이벤트스토밍에 사용되는 스티커 유형 및 설명\u003C\u002Fp\u003E\n\u003C\u002Fblockquote\u003E\n\u003Ch4 id=\"event-orange-sticker\"\u003E\u003Ca href=\"#event-orange-sticker\" aria-hidden=\"true\"\u003E\u003Cspan class=\"icon icon-link\"\u003E\u003C\u002Fspan\u003E\u003C\u002Fa\u003EEvent (Orange Sticker)\u003C\u002Fh4\u003E\n\u003Cp\u003E가장 먼저 우리 서비스에서 발생하는 비즈니스 이벤트를 도출한다. 용어의 네임스페이스를 구지 나누려 하지 말고 가급적 현업이\n사용하는 용어를 그대로 사용(Ubiquitous Language)하여 오렌지색 스티커에 이벤트를 기술하여 이를\n벽면에 붙인다.\u003C\u002Fp\u003E\n\u003Cp\u003E비즈니스 이벤트는 과거형으로 작성하는데 도메인 내부에 상태가 변화되고 난 결과가 이벤트 이다.\u003C\u002Fp\u003E\n\u003Cblockquote\u003E\n\u003Cp\u003E\u003Cimg src=\"\u002FUsers\u002Fkibum0405\u002FDesktop\u002Fmsaeasy-intro\u002Fsrc\u002Fimg\u002Fimage14.png\"\u003E\u003C\u002Fp\u003E\n\u003Cp align=\"center\"\u003E그림 2 Event 예시\u003C\u002Fp\u003E\n\u003C\u002Fblockquote\u003E\n\u003Ch4 id=\"policy-lilac-sticker\"\u003E\u003Ca href=\"#policy-lilac-sticker\" aria-hidden=\"true\"\u003E\u003Cspan class=\"icon icon-link\"\u003E\u003C\u002Fspan\u003E\u003C\u002Fa\u003EPolicy (Lilac Sticker)\u003C\u002Fh4\u003E\n\u003Cp\u003E이벤트스토밍의 두번째 수행 대상은 폴리시(Policy) 도출이다.\u003C\u002Fp\u003E\n\u003Cp\u003E폴리시(Policy)는 이벤트가 발생한 후 연이어 발생하는 반응형 액션으로, 한 서비스 이벤트에 대해 수행되어야 할 타 서비스의\n액션들로, 먼저 정의된 이벤트 아래에 덧대어 붙인다. 하나의 이벤트에 반응하여 수행되어야 할 폴리시는 여러 팀에서 도출된 멀티\n액션이 존재할 수 있다.\u003C\u002Fp\u003E\n\u003Cblockquote\u003E\n\u003Cp\u003E\u003Cimg src=\"\u002FUsers\u002Fkibum0405\u002FDesktop\u002Fmsaeasy-intro\u002Fsrc\u002Fimg\u002Fimage15.png\"\u003E\u003C\u002Fp\u003E\n\u003Cp align=\"center\"\u003E그림 3 Policy 예시\u003C\u002Fp\u003E\n\u003C\u002Fblockquote\u003E\n\u003Ch4 id=\"command-blue-sticker\"\u003E\u003Ca href=\"#command-blue-sticker\" aria-hidden=\"true\"\u003E\u003Cspan class=\"icon icon-link\"\u003E\u003C\u002Fspan\u003E\u003C\u002Fa\u003ECommand (Blue Sticker)\u003C\u002Fh4\u003E\n\u003Cp\u003E세번째로 Event를 발생시키는 행위인 커맨드를 도출하는데, 도메인 내의 어떠한 상태 변화를 일으키는 서비스를 말한다. 웹 페이지\n내에서 버튼을 클릭하는 User Decision이 여기에 해당된다. 도출된 커맨드는 이벤트 스티커 앞쪽에 붙여, 스티커를 통한\n나레이션(Narration)이 되도록 정렬한다.\u003C\u002Fp\u003E\n\u003Cblockquote\u003E\n\u003Cp\u003E\u003Cimg src=\"\u002FUsers\u002Fkibum0405\u002FDesktop\u002Fmsaeasy-intro\u002Fsrc\u002Fimg\u002Fimage16.png\"\u003E\u003C\u002Fp\u003E\n\u003Cp align=\"center\"\u003E그림 4 Command 예시\u003C\u002Fp\u003E\n\u003C\u002Fblockquote\u003E\n\u003Ch4 id=\"actor-yellow-sticker\"\u003E\u003Ca href=\"#actor-yellow-sticker\" aria-hidden=\"true\"\u003E\u003Cspan class=\"icon icon-link\"\u003E\u003C\u002Fspan\u003E\u003C\u002Fa\u003EActor (Yellow Sticker)\u003C\u002Fh4\u003E\n\u003Cp\u003EActor는 커맨드를 발생시키는 주체(사람, 시스템, 등)를 말한다. 액터는 담당자 또는 시스템이 될 수 있으며, 직관적으로\n파악될 수 있는 액터의 경우, 표시하지 않아도 무방하다. 도출된 액터는 유저 스토리에 가까운 나레이션이 가능하도록 해당\n커맨드 스티커 왼쪽에 배치한다.\u003C\u002Fp\u003E\n\u003Cblockquote\u003E\n\u003Cp\u003E\u003Cimg src=\"\u002FUsers\u002Fkibum0405\u002FDesktop\u002Fmsaeasy-intro\u002Fsrc\u002Fimg\u002Fimage17.png\"\u003E\u003C\u002Fp\u003E\n\u003Cp align=\"center\"\u003E그림 5 Actor 예시\u003C\u002Fp\u003E\n\u003C\u002Fblockquote\u003E\n\u003Ch4 id=\"aggregate-yellow-sticker\"\u003E\u003Ca href=\"#aggregate-yellow-sticker\" aria-hidden=\"true\"\u003E\u003Cspan class=\"icon icon-link\"\u003E\u003C\u002Fspan\u003E\u003C\u002Fa\u003EAggregate (Yellow Sticker)\u003C\u002Fh4\u003E\n\u003Cp\u003E 다섯번째로, 어그리게잇을 도출한다. 어그리게잇은 ‘결합물’을 의미하는데 어떠한 도메인 객체를 중심으로 하나의 ACID한\n트랜잭션에 묶여 변화되어야 할 객체의 묶음을 도출하고, 그것들을 커맨드, 이벤트와 함께 묶는다.\u003C\u002Fp\u003E\n\u003Cblockquote\u003E\n\u003Cp\u003E\u003Cimg src=\"\u002FUsers\u002Fkibum0405\u002FDesktop\u002Fmsaeasy-intro\u002Fsrc\u002Fimg\u002Fimage18.png\"\u003E\u003C\u002Fp\u003E\n\u003Cp align=\"center\"\u003E그림 6 Aggregate 예시\u003C\u002Fp\u003E\n\u003C\u002Fblockquote\u003E\n\u003Ch3 id=\"bounded-context-도출\"\u003E\u003Ca href=\"#bounded-context-%EB%8F%84%EC%B6%9C\" aria-hidden=\"true\"\u003E\u003Cspan class=\"icon icon-link\"\u003E\u003C\u002Fspan\u003E\u003C\u002Fa\u003EBounded Context 도출\u003C\u002Fh3\u003E\n\u003Cp\u003EBounded Context는 동일한 문맥으로 효율적으로 업무 용어(도메인 클래스)를 사용할 수 있는 객체 범위를 뜻한다. 하나의\nBC는 하나 이상의 어그리게잇을 원소로 구성될 수 있다. 이 BC를 마이크로서비스 구성 단위로 정하게 되면 이를 담당하는 팀 내의\n커뮤니케이션이 효율화 된다.\u003C\u002Fp\u003E\n\u003Cblockquote\u003E\n\u003Cp\u003E\u003Cimg src=\"\u002FUsers\u002Fkibum0405\u002FDesktop\u002Fmsaeasy-intro\u002Fsrc\u002Fimg\u002Fimage19.png\"\u003E\u003C\u002Fp\u003E\n\u003Cp align=\"center\"\u003E그림 7 Bounded Context 예시\u003C\u002Fp\u003E\n\u003C\u002Fblockquote\u003E\n\u003Ch3 id=\"context-mapping\"\u003E\u003Ca href=\"#context-mapping\" aria-hidden=\"true\"\u003E\u003Cspan class=\"icon icon-link\"\u003E\u003C\u002Fspan\u003E\u003C\u002Fa\u003EContext Mapping\u003C\u002Fh3\u003E\n\u003Cp\u003E바운디드 컨텍스트까지 도출된 이후에 BC간 정보 참조 릴레이션 설정 (혹은, 이벤트가 발생한 이후 동반된 행위의 호출 관계를\n선으로 표시)하는 작업을 ‘컨텍스트 매핑’이라고 한다. 컨텍스트간 매핑 정보만 보더라도 전체 도메인 서비스의 참조\n토폴로지(Topology)를 한 눈에 파악 가능하다.\u003C\u002Fp\u003E\n\u003Cblockquote\u003E\n\u003Cp\u003E\u003Cimg src=\"\u002FUsers\u002Fkibum0405\u002FDesktop\u002Fmsaeasy-intro\u002Fsrc\u002Fimg\u002Fimage20.png\"\u003E\u003C\u002Fp\u003E\n\u003Cp align=\"center\"\u003E그림 8 Context Mapping 예시\u003C\u002Fp\u003E\n\u003C\u002Fblockquote\u003E\n\u003Cp\u003E위 예시에서 ‘주문이력에 추가’라는 폴리시(비즈니스 업무) 시작 주체에 따라 크게 2가지 토폴로지를 고려할 수 있는데, 이벤트를\n발행하는 주체인 주문관리에서 해당 폴리시를 시작하는 ‘오케스트레이션’ 방식과 이벤트를 수신하는 주체인 마케팅관리에서 폴리시를\n시작하는 ‘코레오그래피’ 방식으로 구분한다.\u003C\u002Fp\u003E\n\u003Ch4 id=\"orchestration\"\u003E\u003Ca href=\"#orchestration\" aria-hidden=\"true\"\u003E\u003Cspan class=\"icon icon-link\"\u003E\u003C\u002Fspan\u003E\u003C\u002Fa\u003EOrchestration\u003C\u002Fh4\u003E\n\u003Cp\u003E오케스트레이션은 이벤트를 발행하는 주체인 주문관리에서 모든 폴리시를 호출하는 방식이다.\u003C\u002Fp\u003E\n\u003Cblockquote\u003E\n\u003Cp\u003E\u003Cimg src=\"\u002FUsers\u002Fkibum0405\u002FDesktop\u002Fmsaeasy-intro\u002Fsrc\u002Fimg\u002Fimage21.png\"\u003E\u003C\u002Fp\u003E\n\u003Cp align=\"center\"\u003E그림 9 Policy Topology – Orchestration\u003C\u002Fp\u003E\n\u003C\u002Fblockquote\u003E\n\u003Cp\u003E이는 주문관리 서비스에서 발생한 이벤트인 ‘주문 생성됨’, ‘주문정보 변경됨’, ‘주문상태 변경됨’에 붙여진 모든 폴리시의\nOwner 서비스마다 커맨드를 노출하고, 이벤트를 생성하는 주문 서비스에서 이 커맨드를 동기 방식(Request &#x26;\nResponse)으로 호출하는 방식으로 구현된다.\u003C\u002Fp\u003E\n\u003Cp\u003E그러나, 이러한 방식은 서비스간 커플링이 높으며, 폴리시를 호출한 서비스(여기서는 주문관리)는 폴리시가 수행 완료될 때까지\n대기상태에 빠지게 되므로, 시스템 블로킹(Blocking)이 생길 우려가 높다.\u003C\u002Fp\u003E\n\u003Cp\u003E또한, 호출당하는 폴리시를 가진 시스템이 얘기치않은 장애(System Fault)에 빠진 경우, 이를 호출하는 서비스에까지 장애가\n전파되는 악순환의 우려가 있다.\u003C\u002Fp\u003E\n\u003Ch4 id=\"choreography\"\u003E\u003Ca href=\"#choreography\" aria-hidden=\"true\"\u003E\u003Cspan class=\"icon icon-link\"\u003E\u003C\u002Fspan\u003E\u003C\u002Fa\u003EChoreography\u003C\u002Fh4\u003E\n\u003Cp\u003E코레오그래피는 폴리시를 구현하는 주체인 배송, 또는 상품관리에서 자율적으로 폴리시를 실행하는 방식이다.\u003C\u002Fp\u003E\n\u003Cp\u003E주문관리 서비스에서 발생(Publish)하는 이벤트들에 대해, 폴리시 Owner 서비스들이 관심 있는 이벤트에\n반응(Subscribe)하여 자율적으로 서비스를 구동함으로써 Orchestration방식이 가진 서비스간 커플링이 전혀\n없으며, 이벤트를 수신하는 신규 서비스의 추가 및 이벤트를 수신하던 기존 서비스의 삭제가 아주 자유롭게 수행 가능하다.\u003C\u002Fp\u003E\n\u003Cp\u003E또한, 주문관리 서비스 입장에서도 호출당하는 폴리시를 가진 시스템의 얘기치않은 장애(System Fault)에 대해, 이 방식은\n완전히 자유롭다는 것이 가장 큰 장점이다.\u003C\u002Fp\u003E\n\u003Cblockquote\u003E\n\u003Cp\u003E\u003Cimg src=\"\u002FUsers\u002Fkibum0405\u002FDesktop\u002Fmsaeasy-intro\u002Fsrc\u002Fimg\u002Fimage22.png\"\u003E\u003C\u002Fp\u003E\n\u003Cp align=\"center\"\u003E그림 10 Policy Topology - Choreography\u003C\u002Fp\u003E\n\u003C\u002Fblockquote\u003E\n\u003Ch3 id=\"마이크로서비스-구현\"\u003E\u003Ca href=\"#%EB%A7%88%EC%9D%B4%ED%81%AC%EB%A1%9C%EC%84%9C%EB%B9%84%EC%8A%A4-%EA%B5%AC%ED%98%84\" aria-hidden=\"true\"\u003E\u003Cspan class=\"icon icon-link\"\u003E\u003C\u002Fspan\u003E\u003C\u002Fa\u003E마이크로서비스 구현\u003C\u002Fh3\u003E\n\u003Ch4 id=\"hexagonal-architecture\"\u003E\u003Ca href=\"#hexagonal-architecture\" aria-hidden=\"true\"\u003E\u003Cspan class=\"icon icon-link\"\u003E\u003C\u002Fspan\u003E\u003C\u002Fa\u003EHexagonal Architecture\u003C\u002Fh4\u003E\n\u003Cp\u003E아래와 같은 육각형 모형의 아키텍처 도형을 헥사고날 아키텍쳐라고 한다. 이는 가운데 영역인 비지니스 로직 (도메인 영역) 을\n손상시키지 않고 프로그램을 구성하도록 고안된 아키텍처이다. 비지니스 로직을 손상시키지 않고 프로그램을 구현하기 위해서는\n비지니스 로직에 특정 프로토콜이나 프로그램에 종속적인 코드가 들어가면 안된다. 예를 들어 데이터베이스에 종속적인 Query 를\n직접 사용하였다면, 데이터베이스가 변경되는 상황이 발생한다면 해당 로직은 모두 다시 만들어야 한다. 마찬가지로\n메세지브로커를 사용하는 경우 특정 브로커의 코드를 직접적으로 사용하면 변경이 생길 때나, 여러 브로커를\n사용하는 경우가 생기면, 다시 구현을 해야하는 이슈가 생기게 된다.\u003C\u002Fp\u003E\n\u003Cp\u003E이처럼 비지니스 로직은 순수한 형태로 구현을 하고, 그 이외의 것을 adapter 형식으로 설계를 하여 해당 비지니스 로직이 어느\n환경에서도 잘 동작하도록 설계한 모형이 헥사고날 아키텍처이고, 마이크로 서비스 아키텍쳐에서는 이와 같은 방식을 지향한다.\u003C\u002Fp\u003E\n\u003Cblockquote\u003E\n\u003Cp\u003E\u003Cimg src=\"\u002FUsers\u002Fkibum0405\u002FDesktop\u002Fmsaeasy-intro\u002Fsrc\u002Fimg\u002Fimage23.png\" alt=\"스크린샷%202019-11-27%20오후%202\"\u003E\u003C\u002Fp\u003E\n\u003C\u002Fblockquote\u003E\n\u003Ch4 id=\"msa-chassis\"\u003E\u003Ca href=\"#msa-chassis\" aria-hidden=\"true\"\u003E\u003Cspan class=\"icon icon-link\"\u003E\u003C\u002Fspan\u003E\u003C\u002Fa\u003EMSA Chassis\u003C\u002Fh4\u003E\n\u003Cp\u003EMSA Chassis 라는 말은 마이크로 서비스를 구축할때 필요한 주변 요소들을 일컫는다. 마치 ‘창틀처럼 이것저것 끼워\n넣는다’로 해석할 수도 있다. 위에 설명한 헥사고날 아키텍처로 설계를 하여 비지니스 로직에 영향이 없는 개발을\n맨땅에서 하려면 많은 공수가 필요하다. 이에 많은 프레임워크들이 이와 같은 패턴들을 구성해 놓고 제공중이다.\u003C\u002Fp\u003E\n\u003Cp\u003EJava 계열에서 가장 선두주자인 Spring 프레임워크에서 마이크로 서비스에 적합한 spring-boot 프레임워크를 내어\n놓았고, 이에 여러가지 어뎁터들에 해당하는 프로젝트들이 존재한다. 아래 그림은 헥사고날 아키텍쳐에 spring-boot\n를 기반으로 한 MSA Chassis 를 입힌 모형이다. Spring-Data-Rest 를 사용하여 Data 를 외부와 Rest\n방식으로 연결시키고 , String-Cloud-Stream 으로 메세지 처리를 하는 로직을 구현하여 특정 브로커에 종속적이지\n않은 adapter 패턴으로 구현된 모형이다.\u003C\u002Fp\u003E\n\u003Cblockquote\u003E\n\u003Cp\u003E\u003Cimg src=\"\u002FUsers\u002Fkibum0405\u002FDesktop\u002Fmsaeasy-intro\u002Fsrc\u002Fimg\u002Fimage24.png\" alt=\"스크린샷%202019-11-27%20오후%202\"\u003E\u003C\u002Fp\u003E\n\u003C\u002Fblockquote\u003E\n\u003Ch4 id=\"이벤트스토밍-스티키-노트별-구현기술-적용\"\u003E\u003Ca href=\"#%EC%9D%B4%EB%B2%A4%ED%8A%B8%EC%8A%A4%ED%86%A0%EB%B0%8D-%EC%8A%A4%ED%8B%B0%ED%82%A4-%EB%85%B8%ED%8A%B8%EB%B3%84-%EA%B5%AC%ED%98%84%EA%B8%B0%EC%88%A0-%EC%A0%81%EC%9A%A9\" aria-hidden=\"true\"\u003E\u003Cspan class=\"icon icon-link\"\u003E\u003C\u002Fspan\u003E\u003C\u002Fa\u003E이벤트스토밍 스티키 노트별 구현기술 적용\u003C\u002Fh4\u003E\n\u003Ch5 id=\"aggregate---yellow\"\u003E\u003Ca href=\"#aggregate---yellow\" aria-hidden=\"true\"\u003E\u003Cspan class=\"icon icon-link\"\u003E\u003C\u002Fspan\u003E\u003C\u002Fa\u003EAggregate - Yellow\u003C\u002Fh5\u003E\n\u003Cul\u003E\n\u003Cli\u003E이벤트 스토밍의 첫번째 구현은 도메인 모델을 정의하는 단계이다.\u003Cbr\u003E\n노란색 스티커로 붙여진 Aggregate 의 변화에 의하여 이벤트가 생성되고, 커맨드 요청을 받아서 Aggregate 가\n변화를 하기 때문에, Aggregate 는 가장 중요하고, 가장 먼저 구현을 한다.\u003C\u002Fli\u003E\n\u003Cli\u003EAggregate 를 구현 시, Java 언어로 Spring-boot 를 사용하여 구현을 한다면 아래와 같이 Java 클래스에\n@Entity 어노테이션을 선언해 주면 준비가 완료된다.\u003C\u002Fli\u003E\n\u003Cli\u003EEntity 라는 말은 객체 혹은 개체 라는 의미로 사용되는데 연필이나 컴퓨터 처럼 서로 구별이 되는 하나하나의 대상을\n지칭한다. 즉 우리가 사용하는 도메인 언어이다. Spring 에서는 이런 도메인을 손쉽게 사용할 수 있도록\n어노테이션을 제공하여 준다.\u003C\u002Fli\u003E\n\u003Cli\u003E어노테이션 선언 후에 Entity 구성에 필요한 속성들을 정의하여 주면 된다. 속성들은 java 언어에서는 변수로 선언을\n해주면 된다.\u003C\u002Fli\u003E\n\u003Cli\u003E모든 Entity 는 각 개체마다의 생성되고, 변화되고, 사라지는 lifecycle 을 가지고 있고, 속성이 있기에,\n프로그래밍 언어로 보았을 때 데이터베이스와 API 와의 매칭이 당연시 된다.\u003C\u002Fli\u003E\n\u003Cli\u003EAggregate 에 포함된 특정 Entity 를 RootEntity 혹은 AggregateRoot 라고 부른다,\u003C\u002Fli\u003E\n\u003Cli\u003E아래 그림은 노란색의 이벤트 스토밍 스티커인 Aggregate 를 구현한 모습이다.\u003C\u002Fli\u003E\n\u003C\u002Ful\u003E\n\u003Cblockquote\u003E\n\u003Cp\u003E\u003Cimg src=\"\u002FUsers\u002Fkibum0405\u002FDesktop\u002Fmsaeasy-intro\u002Fsrc\u002Fimg\u002Fimage25.png\" alt=\"스크린샷%202019-11-27%20오후%203\"\u003E\u003C\u002Fp\u003E\n\u003C\u002Fblockquote\u003E\n\u003Ch5 id=\"command--sky-blue\"\u003E\u003Ca href=\"#command--sky-blue\" aria-hidden=\"true\"\u003E\u003Cspan class=\"icon icon-link\"\u003E\u003C\u002Fspan\u003E\u003C\u002Fa\u003ECommand – Sky Blue\u003C\u002Fh5\u003E\n\u003Cul\u003E\n\u003Cli\u003EAggregate 를 구성하였으면, 해당 Aggregate 를 변화시키는 커맨드를 작성한다.\u003C\u002Fli\u003E\n\u003Cli\u003E파란색 스티커에 해당하는 Command 는 구현관점으로 보았을 때 외부로부터 들어오는 API 에 해당한다.\u003C\u002Fli\u003E\n\u003Cli\u003EDDD 에서는 Aggregate 를 변화시키는 채널을 Repository 라고 한다. 그리고 RootEntity 에서만\nRepository 를 제공하라고 한다.\u003C\u002Fli\u003E\n\u003Cli\u003ESpring-Data-Rest 에서는 해당 Repository 를 구성하는 방법을 @Repository 라는 어노테이션\n선언하여 구성하거나 혹은 extends Repository 같은 방식으로 구현하도록 guide 되어있다.\u003C\u002Fli\u003E\n\u003Cli\u003ESpring-Data-Rest 를 사용하여 Repository Pattern 으로 프로그램을 구현하면 Entity 의\nlifecycle 에 해당하는 기본적인 CRUD 가 바로 생성이 되고, 해당 CRUD 에 해당하는 API (커맨드) 가\n자동으로 생성된다.\u003C\u002Fli\u003E\n\u003Cli\u003ERepository Pattern 으로 구성이 안되고 복잡한 비지니스 로직이 있으면 Spring 에서 MVC 패턴으로 나온\nController 와 Service 로 구현하면 된다\u003C\u002Fli\u003E\n\u003Cli\u003E아래는 파란색 스티커인 커맨드를 구현한 코드이다.\u003C\u002Fli\u003E\n\u003C\u002Ful\u003E\n\u003Cblockquote\u003E\n\u003Cp\u003E\u003Cimg src=\"\u002FUsers\u002Fkibum0405\u002FDesktop\u002Fmsaeasy-intro\u002Fsrc\u002Fimg\u002Fimage26.png\" alt=\"스크린샷%202019-11-27%20오후%204\"\u003E\u003C\u002Fp\u003E\n\u003C\u002Fblockquote\u003E\n\u003Ch5 id=\"event---orange\"\u003E\u003Ca href=\"#event---orange\" aria-hidden=\"true\"\u003E\u003Cspan class=\"icon icon-link\"\u003E\u003C\u002Fspan\u003E\u003C\u002Fa\u003EEvent - Orange\u003C\u002Fh5\u003E\n\u003Cul\u003E\n\u003Cli\u003E주황색 스티커인 이벤트는 pojo 객체인 Java Class 로 생성을 한다.\u003C\u002Fli\u003E\n\u003Cli\u003E실제로 메세지로 주고 받을 때는 json 객체 형식으로 통신하는 방법을 추천한다. Json 객체를 직접 만들거나, String\n변수처럼 바로 선언을 할 수도 있으나, 클래스 파일로 구성을 해 놓았을 시, 명시적이고 쉽게변경하기 어렵다.\u003C\u002Fli\u003E\n\u003C\u002Ful\u003E\n\u003Cblockquote\u003E\n\u003Cp\u003E\u003Cimg src=\"\u002FUsers\u002Fkibum0405\u002FDesktop\u002Fmsaeasy-intro\u002Fsrc\u002Fimg\u002Fimage27.png\" alt=\"스크린샷%202019-11-27%20오후%205\"\u003E\u003C\u002Fp\u003E\n\u003C\u002Fblockquote\u003E\n\u003Cul\u003E\n\u003Cli\u003E이벤트는 Aggregate 의 변화에 의해서 발생하기 때문에, 이벤트를 보내는 로직은 Entity의 lifecycle 에\n작성을 하게 된다. 물론 비지니스 로직의 중간중간에 이벤트를 발생시켜야 한다면, 따로 서비스에서 처리를 하는 것이\n맞으나, DDD 에서 말하는 주요 문구인 도메인을 보았을 때 비지니스가 보여야 한다는 원칙에 맞추어 Entity\n에서 이벤트를 발생하는 방법을 추천한다.\u003C\u002Fli\u003E\n\u003Cli\u003EJPA 에서는 이러한 Entity 의 lifecycle에 해당하는 listener 를 어노테이션으로 생성하여 놓았다.\n대표적으로 @PostPersist (저장후) @PrePersist(저장전) @PostUpdate (업데이트후) 등이 있다.\n\u003C\u002Fli\u003E\n\u003Cli\u003E메시지를 send 하는 방법은 어떤 라이브러리를 쓰고, 설정에 따라 달라지지만 메시지 브로커를 kafka 를 사용한다면\ntopic 을 설정하고, 마지막에 send 하는 형식으로 이벤트를 발행한다.\u003C\u002Fli\u003E\n\u003C\u002Ful\u003E\n\u003Cblockquote\u003E\n\u003Cp\u003E\u003Cimg src=\"\u002FUsers\u002Fkibum0405\u002FDesktop\u002Fmsaeasy-intro\u002Fsrc\u002Fimg\u002Fimage28.png\" alt=\"스크린샷%202019-11-27%20오후%205\"\u003E\u003C\u002Fp\u003E\n\u003C\u002Fblockquote\u003E\n\u003Ch5 id=\"policy---lilac\"\u003E\u003Ca href=\"#policy---lilac\" aria-hidden=\"true\"\u003E\u003Cspan class=\"icon icon-link\"\u003E\u003C\u002Fspan\u003E\u003C\u002Fa\u003EPolicy - Lilac\u003C\u002Fh5\u003E\n\u003Cul\u003E\n\u003Cli\u003E보라색 스티커는 이벤트에 반응하여 작동하는 Policy 이다. 이벤트에 반응하기 때문에 이벤트를 수신하는 리스너가\n필요하다. Spring-cloud-Stream 을 사용시 아래처럼 @StreamListener 어노테이션으로\n선언을 하여 주면, 이벤트가 생성될 때마다 INPUT 으로 들어오는 데이터를 한 개씩 수신이 된다.\u003C\u002Fli\u003E\n\u003Cli\u003EProcessor.INPUT 은 메시지를 수신하는 채널인데, kafka 의 구현체를 가진다면 topic 을 의미한다. 만약\nTopic 을 여러 이벤트에서 공유를 한다면 아래 리스너에서 내가 원하는 이벤트만 선별하여 작업을 해야하기 때문에 이벤트의\n속성값에서 정해진 이벤트 명을 찾던가, header 에서 찾는 등 이벤트를 구분하는 로직이 필요하다.\u003C\u002Fli\u003E\n\u003C\u002Ful\u003E\n\u003Cblockquote\u003E\n\u003Cp\u003E\u003Cimg src=\"\u002FUsers\u002Fkibum0405\u002FDesktop\u002Fmsaeasy-intro\u002Fsrc\u002Fimg\u002Fimage29.png\" alt=\"스크린샷%202019-11-27%20오후%205\"\u003E\u003C\u002Fp\u003E\n\u003C\u002Fblockquote\u003E\n\u003Ch5 id=\"bounded-context\"\u003E\u003Ca href=\"#bounded-context\" aria-hidden=\"true\"\u003E\u003Cspan class=\"icon icon-link\"\u003E\u003C\u002Fspan\u003E\u003C\u002Fa\u003EBounded Context\u003C\u002Fh5\u003E\n\u003Cul\u003E\n\u003Cli\u003E이벤트 스토밍을 하고 난 후에 여러 Aggregate 들이 관련된 Context 끼리 묶여서 Bounded Context\n가 형성이 된다. 이것은 마이크로 서비스 단위로 쪼갤 수 있는 후보가 된다.\u003Cbr\u003E\n\u003C\u002Fli\u003E\n\u003Cli\u003E마이크로 서비스는 java 언어로 구현 시 가장 적합한 프레임워크는 Spring-boot 이다. 내장된\n톰켓(Tomcat)으로 자체 서버를 띄울 수 있고, 라이브러리를 추가하는 방식으로 Chassis 구성을 손쉽게\n할 수 있다.\u003C\u002Fli\u003E\n\u003C\u002Ful\u003E\n","sidebar":"started","next":"\u002Fstarted\u002Fsidebar\u002F","prev":"\u002Fstarted\u002Fdeploying\u002F","headings":[{"depth":1,"value":"이벤트스토밍 학습","anchor":"#이벤트스토밍-학습"},{"depth":1,"value":"오프라인 이벤트스토밍(Event-Storming) 기반 MSA 개발","anchor":"#오프라인-이벤트스토밍event-storming-기반-msa-개발"},{"depth":2,"value":"개념","anchor":"#개념"},{"depth":2,"value":"수행 방법","anchor":"#수행-방법"},{"depth":3,"value":"스티커 유형","anchor":"#스티커-유형"},{"depth":4,"value":"Event (Orange Sticker)","anchor":"#event-orange-sticker"},{"depth":4,"value":"Policy (Lilac Sticker)","anchor":"#policy-lilac-sticker"},{"depth":4,"value":"Command (Blue Sticker)","anchor":"#command-blue-sticker"},{"depth":4,"value":"Actor (Yellow Sticker)","anchor":"#actor-yellow-sticker"},{"depth":4,"value":"Aggregate (Yellow Sticker)","anchor":"#aggregate-yellow-sticker"},{"depth":3,"value":"Bounded Context 도출","anchor":"#bounded-context-도출"},{"depth":3,"value":"Context Mapping","anchor":"#context-mapping"},{"depth":4,"value":"Orchestration","anchor":"#orchestration"},{"depth":4,"value":"Choreography","anchor":"#choreography"},{"depth":3,"value":"마이크로서비스 구현","anchor":"#마이크로서비스-구현"},{"depth":4,"value":"Hexagonal Architecture","anchor":"#hexagonal-architecture"},{"depth":4,"value":"MSA Chassis","anchor":"#msa-chassis"},{"depth":4,"value":"이벤트스토밍 스티키 노트별 구현기술 적용","anchor":"#이벤트스토밍-스티키-노트별-구현기술-적용"},{"depth":5,"value":"Aggregate - Yellow","anchor":"#aggregate---yellow"},{"depth":5,"value":"Command – Sky Blue","anchor":"#command--sky-blue"},{"depth":5,"value":"Event - Orange","anchor":"#event---orange"},{"depth":5,"value":"Policy - Lilac","anchor":"#policy---lilac"},{"depth":5,"value":"Bounded Context","anchor":"#bounded-context"}]},"allMarkdownPage":{"edges":[{"node":{"path":"\u002Fstarted\u002Fwriting-content\u002F","title":"커스텀 템플릿 만들기"}},{"node":{"path":"\u002Fstarted\u002Fsidebar\u002F","title":"Sidebar"}},{"node":{"path":"\u002Fstarted\u002Fsettings\u002F","title":"이벤트스토밍 학습"}},{"node":{"path":"\u002Fstarted\u002Finstallation\u002F","title":"도구 사용법"}},{"node":{"path":"\u002Fstarted\u002F","title":"소개"}},{"node":{"path":"\u002Fstarted\u002Fdeploying\u002F","title":"도메인 주도 설계 학습"}}]}},"context":{}};(function(){var s;(s=document.currentScript||document.scripts[document.scripts.length-1]).parentNode.removeChild(s);}());</script><script src="/assets/js/app.6b8199dd.js" defer></script><script src="/assets/js/page--src--templates--markdown-page-vue.990fbd8f.js" defer></script>
+  </body>
+</html>
