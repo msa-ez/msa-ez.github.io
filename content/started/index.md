@@ -3,7 +3,7 @@ description: ''
 sidebar: 'started'
 next: '/started/installation/'
 ---
-# 소개 페이지 123
+# 소개
 
 MSA Easy는 마이크로서비스 구축에서 운영에 필요한 분석, 설계, 구현 및 모니터링을 지원하는 도구로써, 이벤트스토밍 기반 협업을 통해 도메인을 분석/설계하고, 설계된 도메인 모델에서 MSA 소스코드를 자동으로 생성해 준다.<br/>
 
