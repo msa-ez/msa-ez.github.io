@@ -32,7 +32,7 @@ module.exports = {
               '/started/writing-content/',
               '/started/deploying/',
               '/started/settings/',
-              '/started/hello/'
+              '/started/hello/',
             ]
           },
           // {
