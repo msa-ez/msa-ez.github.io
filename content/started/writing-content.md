@@ -8,7 +8,7 @@ next: '/started/settings/'
 
 ## 커스텀 템플릿 (Custom Template)
 
-## 개념
+## 개념 (custome check) 
 
 커스텀 템플릿은 기본 제공하는 템플릿 외에 원하는 템플릿을 추가하여 EventStorming결과를 원하는 템플릿에 맞추어 코드가
 생성될 수 있도록 한다.
