@@ -37,8 +37,7 @@ module.exports = {
           {
             title: '도구 사용법',
             items: [
-              '/custom-template/test/',
-              '/custom-template/test1/',
+              '/custom-template/go-template/',
             ]
           },
         ]

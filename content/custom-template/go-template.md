@@ -615,6 +615,43 @@ func (self *{{namePascalCase}}) Remove(c echo.Context) error{
 
 --- 
 
+### Route.go
+
+- Controller에 해당하는 Route code 만들기 
+
+```go
+forEach: BoundedContext
+fileName: Route.go
+path: {{name}}/{{name}}
+---
+package {{name}}
+
+import (
+	"github.com/labstack/echo"
+)
+
+func RouteInit() *echo.Echo {
+	e := echo.New()
+	{{#aggregates}}
+	{{nameCamelCase}} := &{{namePascalCase}}{}
+	e.GET("/{{namePlural}}", {{nameCamelCase}}.Get)
+	e.GET("/{{namePlural}}/:id", {{nameCamelCase}}.GetbyId)
+	e.POST("/{{namePlural}}", {{nameCamelCase}}.Persist)
+	e.PUT("/{{namePlural}}/:id", {{nameCamelCase}}.Put)
+	e.DELETE("/{{namePlural}}/:id", {{nameCamelCase}}.Remove)
+	{{/aggregates}}
+	return e
+}
+
+```
+
+<h4> 세부사항 </h4>
+
+- 기본적인 CRUD에 해당하는 함수들의 경로를 지정해 준다. 
+- Entity에 해당하는 Aggregate 별로 CRUD가 있어야 하므로 각 Aggregate 마다 CRUD를 생성. 
+
+---
+
 ### main.go
 
 - Application을 실행하는 main code 만들기 
