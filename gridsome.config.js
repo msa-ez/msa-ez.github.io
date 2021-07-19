@@ -34,13 +34,13 @@ module.exports = {
               '/started/event-storming-learning/',
             ]
           },
-          // {
-          //   title: '도구 사용법',
-          //   items: [
-          //     '/started/settings/',
-          //     '/started/sidebar/',
-          //   ]
-          // },
+          {
+            title: '도구 사용법',
+            items: [
+              '/custom-template/test/',
+              '/custom-template/test1/',
+            ]
+          },
         ]
       }
     ]
