@@ -4,23 +4,19 @@ const c3 = () => import(/* webpackChunkName: "page--src--pages--index-vue" */ "/
 
 export default [
   {
-    path: "/started/writing-content/",
+    path: "/started/tool/",
     component: c1
   },
   {
-    path: "/started/settings/",
+    path: "/started/event-storming-learning/",
     component: c1
   },
   {
-    path: "/started/sidebar/",
+    path: "/started/domain-driven/",
     component: c1
   },
   {
-    path: "/started/installation/",
-    component: c1
-  },
-  {
-    path: "/started/deploying/",
+    path: "/started/custom-template/",
     component: c1
   },
   {

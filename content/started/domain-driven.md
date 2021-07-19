@@ -1,8 +1,8 @@
 ---
 description: ''
 sidebar: 'started'
-prev: '/started/writing-content/'
-next: '/started/settings/'
+prev: '/started/custom-template/'
+next: '/started/event-storming-learning/'
 ---
 # 도메인 주도 설계 학습
 

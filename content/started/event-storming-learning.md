@@ -1,8 +1,8 @@
 ---
 description: ''
 sidebar: 'started'
-prev: '/started/deploying/'
-next: '/started/sidebar/'
+prev: '/started/domain-driven/'
+next: ''
 ---
 
 # 이벤트스토밍 학습

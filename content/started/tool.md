@@ -2,40 +2,47 @@
 description: ''
 sidebar: 'started'
 prev: '/started/'
-next: '/started/writing-content/'
+next: '/started/customTemplate/'
 ---
 # 도구 사용법
 
 ## MSA Easy로 MSA 개발하기
 
 ## 서비스 접속
-[eventstorming2code.io](http://eventstorming2code.io) 에 접속한다. 크롬추천.
+[msaez.io](http://www.msaez.io) 에 접속합니다.
+<br/>(크롬 브라우저 추천)
 
 ## 예제 프로젝트
 
-예제 프로젝트는 주문 서비스와 배송 서비스 2개의 서비스를 EventStorming하여 Spring-boot로 실행되는 Java Project를 생성하고 이들을 구글클라우드의 쿠버네티스에 자동 배포하는 과정이다.
+예제 프로젝트는 주문 서비스와 배송 서비스 2개의 서비스를 EventStorming하여 Spring-boot로 실행되는 Java Project를 생성하고 이들을 구글클라우드의 쿠버네티스에 자동 배포하는 과정입니다.
 
 ## UI 소개
 
 ### UI 레이아웃
 
-EventStorming2Code 도구의 전체 화면 레이아웃은 다음과 같다.
+MSAEZ 도구의 전체 화면 레이아웃은 다음과 같습니다.
 
 > ![](../../src/img/image30.png)
 > <p align="center"> 그림 1 도구 전체 레이아웃 </p>
 
-| 번호 | 이름               | 기능 설명                                           |
-| -- | ---------------- | ----------------------------------------------- |
-| 1  | Zoom Panel       | 캔버스에 작성된 화면을 확대 및 축소 기능                         |
-| 2  | Code Preview     | Code를 생성 및 확인 가능한 기능                            |
-| 3  | Download Archive | Code를 생성 및 다운로드 가능한 기능                          |
-| 4  | Project Name     | 프로젝트 명 입력 (Java의 경우 Package명)                   |
-| 5  | Upload           | 저장된 Json형태의 EventStorming파일을 불러오는 기능            |
-| 6  | Save             | Draw된 EventStorming파일을 Json파일로 저장함              |
-| 7  | Sticker Palette  | EventStorming을 위한 Sticky note를 선택할 수 있는 Palette |
-| 8  | Canvas           | Sticky note를 붙이는 Canvas                         |
+| 번호 | 이름                | 기능 설명                                                        |
+|------|---------------------|----------------------------------------------------------------- |
+| 1    | Zoom Panel          | 캔버스에 작성된 화면을 확대 및 축소 기능                         |
+| 2    | Project Name        | 프로젝트 명 입력 (Java의 경우 Package명)                         |
+| 3    | Replay              | 모델링 히스토리 정보를 확인하는 기능                             |
+| 4    | Code                | 모델링 한 code 확인 기능                                         |
+| -4-1 | Code Preview        | 모델링 한 code 다운로드 기능                                     |
+| -4-2 | Download Archive    | 모델링 한 code 실습하는 기능                                     |
+| -4-3 | Project IDE         | 모델링 한 code 확인, 다운로드, 실습하는 기능                     |
+| 5    | Save                | Draw된 EventStorming파일을 Json파일로 저장함                     |
+| -5-1 | Save to Server      | 모델링 한 sticker 정보를 서버에 저장하는 기능                    |
+| -5-2 | Download model File | 모델링 한 sticker 정보를 내 pc에 저장 하는 기능                  |
+| -5-3 | Duplicate           | 모델링 한 sticker 정보를 서버에 복제하는 기능                    |
+| 6    | Share               | 유저 간 모델링 공유를 통한 동시편집 기능                         |
+| 7    | Sticker Palette     | EventStorming을 위한 Sticky note를 선택할 수 있는 Palette        |
 
-### Event
+
+### Event Sticker
 
 스티커 팔레트에서 오랜지색 아이콘이 Event를 지칭한다.
 

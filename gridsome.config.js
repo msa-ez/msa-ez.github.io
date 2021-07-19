@@ -28,10 +28,10 @@ module.exports = {
             title: '시작하기',
             items: [
               '/started/',
-              '/started/installation/',
-              '/started/writing-content/',
-              '/started/deploying/',
-              '/started/settings/',
+              '/started/tool/',
+              '/started/custom-template/',
+              '/started/domain-driven/',
+              '/started/event-storming-learning/',
             ]
           },
           // {
