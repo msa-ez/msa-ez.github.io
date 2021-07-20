@@ -27,9 +27,12 @@ Spring-boot와 Go의 비교는 아래와 같다.
 |Controller | Controller.java | Route.go | 
 |Application | Application.java | main.go |
 |Kafka | | KafkaProcessor.go | 
-|StreamHandler | | StreamHandler.go |
+|DB | | DB.go | 
+|utility | | Util.go | 
 
 ## Model 별 Template 설명 
+
+- 현 섹션에는 eventstorming을 통해 나온 model들을 기반으로 model driven 하게 generate 되는 code들에 대한 설명이다. 
 
 ### Entity.go
 
@@ -250,6 +253,7 @@ func New{{namePascalCase}}() *{{namePascalCase}}{
 
 - 하나의 Event 당 하나의 Event.go 파일을 만든다. 
 - typeCheck라는 handleBar function은 Entity.go 와 같이 go에 맞는 변수형으로 만들어준다. 
+- Spring boot code에선 Event 객체는 abstractEvent 객체를 상속 받아 사용되는데 Go에선 상속의 개념이 없어 abstractEvent의 주요 기능들은 모두 Util.go 안에 여러 함수들로 추가 구현 되어 있다. 
 
 ### PolicyHandler.go
 
@@ -309,6 +313,7 @@ func whenever{{eventValue.namePascalCase}}_{{../namePascalCase}}(data map[string
  - policies라는 객체 안에 연결된 policyHandler에 대한 정보들이 있다. 
  - 해당 policyHandler와 연결된 Event 객체에 대한 정보는 relationEventInfo 객체에 들어 있다. 
  - 각 Event 객체의 세부 정보는 relationEventInfo 안 eventValue 안에 들어 있다. 
+ - Spring boot code에는 PolicyHandler 안에서 모든 message를 읽고 객체화 하여 자신이 원하는 객체 일때만 logic을 수행하는 코드를 validate라는 함수를 통해 수행하는데 현재 구현된 Go code에서는 KafkaProcessor.go 안의 KafkaConsumer에서 필요할 때만 logic이 수행되는 함수로 message를 넘겨주는 형식이다. 
 
 ---
 
@@ -487,6 +492,7 @@ Delete method 일때 return true
 - 파일의 이름은 res/req 통신으로 연결된 외부 service의 Aggregate명 + service 로 한다. 
 - 연결된 command들의 정보는 commandValue 객체 안에 있다. 
 - 해당 command의 method는 commandValue.restRepositoryInfo.method에 있다. 
+- Spring boot code에서는 Feign client를 사용하여 res/req 통신을 수행하는데 Go 에서는 Feign 관련 api가 존재하지 않아 resty library를 사용하여 res/req 형식의 통신을 구현하였다. 
 
 ---
 
@@ -649,6 +655,7 @@ func RouteInit() *echo.Echo {
 
 - 기본적인 CRUD에 해당하는 함수들의 경로를 지정해 준다. 
 - Entity에 해당하는 Aggregate 별로 CRUD가 있어야 하므로 각 Aggregate 마다 CRUD를 생성. 
+- Spring boot code에선 Rest controller가 수행하는 작업을 Go 에선 echo framework 위에 routing 설정을 하여 구현하였다. 
 
 ---
 
@@ -707,11 +714,15 @@ pub/sub 통신 방법이 존재하면 즉, 외부 service에 해당 event에 대
 
 - Application이 실행 되면서 DB, kafkaProducer, 필요하다면 Kafkaconsumer와 echo framework을 시작시킨다. 
 
-## 
+## Go 전용 Template 
+
+- Go에서는 spring boot과 다르게 지원되지 않는 api들이 많다.
+- 이를 위해 필수적인 요소들만 model에 맞는 함수들을 generate 시킨다. 
 
 ### DB.go
 
-- Sqlite DB 만들기 
+- Sqlite DB 만들기 (spring boot tutorial에선 h2 DB를 쓴다.)
+- DB와 연관된 모든 logic은 이 코드에서 수행 된다. 
 
 ```go
 forEach: Aggregate
@@ -795,8 +806,179 @@ func (self *{{namePascalCase}}DB) Update(id int, params map[string]string) error
 <h4> 세부 사항 </h4>
 
 - 하나의 boundedContext에 두개 이상의 aggregate이 존재하기 때문에 하나의 Aggregate 당 하나의 DB.go 파일을 만든다. 
+- 또한 aggregate이 두개 이상 일땐 생성되어야 하는 db table이 두개 이상 이기 때문에 이를 구분하기 위해 struct method 방식으로 구현한다. 
+
+--- 
+
+### KafkaProcessor.go 
+
+- Kafka와 관련된 logic들을 위한 code 만들기 
+- Kafka producer와 consumer에 대한 설정은 현 파일에서 설정해준다. 
+
+```go
+forEach: BoundedContext
+fileName: KafkaProcessor.go
+path: {{name}}/{{name}}
+---
+package {{name}}
+
+import (
+	"gopkg.in/confluentinc/confluent-kafka-go.v1/kafka"
+	"fmt"
+    "encoding/json"
+)
+
+var producer *kafka.Producer
+var consumer *kafka.Consumer
+var topic string
+
+func InitProducer(){
+
+    producer, err = kafka.NewProducer(&kafka.ConfigMap{"bootstrap.servers": "localhost"})
+    if err != nil {
+        panic(err)
+    }
+	topic = "{{options.package}}"
+}
+
+func InitConsumer(){
+    consumer, err = kafka.NewConsumer(&kafka.ConfigMap{
+        "bootstrap.servers": "localhost",
+        "group.id":          "{{name}}",
+        "auto.offset.reset": "earliest",
+    })
+
+    if err != nil {
+        panic(err)
+    }
+
+    go KafkaConsumer()
+	
+}
+
+func KafkaProducer() (*kafka.Producer, string){
+	
+	return producer, topic
+}
+
+func KafkaConsumer(){
+    
+	
+    consumer.SubscribeTopics([]string{topic}, nil)
+    //defer c.Close()
+	var dat map[string]interface{}
+    for {
+        msg, err := consumer.ReadMessage(-1)
+        if err == nil {
+			if err := json.Unmarshal(msg.Value, &dat); err != nil {
+				panic(err)
+			}
+            {{#policies}}
+            if dat['eventType'] == {{#relationEventInfo}}"{{eventValue.namePascalCase}}"{{/relationEventInfo}}{
+                {{#relationEventInfo}}
+                whenever{{eventValue.namePascalCase}}_{{../namePascalCase}}(dat)
+                {{/relationEventInfo}}
+            }
+            {{/policies}}
+			
+        } else {
+            // The client will automatically try to recover from all errors.
+            fmt.Printf("Consumer error: %v (%v)\n", err, msg)
+        }
+    }
+}
+
+func Streamhandler(message string){
+	producer, topic := KafkaProducer()
+	
+	producer.Produce(&kafka.Message{
+		TopicPartition: kafka.TopicPartition{Topic: &topic, Partition: kafka.PartitionAny},
+		Value:          []byte(message),
+	}, nil)
+
+}
+
+```
+
+<h4> 세부사항 </h4>
+
+- group id는 boundedContext의 이름으로 한다. 
+- topic은 project의 이름으로 한다. 
+- KafkaConsumer에서 kafka channel을 통해 들어온 message를 deserialize 하여 eventType에 따라 해당되는 logic이 수행되는 policyHandler 함수를 call 한다. 
+
+___ 
+
+### Util.go 
+
+- Spring boot엔 있지만 Go엔 없는 API들 중 필수적인 기능들을 구현해 놓은 code이다. 이는 model driven하게 code가 generate 되진 않지만 각 boundedContext당 하나의 Util.go 파일이 생성된다. 
+
+```go
+forEach: BoundedContext
+fileName: util.go
+path: {{name}}/{{name}}
+---
+package {{name}}
+
+import (
+	"reflect"
+	"strconv"
+    "fmt"
+)
+
+func ObjectMapping(anything interface{}, request map[string]string){
+
+    target := reflect.ValueOf(anything)
+    elements := target.Elem()
 
 
+    for i := 0; i < elements.NumField(); i++ {
+        //mValue := elements.Field(i)
+        mType := elements.Type().Field(i)
+        tag := mType.Tag
+        structFieldValue := elements.FieldByName(mType.Name)
+		tagName := tag.Get("json")
+        if tag.Get("type") == "int"{
+            temp,_ := strconv.Atoi(request[tagName])
+            val := reflect.ValueOf(temp)
+        	structFieldValue.Set(val)
+        }else if tag.Get("type") == "string"{
+            val := reflect.ValueOf(request[tagName])
+            structFieldValue.Set(val)
+        }else{
+            fmt.Println("ELSE IN OBJECTMAPPING")
+        }
+    }
+}
+
+func getType(myvar interface{}) string {
+    if t := reflect.TypeOf(myvar); t.Kind() == reflect.Ptr {
+        return t.Elem().Name()
+    } else {
+        return t.Name()
+    }
+}
+
+func ToJson(event interface{}) string {
+	e, err := json.Marshal(event)
+	if err != nil {
+
+		return "ToJson error"
+	}
+
+	return string(e)
+}
+
+func Publish(event interface{}) {
+	message := ToJson(event)
+
+	streamhandler(message)
+}
+```
+
+<h4> 세부사항 </h4>
+
+- ObjectMapping 함수는 echo framework을 통해 들어온 request 타입인 map[string] string을 Entity class와 mapping 해주는 함수이다. 일반적으로 objectMapping은 mapstructure를 사용하지만 이는 map[string] interface에 관한 타입만 지원 하여 구현되었다. 
+- Publish, ToJson, getType 함수는 Spring boot code에선 AbstractEvent의 method로 구현되었지만 Go에선 상속이 불가하여 따로 함수 형태로 구현되었다. 
 
 
 
