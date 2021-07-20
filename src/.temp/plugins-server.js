@@ -1,5 +1,5 @@
-import plugin_gridsome_plugin_tailwindcss_6 from "/Users/jinsulee/Documents/eventstorming-dev/msa-ez.github.io/node_modules/gridsome-plugin-tailwindcss/gridsome.client.js"
-import plugin_gridsome_plugin_google_analytics_7 from "/Users/jinsulee/Documents/eventstorming-dev/msa-ez.github.io/node_modules/@gridsome/plugin-google-analytics/gridsome.client.js"
+import plugin_gridsome_plugin_tailwindcss_6 from "/Users/kibum0405/Desktop/msa-ez.github.io/node_modules/gridsome-plugin-tailwindcss/gridsome.client.js"
+import plugin_gridsome_plugin_google_analytics_7 from "/Users/kibum0405/Desktop/msa-ez.github.io/node_modules/@gridsome/plugin-google-analytics/gridsome.client.js"
 
 export default [
   {

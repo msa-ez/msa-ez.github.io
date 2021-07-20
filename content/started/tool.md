@@ -6,19 +6,19 @@ next: '/started/customTemplate/'
 ---
 # 도구 사용법
 
-## MSA Easy로 MSA 개발하기
+<h2>MSA Easy로 MSA 개발하기</h2>
 
 ## 서비스 접속
 [msaez.io](http://www.msaez.io) 에 접속합니다.
 <br/>(크롬 브라우저 추천)
 
-## 예제 프로젝트
+<h2>예제 프로젝트</h2>
 
 예제 프로젝트는 주문 서비스와 배송 서비스 2개의 서비스를 EventStorming하여 Spring-boot로 실행되는 Java Project를 생성하고 이들을 구글클라우드의 쿠버네티스에 자동 배포하는 과정입니다.
 
 ## UI 소개
 
-### UI 레이아웃
+<h3>UI 레이아웃</h3>
 
 MSAEZ 도구의 전체 화면 레이아웃은 다음과 같습니다.
 
@@ -27,36 +27,30 @@ MSAEZ 도구의 전체 화면 레이아웃은 다음과 같습니다.
 
 | 번호 | 이름                | 기능 설명                                                        |
 |------|---------------------|----------------------------------------------------------------- |
-| 1    | Zoom Panel          | 캔버스에 작성된 화면을 확대 및 축소 기능                         |
-| 2    | Project Name        | 프로젝트 명 입력 (Java의 경우 Package명)                         |
-| 3    | Replay              | 모델링 히스토리 정보를 확인하는 기능                             |
-| 4    | Code                | 모델링 한 code 확인 기능                                         |
-| -4-1 | Code Preview        | 모델링 한 code 다운로드 기능                                     |
-| -4-2 | Download Archive    | 모델링 한 code 실습하는 기능                                     |
-| -4-3 | Project IDE         | 모델링 한 code 확인, 다운로드, 실습하는 기능                     |
-| 5    | Save                | Draw된 EventStorming파일을 Json파일로 저장함                     |
-| -5-1 | Save to Server      | 모델링 한 sticker 정보를 서버에 저장하는 기능                    |
-| -5-2 | Download model File | 모델링 한 sticker 정보를 내 pc에 저장 하는 기능                  |
-| -5-3 | Duplicate           | 모델링 한 sticker 정보를 서버에 복제하는 기능                    |
-| 6    | Share               | 유저 간 모델링 공유를 통한 동시편집 기능                         |
-| 7    | Sticker Palette     | EventStorming을 위한 Sticky note를 선택할 수 있는 Palette        |
+| 1    &nbsp;| Zoom Panel          | 캔버스에 작성된 화면을 확대 및 축소 기능                         |
+| 2    &nbsp;| Project Name        | 프로젝트 명 입력 (Java의 경우 Package명)                         |
+| 3    &nbsp;| Replay              | 모델링 히스토리 정보를 확인하는 기능                             |
+| 4    &nbsp;| Code                | 모델링 한 code 확인 기능                                         |
+|ㆍ4-1 &nbsp;| Code Preview        | 모델링 한 code 다운로드 기능                                     |
+|ㆍ4-2 &nbsp;| Download Archive    | 모델링 한 code 실습하는 기능                                     |
+|ㆍ4-3 &nbsp;| Project IDE         | 모델링 한 code 확인, 다운로드, 실습하는 기능                     |
+| 5    &nbsp;| Save                | Draw된 EventStorming파일을 Json파일로 저장함                     |
+|ㆍ5-1 &nbsp;| Save to Server      | 모델링 한 sticker 정보를 서버에 저장하는 기능                    |
+|ㆍ5-2 &nbsp;| Download model File | 모델링 한 sticker 정보를 내 pc에 저장 하는 기능                  |
+|ㆍ5-3 &nbsp;| Duplicate           | 모델링 한 sticker 정보를 서버에 복제하는 기능                    |
+| 6    &nbsp;| Share               | 유저 간 모델링 공유를 통한 동시편집 기능                         |
+| 7    &nbsp;| Sticker Palette     | EventStorming을 위한 Sticky note를 선택할 수 있는 Palette        |
 
 
 ### Event Sticker
 
 스티커 팔레트에서 오랜지색 아이콘이 Event를 지칭한다.
 
-#### Event 추가하기
+<h4>Event 추가하기<h4>
 
 스티커 팔레트에서 주황색 아이콘을 캔버스로 Drag & Drop하여 추가한다.
 
-> ![](../../src/img/image31.png)
-> <p align="center">그림 2 Event Drag</p>
-
-> ![](../../src/img/image32.png)
-> <p align="center">그림 3 Event Drop</p>
-
-#### Event 속성 설정
+<h4>Event 속성 설정</h4>
 
 추가된 Event 스티커를 더블 클릭하게 되면, 오른쪽에 아래와 같이 속성 창이 나타나며, 각 속성 설정에 대한 값은 아래와
 같다.
@@ -64,12 +58,12 @@ MSAEZ 도구의 전체 화면 레이아웃은 다음과 같습니다.
 > ![](../../src/img/image33.png)
 > <p align="center">그림 4 Event Property Panel</p>
 
-| 번호 | 이름                   | 기능 설명                     |
-| -- | -------------------- | ------------------------- |
-| 1  | Event Name           | Event Sticky note에 작성될 이름 |
-| 2  | Trigger              | Event를 발생시키는 엔티티의 Trigger  |
-| 3  | Attribute            | Event의 Attribute들 등록      |
-| 4  | Associated Aggregate | Event와 연결 될 Aggregate 선택  |
+| 번호 | 이름                 | 기능 설명                            |
+| ---- | -------------------- | ------------------------------------ |
+| 1    | Event Name           | Event Sticky note에 작성될 이름      |
+| 2    | Trigger              | Event를 발생시키는 엔티티의 Trigger  |
+| 3    | Attribute            | Event의 Attribute들 등록             |
+| 4    | Associated Aggregate | Event와 연결 될 Aggregate 선택       |
 
 주문팀의 주문 시나리오에 따라 아래와 같이 기입한다.
 
