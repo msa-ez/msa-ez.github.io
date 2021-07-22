@@ -4,7 +4,7 @@ sidebar: 'started'
 prev: '/started/'
 next: '/started/customTemplate/'
 ---
-# 도구 사용법
+# 이벤트 스토밍
 
 <h2>MSA Easy로 MSA 개발하기</h2>
 

@@ -28,8 +28,6 @@ module.exports = {
             title: '시작하기',
             items: [
               '/started/',
-              '/started/tool/',
-              '/started/custom-template/',
               '/started/domain-driven/',
               '/started/event-storming-learning/',
             ]
@@ -37,7 +35,29 @@ module.exports = {
           {
             title: '도구 사용법',
             items: [
-              '/custom-template/go-template/',
+              '/tool/event-storming-tool/',
+              '/tool/cloud-ide-tool/',
+              '/tool/infrastructure-modeling/',
+              '/tool/kubernetes-tool/',
+            ]
+          },
+          {
+            title: '언어별 템플릿',
+            items: [
+              '/templates-language/go-template/',
+              '/templates-language/custom-template/',
+              '/templates-language/python-template/',
+              '/templates-language/springboot-java-template/',
+            ]
+          },
+          {
+            title: '예제 시나리오',
+            items: [
+              '/example-scenario/accommodation-reservation/',
+              '/example-scenario/food-delivery/',
+              '/example-scenario/library-system/',
+              '/example-scenario/animal-hospital/',
+              '/example-scenario/online-lecture/',
             ]
           },
         ]
