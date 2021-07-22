@@ -1,7 +1,6 @@
 ---
 description: ''
 sidebar: 'started'
-next: '/started/tool/'
 ---
 # 소개
 

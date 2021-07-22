@@ -37,17 +37,18 @@ module.exports = {
             items: [
               '/tool/event-storming-tool/',
               '/tool/cloud-ide-tool/',
-              '/tool/infrastructure-modeling/',
               '/tool/kubernetes-tool/',
+              '/tool/infrastructure-modeling/',
+              '/tool/development-practice/'
             ]
           },
           {
             title: '언어별 템플릿',
             items: [
-              '/templates-language/go-template/',
-              '/templates-language/custom-template/',
               '/templates-language/python-template/',
               '/templates-language/springboot-java-template/',
+              '/templates-language/custom-template/',
+              '/templates-language/go-template/',
             ]
           },
           {

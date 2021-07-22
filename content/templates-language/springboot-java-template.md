@@ -1,7 +1,5 @@
 ---
 description: ''
 sidebar: 'started'
-prev: ''
-next: ''
 ---
-# Spring Boot/Java
+# Spring Boot/Java(준비중)

@@ -1,7 +1,5 @@
 ---
 description: ''
 sidebar: 'started'
-prev: '/started/'
-next: '/started/customTemplate/'
 ---
-# 이벤트 스토밍
+# 인프라 모델링 (쿠버네티스(준비중))

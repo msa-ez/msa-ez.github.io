@@ -1,8 +1,6 @@
 ---
 description: ''
 sidebar: 'started'
-prev: '/started/tool/'
-next: '/started/settings/'
 ---
 # 커스텀 템플릿 만들기
 

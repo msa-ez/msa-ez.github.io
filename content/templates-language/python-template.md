@@ -1,7 +1,5 @@
 ---
 description: ''
 sidebar: 'started'
-prev: ''
-next: ''
 ---
-# Python
+# Python(준비중)

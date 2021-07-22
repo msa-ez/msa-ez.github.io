@@ -1,8 +1,6 @@
 ---
 description: ''
 sidebar: 'started'
-prev: '/started/domain-driven/'
-next: ''
 ---
 
 # 이벤트스토밍 학습

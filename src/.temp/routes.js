@@ -1,14 +1,10 @@
 const c1 = () => import(/* webpackChunkName: "page--src--templates--markdown-page-vue" */ "/Users/kibum0405/Desktop/msa-ez.github.io/src/templates/MarkdownPage.vue")
-const c2 = () => import(/* webpackChunkName: "page--node-modules--gridsome--app--pages--404-vue" */ "/Users/kibum0405/Desktop/msa-ez.github.io/node_modules/gridsome/app/pages/404.vue")
+const c2 = () => import(/* webpackChunkName: "page--src--pages--404-vue" */ "/Users/kibum0405/Desktop/msa-ez.github.io/src/pages/404.vue")
 const c3 = () => import(/* webpackChunkName: "page--src--pages--index-vue" */ "/Users/kibum0405/Desktop/msa-ez.github.io/src/pages/Index.vue")
 
 export default [
   {
     path: "/templates-language/springboot-java-template/",
-    component: c1
-  },
-  {
-    path: "/tool/tool/",
     component: c1
   },
   {
@@ -28,6 +24,10 @@ export default [
     component: c1
   },
   {
+    path: "/tool/event-storming-tool/",
+    component: c1
+  },
+  {
     path: "/started/event-storming-learning/",
     component: c1
   },
@@ -37,6 +37,10 @@ export default [
   },
   {
     path: "/tool/cloud-ide-tool/",
+    component: c1
+  },
+  {
+    path: "/tool/development-practice/",
     component: c1
   },
   {

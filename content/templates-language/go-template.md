@@ -1,8 +1,6 @@
 ---
 description: ''
 sidebar: 'started'
-prev: '/started/installation/'
-next: '/started/settings/'
 ---
 # Go Template 만들기 
 
