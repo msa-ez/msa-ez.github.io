@@ -1,11 +1,1057 @@
 <!DOCTYPE html>
 <html data-html-server-rendered="true" lang="en" data-vue-tag="%7B%22lang%22:%7B%22ssr%22:%22en%22%7D%7D">
   <head>
-    <title>쿠버네티스(준비중) - msa-ez.github</title><meta name="gridsome:hash" content="2f49a9517f5abce8a47d6fee43f4fef52cbe9f3a"><meta data-vue-tag="ssr" charset="utf-8"><meta data-vue-tag="ssr" name="generator" content="Gridsome v0.7.22"><meta data-vue-tag="ssr" data-key="viewport" name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"><meta data-vue-tag="ssr" data-key="format-detection" name="format-detection" content="telephone=no"><meta data-vue-tag="ssr" data-key="og:url" name="og:url" content="undefined/templates-language/springboot-java-template/"><meta data-vue-tag="ssr" name="description" content="undefined"><meta data-vue-tag="ssr" data-key="og:title" name="og:title" content="쿠버네티스(준비중)"><meta data-vue-tag="ssr" data-key="twitter:title" name="twitter:title" content="쿠버네티스(준비중)"><meta data-vue-tag="ssr" data-key="og:description" name="og:description" content="undefined"><meta data-vue-tag="ssr" data-key="twitter:description" name="twitter:description" content="undefined"><meta data-vue-tag="ssr" data-key="og:type" name="og:type" content="website"><meta data-vue-tag="ssr" data-key="twitter:card" name="twitter:card" content="summary_large_image"><meta data-vue-tag="ssr" data-key="og:image" name="og:image" content="undefined/logo.jpg"><meta data-vue-tag="ssr" data-key="twitter:image" name="twitter:image" content="undefined/logo.jpg"><link data-vue-tag="ssr" rel="icon" href="data:,"><link data-vue-tag="ssr" rel="icon" type="image/png" sizes="16x16" href="/assets/static/favicon.ce0531f.f0886199c685a75a52fccefb5e72c094.png"><link data-vue-tag="ssr" rel="icon" type="image/png" sizes="32x32" href="/assets/static/favicon.ac8d93a.f0886199c685a75a52fccefb5e72c094.png"><link data-vue-tag="ssr" rel="icon" type="image/png" sizes="96x96" href="/assets/static/favicon.b9532cc.f0886199c685a75a52fccefb5e72c094.png"><link data-vue-tag="ssr" rel="apple-touch-icon" type="image/png" sizes="76x76" href="/assets/static/favicon.f22e9f3.f0886199c685a75a52fccefb5e72c094.png"><link data-vue-tag="ssr" rel="apple-touch-icon" type="image/png" sizes="152x152" href="/assets/static/favicon.62d22cb.f0886199c685a75a52fccefb5e72c094.png"><link data-vue-tag="ssr" rel="apple-touch-icon" type="image/png" sizes="120x120" href="/assets/static/favicon.1539b60.f0886199c685a75a52fccefb5e72c094.png"><link data-vue-tag="ssr" rel="apple-touch-icon" type="image/png" sizes="167x167" href="/assets/static/favicon.dc0cdc5.f0886199c685a75a52fccefb5e72c094.png"><link data-vue-tag="ssr" rel="apple-touch-icon" type="image/png" sizes="180x180" href="/assets/static/favicon.7b22250.f0886199c685a75a52fccefb5e72c094.png"><link rel="preload" href="/assets/css/0.styles.8fa3adb2.css" as="style"><link rel="preload" href="/assets/js/app.1a9307aa.js" as="script"><link rel="preload" href="/assets/js/page--src--templates--markdown-page-vue.7da4a730.js" as="script"><link rel="prefetch" href="/assets/js/page--src--pages--404-vue.c25ecd7a.js"><link rel="prefetch" href="/assets/js/page--src--pages--index-vue.7a4ff899.js"><link rel="prefetch" href="/assets/js/search.65f054bd.js"><link rel="stylesheet" href="/assets/css/0.styles.8fa3adb2.css"><noscript data-vue-tag="ssr"><style>.g-image--loading{display:none;}</style></noscript>
+    <title>쿠버네티스 - msa-ez.github</title><meta name="gridsome:hash" content="5c0b045e1dcabde4dcca5fe76b59e3165d0c2e1f"><meta data-vue-tag="ssr" charset="utf-8"><meta data-vue-tag="ssr" name="generator" content="Gridsome v0.7.22"><meta data-vue-tag="ssr" data-key="viewport" name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"><meta data-vue-tag="ssr" data-key="format-detection" name="format-detection" content="telephone=no"><meta data-vue-tag="ssr" data-key="og:url" name="og:url" content="undefined/templates-language/springboot-java-template/"><meta data-vue-tag="ssr" name="description" content="undefined"><meta data-vue-tag="ssr" data-key="og:title" name="og:title" content="쿠버네티스"><meta data-vue-tag="ssr" data-key="twitter:title" name="twitter:title" content="쿠버네티스"><meta data-vue-tag="ssr" data-key="og:description" name="og:description" content="undefined"><meta data-vue-tag="ssr" data-key="twitter:description" name="twitter:description" content="undefined"><meta data-vue-tag="ssr" data-key="og:type" name="og:type" content="website"><meta data-vue-tag="ssr" data-key="twitter:card" name="twitter:card" content="summary_large_image"><meta data-vue-tag="ssr" data-key="og:image" name="og:image" content="undefined/logo.jpg"><meta data-vue-tag="ssr" data-key="twitter:image" name="twitter:image" content="undefined/logo.jpg"><link data-vue-tag="ssr" rel="icon" href="data:,"><link data-vue-tag="ssr" rel="icon" type="image/png" sizes="16x16" href="/assets/static/favicon.ce0531f.f0886199c685a75a52fccefb5e72c094.png"><link data-vue-tag="ssr" rel="icon" type="image/png" sizes="32x32" href="/assets/static/favicon.ac8d93a.f0886199c685a75a52fccefb5e72c094.png"><link data-vue-tag="ssr" rel="icon" type="image/png" sizes="96x96" href="/assets/static/favicon.b9532cc.f0886199c685a75a52fccefb5e72c094.png"><link data-vue-tag="ssr" rel="apple-touch-icon" type="image/png" sizes="76x76" href="/assets/static/favicon.f22e9f3.f0886199c685a75a52fccefb5e72c094.png"><link data-vue-tag="ssr" rel="apple-touch-icon" type="image/png" sizes="152x152" href="/assets/static/favicon.62d22cb.f0886199c685a75a52fccefb5e72c094.png"><link data-vue-tag="ssr" rel="apple-touch-icon" type="image/png" sizes="120x120" href="/assets/static/favicon.1539b60.f0886199c685a75a52fccefb5e72c094.png"><link data-vue-tag="ssr" rel="apple-touch-icon" type="image/png" sizes="167x167" href="/assets/static/favicon.dc0cdc5.f0886199c685a75a52fccefb5e72c094.png"><link data-vue-tag="ssr" rel="apple-touch-icon" type="image/png" sizes="180x180" href="/assets/static/favicon.7b22250.f0886199c685a75a52fccefb5e72c094.png"><link rel="preload" href="/assets/css/0.styles.8fa3adb2.css" as="style"><link rel="preload" href="/assets/js/app.b6fbfd6a.js" as="script"><link rel="preload" href="/assets/js/page--src--templates--markdown-page-vue.7da4a730.js" as="script"><link rel="prefetch" href="/assets/js/page--src--pages--404-vue.c25ecd7a.js"><link rel="prefetch" href="/assets/js/page--src--pages--index-vue.7a4ff899.js"><link rel="prefetch" href="/assets/js/search.6dfc118a.js"><link rel="stylesheet" href="/assets/css/0.styles.8fa3adb2.css"><noscript data-vue-tag="ssr"><style>.g-image--loading{display:none;}</style></noscript>
   </head>
   <body >
-    <div data-server-rendered="true" id="app" class="font-sans antialiased text-ui-typo bg-ui-background"><div class="flex flex-col justify-start min-h-screen"><header class="sticky top-0 z-10 w-full border-b bg-ui-background border-ui-border"><div class="py-2 border-t-2 border-ui-primary"><div class="container"><div class="flex items-center justify-between -mx-2 sm:-mx-4"><div class="flex flex-col items-center px-2 mr-auto sm:px-4 sm:flex-row"><a href="/" title="Home" class="flex items-center text-ui-primary active"><img src="data:image/svg+xml,%3csvg fill='none' viewBox='0 0 120 64' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink'%3e%3cdefs%3e%3cfilter id='__svg-blur-37afcb0017f229c304bfe602273e7d7c'%3e%3cfeGaussianBlur in='SourceGraphic' stdDeviation='40'/%3e%3c/filter%3e%3c/defs%3e%3cimage x='0' y='0' filter='url(%23__svg-blur-37afcb0017f229c304bfe602273e7d7c)' width='120' height='64' xlink:href='data:image/png%3bbase64%2ciVBORw0KGgoAAAANSUhEUgAAAEAAAAAiCAYAAADvVd%2bPAAAACXBIWXMAAC4jAAAuIwF4pT92AAATu0lEQVRo3sVZB3RU15lWIxhscMtunHhd8EkcJzFusb1xwMaAuoQkpFEFUWQwzXEMAQSYElFEkVCbGUmjikZdIJBAqIxmRgUJVRAqmGLABQdwTBDqZebdb/97Z0YIO1nvnrN7mHO%2b89/35pX5vvu3e8fKij69eQ4C48ffg7UZNgK5DrY9ufZ2wtJ5qwfw0cirrDSKahuCrRk0rrKuUFRb05h/Z1VhukZcP378g09vnr2VmZwtR4/Z8nNE9Ed/DAlhRfdM%2bS7X/QXkv/rWtrQ6R2cVW%2bSVNBDkoRoK9EwaCvBMGvQn60fwJcgIPnRuvkfSkBeNPWns4aEadCfrRseudN5lvmrAZU6SZJ%2bobA/Ry3XLyhXV7xPBXxGRh/%2b731PxQ3FsK%2bTi2Fojrx4TQtievP8BQSJHBJ8h%2bzrBje5ZQTaMhEulcTmN2%2bn7G925zgNS/n9K0enF3S5qwC8T8LFAfT9kZojjDMDbgkP34ENwIySnXkNraiN0CfUgAQbph39DaCQyeWT3EuHlhDk0/hXZx36MDxdovOUEnyC8SiQcyS4mbOnNtY8nW0K2lfAFobc/3wGGo05AsTNwwpXgBlbsIs4NHXZEb74zjPnvQJ2ROmKvgmF%2bUr%2bBZpQwZKDZFdaLjt0T%2bgyO8l6jo7zP6KzoNXok9hvpvJG8xUjXE8iqBgXck4alQ8ozxiq5zkAeIFUqa6BPqENNUiPqU1twOu0M6lKaUa06DRJghEhdJ9tMOMzFISwjOBB%2bTZh6T4Tq%2b1w4khU5Y6DAETjuQsRcTJbIGY%2b5YOiIM/oLnECCMAoJqTfP0XA3Z67hTsYfCTMMPbkORvpO6s51Yoa8P7JydTgcVWBeSf2MCDEiT3aI7ACzVwyyoBywtSVg60%2bCfXQcbH46mKNigK7n1wyJe4g8m0fH3nTPYUUj08n1jGafaUyQiKiRrIGsoeSgxngiUiOVx%2bpRlViPWhKHi3I6tZVEahXnuDiEvxHOE%2baYQ8DGIsBfOGma5REiQoTsDdxyknfVfzT2Z8%2bQutUzGHkI4yLczX6fjRx1ZWjczFC3FgN5c0iYuexunhNG8mayM1l/Zm4qIycCQSZpCB6JA5iXNIq4GiNi0ouxdsNWfLx2Azbt2IeUomZsLQOclIMgTwCJABIANPsIVPWgRFGLSnkVd39OBERaCFEep4dGXsM6T1xkFzRXWP2hFlYarZPoOyMXhgtEiZFbqVJRA62yFo3pbXR/tbNZAFshAM2gB3djImck8pwkiDyjmWcjDXvw93oFjLXr0Zv9Pj%2bPkWIvdGiS4ecfiDVr/oRvT8WiP3c2unMd2WDeLFzNCWZ%2bSXfZPNUwF0CQcoofRkLNABb6eYJeeR9%2bYm2FvZFyfFQEOCv76XqTAK5JI1iWeJtIVnHS4wWgcRU0cdVo03ZgzUdr4ObuhqK8YjTlnEVptNbiKXQvt0IwSdwrckjVS9/zAPtX%2b4h0r2WGcx2I0CzcOhUHV68ATHniKWzf8VdIdZvxj5RXITXtwRyne0T2hG0FqpbhH%2br30Jdnj9u57vgg%2bSu4qIxEZgDOij6sJnI790aZ77HGc88/D4c5s/DitKfFueAAH%2bypAubG9QnBvEgAZ/KYtYk3QBVAkK8wk9coq3EiogIXyj/Hnz7%2b09jvePq5X%2bBM5TlUxJgEEteaReMC8NxB9ibhSbMA1pYk%2bBTh9iDlAB7Ld7LeB8p9kZW4995M2U5GV2UyjHnv4FZNFJ5%2b/sWx75xc3IGG7ejOeAc9FAaDebOxPvUcnFQM3skDsCdSYVrAV%2bYtrqe3Iv%2b4Hse%2bBGLKbmK3IhcJFX%2bDd6oB81Q8bIaEAE4kwLaEL1Aj16LcLAAnw12/WtUA/YkqTJg4QQg6wW6CePaRjKOoS21GWaxuPHnuAcYauodE6Rgrg5ZEaK77nZYwuJNJAlQEID0uTDx00kMThd26eQNQvxJtxfsxYfLj45R/EX%2bvjUZ/9kx05zljNG8mDqSVw0FF5SypHw7yPoRSjK9eY5otG1tbTJ/%2bCjaHxyO%2b/BtENwMOCRLcE/oFeUqaYx5wIP7iPQHGzf4l3VX4%2bvmanmdjAzs7O7M3huNsQSdORlWOCVAhNwlwKrmJH580l0BrSx9gY06EpbwSmAVgqAhEauxO8VA7O1thX3jpFaArGcXJ2%2bnYZlwc/wS1R6IgFbngdraj8JJDhw5hLglApVAkQK9UBrXmMn75H0/cF///9thD%2bGjVCiTV9sFNNUKxPyBEsOQAaoJQZRaAk%2bEzW5/WguL847CyNj3DP8Afb775phgHBgbifNlllERqxvKFWQgDrwpklUIARZWtEIB3fOYwUPLSx7P/ncxZgCYIqqi/iodOmGAnwMe1ZflIVR4Q45df/h0ef/wxMY4O/xTQLsJ3mbNFL1Cq3sdLIcWzKam5xvcjOJshobgD/rL5eOZnj90nxKrlS7GbwsRe3i9yABeAyiCylS0iB5TLq8Xsl0RocKn6Khwc7cV9EydOxMWOi/Dy9BLHr73xKs5VdKIsalwIiKpRZeA9Ax1vMMe/ncUDzALYrxWl0CQAQ%2bVCKCO2i4c%2b9dTP4OnhIcZLQ5ZhY2ioGIeGbsK7774rxgEBgZQHNuN2xkyM5L%2bHlqy1cFeNjlUB14RBEgDYcwpQtALyir9jx/54/PQJUyg9%2begkJJR9SbNOiVM1IMjLVP04qjgNrVwv4v9kdCWas9qQmZo1JpyrmytGuw1YtWKVOJ7y6BToi2qgU9bR7OvHl00j7w/oOf7fL4G25hDwko5ZQoALEIy4/dtMbvrTJ3HsWLGItUcfnYpp06aJ88XHCvHh8uVi/NL036O7LhI9WTOpL5iNKzmLIEvqhQfVcj77Kw8DyowiBPnLsDu%2bENHlt1F%2b5hZeefm34v5HH54A5YmLmJfCSIB%2bCodhLErsRin1ABpz7Jce1OJCzWW88ebrYwLYUfKbNu15PPPsM2PnUpSpaFJTOYzRmgQwlUGmja/lx3%2bwlECzBzjYmEPgDXMZxJ3M9xh35%2bjwreKBDz00Cd9c6YCri5M56ViLHHCp/ggU%2b03XTJryBGs7GQdDoT3rz7dnd3Jd2AfJX1MzY2C8tMnrgHffnm66n/D8009i6iOTxn60y5wZiKk2Yq58kHknk8ckG9kq1W1mnn1WElXJ2g6fR1yU3PQMaxtMpOQ8cfLEsWfY2ppy1bpP1qG96AKoQxyrAryF1pjWEc9YSqBoh3vNy1kS4t8pHLoHqKcnASRol7DI3Z9ayOFWSzYKUvaPvWzi1J%2bhpzUJukyRKBlHbPgmSOXB0lfy6axAsYknM9ENcg9YXgCosk7gtd88B7txsT/RlsjPnQl15efwPcTYvERqiVW8ctyR1sZclKoVep4AWUVsFdprOjHtxWlj9xYVFAt3z07JwY6tOzB58mRTWXZ2wnmNSIRi5ikEJF0CD4mqL%2bj4ke/3AJZ22I7GF0YKnXFH/a4E/VIWtuUT88sm4sLJfRhqjMCiZWvw%2b7dnQBF7EJJ%2bNb6sjMD7rv7s3VmzkZGWIn2e4YfCXZ6QJXZL85JHqAz2Md4LuJAIHx6h2NcPIiK7CfsT8nFAVYD4oy2IqzVAdshIOWOAucXdwtwdTdI721vx6f561MRXSWWiqalmLaVtKMopRtS%2baCTGJ6L95GfQxp0S/f71MzcoDF8Sv3fq41PRUNLMKuNqxMxTCzzK1wZE%2bizn2nTo3L29Ab7eH/OCXIdyvrojDzCgcjGRjMKvf/caZEEhuF4bj%2bH8WaIbNDbuAXTL0JM5A/0ngjHaEoEbpaHSxewQtOz%2bzTerFU2pjqnU28cbpbnxYPbxIHIGeCTcxaK0r7D%2byDdYkAsEZQGeKcCcGAluSgN5DHWCu65Is7e04q3QlvbMyLq6hsRGEBGpMo5qeUw1TiU3oyW7HWfyO6gk6kWio4UQTqkboSmqRPS%2bGGzaFMpOVzSxshgdjkeVGYoiS8V1ZHdxnof3FtmMXwqLRsg8TuCVQCyG8p1Yb00Yhhv2AY3bMXDMB3ezqd9Xz8DdjD9wkajrcyQRZqEn/Q%2bs/q/TUfHpa7i2Y/J7ATmG5esKv8POww2G5JJjrESbgDP12/F162o20uWDr5rWMO%2b0a8yn8DjzP6JBwJEa5lvQAN%2b8s8w9vgLOUSfhrM5aWnjo%2bMky9SkUJdJqL0HLSuN1KJPrGFUDgXEZHnwlSJ0ea8lpZ53FF3E0%2bgSTr08YTd2WAcWGxMHotfLFltnftTL8BxsetuY8sMHSC4hFURatANXvsDu8xc2ZLdYJRJrgxFeGUm%2bBg9RX7MJ6S93ZdfKcm1r324aLvvqecwu6Bzr8YOhwZaxjDkPnbOAzdxjPe8Jw3oN1t4Vg5dFTWFC9E0uqd7HF1buwuHo3FmjD2ELdHgTrw43Bur1scdVBLNVFsg%2b0B7FCE81Wl8fiz6UKdlRVYdDKawyU3fmqT7q3OtQxnvmPR5Qb4zcmSenbMxEfmtSYuDnlRc6vOaPdOnz1/vs3Q3pMe34WD5hvpFJI5EfFyjDPicPA1/9mUfi6H/0FDhjimyM6dwx/JmPD52Ug4ky67A9c8QEuuAGfyxi%2bDgFuUvt8YyOGaeYHO2VsiOxohz/bUZrd76eNYot1kQjWRrIg3QGsaVVhdUsiW96oQMjpWCyoiWB%2bleEkyAG2UH8AgVX72BJ9JDTqOjSmnEVtciP0CfWoVIryxpOdQRd/auRY5EmoNqciYVNypGWSlRtVdiSGZXzfbpDYD7SUwkGqAhyjtC7grTHfFLFskBiPibUCx0BPtv3XfSddLnHyQ50%2bBBkG2z0Zu7bG2H01RTpTk4Dighi2J2wD2xW2DX1XDmCkcx4b6PQDzntJmQ1/OS/TRklLiViQbj%2bLbi6APCuZRWUmQHE4nSmLM5i6rpjtbctDYCV5gz6SPCUSIdqDdwuTyg9o42oyyANqiTjP7AN8rc/zQ2P6WaRtU9%2bKWadws5An4rYW4hYRvh8C1mb7C8JNwrdUEtvJaqk6ZJDdTZ7C9wE9qGN8m1z/%2bW8/fMVu6Jz3NCI/NEoiDLR7M1wJRIM%2bFT9/5mXKxrb3St0jv8D1LjWkC57o7/BlJADyGz8xkAAsuHIvVjQpWUZR3n2t8aQJEzHJegKiE%2bVY15aKQE24tLQumnvD1fv29xRVD5EAz9KMzqCMv6AkWrOZZv9Z/l3iphRbImxtFsGKPOKfbxJaNkaJHN8ZfpaOn6Txj253D1/yfWi4S3YFl/3Q1%2bYp4cYKpCbsFgR%2b%2b9uXUHQkFV2tJzB6tw34ZiMGzrmxwS7hAexQw3r4aKNAHsACdfsQ1VoAZX4aEnLTsHLlyjEhFNkpWNOSiCDNXuPS%2bhgs0kV05aaW2DUcbLQ5mJfzL3%2bjZdZ/lPz4rfF/5hm8U%2bTrBfresl1u03vUyXqg1kOEDQmgwxcB3AOMuBbIasqU4oe//tprqNEeQUzEpwhe4IfTmjjgajDr455yfj7i60MZCUAxfQCL9BHMXxOO1W0q6L48g7feMK3swnaGIfryccjKKUnqI408LwTrIk7z966siLVWqQutzP8BUFdXZVOpqLE9GVNpm/xpuhAmb0/hjxO/rxka/ydI7g//IOkR5%2bytyO05caEwxb4KXwVisENmYBe92NWzKkx%2b5Kc/2PZKT9oPXF%2bBvnNeYF3z2cG6LYxCAEIASoABur3Iv6DHrHdmiuuXLQlB2tVK%2bFRw8hFE/IAxpCGOi1XO30vWms5ZBBC/nxKgFVUBq5xdBeK4cP/x/59/ZYY7ZWMCkP2ECzDU6WsY6XRF3zUFXvilqedXxh3A9YslGL7TAgwVstHz89kgJUzpMx8WXreN%2bVJ5W0qzL9PshvqaDouCFor7fLy8UXyjCX41%2b3gCFB5CZA0fNMZxIXL5e8nacAEeyIdI3xOgU%2baKq/4Y6vI1Dp5zZrh5EHPmmhZN0ZF7kK%2bOwIchPliyZAn7x6VYIj%2bP3WnxxpbqHQjURzH/it3Y1ZWHzVu3iHsmP/wwktNSkFqej3R9Idvdms0CtXt5CIwua1ZwMUQaX1QVaUtjqwf2IQFEDhjqkv2OavzoyHlf9J11ZfhuB1auWvP9EGDP/fItfNGexq5o5qC2wElaVblrMLg6iuJ7J1NeKkGgt98PwoZewLLKjmBZo1xaoNk3%2bkGTHEFl4aH8vUGle2wftAdYm8Y%2bU2l8Q7roR3nARyJLeSCJ7dgWyhTR21FRFMsutaaykb%2blse5ziw1njs6G9qjHroCq6Mshp6K4S0tLa6JYWlsJk%2belsMg0BYtMjGWb92xnO8J3Ql5fYHTP3Ajv7C20tF471ti4xn/8QGd/DObjRlzxp25PZhzsmM%2bki74Svv2LETc/MuDLhQZc8jZKn7kZBju80JA3J/vnl5unUOLrXVwVyV3asFC73xig32dY3qQwfNSqMmxoPzS6uTPTsPVCzohfcRhcEv4Mt8RPVo%2bRV5rIU1l8sCJQNbAxVwI1rvnzjnB4hJoi4wVfsAteprb4C2qPPydcDcTNBq/O9t9Y/URWp3xhMWX/pXUx4M1NSEMsd3MsJcux%2bDQ1PHVRWNQQDc%2bM0H4X5ccu/D00tvVI3yA8z0sdahV4YveDE2BIVAIfO7MYu3B3MXhDRCIY6PjWcJdvM9kcQhghkM7/J7uyYAq/fr12%2b%2bRgfcTvyQveJw9wpzAIIruKsJGwkxBD3pG2sGJfjkfahtf5PfPS1tvNS1on3u2mWmvlmbLe6oF/7uUB2duErQR3wnTCo//qnqpyX5v/7Xvck9eNdXWc/P/l578AjufF27Pdj9IAAAAASUVORK5CYII=' /%3e%3c/svg%3e" width="120" data-src="/assets/static/logo.1539b60.bd727e13501e82a0ba322b4ad29fd33a.png" data-srcset="/assets/static/logo.1539b60.bd727e13501e82a0ba322b4ad29fd33a.png 120w" data-sizes="(max-width: 120px) 100vw, 120px" class="text-ui-primary g-image g-image--lazy g-image--loading"><noscript><img src="/assets/static/logo.1539b60.bd727e13501e82a0ba322b4ad29fd33a.png" class="text-ui-primary g-image g-image--loaded" width="120"></noscript></a></div><div class="w-full px-2 sm:px-4 max-w-screen-xs"><!----></div><div class="flex items-center justify-end px-2 sm:px-4"><!----><!----><!----><button aria-label="Toggle Darkmode" title="Toggle Darkmode" class="ml-2 sm:ml-8"><svg xmlns="http://www.w3.org/2000/svg" width="1.5em" height="1.5em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-sun"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg></button></div></div></div></div></header><main class="container relative flex flex-wrap justify-start flex-1 w-full bg-ui-background"><!----><div class="w-full pb-24"><div class="flex flex-wrap items-start justify-start"><div class="order-2 w-full md:w-1/3 sm:pl-4 md:pl-6 lg:pl-8 sticky" style="top:4rem;"><div class="mt-8 sm:pl-4 md:pl-6 md:pt-12 lg:pl-8 sm:pb-16 sm:border-l border-ui-border md:mt-0"><h3 class="pt-0 mt-0 text-sm tracking-wide uppercase border-none">On this page</h3><div><ul></ul></div></div></div><div class="order-1 w-full md:w-2/3"><div class="content"><h1 id="쿠버네티스준비중"><a href="#%EC%BF%A0%EB%B2%84%EB%84%A4%ED%8B%B0%EC%8A%A4%EC%A4%80%EB%B9%84%EC%A4%91" aria-hidden="true"><span class="icon icon-link"></span></a>쿠버네티스(준비중)</h1>
+    <div data-server-rendered="true" id="app" class="font-sans antialiased text-ui-typo bg-ui-background"><div class="flex flex-col justify-start min-h-screen"><header class="sticky top-0 z-10 w-full border-b bg-ui-background border-ui-border"><div class="py-2 border-t-2 border-ui-primary"><div class="container"><div class="flex items-center justify-between -mx-2 sm:-mx-4"><div class="flex flex-col items-center px-2 mr-auto sm:px-4 sm:flex-row"><a href="/" title="Home" class="flex items-center text-ui-primary active"><img src="data:image/svg+xml,%3csvg fill='none' viewBox='0 0 120 64' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink'%3e%3cdefs%3e%3cfilter id='__svg-blur-37afcb0017f229c304bfe602273e7d7c'%3e%3cfeGaussianBlur in='SourceGraphic' stdDeviation='40'/%3e%3c/filter%3e%3c/defs%3e%3cimage x='0' y='0' filter='url(%23__svg-blur-37afcb0017f229c304bfe602273e7d7c)' width='120' height='64' xlink:href='data:image/png%3bbase64%2ciVBORw0KGgoAAAANSUhEUgAAAEAAAAAiCAYAAADvVd%2bPAAAACXBIWXMAAC4jAAAuIwF4pT92AAATu0lEQVRo3sVZB3RU15lWIxhscMtunHhd8EkcJzFusb1xwMaAuoQkpFEFUWQwzXEMAQSYElFEkVCbGUmjikZdIJBAqIxmRgUJVRAqmGLABQdwTBDqZebdb/97Z0YIO1nvnrN7mHO%2b89/35pX5vvu3e8fKij69eQ4C48ffg7UZNgK5DrY9ufZ2wtJ5qwfw0cirrDSKahuCrRk0rrKuUFRb05h/Z1VhukZcP378g09vnr2VmZwtR4/Z8nNE9Ed/DAlhRfdM%2bS7X/QXkv/rWtrQ6R2cVW%2bSVNBDkoRoK9EwaCvBMGvQn60fwJcgIPnRuvkfSkBeNPWns4aEadCfrRseudN5lvmrAZU6SZJ%2bobA/Ry3XLyhXV7xPBXxGRh/%2b731PxQ3FsK%2bTi2Fojrx4TQtievP8BQSJHBJ8h%2bzrBje5ZQTaMhEulcTmN2%2bn7G925zgNS/n9K0enF3S5qwC8T8LFAfT9kZojjDMDbgkP34ENwIySnXkNraiN0CfUgAQbph39DaCQyeWT3EuHlhDk0/hXZx36MDxdovOUEnyC8SiQcyS4mbOnNtY8nW0K2lfAFobc/3wGGo05AsTNwwpXgBlbsIs4NHXZEb74zjPnvQJ2ROmKvgmF%2bUr%2bBZpQwZKDZFdaLjt0T%2bgyO8l6jo7zP6KzoNXok9hvpvJG8xUjXE8iqBgXck4alQ8ozxiq5zkAeIFUqa6BPqENNUiPqU1twOu0M6lKaUa06DRJghEhdJ9tMOMzFISwjOBB%2bTZh6T4Tq%2b1w4khU5Y6DAETjuQsRcTJbIGY%2b5YOiIM/oLnECCMAoJqTfP0XA3Z67hTsYfCTMMPbkORvpO6s51Yoa8P7JydTgcVWBeSf2MCDEiT3aI7ACzVwyyoBywtSVg60%2bCfXQcbH46mKNigK7n1wyJe4g8m0fH3nTPYUUj08n1jGafaUyQiKiRrIGsoeSgxngiUiOVx%2bpRlViPWhKHi3I6tZVEahXnuDiEvxHOE%2baYQ8DGIsBfOGma5REiQoTsDdxyknfVfzT2Z8%2bQutUzGHkI4yLczX6fjRx1ZWjczFC3FgN5c0iYuexunhNG8mayM1l/Zm4qIycCQSZpCB6JA5iXNIq4GiNi0ouxdsNWfLx2Azbt2IeUomZsLQOclIMgTwCJABIANPsIVPWgRFGLSnkVd39OBERaCFEep4dGXsM6T1xkFzRXWP2hFlYarZPoOyMXhgtEiZFbqVJRA62yFo3pbXR/tbNZAFshAM2gB3djImck8pwkiDyjmWcjDXvw93oFjLXr0Zv9Pj%2bPkWIvdGiS4ecfiDVr/oRvT8WiP3c2unMd2WDeLFzNCWZ%2bSXfZPNUwF0CQcoofRkLNABb6eYJeeR9%2bYm2FvZFyfFQEOCv76XqTAK5JI1iWeJtIVnHS4wWgcRU0cdVo03ZgzUdr4ObuhqK8YjTlnEVptNbiKXQvt0IwSdwrckjVS9/zAPtX%2b4h0r2WGcx2I0CzcOhUHV68ATHniKWzf8VdIdZvxj5RXITXtwRyne0T2hG0FqpbhH%2br30Jdnj9u57vgg%2bSu4qIxEZgDOij6sJnI790aZ77HGc88/D4c5s/DitKfFueAAH%2bypAubG9QnBvEgAZ/KYtYk3QBVAkK8wk9coq3EiogIXyj/Hnz7%2b09jvePq5X%2bBM5TlUxJgEEteaReMC8NxB9ibhSbMA1pYk%2bBTh9iDlAB7Ld7LeB8p9kZW4995M2U5GV2UyjHnv4FZNFJ5%2b/sWx75xc3IGG7ejOeAc9FAaDebOxPvUcnFQM3skDsCdSYVrAV%2bYtrqe3Iv%2b4Hse%2bBGLKbmK3IhcJFX%2bDd6oB81Q8bIaEAE4kwLaEL1Aj16LcLAAnw12/WtUA/YkqTJg4QQg6wW6CePaRjKOoS21GWaxuPHnuAcYauodE6Rgrg5ZEaK77nZYwuJNJAlQEID0uTDx00kMThd26eQNQvxJtxfsxYfLj45R/EX%2bvjUZ/9kx05zljNG8mDqSVw0FF5SypHw7yPoRSjK9eY5otG1tbTJ/%2bCjaHxyO%2b/BtENwMOCRLcE/oFeUqaYx5wIP7iPQHGzf4l3VX4%2bvmanmdjAzs7O7M3huNsQSdORlWOCVAhNwlwKrmJH580l0BrSx9gY06EpbwSmAVgqAhEauxO8VA7O1thX3jpFaArGcXJ2%2bnYZlwc/wS1R6IgFbngdraj8JJDhw5hLglApVAkQK9UBrXmMn75H0/cF///9thD%2bGjVCiTV9sFNNUKxPyBEsOQAaoJQZRaAk%2bEzW5/WguL847CyNj3DP8Afb775phgHBgbifNlllERqxvKFWQgDrwpklUIARZWtEIB3fOYwUPLSx7P/ncxZgCYIqqi/iodOmGAnwMe1ZflIVR4Q45df/h0ef/wxMY4O/xTQLsJ3mbNFL1Cq3sdLIcWzKam5xvcjOJshobgD/rL5eOZnj90nxKrlS7GbwsRe3i9yABeAyiCylS0iB5TLq8Xsl0RocKn6Khwc7cV9EydOxMWOi/Dy9BLHr73xKs5VdKIsalwIiKpRZeA9Ax1vMMe/ncUDzALYrxWl0CQAQ%2bVCKCO2i4c%2b9dTP4OnhIcZLQ5ZhY2ioGIeGbsK7774rxgEBgZQHNuN2xkyM5L%2bHlqy1cFeNjlUB14RBEgDYcwpQtALyir9jx/54/PQJUyg9%2begkJJR9SbNOiVM1IMjLVP04qjgNrVwv4v9kdCWas9qQmZo1JpyrmytGuw1YtWKVOJ7y6BToi2qgU9bR7OvHl00j7w/oOf7fL4G25hDwko5ZQoALEIy4/dtMbvrTJ3HsWLGItUcfnYpp06aJ88XHCvHh8uVi/NL036O7LhI9WTOpL5iNKzmLIEvqhQfVcj77Kw8DyowiBPnLsDu%2bENHlt1F%2b5hZeefm34v5HH54A5YmLmJfCSIB%2bCodhLErsRin1ABpz7Jce1OJCzWW88ebrYwLYUfKbNu15PPPsM2PnUpSpaFJTOYzRmgQwlUGmja/lx3%2bwlECzBzjYmEPgDXMZxJ3M9xh35%2bjwreKBDz00Cd9c6YCri5M56ViLHHCp/ggU%2b03XTJryBGs7GQdDoT3rz7dnd3Jd2AfJX1MzY2C8tMnrgHffnm66n/D8009i6iOTxn60y5wZiKk2Yq58kHknk8ckG9kq1W1mnn1WElXJ2g6fR1yU3PQMaxtMpOQ8cfLEsWfY2ppy1bpP1qG96AKoQxyrAryF1pjWEc9YSqBoh3vNy1kS4t8pHLoHqKcnASRol7DI3Z9ayOFWSzYKUvaPvWzi1J%2bhpzUJukyRKBlHbPgmSOXB0lfy6axAsYknM9ENcg9YXgCosk7gtd88B7txsT/RlsjPnQl15efwPcTYvERqiVW8ctyR1sZclKoVep4AWUVsFdprOjHtxWlj9xYVFAt3z07JwY6tOzB58mRTWXZ2wnmNSIRi5ikEJF0CD4mqL%2bj4ke/3AJZ22I7GF0YKnXFH/a4E/VIWtuUT88sm4sLJfRhqjMCiZWvw%2b7dnQBF7EJJ%2bNb6sjMD7rv7s3VmzkZGWIn2e4YfCXZ6QJXZL85JHqAz2Md4LuJAIHx6h2NcPIiK7CfsT8nFAVYD4oy2IqzVAdshIOWOAucXdwtwdTdI721vx6f561MRXSWWiqalmLaVtKMopRtS%2baCTGJ6L95GfQxp0S/f71MzcoDF8Sv3fq41PRUNLMKuNqxMxTCzzK1wZE%2bizn2nTo3L29Ab7eH/OCXIdyvrojDzCgcjGRjMKvf/caZEEhuF4bj%2bH8WaIbNDbuAXTL0JM5A/0ngjHaEoEbpaHSxewQtOz%2bzTerFU2pjqnU28cbpbnxYPbxIHIGeCTcxaK0r7D%2byDdYkAsEZQGeKcCcGAluSgN5DHWCu65Is7e04q3QlvbMyLq6hsRGEBGpMo5qeUw1TiU3oyW7HWfyO6gk6kWio4UQTqkboSmqRPS%2bGGzaFMpOVzSxshgdjkeVGYoiS8V1ZHdxnof3FtmMXwqLRsg8TuCVQCyG8p1Yb00Yhhv2AY3bMXDMB3ezqd9Xz8DdjD9wkajrcyQRZqEn/Q%2bs/q/TUfHpa7i2Y/J7ATmG5esKv8POww2G5JJjrESbgDP12/F162o20uWDr5rWMO%2b0a8yn8DjzP6JBwJEa5lvQAN%2b8s8w9vgLOUSfhrM5aWnjo%2bMky9SkUJdJqL0HLSuN1KJPrGFUDgXEZHnwlSJ0ea8lpZ53FF3E0%2bgSTr08YTd2WAcWGxMHotfLFltnftTL8BxsetuY8sMHSC4hFURatANXvsDu8xc2ZLdYJRJrgxFeGUm%2bBg9RX7MJ6S93ZdfKcm1r324aLvvqecwu6Bzr8YOhwZaxjDkPnbOAzdxjPe8Jw3oN1t4Vg5dFTWFC9E0uqd7HF1buwuHo3FmjD2ELdHgTrw43Bur1scdVBLNVFsg%2b0B7FCE81Wl8fiz6UKdlRVYdDKawyU3fmqT7q3OtQxnvmPR5Qb4zcmSenbMxEfmtSYuDnlRc6vOaPdOnz1/vs3Q3pMe34WD5hvpFJI5EfFyjDPicPA1/9mUfi6H/0FDhjimyM6dwx/JmPD52Ug4ky67A9c8QEuuAGfyxi%2bDgFuUvt8YyOGaeYHO2VsiOxohz/bUZrd76eNYot1kQjWRrIg3QGsaVVhdUsiW96oQMjpWCyoiWB%2bleEkyAG2UH8AgVX72BJ9JDTqOjSmnEVtciP0CfWoVIryxpOdQRd/auRY5EmoNqciYVNypGWSlRtVdiSGZXzfbpDYD7SUwkGqAhyjtC7grTHfFLFskBiPibUCx0BPtv3XfSddLnHyQ50%2bBBkG2z0Zu7bG2H01RTpTk4Dighi2J2wD2xW2DX1XDmCkcx4b6PQDzntJmQ1/OS/TRklLiViQbj%2bLbi6APCuZRWUmQHE4nSmLM5i6rpjtbctDYCV5gz6SPCUSIdqDdwuTyg9o42oyyANqiTjP7AN8rc/zQ2P6WaRtU9%2bKWadws5An4rYW4hYRvh8C1mb7C8JNwrdUEtvJaqk6ZJDdTZ7C9wE9qGN8m1z/%2bW8/fMVu6Jz3NCI/NEoiDLR7M1wJRIM%2bFT9/5mXKxrb3St0jv8D1LjWkC57o7/BlJADyGz8xkAAsuHIvVjQpWUZR3n2t8aQJEzHJegKiE%2bVY15aKQE24tLQumnvD1fv29xRVD5EAz9KMzqCMv6AkWrOZZv9Z/l3iphRbImxtFsGKPOKfbxJaNkaJHN8ZfpaOn6Txj253D1/yfWi4S3YFl/3Q1%2bYp4cYKpCbsFgR%2b%2b9uXUHQkFV2tJzB6tw34ZiMGzrmxwS7hAexQw3r4aKNAHsACdfsQ1VoAZX4aEnLTsHLlyjEhFNkpWNOSiCDNXuPS%2bhgs0kV05aaW2DUcbLQ5mJfzL3%2bjZdZ/lPz4rfF/5hm8U%2bTrBfresl1u03vUyXqg1kOEDQmgwxcB3AOMuBbIasqU4oe//tprqNEeQUzEpwhe4IfTmjjgajDr455yfj7i60MZCUAxfQCL9BHMXxOO1W0q6L48g7feMK3swnaGIfryccjKKUnqI408LwTrIk7z966siLVWqQutzP8BUFdXZVOpqLE9GVNpm/xpuhAmb0/hjxO/rxka/ydI7g//IOkR5%2bytyO05caEwxb4KXwVisENmYBe92NWzKkx%2b5Kc/2PZKT9oPXF%2bBvnNeYF3z2cG6LYxCAEIASoABur3Iv6DHrHdmiuuXLQlB2tVK%2bFRw8hFE/IAxpCGOi1XO30vWms5ZBBC/nxKgFVUBq5xdBeK4cP/x/59/ZYY7ZWMCkP2ECzDU6WsY6XRF3zUFXvilqedXxh3A9YslGL7TAgwVstHz89kgJUzpMx8WXreN%2bVJ5W0qzL9PshvqaDouCFor7fLy8UXyjCX41%2b3gCFB5CZA0fNMZxIXL5e8nacAEeyIdI3xOgU%2baKq/4Y6vI1Dp5zZrh5EHPmmhZN0ZF7kK%2bOwIchPliyZAn7x6VYIj%2bP3WnxxpbqHQjURzH/it3Y1ZWHzVu3iHsmP/wwktNSkFqej3R9Idvdms0CtXt5CIwua1ZwMUQaX1QVaUtjqwf2IQFEDhjqkv2OavzoyHlf9J11ZfhuB1auWvP9EGDP/fItfNGexq5o5qC2wElaVblrMLg6iuJ7J1NeKkGgt98PwoZewLLKjmBZo1xaoNk3%2bkGTHEFl4aH8vUGle2wftAdYm8Y%2bU2l8Q7roR3nARyJLeSCJ7dgWyhTR21FRFMsutaaykb%2blse5ziw1njs6G9qjHroCq6Mshp6K4S0tLa6JYWlsJk%2belsMg0BYtMjGWb92xnO8J3Ql5fYHTP3Ajv7C20tF471ti4xn/8QGd/DObjRlzxp25PZhzsmM%2bki74Svv2LETc/MuDLhQZc8jZKn7kZBju80JA3J/vnl5unUOLrXVwVyV3asFC73xig32dY3qQwfNSqMmxoPzS6uTPTsPVCzohfcRhcEv4Mt8RPVo%2bRV5rIU1l8sCJQNbAxVwI1rvnzjnB4hJoi4wVfsAteprb4C2qPPydcDcTNBq/O9t9Y/URWp3xhMWX/pXUx4M1NSEMsd3MsJcux%2bDQ1PHVRWNQQDc%2bM0H4X5ccu/D00tvVI3yA8z0sdahV4YveDE2BIVAIfO7MYu3B3MXhDRCIY6PjWcJdvM9kcQhghkM7/J7uyYAq/fr12%2b%2bRgfcTvyQveJw9wpzAIIruKsJGwkxBD3pG2sGJfjkfahtf5PfPS1tvNS1on3u2mWmvlmbLe6oF/7uUB2duErQR3wnTCo//qnqpyX5v/7Xvck9eNdXWc/P/l578AjufF27Pdj9IAAAAASUVORK5CYII=' /%3e%3c/svg%3e" width="120" data-src="/assets/static/logo.1539b60.bd727e13501e82a0ba322b4ad29fd33a.png" data-srcset="/assets/static/logo.1539b60.bd727e13501e82a0ba322b4ad29fd33a.png 120w" data-sizes="(max-width: 120px) 100vw, 120px" class="text-ui-primary g-image g-image--lazy g-image--loading"><noscript><img src="/assets/static/logo.1539b60.bd727e13501e82a0ba322b4ad29fd33a.png" class="text-ui-primary g-image g-image--loaded" width="120"></noscript></a></div><div class="w-full px-2 sm:px-4 max-w-screen-xs"><!----></div><div class="flex items-center justify-end px-2 sm:px-4"><!----><!----><!----><button aria-label="Toggle Darkmode" title="Toggle Darkmode" class="ml-2 sm:ml-8"><svg xmlns="http://www.w3.org/2000/svg" width="1.5em" height="1.5em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-sun"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg></button></div></div></div></div></header><main class="container relative flex flex-wrap justify-start flex-1 w-full bg-ui-background"><!----><div class="w-full pb-24"><div class="flex flex-wrap items-start justify-start"><div class="order-2 w-full md:w-1/3 sm:pl-4 md:pl-6 lg:pl-8 sticky" style="top:4rem;"><div class="mt-8 sm:pl-4 md:pl-6 md:pt-12 lg:pl-8 sm:pb-16 sm:border-l border-ui-border md:mt-0"><h3 class="pt-0 mt-0 text-sm tracking-wide uppercase border-none">On this page</h3><div><ul><li class="font-semibold depth-2"><a href="/tool/kubernetes-tool/#getting-started" class="relative flex items-center py-1 text-sm transition transform hover:translate-x-1"><span class="absolute w-2 h-2 -ml-3 rounded-full opacity-0 bg-ui-primary transition transform scale-0 origin-center"></span>
+          Getting started
+        </a></li><li class="border-t border-dashed border-ui-border pt-2 mt-2 font-semibold depth-2"><a href="/tool/kubernetes-tool/#installation" class="relative flex items-center py-1 text-sm transition transform hover:translate-x-1"><span class="absolute w-2 h-2 -ml-3 rounded-full opacity-0 bg-ui-primary transition transform scale-0 origin-center"></span>
+          Installation
+        </a></li><li class="border-t border-dashed border-ui-border pt-2 mt-2 font-semibold depth-2"><a href="/tool/kubernetes-tool/#quick-tour" class="relative flex items-center py-1 text-sm transition transform hover:translate-x-1"><span class="absolute w-2 h-2 -ml-3 rounded-full opacity-0 bg-ui-primary transition transform scale-0 origin-center"></span>
+          Quick Tour
+        </a></li><li class="border-t border-dashed border-ui-border pt-2 mt-2 font-semibold depth-2"><a href="/tool/kubernetes-tool/#how-to-use-kuber-ez" class="relative flex items-center py-1 text-sm transition transform hover:translate-x-1"><span class="absolute w-2 h-2 -ml-3 rounded-full opacity-0 bg-ui-primary transition transform scale-0 origin-center"></span>
+          How to use Kuber-Ez
+        </a></li><li class="depth-3"><a href="/tool/kubernetes-tool/#cluster-information" class="relative flex items-center py-1 text-sm transition transform hover:translate-x-1 pl-2"><span class="absolute w-2 h-2 -ml-3 rounded-full opacity-0 bg-ui-primary transition transform scale-0 origin-center"></span>
+          Cluster Information
+        </a></li><li class="depth-3"><a href="/tool/kubernetes-tool/#cluster-management-deployment-service-object" class="relative flex items-center py-1 text-sm transition transform hover:translate-x-1 pl-2"><span class="absolute w-2 h-2 -ml-3 rounded-full opacity-0 bg-ui-primary transition transform scale-0 origin-center"></span>
+          Cluster Management, Deployment, Service Object
+        </a></li><li class="depth-3"><a href="/tool/kubernetes-tool/#ingress-service-routing" class="relative flex items-center py-1 text-sm transition transform hover:translate-x-1 pl-2"><span class="absolute w-2 h-2 -ml-3 rounded-full opacity-0 bg-ui-primary transition transform scale-0 origin-center"></span>
+          Ingress Service Routing
+        </a></li><li class="depth-3"><a href="/tool/kubernetes-tool/#autoscaler-object" class="relative flex items-center py-1 text-sm transition transform hover:translate-x-1 pl-2"><span class="absolute w-2 h-2 -ml-3 rounded-full opacity-0 bg-ui-primary transition transform scale-0 origin-center"></span>
+          AutoScaler Object
+        </a></li><li class="depth-3"><a href="/tool/kubernetes-tool/#volume-object" class="relative flex items-center py-1 text-sm transition transform hover:translate-x-1 pl-2"><span class="absolute w-2 h-2 -ml-3 rounded-full opacity-0 bg-ui-primary transition transform scale-0 origin-center"></span>
+          Volume Object
+        </a></li><li class="depth-3"><a href="/tool/kubernetes-tool/#configmap-object" class="relative flex items-center py-1 text-sm transition transform hover:translate-x-1 pl-2"><span class="absolute w-2 h-2 -ml-3 rounded-full opacity-0 bg-ui-primary transition transform scale-0 origin-center"></span>
+          ConfigMap Object
+        </a></li><li class="depth-3"><a href="/tool/kubernetes-tool/#istio-gateway-virtualservice" class="relative flex items-center py-1 text-sm transition transform hover:translate-x-1 pl-2"><span class="absolute w-2 h-2 -ml-3 rounded-full opacity-0 bg-ui-primary transition transform scale-0 origin-center"></span>
+          Istio Gateway, VirtualService
+        </a></li><li class="depth-3"><a href="/tool/kubernetes-tool/#istio-destinationrule" class="relative flex items-center py-1 text-sm transition transform hover:translate-x-1 pl-2"><span class="absolute w-2 h-2 -ml-3 rounded-full opacity-0 bg-ui-primary transition transform scale-0 origin-center"></span>
+          Istio DestinationRule
+        </a></li><li class="depth-3"><a href="/tool/kubernetes-tool/#helm-chart" class="relative flex items-center py-1 text-sm transition transform hover:translate-x-1 pl-2"><span class="absolute w-2 h-2 -ml-3 rounded-full opacity-0 bg-ui-primary transition transform scale-0 origin-center"></span>
+          Helm Chart
+        </a></li><li class="border-t border-dashed border-ui-border pt-2 mt-2 font-semibold depth-2"><a href="/tool/kubernetes-tool/#reference-video" class="relative flex items-center py-1 text-sm transition transform hover:translate-x-1"><span class="absolute w-2 h-2 -ml-3 rounded-full opacity-0 bg-ui-primary transition transform scale-0 origin-center"></span>
+          Reference Video
+        </a></li><li class="border-t border-dashed border-ui-border pt-2 mt-2 font-semibold depth-2"><a href="/tool/kubernetes-tool/#embedding-customizing-kuberez" class="relative flex items-center py-1 text-sm transition transform hover:translate-x-1"><span class="absolute w-2 h-2 -ml-3 rounded-full opacity-0 bg-ui-primary transition transform scale-0 origin-center"></span>
+          Embedding Customizing KuberEz
+        </a></li></ul></div></div></div><div class="order-1 w-full md:w-2/3"><div class="content"><h1 id="쿠버네티스"><a href="#%EC%BF%A0%EB%B2%84%EB%84%A4%ED%8B%B0%EC%8A%A4" aria-hidden="true"><span class="icon icon-link"></span></a>쿠버네티스</h1>
+<h2 id="getting-started"><a href="#getting-started" aria-hidden="true"><span class="icon icon-link"></span></a>Getting started</h2>
+<p>Kuber-Ez는 Yaml 및 CLI에 대한 최소한의 이해만으로도 kubernetes 매니페스트 및 배포 모형을 구성할 수 있는 시각적 방식의 웹 기반 다이어그래밍 도구입니다.<br>
+<br/></p>
+<img src="https://user-images.githubusercontent.com/35618409/92839680-38a73d00-f41b-11ea-912d-3df071a2e32c.png" width="80%">
+<br/>
+<h3>about Kuber-Ez</h3>
+<ul>
+<li>쿠버네티스(<a href="https://kubernetes.io/" target="_blank" rel="noopener noreferrer">https://kubernetes.io/</a>)는 여러분들의 서비스가 무정지 배포 및 Self-Healing되어 항상성을 유지하도록 하는 강력한 기능을 가진 컨테이너 오케스트레이터(Container Orchestrator)입니다. 쿠버네티스상에 서비스를 배포/운영하려면 YAML 언어를 사용해 배포 전략을 작성해야 하고 이를 커맨드 라인 인터페이스(CLI)를 통해 관리해야 하는 등, Linux 운영체제의 운영경험과 많은 학습곡선을 요구합니다.</li>
+<li>Kuber-Ez는 Kubernetes Cluster상에 서비스를 쉽게 배포할 수 있도록 도와주는 도구입니다. 쿠버네티스 객체 기술언어인 YAML(Yet Another Markup Language) 파일을 GUI 환경에서 쉽게 작성되도록 도와 주며, Cluster에 자동 배포시켜 줍니다.</li>
+<li>사용자는 쿠버네티스 기본 객체 모델에 대한 이해만으로 Kuber-Ez 도구를 활용하여 손쉽게 퍼블릭 클라우드 상에서 마이크로서비스를 배포 및 운영할 수 있습니다.</li>
+</ul>
+<br/>
+<h3>Features</h3>
+<ul>
+<li>Kuber-Ez는 Web Browser 환경에서 실행되며, Kubernetes(<a href="http://cncf.io" target="_blank" rel="noopener noreferrer">http://cncf.io</a>)에서 정의하는 모든 객체들을 객체가 가진 기능별로 분류하여 도구의 오브젝트 팔레트(Object Palette)를 통해 제공합니다. </li>
+<li>팔레트에서 객체를 선택하면 중앙(Canvas Area)에 선택된 객체가 표시되고, 이를 더블클릭하여 나타나는 퍼로퍼티 창에서 속성값을 설정합니다.   </li>
+<li>객체의 속성정보는 사용자가 직접 정의하거나, 관련있는 객체들간의 관계 설정(Relation)을 통해 자동 주입할 수 있습니다.</li>
+<li>정의된 객체에 대해, 도구 하단(Terminal Area)에 출력되는 명령어 콘솔창에서 쿠버네티스 CLI 커멘드 명령어를 확인할 수 있다. (학습기능)</li>
+<li>도구는 퍼블릭 클라우드(e.g. GCP, AWS, Azure, NCP) 연계을 위한 관리기능을 제공합니다. </li>
+<li>완료된 다이어그램은 등록된 클라우드와 연결하여 온라인 배포할 수 있으며, YAML화일 형식, 또는 Helm Chart기반으로 아카이브 파일을 다운로드할 수 있습니다.    </li>
+<li>클라우드에 배포된 객체의 실행정보를 받아와 상태정보를 인지할 수 있는 모니터링 기능을 제공합니다.  </li>
+</ul>
+<br/>
+<h3>실행환경 및 서비스 유형</h3>
+<ul>
+<li>Kuber-Ez는 Chrome Brower에 최적화되어 있습니다.(최신 버전 권장)</li>
+<li>모든 운영체제(Windows, Linux, Mac)를 지원하며, 최소 512MB 이상의 메모리 필요</li>
+<li>On-Premise 버전 및 SaaS 기반의 서비스를 제공합니다. <a href="https://github.com/uengine-oss/kuber-ez/wiki/1.Installation" target="_blank" rel="noopener noreferrer">[How to install Kuber-Ez]</a></li>
+</ul>
+<br/>
+<h3>장점 및 기대효과</h3>
+* 한국인정기구 KOLAS 인정시험 통과
+* YAML 및 CLI 명령어에 익숙하지 않은 사용자도 쉽게 사용할 수 있는 UI/UX를 제공합니다.  
+* 객체별 실행 명령어(kubectl) 확인, 생성된 YAML 미리보기, 다양한 유형별 YAML 다운로드를 통한 학습 기회를 제공합니다. 
+* 쿠버네티스에 익숙한 사용자에게도 도구를 통해, 데브옵스 프로세스의 리드 타임(Lead time)을 단축시켜 줍니다.
+* 다양한 교육 및 MSA 프로젝트 현장에서의 활용으로 클라우드 산업 활성화 지원 
+<br/>
+<h3>주문/상품/배송 서비스를 시나리오로 한 KuberEz 전,후 비교 영상</h3>
+<p><a href="https://youtu.be/Mu66BMFIM-E" target="_blank" rel="noopener noreferrer"><img src="https://user-images.githubusercontent.com/35618409/96990423-0e8c8300-1562-11eb-9430-d6aec52ead7d.png" width="80%"></a></p>
+<br/>
+<h2 id="installation"><a href="#installation" aria-hidden="true"><span class="icon icon-link"></span></a>Installation</h2>
+<h3>Video</h3>
+<p><a href="https://youtu.be/A6TeVs_yWa8" target="_blank" rel="noopener noreferrer">https://youtu.be/A6TeVs_yWa8</a></p>
+<h3>1. Standalone Mode</h3>
+<p>If you want to use the KuberEz for simply drawing models and generating Yaml, you only need to run front-end server</p>
+<pre class="language-text"><code class="language-text">npm install
+npm run serve</code></pre>
+<p>or</p>
+<pre class="language-text"><code class="language-text">docker run --name=&quot;kuberEz&quot; -p 8081:8080 -d ohsy818/kuber-ez</code></pre>
+<h3>실행 화면 (localhost:8081 접속)</h3>
+<p><img src="https://user-images.githubusercontent.com/48265118/92222813-8501f280-eeda-11ea-9c0b-9b6c6d6ce45f.png" alt="image"></p>
+<h3>2. Full-fledged Mode</h3>
+<p>If you want to use KuberEz for managing your clusters, you have to run all the components of KuberEz in a Kubernetes cluster</p>
+<ol>
+<li>ingress-nginx-controller 배포</li>
+</ol>
+<pre class="language-text"><code class="language-text">kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/master/deploy/static/provider/cloud/deploy.yaml</code></pre>
+<ol start="2">
+<li>배포된 ingress-nginx-controller 서비스의 IP를 확인합니다.</li>
+</ol>
+<pre class="language-text"><code class="language-text">kubectl get svc -n ingress-nginx
+# NAME                                 TYPE           CLUSTER-IP     EXTERNAL-IP      PORT(S)                      AGE
+# ingress-nginx-controller             LoadBalancer   10.108.2.110   35.225.135.251   80:30474/TCP,443:30907/TCP   16m</code></pre>
+<ol start="3">
+<li>KuberEz, API-Server, Webkubectl 배포</li>
+</ol>
+<pre class="language-text"><code class="language-text">kubectl create -f https://raw.githubusercontent.com/uengine-oss/kuber-ez/master/kubernetes/deploy.yaml</code></pre>
+<ol start="4">
+<li>kuberez Ingress의 ADDRESS가 할당되었는지 확인합니다.</li>
+</ol>
+<pre class="language-text"><code class="language-text">kubectl get ingress -n kuber-ez
+# NAME      HOSTS                       ADDRESS          PORTS   AGE
+# kuberez   kuberez.io,api.kuberez.io   35.225.135.251   80      39m</code></pre>
+<ol start="5">
+<li>Hosts와 Ingress ADDRESS가 포워딩 되도록 hosts 파일을 수정합니다.</li>
+</ol>
+<pre class="language-text"><code class="language-text">(e.g.)
+35.225.135.251   kuberez.io   api.kuberez.io</code></pre>
+<h3>실행 화면(kuberez.io 접속)</h3>
+<p><img src="https://user-images.githubusercontent.com/48265118/92230281-d368be80-eee5-11ea-90f9-295a246ede69.png" alt="image"></p>
+<h2 id="quick-tour"><a href="#quick-tour" aria-hidden="true"><span class="icon icon-link"></span></a>Quick Tour</h2>
+<h3>Video</h3>
+<p><a href="https://youtu.be/WFmcsJpvtKw" target="_blank" rel="noopener noreferrer">https://youtu.be/WFmcsJpvtKw</a></p>
+<h3>화면 구성</h3>
+<img src="https://user-images.githubusercontent.com/48265118/92880687-3d82e580-f449-11ea-81cf-e5a2c00ac6f1.png" width="80%">
+<hr>
+<h3>1. 팔레트 영역</h3>
+<p>Kubernetes 오브젝트 팔레트 영역으로 쿠버네티스 객체 목록을 그룹화하여 각 카테고리별로 나눠져 있습니다.</p>
+<h3>오브젝트 팔레트</h3>
+<table>
+<thead>
+<tr>
+<th align="center">카테고리</th>
+<th align="center">오브젝트</th>
+<th align="center">설명</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center">Workload</td>
+<td align="center">Namespace<br/>Deployment<br/>ReplicaSet<br/>Pod<br/>StatefulSet<br/>DaemonSet</td>
+<td align="center">쿠버네티스의 기본 Object와<br/>Desired State를 유지하기 위한<br/>컨트롤러 객체들의 집합</td>
+</tr>
+<tr>
+<td align="center">Routing</td>
+<td align="center">Service<br/>Ingress</td>
+<td align="center">Workload 객체을 외부에서<br/>접근할 수 있도록 서비스하는 객체</td>
+</tr>
+<tr>
+<td align="center">Persistence</td>
+<td align="center">PersistentVolume<br/>PersistentVolumeClaim<br/>StorageClass</td>
+<td align="center">쿠버네티스 스토리지를 관리하기<br/>위한 볼륨 리소스 집합</td>
+</tr>
+<tr>
+<td align="center">Autosalcer</td>
+<td align="center">HorizontalPodAutoscaler</td>
+<td align="center">CPU, 메모리의 사용량을 관찰하여<br/>리소스의 파드 개수를<br/>자동으로 스케일하는 객체</td>
+</tr>
+<tr>
+<td align="center">Job</td>
+<td align="center">Job<br/>CronJob</td>
+<td align="center">지정된 수의 파드가 성공적으로<br/>실행되어 종료되도록 하는<br/>컨트롤러 객체들의 집합</td>
+</tr>
+<tr>
+<td align="center">Configuration</td>
+<td align="center">ConfigMap<br/>Secret</td>
+<td align="center">다른 객체가 사용할 데이터를<br/>저장하는 객체들의 집합</td>
+</tr>
+<tr>
+<td align="center">Role Based Access Control<br/>(RBAC)</td>
+<td align="center">Role<br/>RoleBinding<br/>ClusterRole<br/>ClusterRoleBinding<br/>ServiceAccount</td>
+<td align="center">사용자의 역할을 기반으로<br/>쿠버네티스 시스템의 권한을<br/>관리하는 객체들의 집합</td>
+</tr>
+<tr>
+<td align="center">Istio</td>
+<td align="center">Gateway<br/>VirtualService<br/>DestinationRule<br/>ServiceEntry<br/>Sidecar<br/>Quota<br/>Rule<br/>QuotaSpec<br/>QuotaSpecBinding<br/>MemQuota</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">Knative</td>
+<td align="center">Service</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">Argo</td>
+<td align="center">Workflow</td>
+<td align="center"></td>
+</tr>
+</tbody>
+</table>
+<hr>
+<br/>
+<h3>2. 메뉴 영역</h3>
+<p>우측 상단에 표시되는 클러스터 연결 및 배포, 생성된 YAML 코드의 관리를 위한 기능으로 상세 설명은 다음과 같습니다.</p>
+<p>1) Manage Clusters : 사용자의 클러스터를 등록 및 삭제할 수 있으며 등록된 클러스터를 클릭하여 사용할 클러스터를 선택할 수 있습니다.</p>
+<p>톱니바퀴 버튼 클릭시 호출되는 Manage Clusters 화면
+<img src="https://user-images.githubusercontent.com/48265118/92886553-b46ead00-f44e-11ea-9f67-43acc739dc59.png" width="70%"></p>
+<p>+버튼을 클릭하여 이름, 클러스터의 API Server, token을 입력하여 저장하면 화면에 입력한 클러스터 정보가 등록됩니다. 사용할 클러스터는 등록된 클러스터를 클릭하여 선택합니다.</p>
+<p>
+<img src="https://user-images.githubusercontent.com/48265118/92888387-3ad7be80-f450-11ea-9fd7-bfa52fa5a776.png">
+<img src="https://user-images.githubusercontent.com/48265118/93038390-d00cca00-f67f-11ea-8891-bd38b550c1d2.png">
+</p>
+<p>2) Deploy : 캔버스에 모델링된 객체를 서버에 배포해주는 버튼으로 사용자가 선택한 클러스터가 있는 경우 사용할 수 있습니다.</p>
+<p>Deploy 버튼 클릭시 나오는 팝업창. 배포할 클러스터 정보를 확인하고 Deploy 버튼을 누르면 캔버스에 모델링된 객체들이 배포됩니다.
+<img src="https://user-images.githubusercontent.com/48265118/93038974-5249be00-f681-11ea-82f7-2d6db2ada4b0.png"></p>
+<p>3) Code Preview : Code Preview, Download Archive 두가지 메뉴가 있으며 Code Preview 클릭시 캔버스에 모델링한 객체의 Yaml 파일을 Template에 따라 미리볼 수 있습니다. Download Archive 클릭시 선택한 Template에 따른 Yaml 파일이 다운로드 됩니다.</p>
+<p>Code Preview를 클릭하여 Template에서 Separate File per kind를 선택한 화면
+<img src="https://user-images.githubusercontent.com/48265118/93039528-b456f300-f682-11ea-93bd-bc7337a55ec1.png" width="70%"></p>
+<p>원하는 Template별로 모델링 객체의 Yaml을 확인할 수 있습니다.
+<img src="https://user-images.githubusercontent.com/48265118/93039704-2596a600-f683-11ea-9b6b-becc8bc6fa07.png"></p>
+<p>Download Archive를 클릭하여 호출된 팝업창. 원하는 Template을 골라 Yaml 파일을 다운로드 할 수 있습니다.
+<img src="https://user-images.githubusercontent.com/48265118/93040235-78bd2880-f684-11ea-9222-90d82f82cb71.png">
+<img src="https://user-images.githubusercontent.com/48265118/93040379-d6ea0b80-f684-11ea-9874-6dc782d6dc81.png"></p>
+<hr>
+<br/>
+<h3>3. 커맨드 영역</h3>
+<p>Kubernetes CLI 명령어를 출력하는 Shell 영역으로 캔버스 상에 객체를 정의하고, 객체의 컨텍스트 메뉴에서 명령어를 클릭시 Shell 영역에 해당 커맨드가 출력됩니다.<br>
+<strong>오브젝트의 context menu에서 터미널 오픈</strong></p>
+<P>
+<img src="https://user-images.githubusercontent.com/48265118/92882374-d5cd9a00-f44a-11ea-853b-939a6b3ebec9.png">
+<img src="https://user-images.githubusercontent.com/48265118/92883382-c26efe80-f44b-11ea-9dda-f613001e2d05.png" width="60%">
+<p>
+<h3>메뉴를 통한 kubectl get deployment 명령어 호출</h3>
+<p>
+<img src="https://user-images.githubusercontent.com/48265118/92884423-cc453180-f44c-11ea-8695-8d8df1566bc9.png">
+<img src="https://user-images.githubusercontent.com/48265118/92884449-d109e580-f44c-11ea-86d3-49a2ab456729.png">
+<p>
+<hr>
+<br/>
+<h3>4. 캔버스 영역</h3>
+오브젝트 팔레트에서 선택한 객체가 구현되는 영역으로 오브젝트를 더블클릭시,<br>
+해당 객체의 프로퍼티를 수정할 수 있는 편집창이 나와 추가적인 정의를 할 수 있습니다.
+<p><strong>UI 편집창을 통한 프로퍼티 정의</strong>
+<img src="https://user-images.githubusercontent.com/48265118/92881114-a5393080-f449-11ea-9433-6526941ab124.png"></p>
+<h2 id="how-to-use-kuber-ez"><a href="#how-to-use-kuber-ez" aria-hidden="true"><span class="icon icon-link"></span></a>How to use Kuber-Ez</h2>
+<h3>Kuber-Ez 사용법<h3> 
+<p><strong>Kuber-Ez 도구를 활용하여 시나리오 기반(Scenario-based)의 다이어그래밍 작성법을 소개합니다.</strong> </p>
+<blockquote>
+<ul>
+<li>주문서비스, 상품서비스, 배송서비스로 구성된 쇼핑몰(12st Mall)을 시나리오 도메인으로 가정합니다. <a href="http://msaschool.io/#/%EC%86%8C%EA%B0%9C/02_%EC%98%88%EC%A0%9C%20%EB%8F%84%EB%A9%94%EC%9D%B8" target="_blank" rel="noopener noreferrer">(상세정보)</a> <br/></li>
+<li>Cloud 환경은 GCP(Google Cloud Platform), AWS, Azure 등 Public Cloud 중 하나를 선정합니다. <br/></li>
+<li>
+<p>시나리오에 사용된 각 마이크로서비스별 도커 이미지 정보는 다음과 같으며, Docker Hub에 존재합니다.</p>
+<blockquote>
+<p>주문서비스 : apexacme/order:latest<br/>
+상품서비스 : apexacme/product:latest<br/>
+배송서비스 : apexacme/delivery:latest
+<br/></p>
+</blockquote>
+</li>
+</ul>
+</blockquote>
+<p><strong>12st Mall의 테스트 시나리오별 Kuber-Ez 사용법은 아래와 같습니다.</strong></p>
+<ul>
+<li>
+<p><a href="https://github.com/uengine-oss/kuber-ez/wiki/Cluster-Information" target="_blank" rel="noopener noreferrer">쿠버네티스 Cluster API 서버 및 토큰(Token)정보 확인하기</a></p>
+<ul>
+<li>Setting K8S Cluster API-Server, Token</li>
+</ul>
+</li>
+<li>
+<p><a href="https://github.com/uengine-oss/kuber-ez/wiki/Cluster-Management,-Deployment,-Service-Object" target="_blank" rel="noopener noreferrer">Test Case #1. 주문/상품/배송의 각 마이크로서비스를 배포하고 서비스를 생성합니다.</a></p>
+<ul>
+<li>K8s Object: Cluster Management, Deployment, Service Object</li>
+</ul>
+</li>
+<li>
+<p><a href="https://github.com/uengine-oss/kuber-ez/wiki/Ingress-Service-Routing" target="_blank" rel="noopener noreferrer">Test Case #2. API Gateway를 통해, 12st Mall의 서비스가 라우팅되도록 설정합니다.</a></p>
+<ul>
+<li>K8s Object: Ingress Gateway</li>
+</ul>
+</li>
+<li>
+<p><a href="https://github.com/uengine-oss/kuber-ez/wiki/AutoScaler-Object" target="_blank" rel="noopener noreferrer">Test Case #3. 주요 서비스(주문/상품)에 대해 사용자 요청이 쇄도할 것을 고려, 자동으로 서비스가 확장되도록 설정합니다.</a></p>
+<ul>
+<li>K8s Object: HPA(Horizontal Pod Autoscaler)</li>
+</ul>
+</li>
+<li>
+<p><a href="https://github.com/uengine-oss/kuber-ez/wiki/Volume-Object" target="_blank" rel="noopener noreferrer">Test Case #4. 상품 서비스에서는 상품 이미지를 저장하기 위해 파일 스토리지를 추가로 활용합니다.</a></p>
+<ul>
+<li>K8s Object: Volume, PersistentVolumeClaim</li>
+</ul>
+</li>
+<li>
+<p><a href="https://github.com/uengine-oss/kuber-ez/wiki/ConfigMap-Object" target="_blank" rel="noopener noreferrer">Test Case #5. 배송 서비스에서는 어플리케이션에서 관리하던 물류회사의 API 정보를 클러스터 환경변수 객체에 저장하고 관리합니다.</a></p>
+<ul>
+<li>K8s Object: ConfigMap</li>
+</ul>
+</li>
+<li>
+<p><a href="https://github.com/uengine-oss/kuber-ez/wiki/Istio-Gateway,-VirtualService" target="_blank" rel="noopener noreferrer">Test Case #6. 보다 효율적인 서비스 관리를 위해, 서비스 메시 도구인 이스티오(Istio)를 도입하고 Istio가 제공하는 Gateway를 통한 서비스로 전환합니다.</a></p>
+<ul>
+<li>K8s Object: Istio Gateway, VirtualService</li>
+</ul>
+</li>
+<li>
+<p><a href="https://github.com/uengine-oss/kuber-ez/wiki/Istio-DestinationRule" target="_blank" rel="noopener noreferrer">Test Case #7. 상품 서비스에 장애 발생시, 장애전파를 사전 차단하기 위해, Istio의 Circuit Breaker를 적용하여 서비스의 Resilency를 높이는 전략을 적용합니다.</a></p>
+<ul>
+<li>K8s Object: DestinationRule</li>
+</ul>
+</li>
+<li>
+<p><a href="https://github.com/uengine-oss/kuber-ez/wiki/Helm-Chart" target="_blank" rel="noopener noreferrer">Test Case #8. 완료된 디플로이 다이어그래밍을 Helm 차트로 생성하고, 이를 통해 쿠버네티스에 배포합니다.</a></p>
+<ul>
+<li>Helm Chart
+<br/></li>
+</ul>
+</li>
+</ul>
+<h3 id="cluster-information"><a href="#cluster-information" aria-hidden="true"><span class="icon icon-link"></span></a>Cluster Information</h3>
+<h3>Kubernetes API 서버 및 Token 정보 획득하기</h3>
+<hr/>
+<p><strong>0-1. 쿠버네티스 클러스터 서버 정보 확인</strong>
+<strong>0-1-1. kubectl config view 명령어를 통해 클러스터의 API 주소를 확인합니다.</strong>
+<img src="https://user-images.githubusercontent.com/48265118/97250077-813e7c80-1848-11eb-8f6e-1252c207c97a.png"></p>
+<blockquote>
+<ul>
+<li>터미널 창을 오픈합니다. (로컬 minikube를 사용한다면 cmd, GCP를 사용한다면 SDK)</li>
+<li>kubectl config view 명령어 입력 후 cluster의 server를 확인합니다.</li>
+</ul>
+</blockquote>
+<p><strong>0-1-2. ServiceAccount를 생성하고 권한을 부여하여 Token 값을 확인합니다.</strong>
+<img src="https://user-images.githubusercontent.com/48265118/97251171-b3e97480-184a-11eb-8563-4134e1bcc594.png" width="80%">
+<img src="https://user-images.githubusercontent.com/48265118/97252360-24919080-184d-11eb-9457-37f3d7dde79b.png">
+<img src="https://user-images.githubusercontent.com/48265118/97252367-26f3ea80-184d-11eb-9f0d-1e6c328bfcac.png" width="80%"></p>
+<blockquote>
+<ul>
+<li>다음 명령어를 입력하여 Token 값을 얻어냅니다.</li>
+<li>kubectl create sa &#x3C;&#x3C;유저명>></li>
+<li>kubectl create clusterrolebinding cluster-admin-binding --clusterrole=cluster-admin --serviceaccount=default:&#x3C;&#x3C;유저명>></li>
+<li>kubectl describe sa &#x3C;&#x3C;유저명>></li>
+<li>kubectl describe secret &#x3C;얻어낸 Tokens: e.g. test-token-wq7vq></li>
+</ul>
+</blockquote>
+<p><strong>0-1-3. 확인한 API-Server 정보와 Token 값은 Manage Clusters에서 사용할 클러스터로 등록합니다.</strong>
+<img src="https://user-images.githubusercontent.com/48265118/97257744-231a9500-185a-11eb-9eff-5735a34187b5.png" width="70%"></p>
+<br/>
+<h3 id="cluster-management-deployment-service-object"><a href="#cluster-management-deployment-service-object" aria-hidden="true"><span class="icon icon-link"></span></a>Cluster Management, Deployment, Service Object</h3>
+<h3>Test Case #1. 주문/상품/배송의 각 마이크로서비스를 배포하고 서비스를 생성합니다.</h3>
+<hr/>
+<h3>1-1. 쿠버네티스 클러스터 정보 설정</h3>
+<h3>1-1-1. 메뉴 영역에서 클러스터 관리 버튼을 클릭합니다.</h3>
+<img src="https://user-images.githubusercontent.com/48265118/93052167-96988680-f6a0-11ea-9401-bf6aba209b53.png" width="50%">
+<h3>1-1-2. +버튼을 클릭해 나오는 팝업창에 클러스터 이름, API Server, Token 정보를 입력하여 등록합니다.</h3>
+<h3>클러스터의 API-Server, Token 정보를 얻는 방법은 [쿠버네티스 API서버 및 토큰(Token)정보 획득하기](https://github.com/uengine-oss/kuber-ez/wiki/Cluster-Information) 페이지에서 확인합니다.</h3>
+<img src="https://user-images.githubusercontent.com/48265118/93052175-97c9b380-f6a0-11ea-97d6-c9d00f720797.png" width="70%">
+<h3>1-1-3. 등록된 클러스터를 확인하고 클릭하여 캔버스의 클러스터 관리 버튼에 사용할 클러스터가 표시되었는지 확인합니다.</h3>
+<p>
+<img src="https://user-images.githubusercontent.com/48265118/93052177-97c9b380-f6a0-11ea-9535-1c778e33c46c.png" width="40%">
+<img src="https://user-images.githubusercontent.com/48265118/93053800-51c21f00-f6a3-11ea-873d-8effbe1f98f7.png" width="40%">
+</p>
+<br/>
+<h3>1-2. Deployment 객체 생성</h3>
+<h3>1-2-1. 오브젝트 팔레트에서 Workload의 Deployment 객체를 선택합니다. (주문/상품/배송용 Deployment 3개 생성)</h3>
+<img src="https://user-images.githubusercontent.com/48265118/93057137-681ea980-f6a8-11ea-9f63-ee56db1e7fb6.png">
+<blockquote>
+<ul>
+<li>Workload에 마우스를 hover하였을 때 나타난 객체들 중 Deployment를 클릭합니다.</li>
+</ul>
+</blockquote>
+<h3>1-2-2. 캔버스에 그려진 Deployment 객체의 프로퍼티를 정의합니다.</h3>
+<img src="https://user-images.githubusercontent.com/48265118/93057142-69e86d00-f6a8-11ea-9d62-0906523e911f.png" width="70%">
+<blockquote>
+<ul>
+<li>Deployment 객체를 더블클릭하여 프로퍼티 편집창을 호출합니다.</li>
+<li>
+<p>각 프로퍼티값은 다음과 같이 입력합니다.</p>
+<blockquote>
+<p>Name: order<br/>
+Replicas: 3<br/>
+Image: apexacme/order:latest<br/>
+Target Port: 8080<br/><hr/>
+Name: product<br/>
+Replicas: 3<br/>
+Image: apexacme/product:latest<br/>
+Target Port: 8080<br/><hr/>
+Name: delivery<br/>
+Replicas: 3<br/>
+Image: apexacme/delivery:latest<br/>
+Target Port: 8080<br/>
+<br/></p>
+</blockquote>
+</li>
+</ul>
+</blockquote>
+<h3>1-3. Service 객체 생성/ 연관설정</h3>
+<h3>1-3-1. 오브젝트 팔레트에서 Routing의 Service 객체를 선택합니다.</h3>
+<img src="https://user-images.githubusercontent.com/48265118/93062671-3c9fbd00-f6b0-11ea-9503-962fb19554a9.png">
+<blockquote>
+<ul>
+<li>Routing에 마우스를 hover하였을 때 나타난 객체들 중 Service를 클릭합니다.</li>
+</ul>
+</blockquote>
+<h3>1-3-2. 캔버스에 그려진 Service 객체를 Deployment 객체와 연결합니다.</h3>
+<p>
+<img src="https://user-images.githubusercontent.com/48265118/93062910-81c3ef00-f6b0-11ea-9d4c-33ebe02e0d3c.png">
+<img src="https://user-images.githubusercontent.com/48265118/93168754-95c62a00-f75e-11ea-9c2f-fda3539a0ac1.png">
+<img src="https://user-images.githubusercontent.com/48265118/93153524-69011b00-f73c-11ea-8fe2-cf5bc91be923.png">
+</p>
+<blockquote>
+<ul>
+<li>Service 객체를 클릭하여 ↗ 화살표 버튼을 클릭합니다.</li>
+<li>연결 점선이 나타나면 Deployment 객체를 클릭합니다.</li>
+<li>화살표 방향이 Deployment를 향한 연결 실선이 나타났는지 확인합니다.</li>
+</ul>
+</blockquote>
+<h3>1-3-3. Service 객체의 프로퍼티를 정의합니다.</h3>
+<img src="https://user-images.githubusercontent.com/48265118/93168748-9363d000-f75e-11ea-8b62-1db3c02af903.png" width="70%">
+<blockquote>
+<ul>
+<li>Service 객체를 더블클릭하여 프로퍼티 편집창을 호출합니다.</li>
+<li>
+<p>각 프로퍼티값은 다음과 같이 입력합니다. (App Name과 Target Port는 연결된 Deployment 객체의 이름과 port로 입력됩니다.)</p>
+<blockquote>
+<p>Name: order-svc<br/>
+Port: 8080<br/>
+Type: ClusterIP<br/><hr/>
+Name: product-svc<br/>
+Port: 8080<br/>
+Type: ClusterIP<br/><hr/>
+Name: delivery-svc<br/>
+Port: 8080<br/>
+Type: ClusterIP<br/>
+<br/></p>
+</blockquote>
+</li>
+</ul>
+</blockquote>
+<h3>1-4. Yaml 확인 및 클라우드 배포</h3>
+<h3>1-4-1. 메뉴 영역에서 Code 버튼의 Code Preview 클릭하여 Template을 선택합니다.</h3>
+<img src="https://user-images.githubusercontent.com/48265118/93284037-be0c6200-f80c-11ea-960b-2d9ecfc949d5.png" width="40%">
+<img src="https://user-images.githubusercontent.com/48265118/93301288-3554ec80-f833-11ea-96b3-031ae78d071a.png" width="40%">
+<blockquote>
+<ul>
+<li>Template은 Separate File, Single File, Separate File per kind, Helm으로 4가지이며 기본값은 Separate File per kind입니다.</li>
+<li>Separate File은 각 객체의 Yaml을 확인할 수 있습니다.</li>
+<li>Single File은 모든 객체를 하나의 Yaml에서 확인 할 수 있습니다.</li>
+<li>Separate File per kind은 객체의 kind별로 Yaml을 확인할 수 있습니다.</li>
+<li>Helm은 Helm Chart 구조로 객체의 Yaml을 확인할 수 있습니다.</li>
+</ul>
+</blockquote>
+<h3>1-4-2. 모델링 객체의 Yaml을 확인합니다.</h3>
+<p>
+<img src="https://user-images.githubusercontent.com/48265118/93548410-204a9b80-f9a2-11ea-9a7d-7f10e650f944.png" width="40%">
+<img src="https://user-images.githubusercontent.com/48265118/93558974-90b0e700-f9b9-11ea-9bde-983faf138738.png" width="40%">
+</p>
+<blockquote>
+<ul>
+<li>Yaml과 프로퍼티 편집창에서 설정한 값이 맞는지 확인합니다.</li>
+</ul>
+</blockquote>
+<h3>1-4-3. 메뉴 영역에서 Deploy 버튼을 클릭합니다.</h3>
+<p>
+<img src="https://user-images.githubusercontent.com/48265118/93176247-f740c580-f76b-11ea-8060-7502a767a40f.png" width="40%">
+<img src="https://user-images.githubusercontent.com/48265118/93176521-59012f80-f76c-11ea-84bb-447cba4ee358.png" width="30%">
+</p>
+<blockquote>
+<ul>
+<li>클러스터 관리에서 설정한 클러스터 정보와 일치하는지 확인하고 Deploy를 클릭하여 서버에 배포합니다.</li>
+</ul>
+</blockquote>
+<h3>1-4-4. Deployment 객체가 정상적으로 배포되었는지 확인합니다.</h3>
+<p>
+<img src="https://user-images.githubusercontent.com/48265118/93546136-225e2b80-f99d-11ea-9081-d3af1e977e8f.png" width="40%">
+<img src="https://user-images.githubusercontent.com/48265118/93546138-24c08580-f99d-11ea-8425-9d9505c49515.png" width="40%">
+</p>
+<blockquote>
+<ul>
+<li>배포된 Deployment 객체에 availableReplicas/Replicas 표시가 나타났는지 확인합니다.</li>
+<li>Deployment의 replicas가 프로퍼티창에서 설정한 만큼 모두 사용 가능해졌는지 확인합니다.
+<br/></li>
+</ul>
+</blockquote>
+<h3>1-5. kubectl CLI</h3>
+<h3>1-5-1. 모델링 객체의 Context Menu에서 Terminal Open을 클릭합니다.</h3>
+<p>
+<img src="https://user-images.githubusercontent.com/48265118/93546505-d95aa700-f99d-11ea-95ab-3fc513d8efff.png" width="40%">
+<img src="https://user-images.githubusercontent.com/48265118/93312538-4b1dde00-f842-11ea-8ec3-3a4cdaf0efdd.png" width="40%">
+</p>
+<blockquote>
+<ul>
+<li>객체의 + 버튼을 클릭하거 우클릭하여 나오는 Context Menu에서 Teminal Open 선택합니다.</li>
+<li>화면 하단에 Shell 영역이 정상적으로 호출되는지 확인합니다.</li>
+</ul>
+</blockquote>
+<h3>1-5-2. 화면 하단의 Shell 영역에서 kubectl get deploy, kubectl get svc 명령어로 배포를 확인합니다.</h3>
+<p>
+<img src="https://user-images.githubusercontent.com/48265118/93546826-a7961000-f99e-11ea-9fed-09efaf4f347d.png" width="40%">
+<img src="https://user-images.githubusercontent.com/48265118/93546858-b977b300-f99e-11ea-83d0-4d13c4e7ef55.png" width="40%">
+</p>
+<blockquote>
+<ul>
+<li>kubectl get deploy -n default 명령어 입력 후 모든 Deployment 객체가 정상적으로 배포되었는지 확인합니다.</li>
+<li>kubectl get svc -n default 명령어 입력 후 모든 Service 객체가 정상적으로 배포되었는지 확인합니다.</li>
+</ul>
+</blockquote>
+<br/>
+<h3 id="ingress-service-routing"><a href="#ingress-service-routing" aria-hidden="true"><span class="icon icon-link"></span></a>Ingress Service Routing</h3>
+<p><strong>Test Case #2. API Gateway를 통해, 12st Mall의 서비스가 라우팅되도록 설정합니다.</strong></p>
+<hr/><br/>
+<p><strong>2-1. API Gateway 생성 및 설정</strong><br>
+<strong>2-1-1. 오브젝트 팔레트에서 Routing의 Ingress 객체를 선택합니다.</strong>
+<img src="https://user-images.githubusercontent.com/48265118/93407446-2f134e80-f8cd-11ea-909b-ce7bb66ecfbb.png" width="60%"></p>
+<blockquote>
+<ul>
+<li>Routing에 마우스를 hover하였을 때 나타난 객체들 중 Ingress를 클릭합니다.</li>
+</ul>
+</blockquote>
+<p><strong>2-1-2. 캔버스에 그려진 Ingress 객체의 프로퍼티를 정의합니다.</strong>
+<img src="https://user-images.githubusercontent.com/48265118/93408700-240ded80-f8d0-11ea-8975-38353cf7d8d2.png" width="70%"></p>
+<blockquote>
+<ul>
+<li>Ingress 객체를 더블클릭하여 프로퍼티 편집창을 호출합니다.</li>
+<li>
+<p>각 프로퍼티값은 다음과 같이 입력합니다.</p>
+<blockquote>
+<p>Name: api-gateway<br/>
+<br/></p>
+</blockquote>
+</li>
+</ul>
+</blockquote>
+<p><strong>2-2. API Gateway와 서비스 연결</strong><br>
+<strong>2-2-1. 캔버스에 그려진 Ingress 객체를 Service 객체와 연결합니다.</strong></p>
+<p>
+<img src="https://user-images.githubusercontent.com/48265118/93409403-cbd7eb00-f8d1-11ea-8016-61226a70a568.png" width="40%">
+<img src="https://user-images.githubusercontent.com/48265118/93409413-ced2db80-f8d1-11ea-8946-e45257577206.png" width="40%">
+</p>
+<blockquote>
+<ul>
+<li>Ingress 객체를 클릭하여 ↗ 화살표 버튼을 클릭합니다.</li>
+<li>연결 점선이 나타나면 Service 객체를 클릭합니다.</li>
+<li>화살표 방향이 Service를 향한 연결 실선이 나타났는지 확인합니다.</li>
+</ul>
+</blockquote>
+<p><strong>2-2-2. 요청 패스 기반으로 서비스가 분기되도록 설정합니다.</strong>
+<img src="https://user-images.githubusercontent.com/48265118/93409415-ced2db80-f8d1-11ea-9ccc-add3ff1f98e5.png" width="70%"></p>
+<blockquote>
+<ul>
+<li>Ingress와 Service의 연결선을 더블클릭하여 연결 프로퍼티 편집창을 호출합니다.</li>
+<li>
+<p>각 연결선의 Service Path는 다음과 같이 입력합니다.</p>
+<blockquote>
+<p>Service Path: /orders<br/><hr/>
+Service Path: /products<br/><hr/>
+Service Path: /deliveries<br/>
+<br/></p>
+</blockquote>
+</li>
+</ul>
+</blockquote>
+<p><strong>2-3. Yaml 확인 및 클라우드 배포</strong><br>
+<strong>2-3-1. Code Preview에 들어가 객체의 Yaml을 확인합니다.</strong></p>
+<p>
+<img src="https://user-images.githubusercontent.com/48265118/93413383-21b09100-f8da-11ea-8351-3e814f6e4d2b.png" width="30%">
+<img src="https://user-images.githubusercontent.com/48265118/93414573-8a007200-f8dc-11ea-8eb4-06ef5ab07e6f.png" width="50%">
+</p>
+<blockquote>
+<ul>
+<li>Yaml과 프로퍼티 편집창에서 설정한 값이 맞는지 확인합니다.</li>
+</ul>
+</blockquote>
+<p><strong>2-3-2. 메뉴 영역에서 Deploy 버튼을 클릭하여 객체를 배포합니다.</strong></p>
+<p>
+<img src="https://user-images.githubusercontent.com/48265118/93413385-22492780-f8da-11ea-8c44-34605e630f44.png" width="40%">
+<img src="https://user-images.githubusercontent.com/48265118/93413386-22e1be00-f8da-11ea-9a3a-09d9ccd469fb.png" width="30%">
+</p>
+<blockquote>
+<ul>
+<li>배포 전 클러스터 정보를 확인하고 Deploy를 클릭합니다.
+<br/></li>
+</ul>
+</blockquote>
+<p><strong>2-4. kubectl CLI</strong><br>
+<strong>2-4-1. Shell 영역에서 kubectl get ing 명령어로 배포를 확인합니다.</strong>
+<img src="https://user-images.githubusercontent.com/48265118/93414876-33dffe80-f8dd-11ea-95a6-f1079298e9f5.png" width="70%"></p>
+<blockquote>
+<ul>
+<li>kubectl get ingress -n default 명령어 입력 후 Ingress 객체가 정상적으로 배포되었는지 확인합니다.</li>
+</ul>
+</blockquote>
+<p><br/><br/></p>
+<h3 id="autoscaler-object"><a href="#autoscaler-object" aria-hidden="true"><span class="icon icon-link"></span></a>AutoScaler Object</h3>
+<p><strong>Test Case #3. 주요 서비스(주문/상품)에 대해 사용자 요청이 쇄도할 것을 고려, 자동으로 서비스가 확장되도록 설정합니다.</strong></p>
+<hr/><br/>
+<h4>3-1. HPA(Horizontal Pod AutoScaler) 설정</h4>
+<p><strong>3-1-1. 오브젝트 팔레트에서 AutoScaler의 HPA(Horizontal Pod AutoScaler) 객체를 선택합니다.</strong>
+<img src="https://user-images.githubusercontent.com/48265118/93428614-c04cea00-f8fa-11ea-90fb-34985f068325.png" width="60%"></p>
+<blockquote>
+<ul>
+<li>AutoScaler에 마우스를 hover하였을 때 나타난 객체들 중 HPA(Horizontal Pod AutoScaler)를 클릭합니다.</li>
+</ul>
+</blockquote>
+<p><strong>3-1-2. 캔버스에 그려진 HPA(Horizontal Pod AutoScaler) 객체의 프로퍼티를 정의합니다.</strong>
+<img src="https://user-images.githubusercontent.com/48265118/93550751-111a1c80-f9a7-11ea-997b-29c262e74731.png" width="70%"></p>
+<blockquote>
+<ul>
+<li>HPA(Horizontal Pod AutoScaler) 객체를 더블클릭하여 프로퍼티 편집창을 호출합니다.</li>
+<li>
+<p>각 프로퍼티값은 다음과 같이 입력합니다.</p>
+<blockquote>
+<p>Name: order-hpa<br/>
+MinReplicas: 2<br/>
+MaxReplicas: 10<br/>
+Resource Type: cpu <br/>
+AverageUtilization: 50<br/><hr/>
+Name: product-hpa<br/>
+MinReplicas: 2<br/>
+MaxReplicas: 10<br/>
+Resource Type: cpu <br/>
+AverageUtilization: 50<br/>
+<br/></p>
+<h4>3-2. ScaleTarget 설정</h4>
+</blockquote>
+</li>
+</ul>
+</blockquote>
+<p><strong>3-2-1. 캔버스에 그려진 HPA(Horizontal Pod AutoScaler) 객체의 스케일 타겟을 설정합니다.</strong>
+<img src="https://user-images.githubusercontent.com/48265118/93551027-c220b700-f9a7-11ea-951f-5427d07f378a.png" width="70%"></p>
+<blockquote>
+<ul>
+<li>HPA 객체를 클릭하여 ↗ 화살표 버튼을 클릭합니다.</li>
+<li>연결 점선이 나타나면 Deployment 객체를 클릭합니다.</li>
+<li>화살표 방향이 Deployment를 향한 연결 실선이 나타났는지 확인합니다.</li>
+<li>HPA 객체를 더블클릭하여 spec.scaleTargetRef에 Deployment 객체가 있는지 확인합니다.
+<br/></li>
+</ul>
+</blockquote>
+<h4>3-3. Yaml 확인 및 클라우드 배포</h4>
+<p><strong>3-3-1. Code Preview에 들어가 객체의 Yaml을 확인합니다.</strong></p>
+<p>
+<img src="https://user-images.githubusercontent.com/48265118/93413383-21b09100-f8da-11ea-8351-3e814f6e4d2b.png" width="30%">
+<img src="https://user-images.githubusercontent.com/48265118/93551370-a2d65980-f9a8-11ea-9254-6b0914dc9be0.png" width="50%">
+</p>
+<blockquote>
+<ul>
+<li>Yaml과 프로퍼티 편집창에서 설정한 값이 맞는지 확인합니다.</li>
+</ul>
+</blockquote>
+<p><strong>3-3-2. 메뉴 영역에서 Deploy 버튼을 클릭하여 객체를 배포합니다.</strong></p>
+<p>
+<img src="https://user-images.githubusercontent.com/48265118/93413385-22492780-f8da-11ea-8c44-34605e630f44.png" width="40%">
+<img src="https://user-images.githubusercontent.com/48265118/93413386-22e1be00-f8da-11ea-9a3a-09d9ccd469fb.png" width="30%">
+</p>
+<blockquote>
+<ul>
+<li>배포 전 클러스터 정보를 확인합니다.
+<br/></li>
+</ul>
+</blockquote>
+<p><strong>3-4. kubectl CLI</strong>
+<strong>3-4-1. Shell 영역에서 kubectl get hpa 명령어로 배포를 확인합니다.</strong>
+<img src="https://user-images.githubusercontent.com/48265118/93559108-e7b6bc00-f9b9-11ea-8b1e-ba5d5d2ca28f.png" width="70%"></p>
+<blockquote>
+<ul>
+<li>kubectl get hpa -n default명령어 입력 후 HPA 객체가 정상적으로 배포되었는지 확인합니다.</li>
+</ul>
+</blockquote>
+<p><br/><br/></p>
+<h3 id="volume-object"><a href="#volume-object" aria-hidden="true"><span class="icon icon-link"></span></a>Volume Object</h3>
+<h4>Test Case #4. 상품 서비스에서는 상품 이미지를 저장하기 위해 파일 스토리지를 추가로 활용합니다.</h4>
+<hr/><br/>
+<h4>4-1. PersistentVolumeClaim 설정</h4>
+<p><strong>4-1-1. 오브젝트 팔레트에서 Persistence의 PersistentVolume, PersistentVolumeClaim 객체를 선택합니다.</strong>
+<img src="https://user-images.githubusercontent.com/48265118/93436875-50dcf780-f906-11ea-933d-18b83bde875d.png" width="70%"></p>
+<p><strong>4-1-2. 캔버스에 그려진 PV(PersistentVolume), PVC(PersistentVolumeClaim) 객체의 프로퍼티를 정의합니다.</strong>
+<img src="https://user-images.githubusercontent.com/48265118/93556309-6bb97580-f9b3-11ea-8fab-bcdc70e58cd2.png" width="70%">
+<img src="https://user-images.githubusercontent.com/48265118/93556312-6ceaa280-f9b3-11ea-9872-9bc1a997f169.png" width="70%"></p>
+<blockquote>
+<ul>
+<li>PersistentVolume, PersistentVolumeClaim 객체를 더블클릭하여 프로퍼티 편집창을 호출합니다.</li>
+<li>
+<p>각 프로퍼티 값은 다음과 같이 입력합니다.</p>
+<blockquote>
+<p>Name: product-pv<br/>
+AccessModes: ReadOnlyMany<br/>
+Storage: 10Gi<br/>
+ReclaimPolicy: Recycle<br/>
+VolumeMode: Filesystem<br/><hr/>
+Name: product-pvc<br/>
+AccessModes: ReadOnlyMany<br/>
+Storage: 10<br/>
+VolumeMode: Filesystem<br/></p>
+</blockquote>
+</li>
+</ul>
+</blockquote>
+<p><strong>4-1-3.  PV(PersistentVolume)와 PVC(PersistentVolumeClaim)을 연결합니다.</strong>
+<img src="https://user-images.githubusercontent.com/48265118/93439297-55ef7600-f909-11ea-86b1-2b189f87bfd4.png" width="70%"></p>
+<blockquote>
+<ul>
+<li>PVC(PersistentVolumeClaim) 객체를 클릭하여 ↗ 화살표 버튼을 클릭합니다.</li>
+<li>연결 점선이 나타나면 PV(PersistentVolume) 객체를 클릭합니다.</li>
+<li>연결선이 생기면 PVC 객체를 더블클릭하여 volumeName에 PV 객체의 Name이 있는지 확인합니다.</li>
+</ul>
+</blockquote>
+<br/>
+<h4>4-2. Deployment에 Volume 설정</h4>
+<p><strong>4-2-1. Product Deployment 객체와 Product PVC 객체를 연결하여 Volume을 설정합니다.</strong>
+<img src="https://user-images.githubusercontent.com/48265118/93439932-1b3a0d80-f90a-11ea-8af4-32095654c677.png" width="70%"></p>
+<blockquote>
+<ul>
+<li>product Deployment 객체를 클릭하여 ↗ 화살표 버튼을 클릭합니다.</li>
+<li>연결 점선이 나타나면 product-pvc 객체를 클릭합니다.</li>
+<li>연결선이 생기면 Deployment 객체를 더블클릭하여 spec.volumes에 PVC 객체가 있는지 확인합니다.</li>
+</ul>
+</blockquote>
+<br/>
+<h4>4-3. Yaml 확인 및 클라우드 배포</h4>
+<p><strong>4-3-1. Code Preview에 들어가 객체의 Yaml을 확인합니다.</strong>
+<img src="https://user-images.githubusercontent.com/48265118/93413383-21b09100-f8da-11ea-8351-3e814f6e4d2b.png" width="50%"></p>
+<p>
+<img src="https://user-images.githubusercontent.com/48265118/93558573-b12c7180-f9b8-11ea-88b7-873a57d2cc7f.png" width="40%">
+<img src="https://user-images.githubusercontent.com/48265118/93558574-b25d9e80-f9b8-11ea-82fc-bfb36439dac4.png" width="40%">
+</p>
+<blockquote>
+<ul>
+<li>Yaml과 프로퍼티 편집창에서 설정한 값이 맞는지 확인합니다.</li>
+</ul>
+</blockquote>
+<p><strong>4-3-2. 메뉴 영역에서 Deploy 버튼을 클릭하여 객체를 배포합니다.</strong></p>
+<p>
+<img src="https://user-images.githubusercontent.com/48265118/93413385-22492780-f8da-11ea-8c44-34605e630f44.png" width="40%">
+<img src="https://user-images.githubusercontent.com/48265118/93413386-22e1be00-f8da-11ea-9a3a-09d9ccd469fb.png" width="30%">
+</p>
+<blockquote>
+<ul>
+<li>배포 전 클러스터 정보를 확인합니다.
+<br/></li>
+</ul>
+</blockquote>
+<h4>4-4. kubectl CLI</h4>
+<p><strong>4-4-1. Shell 영역에서 kubectl get pv, kubectl get pvc 명령어로 배포를 확인합니다.</strong></p>
+<p>
+<img src="https://user-images.githubusercontent.com/48265118/93559385-94913900-f9ba-11ea-8b0d-8757f7ea1f52.png" width="80%">
+<img src="https://user-images.githubusercontent.com/48265118/93559257-41b78180-f9ba-11ea-8e30-5a8bd51bc87d.png" width="70%">
+</p>
+<blockquote>
+<ul>
+<li>kubectl get pv 명령어 입력 후 PV 객체가 정상적으로 배포되었는지 확인합니다.</li>
+<li>kubectl get pvc 명령어 입력 후 PVC 객체가 정상적으로 배포되었는지 확인합니다.</li>
+</ul>
+</blockquote>
+<p><br/><br/></p>
+<h3 id="configmap-object"><a href="#configmap-object" aria-hidden="true"><span class="icon icon-link"></span></a>ConfigMap Object</h3>
+<h4>Test Case #5. 배송 서비스에서는 어플리케이션에서 관리하던 물류회사의 API 정보를 클러스터 환경변수 객체에 저장하고 관리합니다.</h4>
+<hr/><br/>
+<h4>5-1. ConfigMap 설정</h4>
+<p><strong>5-1-1. 오브젝트 팔레트에서 Configuration의 ConfigMap 객체를 선택합니다.</strong>
+<img src="https://user-images.githubusercontent.com/48265118/93559852-a58e7a00-f9bb-11ea-92b0-44319d673c27.png" width="70%"></p>
+<p><strong>5-1-2. 캔버스에 그려진 ConfigMap 객체의 프로퍼티를 정의합니다.</strong>
+<img src="https://user-images.githubusercontent.com/48265118/93564019-f904c600-f9c3-11ea-815a-a51ecbeeaf67.png" width="70%"></p>
+<blockquote>
+<ul>
+<li>ConfigMap 객체를 더블클릭하여 프로퍼티 편집창을 호출합니다.</li>
+<li>
+<p>각 프로퍼티값은 다음과 같이 입력합니다.</p>
+<blockquote>
+<p>Name: config-delivery<br/>
+Data: <br/></p>
+<blockquote>
+<p>name: Logistics_API<br/>
+value: <a href="http://211.34.11.22:8080" target="_blank" rel="noopener noreferrer">http://211.34.11.22:8080</a><br/></p>
+</blockquote>
+</blockquote>
+</li>
+</ul>
+</blockquote>
+<br/>
+<p><strong>5-1-3. Delivery Deployment 객체와 ConfigMap 객체를 연결합니다.</strong>
+<img src="https://user-images.githubusercontent.com/48265118/93564024-face8980-f9c3-11ea-96f3-1d2b4283a3cc.png" width="70%"></p>
+<blockquote>
+<ul>
+<li>delivery Deployment 객체를 클릭하여 ↗ 화살표 버튼을 클릭합니다.</li>
+<li>연결 점선이 나타나면 config-delivery 객체를 클릭합니다.</li>
+<li>연결선이 생기면 Deployment 객체를 더블클릭하여 envFrom.configMapRef 설정이 있는지 확인합니다.</li>
+</ul>
+</blockquote>
+<h4>5-2. Yaml 확인 및 클라우드 배포</h4>
+<p><strong>5-2-1. Code Preview에 들어가 객체의 Yaml을 확인합니다.</strong></p>
+<p>
+<img src="https://user-images.githubusercontent.com/48265118/93413383-21b09100-f8da-11ea-8351-3e814f6e4d2b.png" width="30%">
+<img src="https://user-images.githubusercontent.com/48265118/93564030-fc984d00-f9c3-11ea-8ccb-c1d429682370.png" width="50%">
+</p>
+<blockquote>
+<ul>
+<li>Yaml과 프로퍼티 편집창에서 설정한 값이 맞는지 확인합니다.</li>
+</ul>
+</blockquote>
+<p><strong>5-2-2. 메뉴 영역에서 Deploy 버튼을 클릭하여 객체를 배포합니다.</strong></p>
+<p>
+<img src="https://user-images.githubusercontent.com/48265118/93413385-22492780-f8da-11ea-8c44-34605e630f44.png" width="40%">
+<img src="https://user-images.githubusercontent.com/48265118/93413386-22e1be00-f8da-11ea-9a3a-09d9ccd469fb.png" width="30%">
+</p>
+<blockquote>
+<ul>
+<li>배포 전 클러스터 정보를 확인합니다.
+<br/></li>
+</ul>
+</blockquote>
+<h4>5-3. kubectl CLI</h4>
+<p><strong>5-3-1. Shell 영역에서 kubectl get cm 명령어로 배포를 확인합니다.</strong>
+<img src="https://user-images.githubusercontent.com/48265118/93564385-8e07bf00-f9c4-11ea-9de3-622b9fc03368.png" width="70%"></p>
+<blockquote>
+<ul>
+<li>kubectl get cm -n default 명령어 입력 후 ConfigMap 객체가 정상적으로 배포되었는지 확인합니다.</li>
+<li>kubectl exec -ti [Pod Object] -- /bin/sh 로 접속 후, env 명령어로 ConfigMap객체에 정의된 변수가 컨테이너로 전달됨을 확인</li>
+</ul>
+</blockquote>
+<p><br/><br/></p>
+<h3 id="istio-gateway-virtualservice"><a href="#istio-gateway-virtualservice" aria-hidden="true"><span class="icon icon-link"></span></a>Istio Gateway, VirtualService</h3>
+<h4>Test Case #6. 보다 효율적인 서비스 관리를 위해, 서비스 메시 도구인 이스티오(Istio)를 도입하고 Istio가 제공하는 Gateway를 통한 서비스로 전환합니다.</h4>
+<hr/><br/>
+<h4>6-1. Istio 설치</h4>
+<p><strong>6-1-1. shell 영역에서 명령어를 통해 Istio 패키지를 다운로드하고 설치합니다.</strong>
+<img src="" width="80%"></p>
+<blockquote>
+<ul>
+<li>다음 명령어를 실행합니다.</li>
+<li>curl -L <a href="https://istio.io/downloadIstio" target="_blank" rel="noopener noreferrer">https://istio.io/downloadIstio</a> | ISTIO_VERSION=1.7.1 TARGET_ARCH=x86_64 sh -</li>
+<li>cd istio-1.7.1</li>
+<li>export PATH=$PWD/bin:$PATH</li>
+<li>istioctl install --set profile=demo</li>
+</ul>
+</blockquote>
+<p><strong>6-1-2. 설치가 정상적으로 되었는지 명령어(kubectl get pod -n istio-system)를 통해 확인합니다.</strong>
+<img src="https://user-images.githubusercontent.com/48265118/93735845-53e32b00-fc19-11ea-9338-324d99f04063.png" width="70%"></p>
+<blockquote>
+<ul>
+<li>다음 명령어를 입력하고 출력된 값을 확인합니다.</li>
+<li>kubectl get pod -n istio-system</li>
+</ul>
+</blockquote>
+<p><strong>6-1-3. Istio의 sidecar injection 활성화</strong>
+<img src="https://user-images.githubusercontent.com/48265118/93738232-382f5300-fc20-11ea-856f-08e676aa1543.png" width="70%"></p>
+<blockquote>
+<ul>
+<li>다음 명령어를 입력하여 default namespace에 istio-injection=enabled 라벨을 추가합니다.</li>
+<li>kubectl label namespace default istio-injection=enabled</li>
+<li>kubectl get ns --show-labels 명령어를 입력하여 라벨이 적용되었는지 확인합니다.</li>
+</ul>
+</blockquote>
+<br/>
+<h4>6-2. Istio Gateway, VirtualSevice 생성</h4>
+<p><strong>6-2-1. 오브젝트 팔레트에서 Istio의 Gateway, VirtualSevice 객체를 선택합니다.</strong>
+<img src="https://user-images.githubusercontent.com/48265118/93747041-14283d80-fc31-11ea-8901-784625e7b758.png" width="70%"></p>
+<p><strong>6-2-2. 캔버스에 그려진 Gateway, VirtualSevice 객체의 프로퍼티를 정의합니다.</strong>
+<img src="https://user-images.githubusercontent.com/48265118/96972244-36bfb600-1551-11eb-97b9-7697858b5cd1.png" width="70%">
+<img src="https://user-images.githubusercontent.com/48265118/96972248-37f0e300-1551-11eb-8875-a78009a85193.png" width="70%"></p>
+<blockquote>
+<ul>
+<li>Gateway, VirtualSevice 객체를 더블클릭하여 프로퍼티 편집창을 호출합니다.</li>
+<li>
+<p>각 프로퍼티값은 다음과 같이 입력합니다.</p>
+<blockquote>
+<p>Name: istio-gateway<br/>
+Server Port: 80<br/>
+Server Name: http<br/>
+Protocol: HTTP<br/>
+Server Hosts: *<br/><hr/>
+Name: vs-order<br/><hr/>
+Name: vs-product<br/><hr/>
+Name: vs-delivery<br/></p>
+</blockquote>
+</li>
+</ul>
+</blockquote>
+<p><strong>6-2-3. Gateway와 VirtualService 객체를 연결합니다.</strong>
+<img src="https://user-images.githubusercontent.com/48265118/96973723-3de7c380-1553-11eb-8ba6-60d6f577f939.png" width="70%"></p>
+<blockquote>
+<ul>
+<li>Gateway 객체를 클릭하여 ↗ 화살표 버튼을 클릭합니다.</li>
+<li>연결 점선이 나타나면 VirtualService 객체를 클릭합니다.</li>
+<li>연결선이 생기면 VirtualService 객체를 더블클릭하여 gateways 설정값에 Istio Gateway 객체에서 설정한 이름이 있는지 확인합니다.</li>
+</ul>
+</blockquote>
+<br/>
+<h4>6-3. Ingress 삭제 및 VirtualService와 Service 연결</h4>
+<p><strong>6-3-1. Ingress 객체를 삭제합니다.</strong></p>
+<p>
+<img src="https://user-images.githubusercontent.com/48265118/93858956-ee19a080-fcf7-11ea-930d-69287838cc0d.png" width="35%">
+<img src="https://user-images.githubusercontent.com/48265118/93859555-bceda000-fcf8-11ea-9783-638845fd31c6.png" width="45%">
+</p>
+<img src="https://user-images.githubusercontent.com/48265118/93859857-279edb80-fcf9-11ea-84ed-eb8d13d10a87.png" width="40%">
+<blockquote>
+<ul>
+<li>Ingress 객체의 컨텍스트 메뉴에서 Delete Ingress를 클릭합니다.</li>
+<li>shell 영역에 kubectl delete ingress 명령어가 정상적으로 실행되었는지 확인합니다.</li>
+<li>Ingress 객체의 휴지통 버튼을 클릭하여 캔버스에서 객체를 삭제합니다.</li>
+</ul>
+</blockquote>
+<p><strong>6-3-2. VirtualService와 Service 객체를 연결합니다.</strong>
+<img src="https://user-images.githubusercontent.com/48265118/96975729-d8490680-1555-11eb-9313-e5ee82c79d72.png" width="70%"></p>
+<blockquote>
+<ul>
+<li>VirtualService객체를 클릭하여 ↗ 화살표 버튼을 클릭합니다.</li>
+<li>연결 점선이 나타나면 Service객체를 클릭합니다.</li>
+<li>연결선이 생기면 VirtualService 객체를 더블클릭하여 http 설정에 match, route, retries 설정값이 주입되었는지 확인합니다.</li>
+</ul>
+</blockquote>
+<br/>
+<h4>6-4. Yaml 확인 및 클라우드 배포</h4>
+<p><strong>6-4-1. Code Preview에 들어가 객체의 Yaml을 확인합니다.</strong>
+<img src="https://user-images.githubusercontent.com/48265118/93413383-21b09100-f8da-11ea-8351-3e814f6e4d2b.png" width="50%"></p>
+<p>
+<img src="https://user-images.githubusercontent.com/48265118/97126040-225e0200-1779-11eb-8cf5-d1ad803901e4.png" width="40%">
+<img src="https://user-images.githubusercontent.com/48265118/97126041-238f2f00-1779-11eb-8b39-9c3fe2188069.png" width="40%">
+</p>
+<blockquote>
+<ul>
+<li>Yaml과 프로퍼티 편집창에서 설정한 값이 맞는지 확인합니다.</li>
+</ul>
+</blockquote>
+<p><strong>6-4-2. 메뉴 영역에서 Deploy 버튼을 클릭하여 객체를 배포합니다.</strong></p>
+<p>
+<img src="https://user-images.githubusercontent.com/48265118/93413385-22492780-f8da-11ea-8c44-34605e630f44.png" width="40%">
+<img src="https://user-images.githubusercontent.com/48265118/93413386-22e1be00-f8da-11ea-9a3a-09d9ccd469fb.png" width="30%">
+</p>
+<blockquote>
+<ul>
+<li>배포 전 클러스터 정보를 확인하고 Deploy를 클릭합니다.
+<br/></li>
+</ul>
+</blockquote>
+<h4>6-5. kubectl CLI</h4>
+<p><strong>6-5-1. Shell 영역에서 kubectl get 명령어로 배포를 확인합니다.</strong>
+<img src="" width="70%"></p>
+<blockquote>
+<ul>
+<li>kubectl get gateway -n default 명령어 입력 후 Gateway 객체가 정상적으로 배포되었는지 확인합니다.</li>
+<li>kubectl get virtualservice -n default 명령어 입력 후 VirtualService 객체가 정상적으로 배포되었는지 확인합니다.</li>
+</ul>
+</blockquote>
+<p><br/><br/></p>
+<h3 id="istio-destinationrule"><a href="#istio-destinationrule" aria-hidden="true"><span class="icon icon-link"></span></a>Istio DestinationRule</h3>
+<h4>Test Case #7. 상품 서비스에 장애 발생시, 장애전파를 사전 차단하기 위해, Istio의 Circuit Breaker를 적용하여 서비스의 Resilency를 높이는 전략을 적용합니다.</h4>
+<hr/><br/>
+<h4>7-1. Istio DestinationRule 생성</h4>
+<p><strong>7-1-1. 오브젝트 팔레트에서 Istio의 DestinationRule 객체를 선택합니다.</strong>
+<img src="https://user-images.githubusercontent.com/48265118/93853689-45ffd980-fcef-11ea-8e96-9312e3a5ef91.png" width="70%"></p>
+<p><strong>7-1-2. 캔버스에 그려진 DestinationRule 객체의 프로퍼티를 정의합니다.</strong>
+<img src="https://user-images.githubusercontent.com/48265118/97149842-a4b5e880-17b0-11eb-94ab-e9659801bc18.png" width="70%"></p>
+<blockquote>
+<ul>
+<li>DestinationRule 객체를 더블클릭하여 프로퍼티 편집창을 호출합니다.</li>
+<li>
+<p>각 프로퍼티값은 다음과 같이 입력합니다.</p>
+<blockquote>
+<p>Name: dr-product<br/>
+Version: version1<br/></p>
+</blockquote>
+</li>
+</ul>
+</blockquote>
+<br/>
+<h4>7-2. DestinationRule와 Service 연결</h4>
+<p><strong>7-2-1. DestinationRule과 Service 객체를 연결합니다.</strong>
+<img src="https://user-images.githubusercontent.com/48265118/97149855-a8e20600-17b0-11eb-9f42-6806c60fc904.png" width="70%"></p>
+<blockquote>
+<ul>
+<li>dr-product 객체를 클릭하여 ↗ 화살표 버튼을 클릭합니다.</li>
+<li>연결 점선이 나타나면 product-svc 객체를 클릭합니다.</li>
+<li>연결선이 생기면 dr-product 객체를 더블클릭하여 spec.host에 Service 객체의 Name: product-svc 가 주입되었는지 확인합니다.</li>
+</ul>
+</blockquote>
+<br/>
+<h4>7-3. Yaml 확인 및 클라우드 배포</h4>
+<p><strong>7-3-1. Code Preview에 들어가 객체의 Yaml을 확인합니다.</strong></p>
+<p>
+<img src="https://user-images.githubusercontent.com/48265118/93413383-21b09100-f8da-11ea-8351-3e814f6e4d2b.png" width="30%">
+<img src="https://user-images.githubusercontent.com/48265118/97154383-26a91000-17b7-11eb-9f41-7535075bd7c4.png" width="50%">
+</p>
+<blockquote>
+<ul>
+<li>Yaml과 프로퍼티 편집창에서 설정한 값이 맞는지 확인합니다.</li>
+</ul>
+</blockquote>
+<p><strong>7-3-2. 메뉴 영역에서 Deploy 버튼을 클릭하여 객체를 배포합니다.</strong></p>
+<p>
+<img src="https://user-images.githubusercontent.com/48265118/93413385-22492780-f8da-11ea-8c44-34605e630f44.png" width="40%">
+<img src="https://user-images.githubusercontent.com/48265118/93413386-22e1be00-f8da-11ea-9a3a-09d9ccd469fb.png" width="30%">
+</p>
+<blockquote>
+<ul>
+<li>배포 전 클러스터 정보를 확인하고 Deploy를 클릭합니다.
+<br/></li>
+</ul>
+</blockquote>
+<h4>7-4. kubectl CLI</h4>
+<p><strong>7-4-1. Shell 영역에서 kubectl get 명령어로 배포를 확인합니다.</strong>
+<img src="" width="70%"></p>
+<blockquote>
+<ul>
+<li>kubectl get destinationrule -n default 명령어 입력 후 DestinationRule 객체가 정상적으로 배포되었는지 확인합니다.</li>
+</ul>
+</blockquote>
+<p><br/><br/></p>
+<h3 id="helm-chart"><a href="#helm-chart" aria-hidden="true"><span class="icon icon-link"></span></a>Helm Chart</h3>
+<h4>Test Case #8. 완료된 디플로이 다이어그래밍을 Helm 차트로 생성하고, 이를 통해 GCP에 배포합니다.</h4>
+<hr/><br/>
+<h4>8-1. Helm Chart 생성 확인</h4>
+<p><strong>8-1-1. Code Preview에 들어가 Template에 Helm을 선택합니다.</strong></p>
+<p>
+<img src="https://user-images.githubusercontent.com/48265118/93413383-21b09100-f8da-11ea-8351-3e814f6e4d2b.png" width="30%">
+<img src="https://user-images.githubusercontent.com/48265118/94121073-dd9a2f00-fe8b-11ea-8c41-6402358303b9.png" width="40%">
+</p>
+<p><strong>8-1-2. Helm Chart 구조로 오브젝트의 Yaml 파일이 정상적으로 생성되었는지 확인합니다.</strong>
+<img src="https://user-images.githubusercontent.com/48265118/94244918-844a0280-ff54-11ea-9e97-9359ede2d8d7.png" widht="70%"></p>
+<blockquote>
+<ul>
+<li>local 폴더 아래 Chart.yaml, templates 폴더, values.yaml이 있는지 확인합니다.</li>
+<li>templates 폴더에 NOTES.txt 파일과 오브젝트 kind별 Yaml 파일이 생성되었는지 확인합니다.</li>
+</ul>
+</blockquote>
+<br/>
+<h4>8-3. Helm Chart 다운로드</h4>
+<p><strong>8-3-1. Code의 Download Archive를 클릭하여 Yaml을 로컬에 다운로드 합니다.</strong>
+<img src="https://user-images.githubusercontent.com/48265118/94244568-0980e780-ff54-11ea-820c-e3467b25e1bc.png"></p>
+<blockquote>
+<ul>
+<li>다운로드할 Template이 Helm인지 확인하고 Download 버튼을 클릭합니다.</li>
+<li>다운로드된 압축 파일을 풀고 Code Preview에서 확인한 구조와 파일이 일치하는지 확인합니다.</li>
+</ul>
+</blockquote>
+<p><br/><br/></p>
+<h2 id="reference-video"><a href="#reference-video" aria-hidden="true"><span class="icon icon-link"></span></a>Reference Video</h2>
+<h3>Kuber-Ez 도구를 활용한 쿠버네티스 객체 다이어그래밍 예제 참고 영상</h3>
+<h4>1) K8s Deploy-Diagramming Video #1 - Kubernetes Objects</h4>
+<p><a href="https://youtu.be/5iDQWynpV0c" target="_blank" rel="noopener noreferrer"><img src="https://user-images.githubusercontent.com/35618409/92857276-672f1300-f42f-11ea-994e-2027c0d17e74.png" width="80%"></a>
+<br/><br/><br/></p>
+<h4>2) K8s Deploy-Diagramming Video #2 - Istio Objects</h4>
+<p><a href="https://youtu.be/nEY0B7D0irQ" target="_blank" rel="noopener noreferrer"><img src="https://user-images.githubusercontent.com/35618409/92857324-76ae5c00-f42f-11ea-9dc2-99c59b7da83c.png" width="80%"></a></p>
+<h2 id="embedding-customizing-kuberez"><a href="#embedding-customizing-kuberez" aria-hidden="true"><span class="icon icon-link"></span></a>Embedding Customizing KuberEz</h2>
+<h3> To embed kuberEz in your product, just import the vue component from npm and use the tag:</h3>
+<pre class="language-javascript"><code class="language-javascript"><span class="token operator">&lt;</span>template<span class="token operator">></span>
+    <span class="token operator">&lt;</span>div id<span class="token operator">=</span><span class="token string">"app"</span><span class="token operator">></span>
+        <span class="token operator">&lt;</span>kube<span class="token operator">-</span>designer style<span class="token operator">=</span><span class="token string">"width: 50%"</span> <span class="token operator">/</span><span class="token operator">></span>
+    <span class="token operator">&lt;</span><span class="token operator">/</span>div<span class="token operator">></span>
+<span class="token operator">&lt;</span><span class="token operator">/</span>template<span class="token operator">></span>
+
+<span class="token operator">&lt;</span>script<span class="token operator">></span>
+
+<span class="token keyword module">import</span> <span class="token imports"><span class="token maybe-class-name">KuberEz</span></span> <span class="token keyword module">from</span> <span class="token string">'kuber-ez/src/main'</span>
+<span class="token maybe-class-name">Vue</span><span class="token punctuation">.</span><span class="token method function property-access">use</span><span class="token punctuation">(</span><span class="token maybe-class-name">KuberEz</span><span class="token punctuation">)</span>
+
+<span class="token keyword module">export</span> <span class="token keyword module">default</span> <span class="token punctuation">{</span>
+    name<span class="token operator">:</span> <span class="token string">'App'</span>
+<span class="token punctuation">}</span>
+<span class="token operator">&lt;</span><span class="token operator">/</span>script<span class="token operator">></span></code></pre>
+<h3>How to add new component</h3>
+<p>You can find examples of Kubernetes object models in
+<a href="https://github.com/uengine-oss/kuber-ez/blob/master/src/components/designer/k8s-modeling/element" target="_blank" rel="noopener noreferrer">https://github.com/uengine-oss/kuber-ez/blob/master/src/components/designer/k8s-modeling/element</a>.
+Create a new copy of element and property panel component for the K8S object kind (e.g. Deployment.vue and DeploymentPropertyPanel.vue), and place them in the above folder.
+Then add the component to the 'elementTypes' array of
+<a href="https://github.com/uengine-oss/kuber-ez/blob/master/src/components/designer/k8s-modeling/KubeModeler.vue" target="_blank" rel="noopener noreferrer">https://github.com/uengine-oss/kuber-ez/blob/master/src/components/designer/k8s-modeling/KubeModeler.vue</a> file.</p>
 </div><div class="mt-8 pt-8 lg:mt-12 lg:pt-12 border-t border-ui-border"><div><div class="flex flex-col sm:flex-row justify-between items-center"><!----><!----></div></div></div></div></div></div></main></div><!----></div>
-    <script>window.__INITIAL_STATE__={"data":{"markdownPage":{"id":"47c73ca8de1f7af86c074e470a4e4840","title":"쿠버네티스(준비중)","description":"","path":"\u002Ftool\u002Fkubernetes-tool\u002F","timeToRead":1,"content":"\u003Ch1 id=\"쿠버네티스준비중\"\u003E\u003Ca href=\"#%EC%BF%A0%EB%B2%84%EB%84%A4%ED%8B%B0%EC%8A%A4%EC%A4%80%EB%B9%84%EC%A4%91\" aria-hidden=\"true\"\u003E\u003Cspan class=\"icon icon-link\"\u003E\u003C\u002Fspan\u003E\u003C\u002Fa\u003E쿠버네티스(준비중)\u003C\u002Fh1\u003E\n","sidebar":"started","next":"","prev":"","headings":[{"depth":1,"value":"쿠버네티스(준비중)","anchor":"#쿠버네티스준비중"}]},"allMarkdownPage":{"edges":[{"node":{"path":"\u002Fexample-scenario\u002Faccommodation-reservation\u002F","title":"숙소예약"}},{"node":{"path":"\u002Ftool\u002Fkubernetes-tool\u002F","title":"쿠버네티스(준비중)"}},{"node":{"path":"\u002Ftool\u002Finfrastructure-modeling\u002F","title":"인프라 모델링 (쿠버네티스(준비중))"}},{"node":{"path":"\u002Fexample-scenario\u002Fanimal-hospital\u002F","title":"동물병원 진료시스템"}},{"node":{"path":"\u002Ftool\u002Fdevelopment-practice\u002F","title":"강의 개발 및 실습 환경"}},{"node":{"path":"\u002Ftool\u002Fevent-storming-tool\u002F","title":"이벤트 스토밍"}},{"node":{"path":"\u002Ftool\u002Fcloud-ide-tool\u002F","title":"클라우드 IDE(준비중)"}},{"node":{"path":"\u002Fexample-scenario\u002Fonline-lecture\u002F","title":"인터넷 강의수강 시스템"}},{"node":{"path":"\u002Fexample-scenario\u002Ffood-delivery\u002F","title":"음식배달"}},{"node":{"path":"\u002Fexample-scenario\u002Flibrary-system\u002F","title":"도서관 시스템"}},{"node":{"path":"\u002Ftemplates-language\u002Fspringboot-java-template\u002F","title":"Spring Boot\u002FJava(준비중)"}},{"node":{"path":"\u002Fstarted\u002Fevent-storming-learning\u002F","title":"이벤트스토밍 학습"}},{"node":{"path":"\u002Ftemplates-language\u002Fpython-template\u002F","title":"Python(준비중)"}},{"node":{"path":"\u002Ftemplates-language\u002Fgo-template\u002F","title":"Go Template 만들기 "}},{"node":{"path":"\u002Fstarted\u002Fdomain-driven\u002F","title":"도메인 주도 설계 학습"}},{"node":{"path":"\u002Ftemplates-language\u002Fcustom-template\u002F","title":"커스텀 템플릿 만들기"}},{"node":{"path":"\u002Fstarted\u002F","title":"소개"}}]}},"context":{}};(function(){var s;(s=document.currentScript||document.scripts[document.scripts.length-1]).parentNode.removeChild(s);}());</script><script src="/assets/js/app.1a9307aa.js" defer></script><script src="/assets/js/page--src--templates--markdown-page-vue.7da4a730.js" defer></script>
+    <script src="/assets/js/app.b6fbfd6a.js" defer></script><script src="/assets/js/page--src--templates--markdown-page-vue.7da4a730.js" defer></script>
   </body>
 </html>
