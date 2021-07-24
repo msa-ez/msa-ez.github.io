@@ -8,7 +8,7 @@
           </h2>
         </div>
         <h1 class=" text-center">
-          MSA Development Starter & EventStorming2Code Solution
+          The fastest way to build event-driven microservices
         </h1>
 
         <div class="flex justify-center mt-8">
