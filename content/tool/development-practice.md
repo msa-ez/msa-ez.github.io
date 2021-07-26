@@ -273,7 +273,7 @@ sidebar: 'started'
 ## 강의 컨텐츠 제작하기
 
 
-### 1. 폴더 구조
+### - 폴더 구조
 
   1. 기본적인 폴더 구조는 아래와 같다.
   <img width="394" alt="img2" src="https://user-images.githubusercontent.com/3138379/99633746-bffbd700-2a82-11eb-937e-8064c575c394.png">
@@ -453,7 +453,7 @@ sidebar: 'started'
 
   
 
-### 2. 배포 방법
+### - 배포 방법
 
 <h3>랩실 배포</h3>
 
@@ -500,7 +500,7 @@ sidebar: 'started'
   
 
 
-### 3. 체크포인트 만드는 방법
+### - 체크포인트 만드는 방법
 
   체크포인트는 랩별로 생성이 가능하다.  
   랩에 존재하는 Lab_Metadata.json 파일에 아래와 같은 형식으로 입력만 하면 체크 포인트 문구가 나타난다. 이제 체크를 하기 위해서는 약간의 로직을 추가하면 된다.  
@@ -545,21 +545,21 @@ sidebar: 'started'
       ]
   ```
   - 이렇게 설정 후 같은 랩실에 test.sh 파일을 만든 후 아래와 같이 설정한다.
-  - test.sh 파일은  ####### (#7개) 를 체크한 후에 test check1 이라는 문구를 인식 한 후, 결과값이 HTTP/1.1 200 이 있는지를 체크하는 로직이다.
+  - test.sh 파일은  ####### - 개) 를 체크한 후에 test check1 이라는 문구를 인식 한 후, 결과값이 HTTP/1.1 200 이 있는지를 체크하는 로직이다.
   - 다음 라인에 나오는 부분이 실행하는 명령어이다.
-  - echo "####### finish" 를 test.sh 파일의 가장 하단에 위치하여 테스트가 끝났다는것을 확인시켜준다.
+  - echo "####### - ish" 를 test.sh 파일의 가장 하단에 위치하여 테스트가 끝났다는것을 확인시켜준다.
   ```
-  echo "####### test check1 : HTTP/1.1 200"
+  echo "####### - t check1 : HTTP/1.1 200"
   http www.example.com
-  echo "####### finish"
+  echo "####### - ish"
   ```
   - 만약 체크를 할것이 두개라면 ,(콤마) 로 구분하면 두가지 조건이 모두 충족되었을때 체크박스에 체크가 된다
   ```
-  echo "####### test OrderCancelled : \"orderStatus\": \"OrderCancelled\" "
+  echo "####### - t OrderCancelled : \"orderStatus\": \"OrderCancelled\" "
   http localhost:8090/orderStatuses
-  echo "####### test DeliveryStarted : \"orderStatus\": \"OrderCancelled\",\"deliveryStatus\": \"DeliveryStarted\" "
+  echo "####### - t DeliveryStarted : \"orderStatus\": \"OrderCancelled\",\"deliveryStatus\": \"DeliveryStarted\" "
   http localhost:8090/orderStatuses
-  echo "####### finish"
+  echo "####### - ish"
   ```
 
 <h3>tool : event-storming</h3>
@@ -610,7 +610,7 @@ sidebar: 'started'
   ```
 
 
-### 4. 퀴즈 만드는 방법
+### - 퀴즈 만드는 방법
 
   퀴즈는 랩실에 quiz 라는 폴더를 만들어서 구성 할 수있다.    
   quiz 폴더에는 각각 퀴즈에 해당하는 html 이 존재한다.  
@@ -689,7 +689,7 @@ sidebar: 'started'
 
 --- 
 
-### 1. 도움 요청
+### - 도움 요청
 
 - **ide 랩실 > labs > 도움요청**
   > 강의중 도움이 필요한 교육생이 도움요청을 하게 되면 헬프미 뱃지가 표시되고, <br>
@@ -702,7 +702,7 @@ sidebar: 'started'
 
 ***
 
-### 2. 교육생 지원
+### - 교육생 지원
 
 - 교육생의 이미지를 클릭하면, 해당 교육생의 정보가 표시됩니다.
 <img width="1090" alt="수강생" src="https://user-images.githubusercontent.com/65217813/100171272-15643800-2f0a-11eb-8b55-cb60d61be2a6.png"><br>
@@ -716,7 +716,7 @@ sidebar: 'started'
    - <b>상금 지급</b> > 선택한 교육생에게만 상금을 지급/차감할 수 있습니다.<br>
               <img width="332" alt="개인별상금지급" src="https://user-images.githubusercontent.com/65217813/100171210-11d0b100-2f0a-11eb-846d-b391a747a3e3.png">
 
-### 3. 결과 제출
+### - 결과 제출
 
 - <b>랩실에서 결과제출을 하게되면, 위 사진의 [5번 항목](https://github.com/msa-ez/labs-cna/wiki/%EA%B0%95%EC%9D%98-%EC%A7%84%ED%96%89%ED%95%98%EA%B8%B0#2-%EA%B5%90%EC%9C%A1%EC%83%9D-%EC%A7%80%EC%9B%90)과 같이 랩실의 결과(터미널)가 보여집니다.</b>
 <img width="535" alt="스크린샷 2020-11-26 오후 4 35 33" src="https://user-images.githubusercontent.com/65217813/100321230-b1bf3500-3005-11eb-870c-adcec60d925e.png">
@@ -726,7 +726,7 @@ sidebar: 'started'
 
 ***
 
-### 4. 트로피 수여
+### - 트로피 수여
 
 - <b>클래스룸 > 이론/자료, 설문, [교육생 지원(4번항목)](https://github.com/msa-ez/labs-cna/wiki/%EA%B0%95%EC%9D%98-%EC%A7%84%ED%96%89%ED%95%98%EA%B8%B0#2-%EA%B5%90%EC%9C%A1%EC%83%9D-%EC%A7%80%EC%9B%90)</b>에서 상금이 지급 가능하며, 상금에 기준해 트로피가 수여됩니다. <br>
 <img width="195" alt="트로피" src="https://user-images.githubusercontent.com/65217813/100171292-17c69200-2f0a-11eb-8110-c4c095a68d35.png">
@@ -734,7 +734,7 @@ sidebar: 'started'
 ***
 
 
-### 5. 랩 종류별 추가 기능
+### - 랩 종류별 추가 기능
 
 <h3>EventStorming 랩실 입장시 보여지는 화면</h3>
 
@@ -771,7 +771,7 @@ sidebar: 'started'
 
 ***
 
-### 1. 지시사항 폭 조절
+### - 지시사항 폭 조절
 
 - 좌측 상단의 버튼을 클릭하면 판넬의 크기를 조절해서 사용할 수 있습니다.(크게, 작게 또는 가리기)<br>
       <img width="737" alt="크기조절" src="https://user-images.githubusercontent.com/65217813/100171756-3e84c880-2f0a-11eb-8287-9d734835809f.png">
@@ -780,9 +780,9 @@ sidebar: 'started'
 
 
 
-### 2. 터미널 이름 변경
+### - 터미널 이름 변경
 
-- IDE 상단메뉴 > Labs > 새터미널 클릭하여 새로운 터미널을 열때 이름을 입력하여 생성 할 수 있습니다.<br>
+- IDE 상단메뉴 > Labs > 새터미널 클릭하여 새로운 터미널을 열때 이름을 입력하여 생성할 수 있습니다.<br>
       <img width="511" alt="새터미널" src="https://user-images.githubusercontent.com/65217813/100171754-3dec3200-2f0a-11eb-990e-4a90a53a0d09.png">
 - 이름 입력<br>
       <img width="472" alt="KakaoTalk_Photo_2020-11-26-11-14-38-4" src="https://user-images.githubusercontent.com/65217813/100307719-e91fe880-2fe9-11eb-91eb-a80c90bb3a6d.png">
@@ -793,7 +793,7 @@ sidebar: 'started'
 
 
 
-### 3. 포트 열기
+### - 포트 열기
 
 - IDE 상단메뉴 > Labs > 포트열기 > 포트넘버를 선택하면 지정된 포트로 열기가 가능합니다.<br>
       <img width="421" alt="KakaoTalk_Photo_2020-11-26-11-14-38-3" src="https://user-images.githubusercontent.com/65217813/100307717-e7eebb80-2fe9-11eb-91a8-17dd9ea5b240.png">
@@ -803,7 +803,7 @@ sidebar: 'started'
 ***
 
 
-### 4. 포트 확인
+### - 포트 확인
 
 - IDE 상단메뉴 > Labs > 포트확인을 클릭하여, 현재 사용중인 포트를 확인할 수 있습니다.
 > 포트확인을 하기 위해선, 새 터미널을 열고 진행해야합니다.<br>
@@ -811,9 +811,9 @@ sidebar: 'started'
 
  - 포트 확인 클릭 시
 
-> netstat -anlp | grep :808 명령어를 실행시킵니다 .<br> 
+> netstat -anlp | grep :808 명령어를 실행시킵니다.<br> 
 > netstat 명령어로 실행중인 포트를 조회합니다.<br> 
-> grep :808 명령어로 808 로 시작하는 포트를 조회합니다. <br> 
+> grep :808 명령어로 808 로 시작하는 포트를 조회합니다.<br> 
 > LISTEN 으로 되어있는 포트가 열려있는 포트입니다.<br> 
      
 <img width="932" alt="KakaoTalk_Photo_2020-11-26-11-14-38-1" src="https://user-images.githubusercontent.com/65217813/100307705-e3c29e00-2fe9-11eb-9588-5e8e30069f30.png">
@@ -881,10 +881,10 @@ HelloWorld.java 내용을 위와 같이 작성합니다. 기본 파일 프로젝
 
 labs/1 에 test.sh 파일을 만든 후 컴파일을 시키기 위해 test.sh 파일에 아래와 같이 작성합니다.
 ```
-echo "####### test: Hello, world!"
+echo "####### - t: Hello, world!"
 javac HelloWorld.java
 java HelloWorld
-echo "####### finish"
+echo "####### - ish"
 
 ```
 

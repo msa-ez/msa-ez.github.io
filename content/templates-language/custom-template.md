@@ -11,9 +11,7 @@ sidebar: 'started'
 커스텀 템플릿은 기본 제공하는 템플릿 외에 원하는 템플릿을 추가하여 EventStorming결과를 원하는 템플릿에 맞추어 코드가
 생성될 수 있도록 한다.
 
-## 템플릿 추가
-
-### 템플릿 설명
+## 템플릿 설명
 
 EventStorming 된 결과를 원하는 Template으로 이용하기 위해서는, 커스텀 템플릿을 작성 하여야 한다.
 Template파일은 크게 생성관련 메타데이터, 소스코드부분 두가지로 나뉘어져 있으며, 메타데이터 부분과 소스코드 부분은
@@ -22,7 +20,7 @@ Template파일은 크게 생성관련 메타데이터, 소스코드부분 두가
 템플릿 생성은 기본적으로 {{ Mustache }} 엔진을 사용하며, Mustache는 {{ }} 안의 값을 Key 값으로 해당
 Value값을 가지고 오는 엔진이다.
 
-### 템플릿 생성
+## 템플릿 생성
 
 목적: 예제로 HelloWorld.py파일을 생성하여 EventStoming 한 결과들을 print함수를 이용하여 각각 작성된
 이름을 표시하여 준다.
@@ -106,9 +104,9 @@ print("policy: {{name}}");
     HelloWorld.py안에 각각의 BoundedContext, Aggreagte, Event, Command,
     Policy들의 이름이 출력 되는 것을 확인 할 수 있다.
 
-### 템플릿 작성 변수
+## 템플릿 작성 변수
 
-#### 공통 변수 (BoundedContext 제외)
+### - 공통 변수 (BoundedContext 제외)
 
 | 변수명                 | 변수 역할                                               |
 | ------------------- | --------------------------------------------------- |
@@ -119,7 +117,7 @@ print("policy: {{name}}");
 | options.package     | 패키지 명 (ProjectName)                                 |
 | options.packagePath | 패키지 경로 ( java의 경우 src/main/java/{{ projectName }} ) |
 
-#### BoundedContext 변수
+### - BoundedContext 변수
 
 <table>
 <thead>
@@ -145,7 +143,7 @@ print("policy: {{name}}");
 </tbody>
 </table>
 
-#### Aggregate 변수
+### - Aggregate 변수
 
 <table>
 <thead>
@@ -181,7 +179,7 @@ print("policy: {{name}}");
 </tbody>
 </table>
 
-#### Event 변수
+### - Event 변수
 
 | 변수명              | 변수 역할                  |
 | ---------------- | ---------------------- |
@@ -190,14 +188,14 @@ print("policy: {{name}}");
 | eventToPolicy    | Policy에 Event를 전달할 방식  |
 | trigger          | Event 전달방식에 관한 Trigger |
 
-#### Command 변수
+### - Command 변수
 
 | 변수명         | 변수 역할                 |
 | ----------- | --------------------- |
 | aggregate   | 자신이 속해있는 Aggregate 정보 |
 | restfulType | RestAPI 중 어떠한 방식인지.   |
 
-#### Policy 변수
+### - Policy 변수
 
 | 변수명               | 변수 역할                  |
 | ----------------- | ---------------------- |
@@ -205,7 +203,7 @@ print("policy: {{name}}");
 | eventToPolicy     | Policy가 Event를 전달받는 방식 |
 | relationEventInfo | 연결된 Event에 대한 정보       |
 
-#### View 변수
+### - View 변수
 
 | 변수명               | 변수 역할                  |
 | ----------------- | ---------------------- |
@@ -214,7 +212,7 @@ print("policy: {{name}}");
 | viewFieldDescriptors | 데이터 구조에 따른 테이블 정보|
 | aggregateEvents   | 자신이 속해있는 Aggregate의 Events 정보 |
 
-#### fieldDescriptors
+### - fieldDescriptors
 | 변수명               | 변수 역할                  |
 | ----------------- | ---------------------- |
 | name         |  변수 명 |
@@ -222,8 +220,8 @@ print("policy: {{name}}");
 | isKey | 테이블에 대한 Key 값 (Defalut: false) |
 
 
-#### viewFieldDescriptors
-##### CQRS
+### - viewFieldDescriptors
+**CQRS**
 | 변수명               | 변수 역할                  |
 | ----------------- | ---------------------- |
 | isKey         | Key 값 (default: false)  |
@@ -234,7 +232,7 @@ print("policy: {{name}}");
 | viewColumnName   | 자신이 속해있는 Aggregate의 정보에서 변수 매핑 |
 | sourceEventColumn   | 자신이 속해있는 Aggregate의 Events 정보 |
 
-##### UI Mashup
+**UI Mashup**
 | 변수명               | 변수 역할                  |
 | ----------------- | ---------------------- |
 | isKey         | Key 값 (default: false)  |

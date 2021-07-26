@@ -25,14 +25,14 @@ sidebar: 'started'
 4.  Bounded Context 를 설정하고 서브 도메인 간의 컨텍스트 매핑을 통해 BC간의 정보 참조의 릴레이션을 정의한다.
 
 
-### 스티커 유형
+## 스티커 유형
 
 이벤트스토밍에 필요한 스티커 색상별 내포하는 의미는 아래와 같다.
 
 > ![](../../src/img/image13.png)
 > <p align="center">그림 1 이벤트스토밍에 사용되는 스티커 유형 및 설명</p>
 
-#### Event (Orange Sticker)
+### - Event (Orange Sticker)
 
 가장 먼저 우리 서비스에서 발생하는 비즈니스 이벤트를 도출한다. 용어의 네임스페이스를 구지 나누려 하지 말고 가급적 현업이
 사용하는 용어를 그대로 사용(Ubiquitous Language)하여 오렌지색 스티커에 이벤트를 기술하여 이를
@@ -43,7 +43,7 @@ sidebar: 'started'
 > ![](../../src/img/image14.png)
 > <p align="center">그림 2 Event 예시</p>
 
-#### Policy (Lilac Sticker)
+### - Policy (Lilac Sticker)
 
 이벤트스토밍의 두번째 수행 대상은 폴리시(Policy) 도출이다.
 
@@ -54,7 +54,7 @@ sidebar: 'started'
 > ![](../../src/img/image15.png)
 > <p align="center">그림 3 Policy 예시</p>
 
-#### Command (Blue Sticker)
+### - Command (Blue Sticker)
 
 세번째로 Event를 발생시키는 행위인 커맨드를 도출하는데, 도메인 내의 어떠한 상태 변화를 일으키는 서비스를 말한다. 웹 페이지
 내에서 버튼을 클릭하는 User Decision이 여기에 해당된다. 도출된 커맨드는 이벤트 스티커 앞쪽에 붙여, 스티커를 통한
@@ -63,7 +63,7 @@ sidebar: 'started'
 > ![](../../src/img/image16.png)
 > <p align="center">그림 4 Command 예시</p>
 
-#### Actor (Yellow Sticker)
+### - Actor (Yellow Sticker)
 
 Actor는 커맨드를 발생시키는 주체(사람, 시스템, 등)를 말한다. 액터는 담당자 또는 시스템이 될 수 있으며, 직관적으로
 파악될 수 있는 액터의 경우, 표시하지 않아도 무방하다. 도출된 액터는 유저 스토리에 가까운 나레이션이 가능하도록 해당
@@ -72,7 +72,7 @@ Actor는 커맨드를 발생시키는 주체(사람, 시스템, 등)를 말한�
 > ![](../../src/img/image17.png)
 > <p align="center">그림 5 Actor 예시</p>
 
-#### Aggregate (Yellow Sticker)
+### - Aggregate (Yellow Sticker)
 
  다섯번째로, 어그리게잇을 도출한다. 어그리게잇은 ‘결합물’을 의미하는데 어떠한 도메인 객체를 중심으로 하나의 ACID한
  트랜잭션에 묶여 변화되어야 할 객체의 묶음을 도출하고, 그것들을 커맨드, 이벤트와 함께 묶는다.
@@ -80,7 +80,7 @@ Actor는 커맨드를 발생시키는 주체(사람, 시스템, 등)를 말한�
 > ![](../../src/img/image18.png)
 > <p align="center">그림 6 Aggregate 예시</p>
 
-### Bounded Context 도출
+### - Bounded Context 도출
 
 Bounded Context는 동일한 문맥으로 효율적으로 업무 용어(도메인 클래스)를 사용할 수 있는 객체 범위를 뜻한다. 하나의
 BC는 하나 이상의 어그리게잇을 원소로 구성될 수 있다. 이 BC를 마이크로서비스 구성 단위로 정하게 되면 이를 담당하는 팀 내의
@@ -89,7 +89,7 @@ BC는 하나 이상의 어그리게잇을 원소로 구성될 수 있다. 이 BC
 > ![](../../src/img/image19.png)
 > <p align="center">그림 7 Bounded Context 예시</p>
 
-### Context Mapping 
+### - Context Mapping 
 
 바운디드 컨텍스트까지 도출된 이후에 BC간 정보 참조 릴레이션 설정 (혹은, 이벤트가 발생한 이후 동반된 행위의 호출 관계를
 선으로 표시)하는 작업을 ‘컨텍스트 매핑’이라고 한다. 컨텍스트간 매핑 정보만 보더라도 전체 도메인 서비스의 참조
@@ -102,7 +102,7 @@ BC는 하나 이상의 어그리게잇을 원소로 구성될 수 있다. 이 BC
 발행하는 주체인 주문관리에서 해당 폴리시를 시작하는 ‘오케스트레이션’ 방식과 이벤트를 수신하는 주체인 마케팅관리에서 폴리시를
 시작하는 ‘코레오그래피’ 방식으로 구분한다.
 
-#### Orchestration
+## Orchestration
 
 오케스트레이션은 이벤트를 발행하는 주체인 주문관리에서 모든 폴리시를 호출하는 방식이다.
 
@@ -119,7 +119,7 @@ Response)으로 호출하는 방식으로 구현된다.
 또한, 호출당하는 폴리시를 가진 시스템이 얘기치않은 장애(System Fault)에 빠진 경우, 이를 호출하는 서비스에까지 장애가
 전파되는 악순환의 우려가 있다.
 
-#### Choreography
+## Choreography
 
 코레오그래피는 폴리시를 구현하는 주체인 배송, 또는 상품관리에서 자율적으로 폴리시를 실행하는 방식이다.
 
@@ -133,9 +133,9 @@ Response)으로 호출하는 방식으로 구현된다.
 > ![](../../src/img/image22.png)
 > <p align="center">그림 10 Policy Topology - Choreography</p>
 
-### 마이크로서비스 구현
+## 마이크로서비스 구현
 
-#### Hexagonal Architecture
+<h4>Hexagonal Architecture</h4>
 
 아래와 같은 육각형 모형의 아키텍처 도형을 헥사고날 아키텍쳐라고 한다. 이는 가운데 영역인 비지니스 로직 (도메인 영역) 을
 손상시키지 않고 프로그램을 구성하도록 고안된 아키텍처이다. 비지니스 로직을 손상시키지 않고 프로그램을 구현하기 위해서는
@@ -149,7 +149,7 @@ Response)으로 호출하는 방식으로 구현된다.
 
 > ![스크린샷%202019-11-27%20오후%202](../../src/img/image23.png)
 
-#### MSA Chassis
+<h4>MSA Chassis</h4>
 
 MSA Chassis 라는 말은 마이크로 서비스를 구축할때 필요한 주변 요소들을 일컫는다. 마치 ‘창틀처럼 이것저것 끼워
 넣는다’로 해석할 수도 있다. 위에 설명한 헥사고날 아키텍처로 설계를 하여 비지니스 로직에 영향이 없는 개발을
@@ -163,9 +163,9 @@ Java 계열에서 가장 선두주자인 Spring 프레임워크에서 마이크�
 
 > ![스크린샷%202019-11-27%20오후%202](../../src/img/image24.png)
 
-#### 이벤트스토밍 스티키 노트별 구현기술 적용
+### - 이벤트스토밍 스티키 노트별 구현기술 적용
 
-##### Aggregate - Yellow
+### - Aggregate - Yellow
 
  * 이벤트 스토밍의 첫번째 구현은 도메인 모델을 정의하는 단계이다.  
     노란색 스티커로 붙여진 Aggregate 의 변화에 의하여 이벤트가 생성되고, 커맨드 요청을 받아서 Aggregate 가
@@ -190,7 +190,7 @@ Java 계열에서 가장 선두주자인 Spring 프레임워크에서 마이크�
  
 > ![스크린샷%202019-11-27%20오후%203](../../src/img/image25.png)
 
-##### Command – Sky Blue
+### - Command – Sky Blue
 
 *  Aggregate 를 구성하였으면, 해당 Aggregate 를 변화시키는 커맨드를 작성한다.
 
@@ -213,7 +213,7 @@ Java 계열에서 가장 선두주자인 Spring 프레임워크에서 마이크�
  
 > ![스크린샷%202019-11-27%20오후%204](../../src/img/image26.png)
 
-##### Event - Orange
+### - Event - Orange
 
  * 주황색 스티커인 이벤트는 pojo 객체인 Java Class 로 생성을 한다.
 
@@ -235,7 +235,7 @@ Java 계열에서 가장 선두주자인 Spring 프레임워크에서 마이크�
  
 > ![스크린샷%202019-11-27%20오후%205](../../src/img/image28.png)
 
-##### Policy - Lilac
+### - Policy - Lilac
 
 * 보라색 스티커는 이벤트에 반응하여 작동하는 Policy 이다. 이벤트에 반응하기 때문에 이벤트를 수신하는 리스너가
     필요하다. Spring-cloud-Stream 을 사용시 아래처럼 @StreamListener 어노테이션으로
@@ -247,7 +247,7 @@ Java 계열에서 가장 선두주자인 Spring 프레임워크에서 마이크�
  
 > ![스크린샷%202019-11-27%20오후%205](../../src/img/image29.png)
 
-##### Bounded Context
+### - Bounded Context
 
 * 이벤트 스토밍을 하고 난 후에 여러 Aggregate 들이 관련된 Context 끼리 묶여서 Bounded Context
     가 형성이 된다. 이것은 마이크로 서비스 단위로 쪼갤 수 있는 후보가 된다.  

@@ -32,7 +32,7 @@ Spring-boot와 Go의 비교는 아래와 같다.
 
 - 현 섹션에는 eventstorming을 통해 나온 model들을 기반으로 model driven 하게 generate 되는 code들에 대한 설명이다. 
 
-### Entity.go
+### - Entity.go
 
 - Aggregate code 만들기 
 
@@ -192,7 +192,7 @@ event에서의 trigger를 확인한 후 Go에 맞는 trigger로 변환해준다.
 
 ---
 
-### Event.go
+### - Event.go
 
 - Event code 만들기 
 
@@ -253,7 +253,7 @@ func New{{namePascalCase}}() *{{namePascalCase}}{
 - typeCheck라는 handleBar function은 Entity.go 와 같이 go에 맞는 변수형으로 만들어준다. 
 - Spring boot code에선 Event 객체는 abstractEvent 객체를 상속 받아 사용되는데 Go에선 상속의 개념이 없어 abstractEvent의 주요 기능들은 모두 Util.go 안에 여러 함수들로 추가 구현 되어 있다. 
 
-### PolicyHandler.go
+### - PolicyHandler.go
 
 - Pub/Sub으로 연결된 policyHandler code를 만들기
 
@@ -315,7 +315,7 @@ func whenever{{eventValue.namePascalCase}}_{{../namePascalCase}}(data map[string
 
 ---
 
-### PolicyEvent.go
+### - PolicyEvent.go
 
 - PolicyHandler와 연결된 외부 Event 구조체에 대한 code 만들기 
 
@@ -371,7 +371,7 @@ func New{{eventValue.namePascalCase}}() *{{eventValue.namePascalCase}}{
 
 ---
 
-### ExternalService.go 
+### - ExternalService.go 
 
 - 외부 Service의 command와 res/req 방식으로 통신하는 logic이 구현되어 있는 ExternalService code 만들기 
 
@@ -494,7 +494,7 @@ Delete method 일때 return true
 
 ---
 
-### ExternalEntity.go
+### - ExternalEntity.go
 
 - res/req 통신으로 연결된 외부 service의 Aggregate에 해당하는 Entity code 만들기
 
@@ -545,7 +545,7 @@ type {{namePascalCase}} struct {
 
 ---
 
-### Repository.go
+### - Repository.go
 
 - REST API의 기본적인 CRUD 만들기 
 
@@ -619,7 +619,7 @@ func (self *{{namePascalCase}}) Remove(c echo.Context) error{
 
 --- 
 
-### Route.go
+### - Route.go
 
 - Controller에 해당하는 Route code 만들기 
 
@@ -657,7 +657,7 @@ func RouteInit() *echo.Echo {
 
 ---
 
-### main.go
+### - main.go
 
 - Application을 실행하는 main code 만들기 
 
@@ -717,7 +717,7 @@ pub/sub 통신 방법이 존재하면 즉, 외부 service에 해당 event에 대
 - Go에서는 spring boot과 다르게 지원되지 않는 api들이 많다.
 - 이를 위해 필수적인 요소들만 model에 맞는 함수들을 generate 시킨다. 
 
-### DB.go
+### - DB.go
 
 - Sqlite DB 만들기 (spring boot tutorial에선 h2 DB를 쓴다.)
 - DB와 연관된 모든 logic은 이 코드에서 수행 된다. 
@@ -808,7 +808,7 @@ func (self *{{namePascalCase}}DB) Update(id int, params map[string]string) error
 
 --- 
 
-### KafkaProcessor.go 
+### - KafkaProcessor.go 
 
 - Kafka와 관련된 logic들을 위한 code 만들기 
 - Kafka producer와 consumer에 대한 설정은 현 파일에서 설정해준다. 
@@ -906,7 +906,7 @@ func Streamhandler(message string){
 
 ___ 
 
-### Util.go 
+### - Util.go 
 
 - Spring boot엔 있지만 Go엔 없는 API들 중 필수적인 기능들을 구현해 놓은 code이다. 이는 model driven하게 code가 generate 되진 않지만 각 boundedContext당 하나의 Util.go 파일이 생성된다. 
 

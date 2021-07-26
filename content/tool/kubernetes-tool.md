@@ -268,7 +268,7 @@ Kubernetes CLI 명령어를 출력하는 Shell 영역으로 캔버스 상에 객
    - Helm Chart
 <br/>
 
-### Cluster Information
+### - Cluster Information
 
 <h3>Kubernetes API 서버 및 Token 정보 획득하기</h3>
 <hr/>
@@ -296,7 +296,7 @@ Kubernetes CLI 명령어를 출력하는 Shell 영역으로 캔버스 상에 객
 
 <br/>
 
-### Cluster Management, Deployment, Service Object
+### - Cluster Management, Deployment, Service Object
 
 <h3>Test Case #1. 주문/상품/배송의 각 마이크로서비스를 배포하고 서비스를 생성합니다.</h3>
 <hr/>
@@ -433,7 +433,7 @@ Kubernetes CLI 명령어를 출력하는 Shell 영역으로 캔버스 상에 객
 <br/>
 
 
-### Ingress Service Routing
+### - Ingress Service Routing
 
 **Test Case #2. API Gateway를 통해, 12st Mall의 서비스가 라우팅되도록 설정합니다.**
 <hr/><br/>
@@ -500,7 +500,7 @@ Kubernetes CLI 명령어를 출력하는 Shell 영역으로 캔버스 상에 객
 <br/><br/>
 
 
-### AutoScaler Object
+### - AutoScaler Object
 
 **Test Case #3. 주요 서비스(주문/상품)에 대해 사용자 요청이 쇄도할 것을 고려, 자동으로 서비스가 확장되도록 설정합니다.**
 <hr/><br/>
@@ -567,7 +567,7 @@ Kubernetes CLI 명령어를 출력하는 Shell 영역으로 캔버스 상에 객
 <br/><br/>
 
 
-### Volume Object
+### - Volume Object
 
 <h4>Test Case #4. 상품 서비스에서는 상품 이미지를 저장하기 위해 파일 스토리지를 추가로 활용합니다.</h4>
 <hr/><br/>
@@ -647,7 +647,7 @@ Kubernetes CLI 명령어를 출력하는 Shell 영역으로 캔버스 상에 객
 <br/><br/>
 
 
-### ConfigMap Object
+### - ConfigMap Object
 
 <h4>Test Case #5. 배송 서비스에서는 어플리케이션에서 관리하던 물류회사의 API 정보를 클러스터 환경변수 객체에 저장하고 관리합니다.</h4>
 <hr/><br/>
@@ -706,7 +706,7 @@ Kubernetes CLI 명령어를 출력하는 Shell 영역으로 캔버스 상에 객
 <br/><br/>
 
 
-### Istio Gateway, VirtualService
+### - Istio Gateway, VirtualService
 
 <h4>Test Case #6. 보다 효율적인 서비스 관리를 위해, 서비스 메시 도구인 이스티오(Istio)를 도입하고 Istio가 제공하는 Gateway를 통한 서비스로 전환합니다.</h4>
 <hr/><br/>
@@ -820,7 +820,7 @@ Kubernetes CLI 명령어를 출력하는 Shell 영역으로 캔버스 상에 객
 
 
 
-### Istio DestinationRule
+### - Istio DestinationRule
 
 <h4>Test Case #7. 상품 서비스에 장애 발생시, 장애전파를 사전 차단하기 위해, Istio의 Circuit Breaker를 적용하여 서비스의 Resilency를 높이는 전략을 적용합니다.</h4>
 <hr/><br/>
@@ -881,7 +881,7 @@ Kubernetes CLI 명령어를 출력하는 Shell 영역으로 캔버스 상에 객
 
 
 
-### Helm Chart
+### - Helm Chart
 
 <h4>Test Case #8. 완료된 디플로이 다이어그래밍을 Helm 차트로 생성하고, 이를 통해 GCP에 배포합니다.</h4>
 <hr/><br/>

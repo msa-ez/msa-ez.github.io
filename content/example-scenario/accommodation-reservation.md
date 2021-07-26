@@ -129,26 +129,25 @@ AirBnB 커버하기
 * MSAEz 로 모델링한 이벤트스토밍 결과:  http://www.msaez.io/#/storming/QtpQtDiH1Je3wad2QxZUJVvnLzO2/share/6f36e16efdf8c872da3855fedf7f3ea9
 
 
-### 이벤트 도출
+**이벤트 도출**
 ![image](https://user-images.githubusercontent.com/15603058/119298548-337fda80-bc98-11eb-9f96-7d583d156fb9.png)
 
 
-### 부적격 이벤트 탈락
+**부적격 이벤트 탈락**
 ![image](https://user-images.githubusercontent.com/15603058/119298594-4f837c00-bc98-11eb-9f67-ec2e882e1f33.png)
 
     - 과정중 도출된 잘못된 도메인 이벤트들을 걸러내는 작업을 수행함
         - 등록시>RoomSearched, 예약시>RoomSelected :  UI 의 이벤트이지, 업무적인 의미의 이벤트가 아니라서 제외
 
-### 액터, 커맨드 부착하여 읽기 좋게
+**액터, 커맨드 부착하여 읽기 좋게**
 ![image](https://user-images.githubusercontent.com/15603058/119298993-113a8c80-bc99-11eb-9bae-4b911317d810.png)
 
-### 어그리게잇으로 묶기
+**어그리게잇으로 묶기**
 ![image](https://user-images.githubusercontent.com/15603058/119299589-2663eb00-bc9a-11eb-83b9-de7f3efe7548.png)
 
     - Room, Reservation, Payment, Review 은 그와 연결된 command 와 event 들에 의하여 트랜잭션이 유지되어야 하는 단위로 그들 끼리 묶어줌
 
-### 바운디드 컨텍스트로 묶기
-
+**바운디드 컨텍스트로 묶기**
 ![image](https://user-images.githubusercontent.com/15603058/119300858-6c21b300-bc9c-11eb-9b3f-c85aff51658f.png)
 
     - 도메인 서열 분리 
@@ -156,21 +155,21 @@ AirBnB 커버하기
         - Supporting Domain:   message, viewpage : 경쟁력을 내기위한 서비스이며, SLA 수준은 연간 60% 이상 uptime 목표, 배포주기는 각 팀의 자율이나 표준 스프린트 주기가 1주일 이므로 1주일 1회 이상을 기준으로 함.
         - General Domain:   payment : 결제서비스로 3rd Party 외부 서비스를 사용하는 것이 경쟁력이 높음 
 
-### 폴리시 부착 (괄호는 수행주체, 폴리시 부착을 둘째단계에서 해놔도 상관 없음. 전체 연계가 초기에 드러남)
+**폴리시 부착 (괄호는 수행주체, 폴리시 부착을 둘째단계에서 해놔도 상관 없음. 전체 연계가 초기에 드러남)**
 
 ![image](https://user-images.githubusercontent.com/15603058/119303664-1b608900-bca1-11eb-8667-7545f32c9fb9.png)
 
-### 폴리시의 이동과 컨텍스트 매핑 (점선은 Pub/Sub, 실선은 Req/Resp)
+### - 폴리시의 이동과 컨텍스트 매핑 (점선은 Pub/Sub, 실선은 Req/Resp)
 
 ![image](https://user-images.githubusercontent.com/15603058/119304604-73e45600-bca2-11eb-8f1d-607006919fab.png)
 
-### 완성된 1차 모형
+### - 완성된 1차 모형
 
 ![image](https://user-images.githubusercontent.com/15603058/119305002-0edd3000-bca3-11eb-9cc0-1ba8b17f2432.png)
 
     - View Model 추가
 
-### 1차 완성본에 대한 기능적/비기능적 요구사항을 커버하는지 검증
+### - 1차 완성본에 대한 기능적/비기능적 요구사항을 커버하는지 검증
 
 ![image](https://user-images.githubusercontent.com/15603058/119306321-f110ca80-bca4-11eb-804c-a965220bad61.png)
 
@@ -183,13 +182,13 @@ AirBnB 커버하기
     - 숙소에 후기(review)를 남길 수 있다.(ok)
     - 전체적인 숙소에 대한 정보 및 예약 상태 등을 한 화면에서 확인 할 수 있다.(View-green Sticker 추가로 ok)
     
-### 모델 수정
+**모델 수정**
 
 ![image](https://user-images.githubusercontent.com/15603058/119307481-b740c380-bca6-11eb-9ee6-fda446e299bc.png)
     
     - 수정된 모델은 모든 요구사항을 커버함.
 
-### 비기능 요구사항에 대한 검증
+**비기능 요구사항에 대한 검증**
 
 ![image](https://user-images.githubusercontent.com/15603058/119311800-79df3480-bcac-11eb-9c1b-0382d981f92f.png)
 
@@ -209,7 +208,7 @@ AirBnB 커버하기
     - 서브 도메인과 바운디드 컨텍스트의 분리:  각 팀의 KPI 별로 아래와 같이 관심 구현 스토리를 나눠가짐
 
 
-# 구현:
+## 구현
 
 분석/설계 단계에서 도출된 헥사고날 아키텍처에 따라, 각 BC별로 대변되는 마이크로 서비스들을 스프링부트로 구현하였다. 구현한 각 서비스를 로컬에서 실행하는 방법은 아래와 같다 (각자의 포트넘버는 8081 ~ 808n 이다)
 
@@ -217,7 +216,7 @@ AirBnB 커버하기
    mvn spring-boot:run
 ```
 
-## CQRS
+### - CQRS
 
 숙소(Room) 의 사용가능 여부, 리뷰 및 예약/결재 등 총 Status 에 대하여 고객(Customer)이 조회 할 수 있도록 CQRS 로 구현하였다.
 - room, review, reservation, payment 개별 Aggregate Status 를 통합 조회하여 성능 Issue 를 사전에 예방할 수 있다.
@@ -232,7 +231,7 @@ AirBnB 커버하기
   ![image](https://user-images.githubusercontent.com/31723044/119357063-1b34ad80-bce2-11eb-94fb-a587261ab56f.png)
 
 
-## API 게이트웨이
+### - API 게이트웨이
       1. gateway 스프링부트 App을 추가 후 application.yaml내에 각 마이크로 서비스의 routes 를 추가하고 gateway 서버의 포트를 8080 으로 설정함
        
           - application.yaml 예시
@@ -353,7 +352,7 @@ AirBnB 커버하기
             ```                 
 ![image](https://user-images.githubusercontent.com/80744273/119318358-2a046b80-bcb4-11eb-9d46-ef2d498c2cff.png)
 
-# Correlation
+## Correlation
 
 Airbnb 프로젝트에서는 PolicyHandler에서 처리 시 어떤 건에 대한 처리인지를 구별하기 위한 Correlation-key 구현을 
 이벤트 클래스 안의 변수로 전달받아 서비스간 연관된 처리를 정확하게 구현하고 있습니다. 
@@ -382,7 +381,7 @@ Airbnb 프로젝트에서는 PolicyHandler에서 처리 시 어떤 건에 대한
 ![image](https://user-images.githubusercontent.com/31723044/119320806-ee1ed580-bcb6-11eb-8ccf-8c81385cc8ba.png)
 
 
-## DDD 의 적용
+### - DDD 의 적용
 
 - 각 서비스내에 도출된 핵심 Aggregate Root 객체를 Entity 로 선언하였다. (예시는 room 마이크로 서비스). 이때 가능한 현업에서 사용하는 언어 (유비쿼터스 랭귀지)를 그대로 사용하려고 노력했다. 현실에서 발생가는한 이벤트에 의하여 마이크로 서비스들이 상호 작용하기 좋은 모델링으로 구현을 하였다.
 
@@ -467,7 +466,7 @@ http GET http://localhost:8088/reservations
 
 ```
 
-## 동기식 호출(Sync) 과 Fallback 처리
+### - 동기식 호출(Sync) 과 Fallback 처리
 
 분석 단계에서의 조건 중 하나로 예약 시 숙소(room) 간의 예약 가능 상태 확인 호출은 동기식 일관성을 유지하는 트랜잭션으로 처리하기로 하였다. 호출 프로토콜은 이미 앞서 Rest Repository 에 의해 노출되어있는 REST 서비스를 FeignClient 를 이용하여 호출하도록 한다. 또한 예약(reservation) -> 결제(payment) 서비스도 동기식으로 처리하기로 하였다.
 
@@ -571,7 +570,7 @@ http POST http://localhost:8088/reservations roomId=1 status=reqReserve   #Succe
 
 
 
-## 비동기식 호출 / 시간적 디커플링 / 장애격리 / 최종 (Eventual) 일관성 테스트
+### - 비동기식 호출 / 시간적 디커플링 / 장애격리 / 최종 (Eventual) 일관성 테스트
 
 
 결제가 이루어진 후에 숙소 시스템의 상태가 업데이트 되고, 예약 시스템의 상태가 업데이트 되며, 예약 및 취소 메시지가 전송되는 시스템과의 통신 행위는 비동기식으로 처리한다.
@@ -651,10 +650,10 @@ http GET localhost:8088/reservations    #메시지 서비스와 상관없이 예
 
 ```
 
-# 운영
+## 운영
 
 
-## CI/CD 설정
+### - CI/CD 설정
 
 각 구현체들은 각자의 source repository 에 구성되었고, 사용한 CI/CD는 buildspec.yml을 이용한 AWS codebuild를 사용하였습니다.
 
@@ -699,7 +698,7 @@ codebuild 프로젝트 및 빌드 이력
 
 
 
-## 동기식 호출 / 서킷 브레이킹 / 장애격리
+### - 동기식 호출 / 서킷 브레이킹 / 장애격리
 
 * 서킷 브레이킹 프레임워크의 선택: istio 사용하여 구현함
 
@@ -866,7 +865,7 @@ Shortest transaction:           0.00
   virtualhost 설정과 동적 Scale out (replica의 자동적 추가,HPA) 을 통하여 시스템을 확장 해주는 후속처리가 필요.
 
 
-### 오토스케일 아웃
+**오토스케일 아웃**
 앞서 CB 는 시스템을 안정되게 운영할 수 있게 해줬지만 사용자의 요청을 100% 받아들여주지 못했기 때문에 이에 대한 보완책으로 자동화된 확장 기능을 적용하고자 한다. 
 
 - room deployment.yml 파일에 resources 설정을 추가한다
@@ -906,7 +905,7 @@ Longest transaction:            2.55
 Shortest transaction:           0.01
 ```
 
-## 무정지 재배포
+### - 무정지 재배포
 
 * 먼저 무정지 재배포가 100% 되는 것인지 확인하기 위해서 Autoscaler 이나 CB 설정을 제거함
 
@@ -992,7 +991,7 @@ Shortest transaction:           0.00
 배포기간 동안 Availability 가 변화없기 때문에 무정지 재배포가 성공한 것으로 확인됨.
 
 
-# Self-healing (Liveness Probe)
+## Self-healing (Liveness Probe)
 - room deployment.yml 파일 수정 
 ```
 콘테이너 실행 후 /tmp/healthy 파일을 만들고 
@@ -1010,7 +1009,7 @@ pod 정상 상태 일때 pod 진입하여 /tmp/healthy 파일 생성해주면 �
 ![get pod tmp healthy](https://user-images.githubusercontent.com/38099203/119318781-a9923a80-bcb4-11eb-9783-65051ec0d6e8.PNG)
 ![touch tmp healthy](https://user-images.githubusercontent.com/38099203/119319050-f118c680-bcb4-11eb-8bca-aa135c1e067e.PNG)
 
-# Config Map/ Persistence Volume
+## Config Map/ Persistence Volume
 - Persistence Volume
 
 1: EFS 생성
