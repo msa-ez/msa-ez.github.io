@@ -8,44 +8,24 @@ next: ''
 
 ![image](https://user-images.githubusercontent.com/15603058/119284989-fefe2580-bc7b-11eb-99ca-7a9e4183c16f.jpg)
 
-# 숙소예약(AirBnB)
+<h2>숙소예약(AirBnB)</h2>
 
 본 예제는 MSA/DDD/Event Storming/EDA 를 포괄하는 분석/설계/구현/운영 전단계를 커버하도록 구성한 예제입니다.
 이는 클라우드 네이티브 애플리케이션의 개발에 요구되는 체크포인트들을 통과하기 위한 예시 답안을 포함합니다.
 - 체크포인트 : https://workflowy.com/s/assessment-check-po/T5YrzcMewfo4J6LW
 
-
-# Table of contents
-
-- [예제 - 숙소예약](#---)
-  - [서비스 시나리오](#서비스-시나리오)
-  - [체크포인트](#체크포인트)
-  - [분석/설계](#분석설계)
-  - [구현:](#구현-)
-    - [DDD 의 적용](#ddd-의-적용)
-    - [폴리글랏 퍼시스턴스](#폴리글랏-퍼시스턴스)
-    - [폴리글랏 프로그래밍](#폴리글랏-프로그래밍)
-    - [동기식 호출 과 Fallback 처리](#동기식-호출-과-Fallback-처리)
-    - [비동기식 호출 과 Eventual Consistency](#비동기식-호출-과-Eventual-Consistency)
-  - [운영](#운영)
-    - [CI/CD 설정](#cicd설정)
-    - [동기식 호출 / 서킷 브레이킹 / 장애격리](#동기식-호출-서킷-브레이킹-장애격리)
-    - [오토스케일 아웃](#오토스케일-아웃)
-    - [무정지 재배포](#무정지-재배포)
-  - [신규 개발 조직의 추가](#신규-개발-조직의-추가)
-
-# 서비스 시나리오
+## 서비스 시나리오
 
 AirBnB 커버하기
 
-기능적 요구사항
-1. 호스트가 임대할 숙소를 등록/수정/삭제한다.
-2. 고객이 숙소를 선택하여 예약한다.
-3. 예약과 동시에 결제가 진행된다.
-4. 예약이 되면 예약 내역(Message)이 전달된다.
-5. 고객이 예약을 취소할 수 있다.
-6. 예약 사항이 취소될 경우 취소 내역(Message)이 전달된다.
-7. 숙소에 후기(review)를 남길 수 있다.
+기능적 요구사항<br>
+1. 호스트가 임대할 숙소를 등록/수정/삭제한다.<br>
+2. 고객이 숙소를 선택하여 예약한다.<br>
+3. 예약과 동시에 결제가 진행된다.<br>
+4. 예약이 되면 예약 내역(Message)이 전달된다.<br>
+5. 고객이 예약을 취소할 수 있다.<br>
+6. 예약 사항이 취소될 경우 취소 내역(Message)이 전달된다.<br>
+7. 숙소에 후기(review)를 남길 수 있다.<br>
 8. 전체적인 숙소에 대한 정보 및 예약 상태 등을 한 화면에서 확인 할 수 있다.(viewpage)
 
 비기능적 요구사항
@@ -59,7 +39,7 @@ AirBnB 커버하기
     1. 예약의 상태가 바뀔 때마다 메시지로 알림을 줄 수 있어야 한다  (Event driven)
 
 
-# 체크포인트
+## 체크포인트
 
 - 분석 설계
 
@@ -116,16 +96,19 @@ AirBnB 커버하기
     - Contract Test :  자동화된 경계 테스트를 통하여 구현 오류나 API 계약위반를 미리 차단 가능한가?
 
 
-# 분석/설계
+## 분석/설계
 
-## AS-IS 조직 (Horizontally-Aligned)
+<h3>AS-IS 조직 (Horizontally-Aligned)</h3>
+
   ![image](https://user-images.githubusercontent.com/77129832/119316165-96ca3680-bcb1-11eb-9a91-f2b627890bab.png)
 
-## TO-BE 조직 (Vertically-Aligned)  
+<h3>TO-BE 조직 (Vertically-Aligned)</h3>
+
   ![image](https://user-images.githubusercontent.com/77129832/119315258-a09f6a00-bcb0-11eb-9940-c2a82f2f7d09.png)
 
 
-## Event Storming 결과
+<h3>Event Storming 결과</h3>
+
 * MSAEz 로 모델링한 이벤트스토밍 결과:  http://www.msaez.io/#/storming/QtpQtDiH1Je3wad2QxZUJVvnLzO2/share/6f36e16efdf8c872da3855fedf7f3ea9
 
 
@@ -159,17 +142,17 @@ AirBnB 커버하기
 
 ![image](https://user-images.githubusercontent.com/15603058/119303664-1b608900-bca1-11eb-8667-7545f32c9fb9.png)
 
-### - 폴리시의 이동과 컨텍스트 매핑 (점선은 Pub/Sub, 실선은 Req/Resp)
+**폴리시의 이동과 컨텍스트 매핑 (점선은 Pub/Sub, 실선은 Req/Resp)**
 
 ![image](https://user-images.githubusercontent.com/15603058/119304604-73e45600-bca2-11eb-8f1d-607006919fab.png)
 
-### - 완성된 1차 모형
+**완성된 1차 모형**
 
 ![image](https://user-images.githubusercontent.com/15603058/119305002-0edd3000-bca3-11eb-9cc0-1ba8b17f2432.png)
 
     - View Model 추가
 
-### - 1차 완성본에 대한 기능적/비기능적 요구사항을 커버하는지 검증
+**1차 완성본에 대한 기능적/비기능적 요구사항을 커버하는지 검증**
 
 ![image](https://user-images.githubusercontent.com/15603058/119306321-f110ca80-bca4-11eb-804c-a965220bad61.png)
 
@@ -198,7 +181,7 @@ AirBnB 커버하기
 - 나머지 모든 inter-microservice 트랜잭션: 예약상태, 후기처리 등 모든 이벤트에 대해 데이터 일관성의 시점이 크리티컬하지 않은 모든 경우가 대부분이라 판단, Eventual Consistency 를 기본으로 채택함.
 
 
-## 헥사고날 아키텍처 다이어그램 도출
+**헥사고날 아키텍처 다이어그램 도출**
 
 ![image](https://user-images.githubusercontent.com/80744273/119319091-fc6bf200-bcb4-11eb-9dac-0995c84a82e0.png)
 
@@ -381,90 +364,6 @@ Airbnb 프로젝트에서는 PolicyHandler에서 처리 시 어떤 건에 대한
 ![image](https://user-images.githubusercontent.com/31723044/119320806-ee1ed580-bcb6-11eb-8ccf-8c81385cc8ba.png)
 
 
-### - DDD 의 적용
-
-- 각 서비스내에 도출된 핵심 Aggregate Root 객체를 Entity 로 선언하였다. (예시는 room 마이크로 서비스). 이때 가능한 현업에서 사용하는 언어 (유비쿼터스 랭귀지)를 그대로 사용하려고 노력했다. 현실에서 발생가는한 이벤트에 의하여 마이크로 서비스들이 상호 작용하기 좋은 모델링으로 구현을 하였다.
-
-```
-package airbnb;
-
-import javax.persistence.*;
-import org.springframework.beans.BeanUtils;
-
-@Entity
-@Table(name="Room_table")
-public class Room {
-
-    @Id
-    @GeneratedValue(strategy=GenerationType.IDENTITY)
-    private Long roomId;       // 방ID
-    private String status;     // 방 상태
-    private String desc;       // 방 상세 설명
-    private Long reviewCnt;    // 리뷰 건수
-    private String lastAction; // 최종 작업
-
-    public Long getRoomId() {
-        return roomId;
-    }
-
-    public void setRoomId(Long roomId) {
-        this.roomId = roomId;
-    }
-    public String getStatus() {
-        return status;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
-    }
-    public String getDesc() {
-        return desc;
-    }
-
-    public void setDesc(String desc) {
-        this.desc = desc;
-    }
-    public Long getReviewCnt() {
-        return reviewCnt;
-    }
-
-    public void setReviewCnt(Long reviewCnt) {
-        this.reviewCnt = reviewCnt;
-    }
-    public String getLastAction() {
-        return lastAction;
-    }
-
-    public void setLastAction(String lastAction) {
-        this.lastAction = lastAction;
-    }
-}
-
-```
-- Entity Pattern 과 Repository Pattern 을 적용하여 JPA 를 통하여 다양한 데이터소스 유형 (RDB or NoSQL) 에 대한 별도의 처리가 없도록 데이터 접근 어댑터를 자동 생성하기 위하여 Spring Data REST 의 RestRepository 를 적용하였다
-```
-package airbnb;
-
-import org.springframework.data.repository.PagingAndSortingRepository;
-import org.springframework.data.rest.core.annotation.RepositoryRestResource;
-
-@RepositoryRestResource(collectionResourceRel="rooms", path="rooms")
-public interface RoomRepository extends PagingAndSortingRepository<Room, Long>{
-
-}
-```
-- 적용 후 REST API 의 테스트
-```
-# room 서비스의 room 등록
-http POST http://localhost:8088/rooms desc="Beautiful House"  
-
-# reservation 서비스의 예약 요청
-http POST http://localhost:8088/reservations roomId=1 status=reqReserve
-
-# reservation 서비스의 예약 상태 확인
-http GET http://localhost:8088/reservations
-
-```
 
 ### - 동기식 호출(Sync) 과 Fallback 처리
 
@@ -651,7 +550,6 @@ http GET localhost:8088/reservations    #메시지 서비스와 상관없이 예
 ```
 
 ## 운영
-
 
 ### - CI/CD 설정
 

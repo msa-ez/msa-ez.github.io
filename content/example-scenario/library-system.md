@@ -9,7 +9,7 @@ next: ''
 도서관의 책 대여 및 예약, 관리 시스템입니다.
 - 체크포인트 : https://workflowy.com/s/assessment-check-po/T5YrzcMewfo4J6LW
 
-# 구현 Repository
+## 구현 Repository
 
 총 5개<br>
 1. https://github.com/Juyounglee95/bookRental<br>
@@ -19,16 +19,16 @@ next: ''
 5. https://github.com/Juyounglee95/view
 
 
-# 서비스 시나리오
+## 서비스 시나리오
 
-## 기능적 요구사항
+### - 기능적 요구사항
 1. 관리자는 도서를 등록한다.
 2. 사용자는 도서를 예약한다.
 3. 도서를 예약 시에는 포인트를 사용한다.
     3-1. 예약 취소 시에는 포인트가 반납된다.
 4. 사용자는 도서를 반납한다.
 
-## 비기능적 요구사항
+### - 비기능적 요구사항
 1. 트랜잭션
     1. 결제가 되지 않은 경우 대여할 수 없다.  Sync 호출 
 2. 장애격리
@@ -38,7 +38,7 @@ next: ''
     1. 사용자는 전체 도서 목록을 확인하여 전체 도서의 상태를 확인할 수 있어야한다. CQRS
 
 
-# 체크포인트
+## 체크포인트
 
 - 분석 설계
 
@@ -96,24 +96,27 @@ next: ''
     - Contract Test :  자동화된 경계 테스트를 통하여 구현 오류나 API 계약위반를 미리 차단 가능한가?
 
 
-# 분석/설계
+## 분석/설계
 
 
 * 이벤트스토밍 결과:  http://msaez.io/#/storming/nZJ2QhwVc4NlVJPbtTkZ8x9jclF2/every/a77281d704710b0c2e6a823b6e6d973a/-M5AV2z--su_i4BfQfeF
 
 
-## 이벤트 도출
+<h3>이벤트 도출</h3>
+
 ![image](https://user-images.githubusercontent.com/18453570/79930892-9c3cc800-8484-11ea-9076-39259368f131.png)
 
 
-## 액터, 커맨드 부착하여 읽기 좋게
+<h3>액터, 커맨드 부착하여 읽기 좋게</h3>
+
 ![image](https://user-images.githubusercontent.com/18453570/79931004-de660980-8484-11ea-9573-8cf3d8509e9e.png)
 
-## 어그리게잇으로 묶기
+<h3>어그리게잇으로 묶기</h3>
+
 ![image](https://user-images.githubusercontent.com/18453570/79931210-6ea44e80-8485-11ea-959b-2f500a9a7c1d.png)
 
 
-## 바운디드 컨텍스트로 묶기
+<h3>바운디드 컨텍스트로 묶기</h3>
 
 ![image](https://user-images.githubusercontent.com/18453570/79931545-32bdb900-8486-11ea-8518-558b5cf02d77.png)
 
@@ -122,18 +125,18 @@ next: ''
         - Supporting Domain:   marketing, customer : 경쟁력을 내기위한 서비스
         - General Domain:   point : 결제서비스로 3rd Party 외부 서비스를 사용하는 것이 경쟁력이 높음 (핑크색으로 이후 전환할 예정)
 
-## 폴리시 부착
+<h3>폴리시 부착</h3>
 
 ![image](https://user-images.githubusercontent.com/18453570/79933209-584cc180-848a-11ea-8289-c59468228c67.png)
 
 
-## 폴리시의 이동과 컨텍스트 매핑 (점선은 Pub/Sub, 실선은 Req/Resp)
+<h3>폴리시의 이동과 컨텍스트 매핑 (점선은 Pub/Sub, 실선은 Req/Resp)</h3>
 
 ![image](https://user-images.githubusercontent.com/18453570/79933604-76ff8800-848b-11ea-8092-bd7510bf5d0b.png)
 
 - View Model 추가
 
-## 기능적/비기능적 요구사항을 커버하는지 검증
+<h3>기능적/비기능적 요구사항을 커버하는지 검증</h3>
 
 ![image](https://user-images.githubusercontent.com/18453570/79933961-5f74cf00-848c-11ea-9870-cbd05b6348c5.png)
 
@@ -150,7 +153,7 @@ next: ''
 - 도서가 등록/예약/예약취소/반납 시, 도서의 상태가 변경되어 전체 도서 리스트에 반영된다. 사용자와 관리자 모두 이를 확인할 수 있다. ok
 
 
-## 비기능 요구사항에 대한 검증
+<h3>비기능 요구사항에 대한 검증</h3>
 
 - 마이크로 서비스를 넘나드는 시나리오에 대한 트랜잭션 처리
     - 도서 예약시 결제처리:  예약완료시 포인트 결제처리에 대해서는 Request-Response 방식 처리
@@ -160,7 +163,7 @@ next: ''
 
 
 
-## 헥사고날 아키텍처 다이어그램 도출  
+<h3>헥사고날 아키텍처 다이어그램 도출</h3>  
     
 ![image](https://user-images.githubusercontent.com/18453570/80059618-5f95cd00-8567-11ea-9855-6fdc2e51bfd0.png)
 
@@ -169,7 +172,7 @@ next: ''
 - 서브 도메인과 바운디드 컨텍스트의 분리:  각 팀의 KPI 별로 아래와 같이 관심 구현 스토리를 나눠가짐
 
 
-# 구현:
+## 구현
 
 분석/설계 단계에서 도출된 헥사고날 아키텍처에 따라, 각 BC별로 대변되는 마이크로 서비스들을 스프링부트로 구현함. 구현한 각 서비스를 로컬에서 실행하는 방법은 아래와 같다 (각자의 포트넘버는 8081 ~ 808n 이다)
 bookManagement/  bookRental/  gateway/  point/  view/
@@ -191,7 +194,7 @@ cd view
 mvn spring-boot:run
 ```
 
-## DDD 의 적용
+### - DDD 의 적용
 
 - 각 서비스내에 도출된 핵심 Aggregate Root 객체를 Entity 로 선언. 이때 가능한 현업에서 사용하는 언어 (유비쿼터스 랭귀지)를 그대로 사용함.
 
@@ -281,7 +284,7 @@ http://52.231.116.117:8080/bookLists
 
 ```
 
-## 동기식 호출 과 비동기식 
+### - 동기식 호출 과 비동기식 
 
 분석단계에서의 조건 중 하나로 예약(bookRental)->결제(point) 간의 호출은 동기식 일관성을 유지하는 트랜잭션으로 처리하기로 하였다. 호출 프로토콜은 이미 앞서 Rest Repository 에 의해 노출되어있는 REST 서비스를 FeignClient 를 이용하여 호출하도록 한다. 
 
@@ -395,14 +398,14 @@ BookRentalSystem.java (Entity)
 
 
 
-# 운영
+## 운영
 
-## CI/CD 설정
+### - CI/CD 설정
 
 
 각 구현체들은 각자의 source repository 에 구성되었고, 사용한 CI/CD 플랫폼은 azure를 사용하였으며, pipeline build script 는 각 프로젝트 폴더 이하에 azure-pipeline.yml 에 포함되었다.
 
-## pipeline 동작 결과
+<h3>pipeline 동작 결과</h3>
 
 아래 이미지는 azure의 pipeline에 각각의 서비스들을 올려, 코드가 업데이트 될때마다 자동으로 빌드/배포 하도록 하였다.
 
@@ -427,7 +430,7 @@ BookRentalSystem.java (Entity)
 ![image](https://user-images.githubusercontent.com/18453570/80060261-15ade680-8569-11ea-8256-d28b1e7f1e67.png)
 
 
-### 오토스케일 아웃
+### - 오토스케일 아웃
 
 
 - 포인트서비스에 대한 replica 를 동적으로 늘려주도록 HPA 를 설정한다. 설정은 CPU 사용량이 15프로를 넘어서면 replica 를 10개까지 늘려준다:
@@ -440,7 +443,7 @@ BookRentalSystem.java (Entity)
 ![image](https://user-images.githubusercontent.com/18453570/80060025-8274b100-8568-11ea-8f60-fa428c62168c.png)
 
 
-## 무정지 재배포
+### - 무정지 재배포
 
 Autoscaler설정과 Readiness 제거를 한뒤, 부하를 넣었다. 
 
