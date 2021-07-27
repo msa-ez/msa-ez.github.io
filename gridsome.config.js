@@ -37,7 +37,6 @@ module.exports = {
             items: [
               '/tool/event-storming-tool/',
               '/tool/cloud-ide-tool/',
-              '/tool/kubernetes-tool/',
               '/tool/infrastructure-modeling/',
               '/tool/development-practice/'
             ]

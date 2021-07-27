@@ -12,10 +12,6 @@ export default [
     component: c1
   },
   {
-    path: "/tool/kubernetes-tool/",
-    component: c1
-  },
-  {
     path: "/tool/infrastructure-modeling/",
     component: c1
   },

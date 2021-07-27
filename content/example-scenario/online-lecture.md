@@ -8,6 +8,8 @@ next: ''
 
 ![image](https://user-images.githubusercontent.com/48303857/79727114-d3956280-8326-11ea-8862-e01ca9a0f949.png)
 
+저작자:(https://github.com/msa-ez/example-academy)
+
 <h2> 최종 조별과제 - 인터넷 강의수강 시스템</h2>
 
 - 체크포인트 : https://workflowy.com/s/assessment-check-po/T5YrzcMewfo4J6LW
@@ -101,7 +103,7 @@ next: ''
 
 <h3> - TO-BE 조직 (Vertically-Aligned)</h3>
 
-### - Event Storming 결과
+### · Event Storming 결과
 * MSAEz 로 모델링한 이벤트스토밍 결과:  http://msaez.io/#/storming/RYTliHDEOOYT0NAZ6Xoodg4HP3H3/every/18a58ddb3072e7c25041a1c9361a9635/-M5LUZ65cww2eehQz7RL
 
 
@@ -159,7 +161,7 @@ next: ''
     - 결제를 제외한 나머지 inter-microservice 트랜잭션: 모든 이벤트에 대해 데이터 일관성의 시점이 크리티컬하지 않은 모든 경우가 대부분이라 판단, Eventual Consistency 를 기본으로 채택함.    
 
 
-### - 헥사고날 아키텍처 다이어그램 도출
+### · 헥사고날 아키텍처 다이어그램 도출
     
 ![image](https://user-images.githubusercontent.com/63028469/79846797-d3b26280-83f9-11ea-9ad7-a7e6b4bea18e.png)
 
@@ -184,7 +186,7 @@ cd lectureSystem
 mvn spring-boot:run  
 ```
 
-### - DDD 의 적용
+### · DDD 의 적용
 
 - 각 서비스내에 도출된 핵심 Aggregate Root 객체를 Entity 로 선언하였다: (예시는 paymentSystem 마이크로 서비스). 이때 가능한 현업에서 사용하는 언어 (유비쿼터스 랭귀지)를 그대로 사용하였다. 모델링 시에 영문화 완료하였기 때문에 그대로 개발하는데 큰 지장이 없었다.
 
@@ -265,7 +267,7 @@ http localhost:8081/courseRegistrationSystem
 
 
 
-### - 동기식 호출 과 Fallback 처리
+### · 동기식 호출 과 Fallback 처리
 
 분석단계에서의 조건 중 하나로 수강신청(courseRegistrationSystem)->결제(paymentSystem) 간의 호출은 동기식 일관성을 유지하는 트랜잭션으로 처리하기로 하였다. 호출 프로토콜은 이미 앞서 Rest Repository 에 의해 노출되어있는 REST 서비스를 FeignClient 를 이용하여 호출하도록 한다. 
 
@@ -340,7 +342,7 @@ http POST localhost:8081/courseRegistrationSystem lectureId=2   #Success
 
 
 
-### - 비동기식 호출 / 시간적 디커플링 / 장애격리 / 최종 (Eventual) 일관성 테스트
+### · 비동기식 호출 / 시간적 디커플링 / 장애격리 / 최종 (Eventual) 일관성 테스트
 
 
 결제가 이루어진 후에 수강신청시스템으로 이를 알려주는 행위는 동기식이 아니라 비 동기식으로 처리하여 수강신청 완료처리를 위하여 결제가 블로킹 되지 않도록 처리한다.
@@ -408,7 +410,7 @@ mvn spring-boot:run
 
 ## 운영
 
-### - CI/CD 설정
+### · CI/CD 설정
 
 
 각 구현체들은 각자의 source repository 에 구성되었고, 사용한 CI/CD 플랫폼은 Azure를 사용하였으며, pipeline build script 는 각 프로젝트 폴더 이하에 azure-pipeline.yml 에 포함되었다.
@@ -423,7 +425,7 @@ mvn spring-boot:run
 ![image](https://user-images.githubusercontent.com/18453570/79851335-20993780-8400-11ea-988b-33018c526631.PNG)
 
 
-### - 동기식 호출 / 서킷 브레이킹 / 장애격리
+### · 동기식 호출 / 서킷 브레이킹 / 장애격리
 
 * 서킷 브레이킹 프레임워크의 선택: Spring FeignClient + Hystrix 옵션을 사용하여 구현함
 
@@ -501,7 +503,7 @@ kubectl get deploy pay -w
 - siege 의 로그를 보아도 전체적인 성공률이 높아진 것을 확인 할 수 있다. 
 ![image](https://user-images.githubusercontent.com/63028499/79851251-02cbd280-8400-11ea-96e7-ea092375e77d.PNG)
 
-### - 무정지 재배포
+### · 무정지 재배포
 
 * 먼저 무정지 재배포가 100% 되는 것인지 확인하기 위해서 Readiness Probe 와 Autoscaler가 있는 상태에서 테스트를 진행함.
 그 결과, 100%로 배포기간 동안 Availability 가 변화없기 때문에 무정지 재배포가 성공한 것으로 확인됨.

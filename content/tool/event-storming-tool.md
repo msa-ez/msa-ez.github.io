@@ -40,7 +40,7 @@ MSAEZ 도구의 전체 화면 레이아웃은 다음과 같습니다.
 | 7    &nbsp;| Sticker Palette     | EventStorming을 위한 Sticky note를 선택할 수 있는 Palette        |
 
 
-### - Event Sticker
+### ·	Event Sticker
 스티커 팔레트에서 오랜지색 아이콘이 Event를 지칭합니다.
 
 <h4>Event 속성 설정</h4>
@@ -79,7 +79,7 @@ MSAEZ 도구의 전체 화면 레이아웃은 다음과 같습니다.
 
 4.  연결될 Aggregate를 선택합니다. (이후에, Aggregate를 추가한 후에 선택하여 줍니다.)
 
-### - Policy Sticker
+### ·	Policy Sticker
 
 Policy는 스티커 팔레트에서 라일락색 아이콘이 지칭합니다.
 
@@ -98,7 +98,7 @@ Policy는 스티커 팔레트에서 라일락색 아이콘이 지칭합니다.
 
 1.  Policy Name에 “**StartDelivery**” 라고 기입합니다.
 
-### - Command Sticker
+### ·	Command Sticker
 
 Command는 스티커 팔레트에서 파란색 아이콘이 지칭합니다.
 
@@ -123,7 +123,7 @@ Command는 스티커 팔레트에서 파란색 아이콘이 지칭합니다.
 
 3.  연결될 Aggregate를 선택합니다. (이후에, Aggregate를 추가한 후에 선택하여 줍니다.)
 
-### - Aggregate Sticker
+### ·	Aggregate Sticker
 
 Aggregate는 스티커 팔레트에서 노란색 아이콘이 지칭합니다.
 
@@ -156,7 +156,7 @@ Aggregate는 스티커 팔레트에서 노란색 아이콘이 지칭합니다.
 Aggregate를 추가 하였다면 각 Event, Command, Policy들의 Associate Aggregate를 설정하여,
 <br />Aggregate를 지정하여 줍니다.
 
-### - Bounded Context Sticker
+### ·	Bounded Context Sticker
 
 Bounded Context는 스티커 팔레트에서 점선 모양의 아이콘이 지칭합니다.
 
@@ -174,7 +174,7 @@ Bounded Context는 스티커 팔레트에서 점선 모양의 아이콘이 지�
 
 상기 작성된 4.2.2부터 4.2.6까지의 작업을 완료하면 아래와 같은 형태의 EventStorming 결과물이 나옵니다.
 
-### - Relation
+### ·	Relation
 
 Relation은Event 스티커에서 Policy 스티커로 연결되는 선을 지칭합니다.
 
@@ -204,7 +204,7 @@ Event 스티커에서 화살표 모양 아이콘을 선택,
 
 > ![](../../src/img/image49.png)
 
-### - Code Preview
+### ·	Code Preview
 
 Code Preview를 선택하면 EventStorming 된 결과를 Code Preview를 통하여 Code로 변환된 결과를
 확인 할 수 있습니다.
@@ -220,7 +220,7 @@ Code Preview를 선택하면 EventStorming 된 결과를 Code Preview를 통하�
 | 2  | Select<br />Template | Template 중에서 어떤 Template을 사용하여<br />코드 생성 및 코드 확인 할 것인지 선택  |
 | 3  | Code View            | 선택된 파일의 Code를 표시해 줌                                                       |
 
-### - Download Archive
+### ·	Download Archive
 
 Download Archive를 선택하면 Template을 선택할 수 있으며, EventStroming 된 결과를 Zip파일로
 다운로드 받을 수 있습니다.
@@ -233,7 +233,7 @@ Download Archive를 선택하면 Template을 선택할 수 있으며, EventStrom
 
 ## 빌드
 
-### - 다운로드 파일 구조 설명
+### ·	다운로드 파일 구조 설명
 
   - Bounded Context 에 설정한 이름별(Order, Delivery)로 프로젝트가 생성이 되었고,
     c압축을 풀었을 시 아래와 같은 구조를 가진다.
@@ -291,7 +291,7 @@ Download Archive를 선택하면 Template을 선택할 수 있으며, EventStrom
   - maven 설치
   - local kafka 실행 – localhost:9092
 
-### - 실행
+### ·	실행
 
   - 메이븐 프로젝트이기 때문에 mvn spring-boot:run 으로 실행을 합니다.
 
@@ -300,12 +300,12 @@ Download Archive를 선택하면 Template을 선택할 수 있으며, EventStrom
 
   - Command 에 작성하였던 get, post 등의 메서드가 정상적으로 호출되는지 확인합니다.
 
-### - 클라우드 배포
+### ·	클라우드 배포
 
 이번 가이드항목은 작동하는 소스코드를 github 에 올리고 GCB 트리거를 생성하여 자동 빌드되고 배포되는 방법을 guide
 합니다.
 
-### -  Git 연동
+### ·	Git 연동
 
   - GCB 는 git repository 를 현재까지 github, google code, bitbucket 을 지원합니다. 본
     가이드는 이중에서 github 에 코드를 넣는 방법을
@@ -324,7 +324,7 @@ Download Archive를 선택하면 Template을 선택할 수 있으며, EventStrom
 
   - git push \<github 주소\>
 
-### - GCB Trigger 생성
+### ·	GCB Trigger 생성
 
 GCB 트리거 생성은 아래와 같은 순서대로 진행을
 합니다.
@@ -348,9 +348,9 @@ GCB 트리거 생성은 아래와 같은 순서대로 진행을
 
 위와 같이 트리거를 생성하였으면, github 에 push 명령을 실행할 때마다, 트리거가 작동하는 것을 확인 할 수 있습니다.
 
-### - 쿠버네티스 배포
+### ·	쿠버네티스 배포
 
-### - 쿠버네티스 배포 확인
+### ·	쿠버네티스 배포 확인
 
   - 트리거가 정상적으로 실행을 하였으면 기록 메뉴에서 빌드 성공/실패 여부를 확인 할 수있습니다.
 
@@ -362,7 +362,7 @@ GCB 트리거 생성은 아래와 같은 순서대로 진행을
 
 > ![](../../src/img/image63.png)
 
-### - 배포 실패시 해결방법
+### ·	배포 실패시 해결방법
 
 * 빌드 실패시 기록 항목에서 아래와 같이 빨간색으로 빌드 실패가 나타나고, 클릭시 어떤 step 에서 에러가 났는지 확인이 가능하다. 로그 다운로드 버튼을 눌러서 상세 로그를 확인하면서 해결이 가능하다.
 

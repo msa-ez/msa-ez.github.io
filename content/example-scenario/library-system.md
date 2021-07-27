@@ -6,6 +6,8 @@ next: ''
 ---
 # 도서관 시스템
 
+저작자:(https://github.com/msa-ez/example-library)
+
 도서관의 책 대여 및 예약, 관리 시스템입니다.
 - 체크포인트 : https://workflowy.com/s/assessment-check-po/T5YrzcMewfo4J6LW
 
@@ -21,14 +23,14 @@ next: ''
 
 ## 서비스 시나리오
 
-### - 기능적 요구사항
+### · 기능적 요구사항
 1. 관리자는 도서를 등록한다.
 2. 사용자는 도서를 예약한다.
 3. 도서를 예약 시에는 포인트를 사용한다.
     3-1. 예약 취소 시에는 포인트가 반납된다.
 4. 사용자는 도서를 반납한다.
 
-### - 비기능적 요구사항
+### · 비기능적 요구사항
 1. 트랜잭션
     1. 결제가 되지 않은 경우 대여할 수 없다.  Sync 호출 
 2. 장애격리
@@ -194,7 +196,7 @@ cd view
 mvn spring-boot:run
 ```
 
-### - DDD 의 적용
+### · DDD 의 적용
 
 - 각 서비스내에 도출된 핵심 Aggregate Root 객체를 Entity 로 선언. 이때 가능한 현업에서 사용하는 언어 (유비쿼터스 랭귀지)를 그대로 사용함.
 
@@ -284,7 +286,7 @@ http://52.231.116.117:8080/bookLists
 
 ```
 
-### - 동기식 호출 과 비동기식 
+### · 동기식 호출 과 비동기식 
 
 분석단계에서의 조건 중 하나로 예약(bookRental)->결제(point) 간의 호출은 동기식 일관성을 유지하는 트랜잭션으로 처리하기로 하였다. 호출 프로토콜은 이미 앞서 Rest Repository 에 의해 노출되어있는 REST 서비스를 FeignClient 를 이용하여 호출하도록 한다. 
 
@@ -400,7 +402,7 @@ BookRentalSystem.java (Entity)
 
 ## 운영
 
-### - CI/CD 설정
+### · CI/CD 설정
 
 
 각 구현체들은 각자의 source repository 에 구성되었고, 사용한 CI/CD 플랫폼은 azure를 사용하였으며, pipeline build script 는 각 프로젝트 폴더 이하에 azure-pipeline.yml 에 포함되었다.
@@ -430,7 +432,7 @@ BookRentalSystem.java (Entity)
 ![image](https://user-images.githubusercontent.com/18453570/80060261-15ade680-8569-11ea-8256-d28b1e7f1e67.png)
 
 
-### - 오토스케일 아웃
+### · 오토스케일 아웃
 
 
 - 포인트서비스에 대한 replica 를 동적으로 늘려주도록 HPA 를 설정한다. 설정은 CPU 사용량이 15프로를 넘어서면 replica 를 10개까지 늘려준다:
@@ -443,7 +445,7 @@ BookRentalSystem.java (Entity)
 ![image](https://user-images.githubusercontent.com/18453570/80060025-8274b100-8568-11ea-8f60-fa428c62168c.png)
 
 
-### - 무정지 재배포
+### · 무정지 재배포
 
 Autoscaler설정과 Readiness 제거를 한뒤, 부하를 넣었다. 
 

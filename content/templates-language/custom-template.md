@@ -106,7 +106,7 @@ print("policy: {{name}}");
 
 ## 템플릿 작성 변수
 
-### - 공통 변수 (BoundedContext 제외)
+### · 공통 변수 (BoundedContext 제외)
 
 | 변수명                 | 변수 역할                                               |
 | ------------------- | --------------------------------------------------- |
@@ -117,7 +117,7 @@ print("policy: {{name}}");
 | options.package     | 패키지 명 (ProjectName)                                 |
 | options.packagePath | 패키지 경로 ( java의 경우 src/main/java/{{ projectName }} ) |
 
-### - BoundedContext 변수
+### · BoundedContext 변수
 
 <table>
 <thead>
@@ -143,7 +143,7 @@ print("policy: {{name}}");
 </tbody>
 </table>
 
-### - Aggregate 변수
+### · Aggregate 변수
 
 <table>
 <thead>
@@ -179,7 +179,7 @@ print("policy: {{name}}");
 </tbody>
 </table>
 
-### - Event 변수
+### · Event 변수
 
 | 변수명              | 변수 역할                  |
 | ---------------- | ---------------------- |
@@ -188,14 +188,14 @@ print("policy: {{name}}");
 | eventToPolicy    | Policy에 Event를 전달할 방식  |
 | trigger          | Event 전달방식에 관한 Trigger |
 
-### - Command 변수
+### · Command 변수
 
 | 변수명         | 변수 역할                 |
 | ----------- | --------------------- |
 | aggregate   | 자신이 속해있는 Aggregate 정보 |
 | restfulType | RestAPI 중 어떠한 방식인지.   |
 
-### - Policy 변수
+### · Policy 변수
 
 | 변수명               | 변수 역할                  |
 | ----------------- | ---------------------- |
@@ -203,7 +203,7 @@ print("policy: {{name}}");
 | eventToPolicy     | Policy가 Event를 전달받는 방식 |
 | relationEventInfo | 연결된 Event에 대한 정보       |
 
-### - View 변수
+### · View 변수
 
 | 변수명               | 변수 역할                  |
 | ----------------- | ---------------------- |
@@ -212,7 +212,7 @@ print("policy: {{name}}");
 | viewFieldDescriptors | 데이터 구조에 따른 테이블 정보|
 | aggregateEvents   | 자신이 속해있는 Aggregate의 Events 정보 |
 
-### - fieldDescriptors
+### · fieldDescriptors
 | 변수명               | 변수 역할                  |
 | ----------------- | ---------------------- |
 | name         |  변수 명 |
@@ -220,7 +220,7 @@ print("policy: {{name}}");
 | isKey | 테이블에 대한 Key 값 (Defalut: false) |
 
 
-### - viewFieldDescriptors
+### · viewFieldDescriptors
 **CQRS**
 | 변수명               | 변수 역할                  |
 | ----------------- | ---------------------- |

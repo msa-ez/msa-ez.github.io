@@ -8,6 +8,8 @@ next: ''
 
 ![image](https://user-images.githubusercontent.com/487999/79708354-29074a80-82fa-11ea-80df-0db3962fb453.png)
 
+저작자:(https://github.com/msa-ez/example-food-delivery)
+
 본 예제는 MSA/DDD/Event Storming/EDA 를 포괄하는 분석/설계/구현/운영 전단계를 커버하도록 구성한 예제입니다.
 이는 클라우드 네이티브 애플리케이션의 개발에 요구되는 체크포인트들을 통과하기 위한 예시 답안을 포함합니다.
 - 체크포인트 : https://workflowy.com/s/assessment-check-po/T5YrzcMewfo4J6LW
@@ -206,7 +208,7 @@ cd customer
 python policy-handler.py 
 ```
 
-### - DDD 의 적용
+### · DDD 의 적용
 
 - 각 서비스내에 도출된 핵심 Aggregate Root 객체를 Entity 로 선언하였다: (예시는 pay 마이크로 서비스). 이때 가능한 현업에서 사용하는 언어 (유비쿼터스 랭귀지)를 그대로 사용하려고 노력했다. 하지만, 일부 구현에 있어서 영문이 아닌 경우는 실행이 불가능한 경우가 있기 때문에 계속 사용할 방법은 아닌것 같다. (Maven pom.xml, Kafka의 topic id, FeignClient 의 서비스 id 등은 한글로 식별자를 사용하는 경우 오류가 발생하는 것을 확인하였다)
 
@@ -275,7 +277,7 @@ http localhost:8081/orders/1
 ```
 
 
-### - 폴리글랏 퍼시스턴스
+### · 폴리글랏 퍼시스턴스
 
 앱프런트 (app) 는 서비스 특성상 많은 사용자의 유입과 상품 정보의 다양한 콘텐츠를 저장해야 하는 특징으로 인해 RDB 보다는 Document DB / NoSQL 계열의 데이터베이스인 Mongo DB 를 사용하기로 하였다. 이를 위해 order 의 선언에는 @Entity 가 아닌 @Document 로 마킹되었으며, 별다른 작업없이 기존의 Entity Pattern 과 Repository Pattern 적용과 데이터베이스 제품의 설정 (application.yml) 만으로 MongoDB 에 부착시켰다
 
@@ -309,7 +311,7 @@ public interface 주문Repository extends JpaRepository<Order, UUID>{
 
 ```
 
-### - 폴리글랏 프로그래밍
+### · 폴리글랏 프로그래밍
 
 고객관리 서비스(customer)의 시나리오인 주문상태, 배달상태 변경에 따라 고객에게 카톡메시지 보내는 기능의 구현 파트는 해당 팀이 python 을 이용하여 구현하기로 하였다. 해당 파이썬 구현체는 각 이벤트를 수신하여 처리하는 Kafka consumer 로 구현되었고 코드는 다음과 같다:
 ```
@@ -344,7 +346,7 @@ CMD ["python", "policy-handler.py"]
 ```
 
 
-### - 동기식 호출 과 Fallback 처리
+### · 동기식 호출 과 Fallback 처리
 
 분석단계에서의 조건 중 하나로 주문(app)->결제(pay) 간의 호출은 동기식 일관성을 유지하는 트랜잭션으로 처리하기로 하였다. 호출 프로토콜은 이미 앞서 Rest Repository 에 의해 노출되어있는 REST 서비스를 FeignClient 를 이용하여 호출하도록 한다. 
 
@@ -403,7 +405,7 @@ http localhost:8081/orders item=피자 storeId=2   #Success
 
 
 
-### - 비동기식 호출 / 시간적 디커플링 / 장애격리 / 최종 (Eventual) 일관성 테스트
+### · 비동기식 호출 / 시간적 디커플링 / 장애격리 / 최종 (Eventual) 일관성 테스트
 
 
 결제가 이루어진 후에 상점시스템으로 이를 알려주는 행위는 동기식이 아니라 비 동기식으로 처리하여 상점 시스템의 처리를 위하여 결제주문이 블로킹 되지 않아도록 처리한다.
@@ -491,13 +493,13 @@ http localhost:8080/orders     # 모든 주문의 상태가 "배송됨"으로 �
 
 ## 운영
 
-### - CI/CD 설정
+### · CI/CD 설정
 
 
 각 구현체들은 각자의 source repository 에 구성되었고, 사용한 CI/CD 플랫폼은 GCP를 사용하였으며, pipeline build script 는 각 프로젝트 폴더 이하에 cloudbuild.yml 에 포함되었다.
 
 
-### - 동기식 호출 / 서킷 브레이킹 / 장애격리
+### · 동기식 호출 / 서킷 브레이킹 / 장애격리
 
 * 서킷 브레이킹 프레임워크의 선택: Spring FeignClient + Hystrix 옵션을 사용하여 구현함
 
@@ -675,7 +677,7 @@ Shortest transaction:	        0.00
 - Retry 의 설정 (istio)
 - Availability 가 높아진 것을 확인 (siege)
 
-### - 오토스케일 아웃
+### · 오토스케일 아웃
 앞서 CB 는 시스템을 안정되게 운영할 수 있게 해줬지만 사용자의 요청을 100% 받아들여주지 못했기 때문에 이에 대한 보완책으로 자동화된 확장 기능을 적용하고자 한다. 
 
 
@@ -712,7 +714,7 @@ Concurrency:		       96.02
 ```
 
 
-### - 무정지 재배포
+### · 무정지 재배포
 
 * 먼저 무정지 재배포가 100% 되는 것인지 확인하기 위해서 Autoscaler 이나 CB 설정을 제거함
 

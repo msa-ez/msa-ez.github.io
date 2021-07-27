@@ -6,6 +6,8 @@ next: ''
 ---
 # 동물병원 진료시스템
 
+저작자:(https://github.com/msa-ez/example-animal-hospital)
+
 <h3>2조 과제 - 동물병원 진료시스템 구축</h3>
 
 이 시스템은 MSA/DDD/Event Storming/EDA 를 포괄하는 분석/설계/구현/운영 전단계를 커버하도록 구성하였습니다.
@@ -42,7 +44,7 @@ next: ''
 - Supporting Domain : Lookup(CQRS) 도메인
 - General Domain : 알림(notice) 시스템.
 
-### - 헥사고날 아키텍처 다이어그램 도출
+### · 헥사고날 아키텍처 다이어그램 도출
     
 ![image](https://user-images.githubusercontent.com/38850007/79833622-aad4a200-83e6-11ea-80f1-6eb9a59503af.png)
 
@@ -65,7 +67,7 @@ next: ''
 
 모든 시스템은 Spring Boot로 구현하였고 `mvn spring-boot:run` 명령어로 실행할 수 있다.
 
-### - DDD 의 적용
+### · DDD 의 적용
 
 - 각 서비스내에 도출된 핵심 Aggregate Root 객체를 Entity 로 선언하였다: (예시는 예약 시스템의 Reservation.class). 이때 가능한 현업에서 사용하는 언어 (유비쿼터스 랭귀지)를 그대로 사용하려고 노력했다.
 
@@ -265,7 +267,7 @@ http localhost:8083/medicalRecords
 
 ```
 
-### - 동기식 호출과 Fallback 처리
+### · 동기식 호출과 Fallback 처리
 
 분석단계에서의 조건 중 하나로 예약(reservation)->진료(diagnosis) 간의 호출은 동기식 일관성을 유지하는 트랜잭션으로 처리하기로 하였다. 호출 프로토콜은 이미 앞서 Rest Repository 에 의해 노출되어있는 REST 서비스를 FeignClient 를 이용하여 호출하도록 한다. 
 
@@ -341,7 +343,7 @@ mvn spring-boot:run
 http post localhost:8081/reservations reservatorName="Jackson" reservationDate="2020-04-30" phoneNumber="010-1234-5678" #Success
 ```
 
-### - 클러스터 적용 후 REST API 의 테스트
+### · 클러스터 적용 후 REST API 의 테스트
 - http://52.231.118.148:8080/medicalRecords/     		//diagnosis 조회
 - http://52.231.118.148:8080/reservations/       		//reservation 조회 
 - http://52.231.118.148:8080/reservations reservatorName="pdc" reservationDate="202002" phoneNumber="0103701" //reservation 요청 
@@ -353,7 +355,7 @@ http post localhost:8081/reservations reservatorName="Jackson" reservationDate="
 - 또한 과도한 예약 요청시에 서비스 장애가 도미노 처럼 벌어질 수 있다. (서킷브레이커, 폴백 처리는 운영단계에서 설명한다.)
 
 
-### - 비동기식 호출과 Eventual Consistency
+### · 비동기식 호출과 Eventual Consistency
 
 
 진료가 이루어진 후에 수납시스템으로 이를 알려주는 행위는 동기식이 아니라 비 동기식으로 처리하여 수납 시스템의 처리를 위하여 예약/진료 시스템이 블로킹 되지 않아도록 처리한다.
@@ -445,7 +447,7 @@ mvn spring-boot:run
 http localhost:8085/financialManagements     # 모든 예약-진료에 대해서 요금이 청구되엇음을 확인.
 
 ```
-### - API 게이트웨이
+### · API 게이트웨이
 - Local 테스트 환경에서는 localhost:8080에서 Gateway API 가 작동.
 - Cloud 환경에서는 http://52.231.118.148:8080 에서 Gateway API가 작동.
 - application.yml 파일에 프로파일 별로 Gateway 설정.
@@ -545,13 +547,13 @@ server:
   port: 8080
 ```
 
-### - Oauth 인증 적용.
+### · Oauth 인증 적용.
 - Oauth 인증 적용. 
 - But, 수업 중에 사용한 Oauth 프로젝트를 그대로 이용하여 Gateway에 붙이기만 함.
 
 ## 운영
 
-### - CI/CD 설정
+### · CI/CD 설정
 
 각 구현체들은 각자의 Git을 통해 빌드되며, Git Master에 트리거 되어 있다. pipeline build script 는 각 프로젝트 폴더 이하에 azure_pipeline.yml 에 포함되었다.
 
@@ -705,7 +707,7 @@ stages:
 ```
 
 
-### - 동기식 호출 / 서킷 브레이킹 / 장애격리
+### · 동기식 호출 / 서킷 브레이킹 / 장애격리
 
 * 서킷 브레이킹 프레임워크의 선택: Spring FeignClient + Hystrix 옵션을 사용하여 구현함
 
@@ -780,7 +782,7 @@ Shortest transaction:           0.02
 ```
 - 운영시스템은 죽지 않고 지속적으로 CB 에 의하여 적절히 회로가 열림과 닫힘이 벌어지면서 자원을 보호하고 있음을 보여줌. 78.92% 가 성공.
 
-### - 오토스케일 아웃
+### · 오토스케일 아웃
 앞서 CB 는 시스템을 안정되게 운영할 수 있게 해줬지만 사용자의 요청을 100% 받아들여주지 못했기 때문에 이에 대한 보완책으로 자동화된 확장 기능을 적용하고자 한다. 
 
 
@@ -791,7 +793,7 @@ kubectl autoscale deploy diagnosis --min=1 --max=10 --cpu-percent=15
 
 
 
-### - 무정지 재배포
+### · 무정지 재배포
 - 모든 프로젝트의 readiness probe 및 liveness probe 설정 완료.
 ```yaml
 readinessProbe:

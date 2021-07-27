@@ -7,6 +7,7 @@ next: ''
 # 숙소예약
 
 ![image](https://user-images.githubusercontent.com/15603058/119284989-fefe2580-bc7b-11eb-99ca-7a9e4183c16f.jpg)
+저작자:(https://github.com/msa-ez/airbnb_project)
 
 <h2>숙소예약(AirBnB)</h2>
 
@@ -199,7 +200,7 @@ AirBnB 커버하기
    mvn spring-boot:run
 ```
 
-### - CQRS
+### · CQRS
 
 숙소(Room) 의 사용가능 여부, 리뷰 및 예약/결재 등 총 Status 에 대하여 고객(Customer)이 조회 할 수 있도록 CQRS 로 구현하였다.
 - room, review, reservation, payment 개별 Aggregate Status 를 통합 조회하여 성능 Issue 를 사전에 예방할 수 있다.
@@ -214,7 +215,7 @@ AirBnB 커버하기
   ![image](https://user-images.githubusercontent.com/31723044/119357063-1b34ad80-bce2-11eb-94fb-a587261ab56f.png)
 
 
-### - API 게이트웨이
+### · API 게이트웨이
       1. gateway 스프링부트 App을 추가 후 application.yaml내에 각 마이크로 서비스의 routes 를 추가하고 gateway 서버의 포트를 8080 으로 설정함
        
           - application.yaml 예시
@@ -365,7 +366,7 @@ Airbnb 프로젝트에서는 PolicyHandler에서 처리 시 어떤 건에 대한
 
 
 
-### - 동기식 호출(Sync) 과 Fallback 처리
+### · 동기식 호출(Sync) 과 Fallback 처리
 
 분석 단계에서의 조건 중 하나로 예약 시 숙소(room) 간의 예약 가능 상태 확인 호출은 동기식 일관성을 유지하는 트랜잭션으로 처리하기로 하였다. 호출 프로토콜은 이미 앞서 Rest Repository 에 의해 노출되어있는 REST 서비스를 FeignClient 를 이용하여 호출하도록 한다. 또한 예약(reservation) -> 결제(payment) 서비스도 동기식으로 처리하기로 하였다.
 
@@ -469,7 +470,7 @@ http POST http://localhost:8088/reservations roomId=1 status=reqReserve   #Succe
 
 
 
-### - 비동기식 호출 / 시간적 디커플링 / 장애격리 / 최종 (Eventual) 일관성 테스트
+### · 비동기식 호출 / 시간적 디커플링 / 장애격리 / 최종 (Eventual) 일관성 테스트
 
 
 결제가 이루어진 후에 숙소 시스템의 상태가 업데이트 되고, 예약 시스템의 상태가 업데이트 되며, 예약 및 취소 메시지가 전송되는 시스템과의 통신 행위는 비동기식으로 처리한다.
@@ -551,7 +552,7 @@ http GET localhost:8088/reservations    #메시지 서비스와 상관없이 예
 
 ## 운영
 
-### - CI/CD 설정
+### · CI/CD 설정
 
 각 구현체들은 각자의 source repository 에 구성되었고, 사용한 CI/CD는 buildspec.yml을 이용한 AWS codebuild를 사용하였습니다.
 
@@ -596,7 +597,7 @@ codebuild 프로젝트 및 빌드 이력
 
 
 
-### - 동기식 호출 / 서킷 브레이킹 / 장애격리
+### · 동기식 호출 / 서킷 브레이킹 / 장애격리
 
 * 서킷 브레이킹 프레임워크의 선택: istio 사용하여 구현함
 
@@ -803,7 +804,7 @@ Longest transaction:            2.55
 Shortest transaction:           0.01
 ```
 
-### - 무정지 재배포
+### · 무정지 재배포
 
 * 먼저 무정지 재배포가 100% 되는 것인지 확인하기 위해서 Autoscaler 이나 CB 설정을 제거함
 
