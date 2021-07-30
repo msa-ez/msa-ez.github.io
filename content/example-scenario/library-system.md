@@ -6,7 +6,7 @@ next: ''
 ---
 # 도서관 시스템
 
-저작자:(https://github.com/msa-ez/example-library)
+출처 원본: https://github.com/msa-ez/example-library
 
 도서관의 책 대여 및 예약, 관리 시스템입니다.
 - 체크포인트 : https://workflowy.com/s/assessment-check-po/T5YrzcMewfo4J6LW
@@ -100,10 +100,7 @@ next: ''
 
 ## 분석/설계
 
-
-* 이벤트스토밍 결과:  http://msaez.io/#/storming/nZJ2QhwVc4NlVJPbtTkZ8x9jclF2/every/a77281d704710b0c2e6a823b6e6d973a/-M5AV2z--su_i4BfQfeF
-
-
+**[MSAEz 로 모델링한 이벤트스토밍 결과](http://msaez.io/#/storming/nZJ2QhwVc4NlVJPbtTkZ8x9jclF2/a77281d704710b0c2e6a823b6e6d973a)**
 <h3>이벤트 도출</h3>
 
 ![image](https://user-images.githubusercontent.com/18453570/79930892-9c3cc800-8484-11ea-9076-39259368f131.png)

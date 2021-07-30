@@ -2,7 +2,7 @@
 description: ''
 sidebar: 'started'
 ---
-# 강의 개발 및 실습 환경(준비중)
+# 강의 개발 및 실습 환경
 
 <div style = "height:400px; object-fit: cover;">
 <iframe style = "width:100%; height:100%;" src="https://www.youtube.com/embed/Le0a-NH6xwQ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
@@ -107,6 +107,8 @@ sidebar: 'started'
 **그룹 추가 버튼 클릭 시 그룹 추가 UI 생성**
 ![](../../src/img/lecture-development/image11.png)
 
+<br><br><br>
+
 **생성된 UI에 유저를 마우스 드래그로 끌어 놓으면 같이 있는 유저끼리 그룹화**
 ![](../../src/img/lecture-development/image12.png)
 
@@ -124,10 +126,32 @@ sidebar: 'started'
 
 ### · 오류 지원
 
+**채팅으로 유저 질문 확인 후 classRoom 에서 유저 아이콘 클릭 시 별도의 UI 창 출력**
+
+![](../../src/img/lecture-development/image16.png)
+<br><br><br>
+
+**출력된 UI 창에서 랩실 보기 클릭 시 유저의 랩실 내에 발생한 문제점을 볼 수 있습니다.**
+
+![](../../src/img/lecture-development/image17.png)
+
 
 
 ### · 결과 제출
 
+**수강생은 실습 완료 후 Labs 탭 - 결과 제출을 클릭해 줍니다.**
+
+![](../../src/img/lecture-development/image18.png)
+
+![](../../src/img/lecture-development/image19.png)
+
+**이후 해당 아이콘을 클릭하여 결과 제출을 완료해 줍니다.**
+
+![](../../src/img/lecture-development/image20.png)
+
+**강사는 classroom에서 유저의 아이콘을 클릭 - LAB 탭에서 제출된 정보를 확인 할 수 있습니다.**
+
+![](../../src/img/lecture-development/image21.png)
 
 
 ## 수강생 관리
@@ -136,18 +160,32 @@ sidebar: 'started'
 
 ### · 보상 지급
 
+**강사는 classroom에서 유저의 아이콘을 클릭 - LAB 탭에서 상금 지급 버튼을 클릭하여<br>상금을 지급 할 수 있습니다.**
+
+![](../../src/img/lecture-development/image22.png)
 
 
-### · 서티 발급
+**강사는 classroom에서 시작 버튼을 클릭한 후 종료 버튼 클릭 시 코인 입력 얼랏창이 출력됩니다.**
 
+![](../../src/img/lecture-development/image23.png)
+
+**체크포인트 활성화된 유저는 순위에 맞추어 최대 얼랏창에 입력된 코인을 획득합니다.**
+![](../../src/img/lecture-development/image24.png)
 
 
 ### · 사용료 조회
+
+**우측 상단 자신의 로그인 아이콘에 마우스를 올렸을 때 나오는 리스트에서 구매/사용 목록 리스트에서<br>구매/사용 목록을 확인 할 수 있습니다.**
+![](../../src/img/lecture-development/image25.png)
+
+![](../../src/img/lecture-development/image26.png)
 
 
 
 ### · 쿠폰 발행 및 사용, 조회
 
+**우측 상단 자신의 로그인 아이콘에 마우스를 올렸을 때 나오는 리스트에서 쿠폰등록 및 코인얻기<br>를 클릭하면 획득한 쿠폰을 사용 할 수 있는 입력창이 열립니다.<br>(사용한 쿠폰 목록은 구매/사용 목록 리스트에서 확인 할 수 있습니다.)**
 
+![](../../src/img/lecture-development/image27.png)
 
-## 버튼 설명
+![](../../src/img/lecture-development/image28.png)

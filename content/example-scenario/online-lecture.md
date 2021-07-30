@@ -8,7 +8,7 @@ next: ''
 
 ![image](https://user-images.githubusercontent.com/48303857/79727114-d3956280-8326-11ea-8862-e01ca9a0f949.png)
 
-저작자:(https://github.com/msa-ez/example-academy)
+출처 원본: https://github.com/msa-ez/example-academy
 
 <h2> 최종 조별과제 - 인터넷 강의수강 시스템</h2>
 
@@ -104,8 +104,7 @@ next: ''
 <h3> - TO-BE 조직 (Vertically-Aligned)</h3>
 
 ### · Event Storming 결과
-* MSAEz 로 모델링한 이벤트스토밍 결과:  http://msaez.io/#/storming/RYTliHDEOOYT0NAZ6Xoodg4HP3H3/every/18a58ddb3072e7c25041a1c9361a9635/-M5LUZ65cww2eehQz7RL
-
+**[MSAEz 로 모델링한 이벤트스토밍 결과](http://msaez.io/#/storming/RYTliHDEOOYT0NAZ6Xoodg4HP3H3/18a58ddb3072e7c25041a1c9361a9635)**
 
 
 **조직 및 요구사항 도출 도출**

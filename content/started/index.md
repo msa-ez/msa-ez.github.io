@@ -123,7 +123,7 @@ MSA Easy는 이러한 폴리글랏 아키텍처를 지원하기 위해 팀플릿
 기능을 활용하여 기본 제공 템플릿 외에 개발자가 템플릿을 추가하여 EventStorming결과가 원하는 템플릿에 맞추어 코드가
 생성될 수 있도록 한다.
 
-커스텀 템플릿의 자세한 내용은 [4.3 커스텀 템플릿 (Custom Template)](/EventStorming2Code?id=커스텀-템플릿-custom-template)</span>에서 설명한다.
+커스텀 템플릿의 자세한 내용은 [4.3 커스텀 템플릿 (Custom Template)](../templates-language/custom-template)</span>에서 설명한다.
 
 ---
 

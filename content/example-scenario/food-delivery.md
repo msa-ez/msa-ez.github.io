@@ -8,7 +8,7 @@ next: ''
 
 ![image](https://user-images.githubusercontent.com/487999/79708354-29074a80-82fa-11ea-80df-0db3962fb453.png)
 
-저작자:(https://github.com/msa-ez/example-food-delivery)
+출처 원본: https://github.com/msa-ez/example-food-delivery
 
 본 예제는 MSA/DDD/Event Storming/EDA 를 포괄하는 분석/설계/구현/운영 전단계를 커버하도록 구성한 예제입니다.
 이는 클라우드 네이티브 애플리케이션의 개발에 요구되는 체크포인트들을 통과하기 위한 예시 답안을 포함합니다.
@@ -106,10 +106,7 @@ next: ''
 **TO-BE 조직 (Vertically-Aligned)**
   ![image](https://user-images.githubusercontent.com/487999/79684159-3543c700-826a-11ea-8d5f-a3fc0c4cad87.png)
 
-
-**Event Storming 결과**
-* MSAEz 로 모델링한 이벤트스토밍 결과:  http://msaez.io/#/storming/nZJ2QhwVc4NlVJPbtTkZ8x9jclF2/every/a77281d704710b0c2e6a823b6e6d973a/-M5AV2z--su_i4BfQfeF
-
+**[MSAEz 로 모델링한 이벤트스토밍 결과](http://www.msaez.io/#/storming/nZJ2QhwVc4NlVJPbtTkZ8x9jclF2/a77281d704710b0c2e6a823b6e6d973a)**
 
 **이벤트 도출**
 ![image](https://user-images.githubusercontent.com/487999/79683604-47bc0180-8266-11ea-9212-7e88c9bf9911.png)

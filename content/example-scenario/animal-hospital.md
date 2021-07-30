@@ -6,7 +6,7 @@ next: ''
 ---
 # 동물병원 진료시스템
 
-저작자:(https://github.com/msa-ez/example-animal-hospital)
+출처 원본: https://github.com/msa-ez/example-animal-hospital
 
 <h3>2조 과제 - 동물병원 진료시스템 구축</h3>
 
@@ -38,7 +38,7 @@ next: ''
 
 ## 분석/설계
 
-* 이벤트스토밍 결과:  http://msaez.io/#/storming/0vtSW2vBLoZTFiAsgdwS6H7ODs33/every/2dac041f4e652d598a042694dfa26b20/-M5LTyP4cBS9IpsqYq0h
+**[MSAEz 로 모델링한 이벤트스토밍 결과](http://msaez.io/#/storming/0vtSW2vBLoZTFiAsgdwS6H7ODs33/2dac041f4e652d598a042694dfa26b20)**
 
 - Core Domain : 예약 (Reservation) 및 진료 (Diagnosis) 도메인
 - Supporting Domain : Lookup(CQRS) 도메인

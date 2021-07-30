@@ -181,12 +181,12 @@ print("policy: {{name}}");
 
 ### · Event 변수
 
-| 변수명              | 변수 역할                  |
-| ---------------- | ---------------------- |
+| 변수명           | 변수 역할                       |
+| ---------------- | ----------------------          |
 | aggregate        | 자신이 속해있는 Aggregate 정보  |
-| fieldDescriptors | Event Entity 목록        |
-| eventToPolicy    | Policy에 Event를 전달할 방식  |
-| trigger          | Event 전달방식에 관한 Trigger |
+| fieldDescriptors | Event Entity 목록               |
+| eventToPolicy    | Policy에 Event를 전달할 방식    |
+| trigger          | Event 전달방식에 관한 Trigger   |
 
 ### · Command 변수
 
@@ -221,7 +221,10 @@ print("policy: {{name}}");
 
 
 ### · viewFieldDescriptors
+
 **CQRS**
+
+
 | 변수명               | 변수 역할                  |
 | ----------------- | ---------------------- |
 | isKey         | Key 값 (default: false)  |
@@ -233,6 +236,8 @@ print("policy: {{name}}");
 | sourceEventColumn   | 자신이 속해있는 Aggregate의 Events 정보 |
 
 **UI Mashup**
+
+
 | 변수명               | 변수 역할                  |
 | ----------------- | ---------------------- |
 | isKey         | Key 값 (default: false)  |
