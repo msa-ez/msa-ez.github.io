@@ -9,7 +9,7 @@ sidebar: 'started'
 Kuber-Ez는 Yaml 및 CLI에 대한 최소한의 이해만으로도 kubernetes 매니페스트 및 배포 모형을 구성할 수 있는 시각적 방식의 웹 기반 다이어그래밍 도구입니다.  
 <br/>
 
-<img src="https://user-images.githubusercontent.com/35618409/92839680-38a73d00-f41b-11ea-912d-3df071a2e32c.png" width="80%">
+![](../../src/img/infrastructure-modeling/image1.png)
 
 <br/>
 
@@ -52,7 +52,9 @@ Kuber-Ez는 Yaml 및 CLI에 대한 최소한의 이해만으로도 kubernetes �
 
 <h3>주문/상품/배송 서비스를 시나리오로 한 KuberEz 전,후 비교 영상</h3>
 
-[<img src="https://user-images.githubusercontent.com/35618409/96990423-0e8c8300-1562-11eb-9430-d6aec52ead7d.png" width="80%">](https://youtu.be/Mu66BMFIM-E)
+<div style = "height:400px; object-fit: cover;">
+<iframe style = "width:100%; height:100%;" src="https://www.youtube.com/embed/Mu66BMFIM-E" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+</div>
 
 <br/>
 
@@ -61,7 +63,9 @@ Kuber-Ez는 Yaml 및 CLI에 대한 최소한의 이해만으로도 kubernetes �
 
 <h3>Video</h3>
 
-https://youtu.be/A6TeVs_yWa8
+<div style = "height:400px; object-fit: cover;">
+<iframe style = "width:100%; height:100%;" src="https://www.youtube.com/embed/A6TeVs_yWa8" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+</div>
 
 <h3>1. Standalone Mode</h3>
 
@@ -79,7 +83,7 @@ docker run --name="kuberEz" -p 8081:8080 -d ohsy818/kuber-ez
 
 <h3>실행 화면 (localhost:8081 접속)</h3>
 
-![image](https://user-images.githubusercontent.com/48265118/92222813-8501f280-eeda-11ea-9c0b-9b6c6d6ce45f.png)
+![](../../src/img/infrastructure-modeling/image2.png)
 
 
 <h3>2. Full-fledged Mode</h3>
@@ -118,19 +122,22 @@ kubectl get ingress -n kuber-ez
 
 <h3>실행 화면(kuberez.io 접속)</h3>
 
-![image](https://user-images.githubusercontent.com/48265118/92230281-d368be80-eee5-11ea-90f9-295a246ede69.png)
+![](../../src/img/infrastructure-modeling/image3.png)
 
 
 ## Quick Tour
 
 <h3>Video</h3>
 
-https://youtu.be/WFmcsJpvtKw
+<div style = "height:400px; object-fit: cover;">
+<iframe style = "width:100%; height:100%;" src="https://www.youtube.com/embed/WFmcsJpvtKw" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+</div>
 
 
 <h3>화면 구성</h3>
 
-<img src="https://user-images.githubusercontent.com/48265118/92880687-3d82e580-f449-11ea-81cf-e5a2c00ac6f1.png" width="80%">
+<!-- https://user-images.githubusercontent.com/48265118/92880687-3d82e580-f449-11ea-81cf-e5a2c00ac6f1.png 원본 이미지 -->
+![](../../src/img/infrastructure-modeling/image4.png)
 
 ***
 
