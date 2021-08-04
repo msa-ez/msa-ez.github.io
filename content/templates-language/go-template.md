@@ -4,6 +4,61 @@ sidebar: 'started'
 ---
 # Go Template 만들기 
 
+## Go DDD tutorial 
+
+### Model
+
+![model](../../src/img/go-tutorial/model.png)
+
+<h4> Order </h4>
+
+- Order의 event는 OrderPlaced, OrderCancelled 두개이다. OrderPlaced는 PostPersist로 trigger를 설정하였고 OrderCancelled는 PreRemove로 trigger를 설정하였다. 
+- OrderPlaced 즉, 주문됨이라는 event는 Pub/Sub 통신으로 kafka channel에 event를 발행하여 Delivery Service와 통신한다. 
+- OrderCancelled 즉, 주문 취소됨 이라는 event는 Res/Req 통신으로 REST API로 Delivery Service와 통신한다. Delivery Service 안에서의 DeliveryCancelled logic이 선행 되고 나서야 OrderCancelled의 logic이 수행된다. 
+
+<h4> Delivery </h4>
+
+- Delivery의 event는 DeliveryStarted, DeliveryCancelled 두개이다. DeliveryStarted는 PostPersist로 trigger를 설정하였고 DeliveryCanclled는 PreRemove로 trigger를 설정하였다. 
+
+### Code 
+
+![code](../../src/img/go-tutorial/code.png)
+
+EventStorming 된 화면에서 우측 상단의 code를 클릭하고 언어를 go로 설정하면 위와 같은 code가 생성된다. 이를 다운 받고 싶으면 Download Archive를 클릭하면 된다. 
+
+### Test 
+
+![code](../../src/img/go-tutorial/run.png)
+
+<h4> Application 구동하기 </h4>
+
+1. 다운로드 받은 파일 위치로 이동한 후 현재 directory에 main.go 가 있는지 확인 한다. 
+2. Application을 구동하기 위한 module을 다운 받기 위해 아래와 같은 명령어를 수행한다. (main.go가 있는 위치에서)
+```bash
+go mod init [프로젝트 명]
+go mod tidy 
+```
+3. main.go가 있는 위치에서 아래와 같은 명령어를 수행하여 binary 파일 생성 
+```bash
+go build main.go
+```
+4. 위 명령어를 통해 생성된 binary 파일을 run 하기 위해 아래와 같은 명령어 수행. 
+```bash
+./main
+```
+
+## Go 기술 Stack 
+
+- Web Framework : echo
+
+- ORM : gorm
+
+- Kafka : confluent-kafka-go
+
+- DB : SQlite
+
+- REST Api : resty
+
 ## Template code 만들기에 앞서 
 
 Go Template은 Spring-boot Template을 기반으로 만들어졌다. Java와 언어적으로 다른 부분에 대해서는 상세 설명에서 기술 할 것이다. Spring-boot 에는 library로 제공되는 기능들 중 go에 없는 기능들은 따로 구현 해놓았다. 
