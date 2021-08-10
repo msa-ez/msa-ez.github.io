@@ -45,7 +45,7 @@ go build main.go
 4. 위 명령어를 통해 생성된 binary 파일을 run 하기 위해 아래와 같은 명령어 수행. 
 ```bash
 ./main
-```
+``
 
 ## Go 기술 Stack 
 
