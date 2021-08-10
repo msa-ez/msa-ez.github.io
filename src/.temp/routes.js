@@ -1,6 +1,6 @@
-const c1 = () => import(/* webpackChunkName: "page--src--templates--markdown-page-vue" */ "/Users/jinsulee/Documents/eventstorming-dev/msa-ez.github.io/src/templates/MarkdownPage.vue")
-const c2 = () => import(/* webpackChunkName: "page--src--pages--404-vue" */ "/Users/jinsulee/Documents/eventstorming-dev/msa-ez.github.io/src/pages/404.vue")
-const c3 = () => import(/* webpackChunkName: "page--src--pages--index-vue" */ "/Users/jinsulee/Documents/eventstorming-dev/msa-ez.github.io/src/pages/Index.vue")
+const c1 = () => import(/* webpackChunkName: "page--src--templates--markdown-page-vue" */ "/Users/kibum0405/Desktop/msa-ez.github.io/src/templates/MarkdownPage.vue")
+const c2 = () => import(/* webpackChunkName: "page--src--pages--404-vue" */ "/Users/kibum0405/Desktop/msa-ez.github.io/src/pages/404.vue")
+const c3 = () => import(/* webpackChunkName: "page--src--pages--index-vue" */ "/Users/kibum0405/Desktop/msa-ez.github.io/src/pages/Index.vue")
 
 export default [
   {
