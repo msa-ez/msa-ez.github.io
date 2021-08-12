@@ -4,15 +4,13 @@ sidebar: 'started'
 ---
 # 인프라 모델링 (쿠버네티스)
 
-## Getting started
-Kuber-Ez는 Yaml 및 CLI에 대한 최소한의 이해만으로도 kubernetes 매니페스트 및 배포 모형을<br>
-구성할 수 있는 시각적 방식의 웹 기반 다이어그래밍 도구입니다.
-
-
 <div style = "height:400px; object-fit: cover;">
 <iframe style = "width:100%; height:100%;" src="https://www.youtube.com/embed/vtPtymnmo6M" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 </div>
 
+## Getting started
+Kuber-Ez는 Yaml 및 CLI에 대한 최소한의 이해만으로도 kubernetes 매니페스트 및 배포 모형을<br>
+구성할 수 있는 시각적 방식의 웹 기반 다이어그래밍 도구입니다.
 
 **사이트rul: [쿠버네티스 시작하기](http://www.msaez.io/#/)**
 
