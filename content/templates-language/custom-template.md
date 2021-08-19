@@ -2,30 +2,25 @@
 description: ''
 sidebar: 'started'
 ---
-# 커스텀 템플릿 만들기
+# Creating custom templates
 
-## 커스텀 템플릿 (Custom Template)
+## Custom Template
 
-## 개념
+## concept
 
-커스텀 템플릿은 기본 제공하는 템플릿 외에 원하는 템플릿을 추가하여 EventStorming결과를 원하는 템플릿에 맞추어 코드가
-생성될 수 있도록 한다.
+The custom template adds the desired template in addition to the provided template so that the code can be generated according to the desired template with the EventStorming result.
 
-## 템플릿 설명
+## Template Description
 
-EventStorming 된 결과를 원하는 Template으로 이용하기 위해서는, 커스텀 템플릿을 작성 하여야 한다.
-Template파일은 크게 생성관련 메타데이터, 소스코드부분 두가지로 나뉘어져 있으며, 메타데이터 부분과 소스코드 부분은
-“---“ 로 나누어져 있다.
+In order to use the EventStoring result as a desired template, a custom template must be created. Template file is largely divided into two parts, creation-related metadata and source code, and the metadata and source code are divided into “---”.
+ 
+The template creation basically uses the {{ Mustache }} engine, and Mustache is the engine that brings the value in {{ }} as the key value.
 
-템플릿 생성은 기본적으로 {{ Mustache }} 엔진을 사용하며, Mustache는 {{ }} 안의 값을 Key 값으로 해당
-Value값을 가지고 오는 엔진이다.
+## Create a template
 
-## 템플릿 생성
+Purpose: Creates HelloWorld.py file as an example and displays the names created by using the print function for the results of EventStoming.
 
-목적: 예제로 HelloWorld.py파일을 생성하여 EventStoming 한 결과들을 print함수를 이용하여 각각 작성된
-이름을 표시하여 준다.
-
-1.  HelloWorld.py 파일을 아래와 같이 생성한다.
+1. Create HelloWorld.py file as below.
 
 
 <pre class=" language-python">
@@ -62,162 +57,153 @@ print("policy: {{name}}");
 
 </pre>
 
-각 메타데이터에 대한 값은 아래를 참고하여 작성하면 된다.
+The value for each metadata can be written by referring to the following.
 
-| 번호 | 이름       | 기능 설명            |
+| Number | Name       | Detail of fuction           |
 | -- | -------- | ---------------- |
-| 1  | forEach  | 해당 파일의 생성 단위 객체. |
-| 2  | filename | 해당 파일의 생성 파일 명   |
-| 3  | path     | 해당 파일의 생성 경로     |
+| 1  | forEach  | The creation unit object of the file. |
+| 2  | filename | The name of the file to be created  |
+| 3  | path     | path to the file's creation  |
 
-2.  작성된 HelloWorld.py 파일을 ./public/static/template/helloWorld 폴더 안에
-    넣어준다.
+2. Put the created HelloWorld.py file in the ./public/static/template/helloWorld folder.
 
-3.  해당 Template을 넣어 준 뒤, 코드 프리뷰에서 템플릿 선택 부분을 확인하면 아래 그림과 같이 HelloWorld
-    템플릿이 추가된 것을 확인 할 수 있다.
+3. After putting the template, if you check the template selection part in the code     preview, you can see that the HelloWorld template has been added as shown in the figure below.
 
 > ![](../../src/img/image67.png)
 > <p align="center">그림 HelloWorld 템플릿 선택</p>
 
-4.  각 Bounded Context 이름으로 된 폴더 안에 HelloWorld.py라는 파일이 생성 된 것을 확인 할 수
-    있다.
+4. You can see that a file called HelloWorld.py is created in the folder with each Bounded Context name.
 
-5.  2개의 HelloWorld.py를 각각 확인 해본다.
+5. Check each of the two HelloWorld.py.
 
 > ![](../../src/img/image68.png)
-> <p align="center"> 그림 Order 폴더 하위의 HelloWorld.py </p>
 
 > ![](../../src/img/image69.png)
-> <p align="center"> 그림 Delivery 폴더 하위의 HelloWorld.py </p>
 
-각각의 Bounded Context에 입력된 요소들의 이름을 정상적으로 print함수 안에 입력이 된 것을 확인 할 수 있다.
+You can check that the names of the elements input in each Bounded Context are normally input in the print function.
 
-6.  해당 Template으로 작업된 내용을 다운로드 받아 실행해본다.
+6. Download the contents of the template and run it.
 
 > ![](../../src/img/image70.png)
-> <p align="center"> 그림 Delivery 폴더 하위의 HelloWorld 실행 결과</p>
 
 > ![](../../src/img/image71.png)
-> <p align="center"> 그림 Order 폴더 하위의 HelloWorld.py 실행 결과</p>
 
-7.  작성된 EventStorming을 통해, 각각의 Bounded Context 별로 HelloWorld.py가 생성되며,
-    HelloWorld.py안에 각각의 BoundedContext, Aggreagte, Event, Command,
-    Policy들의 이름이 출력 되는 것을 확인 할 수 있다.
+7. Through the created EventStorming, HelloWorld.py is created for each Bounded Context, and you can see that the names of each BoundedContext, Aggregate, Event, Command, and Policy are output in HelloWorld.py.
 
-## 템플릿 작성 변수
+## Template creation variables
 
-### · 공통 변수 (BoundedContext 제외)
+### · Common Variables (except BoundedContext)
 
-| 변수명                 | 변수 역할                                               |
+| variable name      | variable role                                         |
 | ------------------- | --------------------------------------------------- |
-| name                | Sticky note에 작성된 이름                                 |
-| nameCamelCase       | Sticky note에 작성된 이름의 CamelCase 변환 결과                |
-| namePascalCase      | Sticky note에 작성된 이름의 PascalCase 변환 결과               |
-| boundedContext      | 자신이 속해있는 BoundedContext 이름                          |
-| options.package     | 패키지 명 (ProjectName)                                 |
-| options.packagePath | 패키지 경로 ( java의 경우 src/main/java/{{ projectName }} ) |
+| name                | name written on sticky note                        |
+| nameCamelCase       | CamelCase conversion result of name written on sticky note         |
+| namePascalCase      | PascalCase conversion result of name written on sticky note  |
+| boundedContext      | BoundedContext name to which it belongs         |
+| options.package     | Package Name (ProjectName)                       |
+| options.packagePath | package path ( src/main/java/{{ projectName }} for java) |
 
-### · BoundedContext 변수
+### · BoundedContext variable
 
 <table>
 <thead>
 <tr class="header">
-<th>변수명</th>
-<th>변수 역할</th>
+<th>variable name</th>
+<th>variable role</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
 <td>name</td>
-<td>BoundedContext 이름</td>
+<td>BoundedContext name</td>
 </tr>
 <tr class="even">
 <td>aggregates</td>
-<td><p>해당 BoundedContext 안에 속해있는 Aggregate 목록</p>
-<p>(하단에 작성되는 Aggregate의 변수 사용 가능)</p></td>
+<td><p>List of Aggregates belonging to that BoundedContext</p>
+<p>(Variable of Aggregate written at the bottom can be used)</p></td>
 </tr>
 <tr class="odd">
 <td>portGenerated</td>
-<td>생성된 포트번호 (8081부터 시작됨)</td>
+<td>Created port number (starting from 8081)</td>
 </tr>
 </tbody>
 </table>
 
-### · Aggregate 변수
+### · Aggregate variable
 
 <table>
 <thead>
 <tr class="header">
-<th>변수명</th>
-<th>변수 역할</th>
+<th>variable name</th>
+<th>variable role</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
 <td>aggregateRoot. fieldDescriptors</td>
-<td>Aggregate의 Entity 목록</td>
+<td>List of Entity in Aggregate</td>
 </tr>
 <tr class="even">
 <td>aggregateRoot. keyFieldDescriptors</td>
-<td>Aggregate의 Key값</td>
+<td>Aggregate key value</td>
 </tr>
 <tr class="odd">
 <td>events</td>
-<td><p>Aggregate에 속해있는 event 목록</p>
-<p>하단에 작성되는 Event의 변수 사용 가능)</p></td>
+<td><p>List of events belonging to Aggregate</p>
+<p>(Event variables written at the bottom can be used)</p></td>
 </tr>
 <tr class="even">
 <td>commands</td>
-<td><p>Aggregate에 속해있는 command 목록</p>
-<p>하단에 작성되는 Command의 변수 사용 가능)</p></td>
+<td><p>List of commands belonging to Aggregate</p>
+<p>(Variables of Command written at the bottom can be used)</p></td>
 </tr>
 <tr class="odd">
 <td>policies</td>
-<td><p>Aggregate에 속해있는 policy 목록</p>
-<p>하단에 작성되는 Policy의 변수 사용 가능)</p></td>
+<td><p>List of policies belonging to Aggregate</p>
+<p>(Variables of Policy written at the bottom can be used)</p></td>
 </tr>
 </tbody>
 </table>
 
-### · Event 변수
+### · Event variable
 
-| 변수명           | 변수 역할                       |
+| variable name    | variable role                      |
 | ---------------- | ----------------------          |
-| aggregate        | 자신이 속해있는 Aggregate 정보  |
-| fieldDescriptors | Event Entity 목록               |
-| eventToPolicy    | Policy에 Event를 전달할 방식    |
-| trigger          | Event 전달방식에 관한 Trigger   |
+| aggregate        | Aggregate information to which you belong  |
+| fieldDescriptors | Event Entity List        |
+| eventToPolicy    | How to pass events to policy  |
+| trigger          | Trigger related to event delivery method |
 
-### · Command 변수
+### · Command variable
 
-| 변수명         | 변수 역할                 |
+| variable name     | variable role          |
 | ----------- | --------------------- |
-| aggregate   | 자신이 속해있는 Aggregate 정보 |
-| restfulType | RestAPI 중 어떠한 방식인지.   |
+| aggregate   | Aggregate information to which you belong |
+| restfulType | Which method is RestAPI?  |
 
-### · Policy 변수
+### · Policy variable
 
-| 변수명               | 변수 역할                  |
+| variable name     | variable role                |
 | ----------------- | ---------------------- |
-| aggregate         | 자신이 속해있는 Aggregate 정보  |
-| eventToPolicy     | Policy가 Event를 전달받는 방식 |
-| relationEventInfo | 연결된 Event에 대한 정보       |
+| aggregate         | Aggregate information to which you belong |
+| eventToPolicy     | How Policy receives Events |
+| relationEventInfo | Information about the connected Event |
 
-### · View 변수
+### · View variable
 
-| 변수명               | 변수 역할                  |
+| variable name               | variable role               |
 | ----------------- | ---------------------- |
-| aggregate         | 자신이 속해있는 Aggregate 정보  |
-| dataProjection    | view의 데이터 구조 방식 변수 |
-| viewFieldDescriptors | 데이터 구조에 따른 테이블 정보|
-| aggregateEvents   | 자신이 속해있는 Aggregate의 Events 정보 |
+| aggregate         | Aggregate information to which you belong |
+| dataProjection    | view's data structure method variable |
+| viewFieldDescriptors | Table information according to data structure |
+| aggregateEvents   | Events information of the Aggregate to which you belong |
 
 ### · fieldDescriptors
-| 변수명               | 변수 역할                  |
+| variable name           | variable role             |
 | ----------------- | ---------------------- |
-| name         |  변수 명 |
-| className    | 변수의 데이터 타입 |
-| isKey | 테이블에 대한 Key 값 (Defalut: false) |
+| name         |  variable name |
+| className    | the data type of the variable |
+| isKey | Key value for table (Default: false)) |
 
 
 ### · viewFieldDescriptors
@@ -225,27 +211,27 @@ print("policy: {{name}}");
 **CQRS**
 
 
-| 변수명               | 변수 역할                  |
+| variable name             | variable role           |
 | ----------------- | ---------------------- |
-| isKey         | Key 값 (default: false)  |
-| className   | 변수의 데이터 타입 |
-| columnName    | 변수 명 |
-| sourceEvent | 해당 변수의 Event의 정보에서 변수 |
-| eventDirectValue   | sourceEvent발생시 eventDirectValue값을 columnName 값에 매핑 |
-| viewColumnName   | 자신이 속해있는 Aggregate의 정보에서 변수 매핑 |
-| sourceEventColumn   | 자신이 속해있는 Aggregate의 Events 정보 |
+| isKey         | Key value (default: false) |
+| className   | the data type of the variable |
+| columnName    | variable name |
+| sourceEvent | Variable from the information of the event of that variable |
+| eventDirectValue   | Map eventDirectValue value to columnName value when sourceEvent occurs |
+| viewColumnName   | Mapping variables from the information of the Aggregate to which they belong |
+| sourceEventColumn   | Events information of the Aggregate to which you belong |
 
 **UI Mashup**
 
 
-| 변수명               | 변수 역할                  |
+| variable name   | variable role          |
 | ----------------- | ---------------------- |
-| isKey         | Key 값 (default: false)  |
-| className   | 변수의 데이터 타입 |
-| columnName    | 변수 명 |
-| sourceRepository   | -업데이트 예정- |
-| repositoryDirectValue   | -업데이트 예정- |
-| hateoas   | -업데이트 예정- |
-| link   | -업데이트 예정- |
+| isKey         | Key value (default: false) |
+| className   | the data type of the variable |
+| columnName    | variable name |
+| sourceRepository   | -To be updated- |
+| repositoryDirectValue   | -To be updated- |
+| hateoas   | -To be updated- |
+| link   | -To be updated- |
 
 

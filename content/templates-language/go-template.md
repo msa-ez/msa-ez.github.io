@@ -2,7 +2,7 @@
 description: ''
 sidebar: 'started'
 ---
-# Go Template 만들기 
+# Create a Go Template 
 
 ## Go DDD tutorial 
 
@@ -12,37 +12,44 @@ sidebar: 'started'
 
 <h4> Order </h4>
 
-- Order의 event는 OrderPlaced, OrderCancelled 두개이다. OrderPlaced는 PostPersist로 trigger를 설정하였고 OrderCancelled는 PreRemove로 trigger를 설정하였다. 
-- OrderPlaced 즉, 주문됨이라는 event는 Pub/Sub 통신으로 kafka channel에 event를 발행하여 Delivery Service와 통신한다. 
-- OrderCancelled 즉, 주문 취소됨 이라는 event는 Res/Req 통신으로 REST API로 Delivery Service와 통신한다. Delivery Service 안에서의 DeliveryCancelled logic이 선행 되고 나서야 OrderCancelled의 logic이 수행된다. 
+- There are two events in Order: OrderPlaced and OrderCancelled. OrderPlaced set trigger with PostPersist, and OrderCancelled set trigger with PreRemove.
+ 
+- OrderPlaced, that is, an ordered event, communicates with the Delivery Service by issuing an event to the kafka channel through Pub/Sub communication.
+ 
+- OrderCancelled, that is, order canceled event is communicated with Delivery Service through REST API through Res/Req communication. OrderCancelled logic is executed only after DeliveryCancelled logic in Delivery Service precedes.
+
 
 <h4> Delivery </h4>
 
-- Delivery의 event는 DeliveryStarted, DeliveryCancelled 두개이다. DeliveryStarted는 PostPersist로 trigger를 설정하였고 DeliveryCanclled는 PreRemove로 trigger를 설정하였다. 
+- The two events of Delivery are DeliveryStarted and DeliveryCancelled. DeliveryStarted sets a trigger with PostPersist, and DeliveryCanclled sets a trigger with PreRemove.
 
 ### Code 
 
 ![code](../../src/img/go-tutorial/code.png)
 
-EventStorming 된 화면에서 우측 상단의 code를 클릭하고 언어를 go로 설정하면 위와 같은 code가 생성된다. 이를 다운 받고 싶으면 Download Archive를 클릭하면 된다. 
+If you click the code in the upper right corner on the EventStoring screen and set the language to go, the code above is generated. If you want to download it, click Download Archive.
 
 ### Test 
 
 ![code](../../src/img/go-tutorial/run.png)
 
-<h4> Application 구동하기 </h4>
+<h4> Running the application </h4>
 
-1. 다운로드 받은 파일 위치로 이동한 후 현재 directory에 main.go 가 있는지 확인 한다. 
-2. Application을 구동하기 위한 module을 다운 받기 위해 아래와 같은 명령어를 수행한다. (main.go가 있는 위치에서)
+1. After moving to the downloaded file location, check if main.go exists in the current directory.
+
+2. Execute the following command to download the module to run the application. (where main.go is)
+
 ```bash
-go mod init [프로젝트 명]
+go mod init [project name]
 go mod tidy 
 ```
-3. main.go가 있는 위치에서 아래와 같은 명령어를 수행하여 binary 파일 생성 
+3. Create a binary file by executing the following command in the location of main.go
+ 
 ```bash
 go build main.go
 ```
-4. 위 명령어를 통해 생성된 binary 파일을 run 하기 위해 아래와 같은 명령어 수행. 
+4. Execute the following command to run the binary file created through the above command.
+ 
 ```bash
 ./main
 ``
@@ -59,16 +66,15 @@ go build main.go
 
 - REST Api : resty
 
-## Template code 만들기에 앞서 
+## Before creating the template code
 
-Go Template은 Spring-boot Template을 기반으로 만들어졌다. Java와 언어적으로 다른 부분에 대해서는 상세 설명에서 기술 할 것이다. Spring-boot 에는 library로 제공되는 기능들 중 go에 없는 기능들은 따로 구현 해놓았다. 
+Go Template was created based on Spring-boot Template. The parts that are linguistically different from Java will be described in the detailed description. Among the functions provided as libraries in Spring-boot, functions not in go are implemented separately.
 
-## Go template 파일 구조
+## Go template file structure
 
-Go template 또한 Spring boot과 마찬가지로 model driven하게 code가 generate 된다. 
-Spring-boot와 Go의 비교는 아래와 같다. 
+A code for Go template is also generated like Spring boot based on model driven. The comparison between Spring-boot and Go is as follows. 
 
-| 역할 | Spring boot | Go |
+| role | Spring boot | Go |
 |-----|-------------|----|
 |Aggregate | Entity.java | Entity.go|
 |Event | Event.java | Event.go | 
@@ -83,13 +89,13 @@ Spring-boot와 Go의 비교는 아래와 같다.
 |DB | | DB.go | 
 |utility | | Util.go | 
 
-## Model 별 Template 설명 
+## Template description for each model
 
-- 현 섹션에는 eventstorming을 통해 나온 model들을 기반으로 model driven 하게 generate 되는 code들에 대한 설명이다. 
+- This section describes the codes that are model-driven and generated based on the models generated through eventstorming. 
 
 ### · Entity.go
 
-- Aggregate code 만들기 
+- Create aggregate code
 
 ```go
 forEach: Aggregate
@@ -213,21 +219,19 @@ func (self *{{../namePascalCase}}) {{#triggerCheck trigger}}{{/triggerCheck}}(tx
 
 - typeCheck 
 
-Entity의 attribute type들이 java 기준으로 되어 있어 Go에 맞는 type으로 변환시켜 준다. 
+Since the attribute types of Entity are based on java, it converts them into types suitable for Go.
 
 - eventsExists 
 
-Aggregate에 연결된 event들이 있는지 확인 한다. 
-Go에선 import를 하고 사용하지 않으면 build error가 나기 때문에 event가 있으면 import하고 없으면 import를 하지 않게 해준다. 
+Check if there are events connected to the Aggregate. In Go, if you import and do not use it, a build error occurs, so if there is an event, it is imported, and if it is not, it is not imported. 
 
 - commandValueExists 
 
-res/req 통신이 있는지 확인 한다. 
-있다면 external를 import하고 없으면 external를 import하지 않는다. 
+Check if there is res/req communication. If there is, import external, if not, don't import external.
 
 - triggerCheck 
 
-event에서의 trigger를 확인한 후 Go에 맞는 trigger로 변환해준다. 
+After checking the trigger in the event, it is converted into a trigger suitable for Go. 
 
 | Java 			| Go 		|
 |---------------|-----------|
@@ -238,18 +242,22 @@ event에서의 trigger를 확인한 후 Go에 맞는 trigger로 변환해준다.
 |PostDelete		|afterDelete|
 |PreDelete		|beforeDelete|
 
-<h4> 세부 사항 </h4>
+<h4> Detail </h4>
 
-- Aggregate 당 하나의 Entity.go 파일을 만든다. 
-- Event 객체들은 lifeCycles 객체 안에 들어 있다. (Events 객체도 독립적으로 사용가능)
-- lifeCycles 안의 trigger는 annotation 형태의 trigger가 아닌 trigger의 이름만 가지고 있다. 
-- Event와 연결되어 있는 command 들은 relationCommandInfo 객체에 정보가 저장되어 있고, 각 command 정보를 가져오려면 relationCommandInfo 안 commandValue 객체로 가져와야 한다. 
+- Create one Entity.go file per Aggregate.
+ 
+- Event objects are contained within the lifeCycles object. (Events object can also be used independently)
+
+- The trigger in lifeCycles has only the trigger name, not the annotation type trigger.
+ 
+- For commands connected to events, information is stored in relationCommandInfo object, and to get each command information, it must be imported as commandValue object in relationCommandInfo.
+ 
 
 ---
 
 ### · Event.go
 
-- Event code 만들기 
+- Create event code 
 
 ```go
 forEach: Event
@@ -302,15 +310,18 @@ func New{{namePascalCase}}() *{{namePascalCase}}{
 </function>
 ```
 
-<h4> 세부 사항 </h4>
+<h4> Detail </h4>
 
-- 하나의 Event 당 하나의 Event.go 파일을 만든다. 
-- typeCheck라는 handleBar function은 Entity.go 와 같이 go에 맞는 변수형으로 만들어준다. 
-- Spring boot code에선 Event 객체는 abstractEvent 객체를 상속 받아 사용되는데 Go에선 상속의 개념이 없어 abstractEvent의 주요 기능들은 모두 Util.go 안에 여러 함수들로 추가 구현 되어 있다. 
+- Create one Event.go file per Event.
+ 
+- The handleBar function called typeCheck makes a variable type suitable for go like Entity.go.
+
+- In Spring boot code, Event object inherits abstractEvent object and is used, but in Go, there is no concept of inheritance, so all major functions of abstractEvent are additionally implemented as various functions in Util.go.
+
 
 ### · PolicyHandler.go
 
-- Pub/Sub으로 연결된 policyHandler code를 만들기
+- Create policyHandler code connected to Pub/Sub
 
 ```go
 forEach: BoundedContext
@@ -358,21 +369,24 @@ func whenever{{eventValue.namePascalCase}}_{{../namePascalCase}}(data map[string
 
 - policyExists
 
-연결된 Policy가 존재하는지 판단하는 handleBar 함수
-연결된 policy가 존재할 때만 mapstructure를 import 한다. 
+A handleBar function that determines whether a linked policy exists Imports mapstructure only when a linked policy exists.
 
-<h4> 세부사항 </h4>
+<h4> Detail </h4>
 
- - policies라는 객체 안에 연결된 policyHandler에 대한 정보들이 있다. 
- - 해당 policyHandler와 연결된 Event 객체에 대한 정보는 relationEventInfo 객체에 들어 있다. 
- - 각 Event 객체의 세부 정보는 relationEventInfo 안 eventValue 안에 들어 있다. 
- - Spring boot code에는 PolicyHandler 안에서 모든 message를 읽고 객체화 하여 자신이 원하는 객체 일때만 logic을 수행하는 코드를 validate라는 함수를 통해 수행하는데 현재 구현된 Go code에서는 KafkaProcessor.go 안의 KafkaConsumer에서 필요할 때만 logic이 수행되는 함수로 message를 넘겨주는 형식이다. 
+ - There is information about policyHandler connected in the object called policies.
+ 
+ - Information on the Event object associated with the policyHandler is contained in the relationEventInfo object.
+ 
+ - Detailed information of each Event object is contained in eventValue in relationEventInfo.
+
+ - In the Spring boot code, the code that reads all messages in PolicyHandler and instantiates them and executes the logic only when the object is the desired object is executed through a function called validate. This is the format to pass the message to.
+
 
 ---
 
 ### · PolicyEvent.go
 
-- PolicyHandler와 연결된 외부 Event 구조체에 대한 code 만들기 
+- Create code for external Event structure associated with PolicyHandler
 
 ```go
 forEach: RelationEventInfo
@@ -420,15 +434,15 @@ func New{{eventValue.namePascalCase}}() *{{eventValue.namePascalCase}}{
 </function>
 ```
 
-<h4> 세부사항 </h4>
+<h4> Detail </h4>
 
-- Event.go 코드와 동일하나 PolicyHandler가 붙어있는 BoundedContext 쪽 service에 구현된다. 
+- Same as Event.go code, but implemented in the service on the BoundedContext side to which the PolicyHandler is attached.
 
 ---
 
 ### · ExternalService.go 
 
-- 외부 Service의 command와 res/req 방식으로 통신하는 logic이 구현되어 있는 ExternalService code 만들기 
+- Create ExternalService code that implements logic to communicate with external service command and res/req method
 
 ```go
 forEach: RelationCommandInfo
@@ -521,37 +535,42 @@ func {{commandValue.namePascalCase}}(id int) *resty.Response{
 ```
 <h4> HandleBar Function </h4>
 
-Method에 따라 method에 맞는 코드를 generate 해야 하기 때문에 method들을 구분할 수 있는 switch/case 와 같은 함수를 구현.
+Implemented a function such as switch/case that can distinguish methods because it is necessary to generate the code suitable for the method according to the method.
 
 - MethodGet 
 
-Get method 일때 return true 
+return true for get method
 
 - MethodPost
 
-Post method 일때 return true
+return true for post method
 
 - MethodUpdate 
 
-Update method 일때 return true
+In case of update method, return true
 
 - MethodDelete
 
-Delete method 일때 return true 
+In case of Delete method, return true
 
-<h4> 세부사항 </h4>
+<h4> Detail </h4>
 
-- package는 external로 현재와 다른 package로 정의한다. 
-- 파일의 이름은 res/req 통신으로 연결된 외부 service의 Aggregate명 + service 로 한다. 
-- 연결된 command들의 정보는 commandValue 객체 안에 있다. 
-- 해당 command의 method는 commandValue.restRepositoryInfo.method에 있다. 
-- Spring boot code에서는 Feign client를 사용하여 res/req 통신을 수행하는데 Go 에서는 Feign 관련 api가 존재하지 않아 resty library를 사용하여 res/req 형식의 통신을 구현하였다. 
+- A package is defined as a different package than the current one as external.
+ 
+- The name of the file is the aggregate name of the external service connected by res/req communication + service.
+
+- The information of the connected commands is in the commandValue object.
+
+- The method of the corresponding command is in commandValue.restRepositoryInfo.method.
+
+- In Spring boot code, res/req communication is performed using Feign client, but since Feign related api does not exist in Go, communication in res/req format is implemented using resty library.
+
 
 ---
 
 ### · ExternalEntity.go
 
-- res/req 통신으로 연결된 외부 service의 Aggregate에 해당하는 Entity code 만들기
+- Create entity code corresponding to aggregate of external service connected by res/req communication
 
 ```go
 forEach: RelationCommandInfo
@@ -593,16 +612,17 @@ type {{namePascalCase}} struct {
 
 ```
 
-<h4> 세부사항 </h4>
+<h4> Detail </h4>
 
-- package는 external로 현재와 다른 package로 정의한다. 
-- 연결된 command 정보를 갖고 있는 commandValue 객체 안 aggregate들의 정보를 가져와 Entity.go 파일과 동일한 방식으로 생성한다. 
+- A package is defined as a different package than the current one as external.
+
+- Get the information of aggregates in the commandValue object with linked command information and create them in the same way as in the Entity.go file.
 
 ---
 
 ### · Repository.go
 
-- REST API의 기본적인 CRUD 만들기 
+- Creating basic CRUDs for REST APIs
 
 ```go
 forEach: Aggregate
@@ -667,16 +687,18 @@ func (self *{{namePascalCase}}) Remove(c echo.Context) error{
 }
 ```
 
-<h4> 세부사항 </h4>
+<h4> Detail </h4>
 
-- Entity 당 하나의 CRUD를 생성 해주어야 해서 Aggregate 당 하나의 Repository.go를 만든다. 
-- Spring boot에는 spring-data-rest package의 기능을 go에서는 echo framework을 이용하여 구현하였다. 
+- One CRUD must be created per entity, so one Repository.go is created per Aggregate.
+ 
+- The function of spring-data-rest package is implemented in spring boot using echo framework in go.
+
 
 --- 
 
 ### · Route.go
 
-- Controller에 해당하는 Route code 만들기 
+- Create route code corresponding to controller
 
 ```go
 forEach: BoundedContext
@@ -704,17 +726,20 @@ func RouteInit() *echo.Echo {
 
 ```
 
-<h4> 세부사항 </h4>
+<h4> Detail </h4>
 
-- 기본적인 CRUD에 해당하는 함수들의 경로를 지정해 준다. 
-- Entity에 해당하는 Aggregate 별로 CRUD가 있어야 하므로 각 Aggregate 마다 CRUD를 생성. 
-- Spring boot code에선 Rest controller가 수행하는 작업을 Go 에선 echo framework 위에 routing 설정을 하여 구현하였다. 
+- Specifies the path of functions corresponding to basic CRUD.
+
+- Since there must be a CRUD for each Aggregate that corresponds to an entity, a CRUD is created for each Aggregate.
+
+- In the Spring boot code, the work performed by the Rest controller was implemented by setting the routing on the echo framework in Go.
+
 
 ---
 
 ### · main.go
 
-- Application을 실행하는 main code 만들기 
+- Create the main code to run the application
 
 ```go
 forEach: BoundedContext
@@ -761,21 +786,25 @@ func main() {
 
 - policyExists
 
-pub/sub 통신 방법이 존재하면 즉, 외부 service에 해당 event에 대한 policyHandler가 존재하는지 검사하기 위한 함수 
+If the pub/sub communication method exists, that is, a function to check whether a policyHandler for the event exists in the external service.
 
-<h4> 상세설명 </h4>
+<h4> Detail </h4>
 
-- Application이 실행 되면서 DB, kafkaProducer, 필요하다면 Kafkaconsumer와 echo framework을 시작시킨다. 
+- When the application is running, DB, kafkaProducer, and if necessary, Kafkaconsumer and echo framework are started.
 
-## Go 전용 Template 
+## Go-only Template
 
-- Go에서는 spring boot과 다르게 지원되지 않는 api들이 많다.
-- 이를 위해 필수적인 요소들만 model에 맞는 함수들을 generate 시킨다. 
+- Unlike spring boot, there are many APIs that are not supported in Go.
+
+- For this, only essential elements generate functions that fit the model.
+
 
 ### · DB.go
 
-- Sqlite DB 만들기 (spring boot tutorial에선 h2 DB를 쓴다.)
-- DB와 연관된 모든 logic은 이 코드에서 수행 된다. 
+- Create Sqlite DB (H2 DB is used in the spring boot tutorial.)
+
+- All logic related to DB is executed in this code.
+
 
 ```go
 forEach: Aggregate
@@ -856,17 +885,21 @@ func (self *{{namePascalCase}}DB) Update(id int, params map[string]string) error
 }
 ```
 
-<h4> 세부 사항 </h4>
+<h4> Detail </h4>
 
-- 하나의 boundedContext에 두개 이상의 aggregate이 존재하기 때문에 하나의 Aggregate 당 하나의 DB.go 파일을 만든다. 
-- 또한 aggregate이 두개 이상 일땐 생성되어야 하는 db table이 두개 이상 이기 때문에 이를 구분하기 위해 struct method 방식으로 구현한다. 
+- Since two or more aggregates exist in one boundedContext, one DB.go file is created for each aggregate.
+ 
+- In addition, when there are more than two aggregates, since there are more than two db tables to be created, implement the struct method to distinguish them.
+
 
 --- 
 
 ### · KafkaProcessor.go 
 
-- Kafka와 관련된 logic들을 위한 code 만들기 
-- Kafka producer와 consumer에 대한 설정은 현 파일에서 설정해준다. 
+- Creating code for Kafka-related logic
+
+- The settings for Kafka producer and consumer are set in the current file.
+
 
 ```go
 forEach: BoundedContext
@@ -953,17 +986,20 @@ func Streamhandler(message string){
 
 ```
 
-<h4> 세부사항 </h4>
+<h4> Detail </h4>
 
-- group id는 boundedContext의 이름으로 한다. 
-- topic은 project의 이름으로 한다. 
-- KafkaConsumer에서 kafka channel을 통해 들어온 message를 deserialize 하여 eventType에 따라 해당되는 logic이 수행되는 policyHandler 함수를 call 한다. 
+- The group id is the name of boundedContext.
+
+- The topic is the name of the project.
+
+- The KafkaConsumer deserializes the message received through the kafka channel and calls the policyHandler function that executes the corresponding logic according to the eventType.
+
 
 ___ 
 
 ### · Util.go 
 
-- Spring boot엔 있지만 Go엔 없는 API들 중 필수적인 기능들을 구현해 놓은 code이다. 이는 model driven하게 code가 generate 되진 않지만 각 boundedContext당 하나의 Util.go 파일이 생성된다. 
+- It is a code that implements essential functions among APIs that are in Spring boot but not in Go. This is model driven and code is not generated, but one Util.go file is generated for each boundedContext.
 
 ```go
 forEach: BoundedContext
@@ -1028,10 +1064,11 @@ func Publish(event interface{}) {
 }
 ```
 
-<h4> 세부사항 </h4>
+<h4> Detail </h4>
 
-- ObjectMapping 함수는 echo framework을 통해 들어온 request 타입인 map[string] string을 Entity class와 mapping 해주는 함수이다. 일반적으로 objectMapping은 mapstructure를 사용하지만 이는 map[string] interface에 관한 타입만 지원 하여 구현되었다. 
-- Publish, ToJson, getType 함수는 Spring boot code에선 AbstractEvent의 method로 구현되었지만 Go에선 상속이 불가하여 따로 함수 형태로 구현되었다. 
+- The ObjectMapping function is a function that maps the map[string] string, which is the request type received through the echo framework, with the entity class. In general, objectMapping uses mapstructure, but this was implemented by supporting only types related to the map[string] interface.
+
+- Publish, ToJson, and getType functions are implemented as methods of AbstractEvent in Spring boot code, but they are implemented as separate functions because inheritance is not possible in Go.
 
 
 

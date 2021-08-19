@@ -10,7 +10,7 @@ module.exports = {
     favicon: './src/assets/favicon.png',
     touchicon: './src/assets/favicon.png'
   },
-  siteUrl: (process.env.SITE_URL ? process.env.SITE_URL : 'https://msa-ez-kor.github.io'),
+  siteUrl: (process.env.SITE_URL ? process.env.SITE_URL : 'https://example.com'),
   settings: {
     web: process.env.URL_WEB || false,
     twitter: process.env.URL_TWITTER || false,
@@ -25,7 +25,7 @@ module.exports = {
         name: 'started',
         sections: [
           {
-            title: '시작하기',
+            title: 'Getting Started',
             items: [
               '/started/',
               '/started/domain-driven/',
@@ -33,7 +33,7 @@ module.exports = {
             ]
           },
           {
-            title: '도구 사용법',
+            title: 'How to use the tool',
             items: [
               '/tool/event-storming-tool/',
               '/tool/cloud-ide-tool/',
@@ -42,7 +42,7 @@ module.exports = {
             ]
           },
           {
-            title: '언어별 템플릿',
+            title: 'Language-specific templates',
             items: [
               '/templates-language/python-template/',
               '/templates-language/springboot-java-template/',
@@ -51,7 +51,7 @@ module.exports = {
             ]
           },
           {
-            title: '예제 시나리오',
+            title: 'Example scenario',
             items: [
               '/example-scenario/accommodation-reservation/',
               '/example-scenario/food-delivery/',

@@ -31,9 +31,10 @@
           </h3>
           <g-image style = "width:100%;" src="~/img/img_1.png"  />
           <p class="text-lg text-left">
-            MSA Easy는 마이크로서비스 구축에서 운영에 필요한 분석, 설계, 구현 및 모니터링을 지원하는 도구로써,
-            이벤트스토밍 기반 협업을 통해 도메인을 분석/설계하고, 설계된 도메인 모델에서 MSA 소스코드를 자동으로 생성해 줍니다.
-            분석/ 설계단계에서는 MSA Easy를 사용해 대상 도메인의 경계를 식별하고 Contract(계약)을 정의합니다.
+            <br>
+            MSA Easy is a tool that supports from building Microservices to operation by providing analysis, design, implementation,
+            and monitoring required. It analyzes and designs domains through event-storming-based collaboration and automatically generates MSA source codes from the designed domain model.
+            In the analysis and design phase, MSA Easy is used to identify the boundaries of the target domain and define the contract.
           </p>
         </div>
 
@@ -44,9 +45,10 @@
           </h3>
           <g-image style = "width:100%;" src="~/img/img_2.png"  />
           <p class="text-lg text-left">
-            설계된 모델은 MDD(Model-driven Design) 패턴에 따라 MSA 코드로 변환됩니다.
-            MSA 코드이외에 컨트랙트 테스트 Code,
-            도커 이미지 생성 스크립트 및 클라우드(GCP, AWS, Azure 등)에 즉시 배포 가능한 CI/CD 파이프라인 스크립트를 자동 생성해 줍니다.
+            <br>
+            The designed model is converted to source codes for Microservices according to the Model-driven Design (MDD) pattern.
+            In addition to source codes for Microservices, it automatically generates contract test code,
+            Docker image creation script, and CI/CD pipeline script that can be deployed immediately to the cloud (GCP, AWS, Azure, etc.).
           </p>
         </div>
 
@@ -56,9 +58,10 @@
           </h3>
           <g-image style = "width:100%;" src="~/img/img_3.png"  />
           <p class="text-lg text-left">
-            MSA의 최대 장점 중 하나는 서비스별 최적의 기술 적용이 가능한 폴리글랏 아키텍처입니다.
-            ES2CD는 이벤트스토밍 결과, 식별된 마이크로서비스별 코드 생성이 가능하며,
-            ‘사용자 정의 템플릿’을 통해, 다양한 언어 및 정보공학 노테이션(Notation)으로의 확장을 지원합니다.
+            <br>
+            One of the greatest strengths of MSA is the polyglot architecture that can apply the optimal technology for each service.
+            ES2CD is capable of generating code for each microservice identified as a result of event storming,
+            and supports extension to various languages and information engineering Notation through ‘user-defined templates’.
           </p>
         </div>
       </div>
