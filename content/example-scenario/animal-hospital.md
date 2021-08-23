@@ -242,7 +242,7 @@ public interface MedicalRecordService {
 }
 ```
 
-- Cloud 환경 테스트시
+- Cloud environment testing
 ``` java
 @FeignClient(name = "diagnosis", url = "http://diagnosis:8080")
 public interface MedicalRecordService {
@@ -252,30 +252,29 @@ public interface MedicalRecordService {
 }
 ```
 
-아래의 명령어는 httpie 프로그램을 사용하여 입력한다.
+The following commands are entered using the httpie program.
 ```
-# 예약 서비스의 예약
+# Reservation of reservation service
 http post localhost:8081/reservations reservatorName="Jackson" reservationDate="2020-04-30" phoneNumber="010-1234-5678"
 
-# 예약 서비스의 예약 취소
+# Cancellation of reservation service
 http delete localhost:8081/reservations/1
 
-# 예약 서비스의 예약 변경
+# Change the reservation of the reservation service
 http patch localhost:8081/reservations/1 reservationDate="2020-05-01"
 
-# 진료 기록 리스트 확인
+# Check the list of medical records
 http localhost:8083/medicalRecords
-
 ```
 
-### · 동기식 호출과 Fallback 처리
+### · Synchronous Invocation and Fallback Handling
 
-분석단계에서의 조건 중 하나로 예약(reservation)->진료(diagnosis) 간의 호출은 동기식 일관성을 유지하는 트랜잭션으로 처리하기로 하였다. 호출 프로토콜은 이미 앞서 Rest Repository 에 의해 노출되어있는 REST 서비스를 FeignClient 를 이용하여 호출하도록 한다. 
+As one of the conditions in the analysis phase, the call between reservation->diagnosis was decided to be processed as a transaction that maintains synchronous consistency. The calling protocol allows the REST service already exposed by the Rest Repository to be called using FeignClient. 
 
-- 진료서비스를 호출하기 위하여 FeignClient를 이용하여 Service 대행 인터페이스 (Proxy) 를 구현 
+- Implement service proxy interface (Proxy) using FeignClient to call medical service
 
 ```
-# (app) 결제이력Service.java
+# (app) Payment history Service.java
 package com.example.reservation.external;
 
 import org.springframework.cloud.openfeign.FeignClient;
@@ -292,24 +291,24 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 ```
 
-- 예약완료 직후(@PostPersist) 진단을 요청하도록 처리
+- Process to request diagnosis immediately after reservation completion (@PostPersist)
 ```
 # Reservation.java (Entity)
     @PostPersist
        public void publishReservationReservedEvent() {
    
-           // 예약이 발생하면 바로 진료 진행.
+           // When an appointment is made, treatment proceeds immediately.
            MedicalRecord medicalRecord = new MedicalRecord();
    
            medicalRecord.setReservationId(this.getId());
            medicalRecord.setDoctor("Brad pitt");
-           medicalRecord.setMedicalOpinion("별 이상 없습니다.");
-           medicalRecord.setTreatment("그냥 집에서 푹 쉬면 나을 것입니다.");
+           medicalRecord.setMedicalOpinion("There is nothing more than a star.");
+           medicalRecord.setTreatment("Just rest at home and you'll be fine.");
    
            ReservationApplication.applicationContext.getBean(MedicalRecordService.class).diagnosis(medicalRecord);
    
    
-           // Reserved 이벤트 발생
+           // Reserved event occurs
            ObjectMapper objectMapper = new ObjectMapper();
            String json = null;
    
@@ -328,40 +327,38 @@ import org.springframework.web.bind.annotation.RequestMethod;
                    .build());
 ```
 
-- 동기식 호출에서는 호출 시간에 따른 타임 커플링이 발생하며, 진단 시스템이 장애가 나면 예약도 못받는다는 것을 확인.(비즈상 무리가 있음..) 
+- In a synchronous call, time coupling occurs according to the call time, and it is confirmed that a reservation cannot be received if the diagnostic system fails.
 
 ```
-# 진료 (diagnosis) 서비스를 잠시 내려놓음 (ctrl+c)
+# Temporarily put down the diagnosis service (ctrl+c)
 
-# 예약 처리
+# Reservation processing
 http post localhost:8081/reservations reservatorName="Jackson" reservationDate="2020-04-30" phoneNumber="010-1234-5678" #Fail
 
-#진료 서비스 재기동
+#Restarting medical services
 cd diagnosis
 mvn spring-boot:run
 
-#예약처리
+#Reservation processing
 http post localhost:8081/reservations reservatorName="Jackson" reservationDate="2020-04-30" phoneNumber="010-1234-5678" #Success
 ```
 
-### · 클러스터 적용 후 REST API 의 테스트
-- http://52.231.118.148:8080/medicalRecords/     		//diagnosis 조회
-- http://52.231.118.148:8080/reservations/       		//reservation 조회 
-- http://52.231.118.148:8080/reservations reservatorName="pdc" reservationDate="202002" phoneNumber="0103701" //reservation 요청 
-- Delete http://52.231.118.148:8080/reservations/1 	//reservation Cancel  Sample
-- http://52.231.118.148:8080/reservationStats/   	  //lookup  조회
-- http://52.231.118.148:8080/financialManagements/ 	//acceptance 조회
+### · Testing REST API after cluster application
+- http://52.231.118.148:8080/medicalRecords/ //diagnosis inquiry
+- http://52.231.118.148:8080/reservations/ //reservation inquiry
+- http://52.231.118.148:8080/reservations reservatorName="pdc" reservationDate="202002" phoneNumber="0103701" //reservation request
+- Delete http://52.231.118.148:8080/reservations/1 //reservation Cancel Sample
+- http://52.231.118.148:8080/reservationStats/ //lookup
+- http://52.231.118.148:8080/financialManagements/ //acceptance lookup
+
+- Also, service failures can occur like dominoes when excessive reservation requests are made. (Circuit breaker and fallback processing will be explained in the operation phase.)
+
+### · Asynchronous Invocation and Eventual Consistency
 
 
-- 또한 과도한 예약 요청시에 서비스 장애가 도미노 처럼 벌어질 수 있다. (서킷브레이커, 폴백 처리는 운영단계에서 설명한다.)
-
-
-### · 비동기식 호출과 Eventual Consistency
-
-
-진료가 이루어진 후에 수납시스템으로 이를 알려주는 행위는 동기식이 아니라 비 동기식으로 처리하여 수납 시스템의 처리를 위하여 예약/진료 시스템이 블로킹 되지 않아도록 처리한다.
+The act of notifying the receiving system after treatment is made is not synchronous, but asynchronous, so that the reservation/treatment system is not blocked for the processing of the receiving system.
  
-- 이를 위하여 진료이력을 남긴 후에 곧바로 진료가 이루어졌다는 이벤트를를 카프카로 송출한다(Publish)
+- For this purpose, after leaving the medical history, the event that the medical treatment was done is immediately sent to Kafka (Publish).
  
 ```
 // package Animal.Hospital.MedicalRecord;
@@ -375,7 +372,7 @@ http post localhost:8081/reservations reservatorName="Jackson" reservationDate="
 
 ```
 
-- 수납 서비스에서는 진료완료 이벤트에 대해서 이를 수신하여 자신의 정책을 처리하도록 PolicyHandler 를 구현한다:
+- Acceptance service implements PolicyHandler to receive treatment completion event and process its own policy:
 
 ``` java
 @Service
@@ -388,7 +385,7 @@ public class KafkaListener {
 
     public void TreatedEvent(@Payload Treated treated) {
         if(treated.getEventType().equals("Treated")) {
-            System.out.println("수납요청 되었습니다.");
+            System.out.println("A storage request has been made.");
 
             FinancialManagement financialManagement = new FinancialManagement();
             financialManagement.setReservationId(treated.getReservationId());
@@ -399,7 +396,7 @@ public class KafkaListener {
 }
 ```
 
-알림 시스템은 실제로 문자를 보낼 수는 없으므로, 예약/변경/취소 이벤트에 대해서 System.out.println 처리 하였다.
+Since the notification system cannot actually send text messages, System.out.println is processed for reservation/change/cancellation events.
   
 ``` java
 package com.example.notice;
@@ -409,51 +406,51 @@ public class KafkaListener {
     @StreamListener(Processor.INPUT)
     public void onReservationReservedEvent(@Payload ReservationReserved reservationReserved) {
         if(reservationReserved.getEventType().equals("ReservationReserved")) {
-            System.out.println("예약 되었습니다.");
+            System.out.println("successfully booked.");
         }
     }
 
     @StreamListener(Processor.INPUT)
     public void onReservationChangedEvent(@Payload ReservationChanged reservationChanged) {
         if(reservationChanged.getEventType().equals("ReservationChanged")) {
-            System.out.println("예약 변경 되었습니다.");
+            System.out.println("Reservation has been changed.");
         }
     }
 
     @StreamListener(Processor.INPUT)
     public void onReservationCanceledEvent(@Payload ReservationCanceled reservationCanceled) {
         if(reservationCanceled.getEventType().equals("ReservationCanceled")) {
-            System.out.println("예약 취소 되었습니다.");
+            System.out.println("Reservation has been cancelled.");
         }
     }
 }
 
 ```
 
-수납, Lookup(CQRS) 시스템은 예약/진료와 완전히 분리되어있으며, 이벤트 수신에 따라 처리되기 때문에, 수납/Lookup 시스템이 유지보수로 인해 잠시 내려간 상태라도 예약/진료를 하는데 문제가 없다:
+The reception/lookup (CQRS) system is completely separated from the reservation/treatment and is processed according to the reception of the event, so there is no problem in making a reservation/treatment even if the reception/lookup system is temporarily down due to maintenance:
 ```
-# 수납 서비스 (acceptance) 를 잠시 내려놓음 (ctrl+c)
+# put down acceptance for a while (ctrl+c)
 
-#예약처리
+#Reservation processing
 http post localhost:8081/reservations reservatorName="Jackson" reservationDate="2020-04-30" phoneNumber="010-1234-5678" #Success
 
-#예약상태 확인
-http localhost:8081/reservations     # 예약 추가 된 것 확인
+#Check reservation status
+http localhost:8081/reservations     # Confirm that reservations have been added
 
-#수납 서비스 기동
+#Start storage service
 cd acceptance
 mvn spring-boot:run
 
-#수납상태 확인
-http localhost:8085/financialManagements     # 모든 예약-진료에 대해서 요금이 청구되엇음을 확인.
-
+#Check storage status
+http localhost:8085/financialManagements     # Confirm that you have been charged for all appointments - treatment. 
 ```
-### · API 게이트웨이
-- Local 테스트 환경에서는 localhost:8080에서 Gateway API 가 작동.
-- Cloud 환경에서는 http://52.231.118.148:8080 에서 Gateway API가 작동.
-- application.yml 파일에 프로파일 별로 Gateway 설정.
+### · API Gateway
+- In the local test environment, Gateway API works at localhost:8080.
+- In the cloud environment, the Gateway API works at http://52.231.118.148:8080.
+- Gateway configuration for each profile in application.yml file.
 
-<h3> Gateway 설정 파일</h3>
+
+<h3>Gateway configuration file</h3>
 
 ```yaml
 server:
@@ -548,19 +545,20 @@ server:
   port: 8080
 ```
 
-### · Oauth 인증 적용.
-- Oauth 인증 적용. 
-- But, 수업 중에 사용한 Oauth 프로젝트를 그대로 이용하여 Gateway에 붙이기만 함.
+### · Application of Oauth authentication
+- Oauth authentication applied. 
+- But, just use the Oauth project used during class and attach it to the Gateway.
 
-## 운영
+## operation
 
-### · CI/CD 설정
+### · CI/CD settings
 
-각 구현체들은 각자의 Git을 통해 빌드되며, Git Master에 트리거 되어 있다. pipeline build script 는 각 프로젝트 폴더 이하에 azure_pipeline.yml 에 포함되었다.
+Each implementation is built through its own Git and is triggered by Git Master. The pipeline build script is included in azure_pipeline.yml under each project folder.
 
-azure_pipelist.yml 참고
+See azure_pipelist.yml
 
-kubernetes Service
+kubernetes service
+
 ```yaml
 trigger:
 - master
@@ -708,13 +706,14 @@ stages:
 ```
 
 
-### · 동기식 호출 / 서킷 브레이킹 / 장애격리
+### · Synchronous Call / Circuit Breaking / Fault Isolation
 
-* 서킷 브레이킹 프레임워크의 선택: Spring FeignClient + Hystrix 옵션을 사용하여 구현함
+- Choice of circuit breaking framework: Implemented using Spring FeignClient + Hystrix option
 
-시나리오는 예약 시스템(reservation)-->진료(diagnosis) 시의 연결을 RESTful Request/Response 로 연동하여 구현이 되어있고, 진료 요청이 과도할 경우 CB 를 통하여 장애격리.
+The scenario is implemented by linking the connection at reservation system-->diagnosis with RESTful Request/Response, and in case of excessive treatment request, fault isolation through CB.
 
-- Hystrix 를 설정:  요청처리 쓰레드에서 처리시간이 610 밀리가 넘어서기 시작하여 어느정도 유지되면 CB 회로가 닫히도록 (요청을 빠르게 실패처리, 차단) 설정
+- Set Hystrix: Set the CB circuit to close (fail and block requests quickly) when the processing time starts to exceed 610 millimeters in the request processing thread and is maintained for a certain amount.
+
 ```
 # application.yml
 
@@ -739,7 +738,7 @@ feign:
 
 ```
 
-- 피호출 서비스(진료:diagnosis) 의 임의 부하 처리 - 400 밀리에서 증감 220 밀리 정도 왔다갔다 하게
+- Random load handling of the called service (diagnosis) - it fluctuates from 400 millimeters to 220 millimeters.
 ```
 # (diagnosis) MedicalRecord.java (Entity)
 
@@ -755,16 +754,18 @@ feign:
     }
 ```
 
-* 부하테스터 siege 툴을 통한 서킷 브레이커 동작 확인:
-- 동시사용자 100명
-- 60초 동안 실시
+- Check circuit breaker operation with load tester siege tool:
+
+- 100 concurrent users
+- run for 60 seconds
+
 
 ```
 $ siege -c100 -t60s -r10 --content-type "application/json" 'http://localhost:8081/reservations POST {"reservatorName": "Jackson", "phoneNumber": "01032713104", "reservationDate": "2020-05-01"}'
 
-Windows 안에서 작동하는 Ubuntu에서 siege 실행시 "[error] unable to set close control sock.c:141: Invalid argument" 이 발생하여 중간 과정은 알 수 없음.
+When running siege on Ubuntu running in Windows, "[error] unable to set close control sock.c:141: Invalid argument" occurs and the intermediate process is unknown. 
 
-그러나 아래와 같은 결과를 확인.
+However, check the results as below.
 
 Lifting the server siege...
 Transactions:                   1067 hits
@@ -781,21 +782,23 @@ Longest transaction:            7.01
 Shortest transaction:           0.02
 
 ```
-- 운영시스템은 죽지 않고 지속적으로 CB 에 의하여 적절히 회로가 열림과 닫힘이 벌어지면서 자원을 보호하고 있음을 보여줌. 78.92% 가 성공.
+- The operating system does not die and shows that the resource is protected by properly opening and closing the circuit by CB continuously. 78.92% were successful.
 
-### · 오토스케일 아웃
-앞서 CB 는 시스템을 안정되게 운영할 수 있게 해줬지만 사용자의 요청을 100% 받아들여주지 못했기 때문에 이에 대한 보완책으로 자동화된 확장 기능을 적용하고자 한다. 
+### · autoscale out
+Previously, CB made it possible to operate the system stably, but it did not accept 100% of the user's request. 
 
+- Configure HPA to dynamically increase replicas for medical services. The setting increases the number of replicas to 10 when CPU usage exceeds 15%.
 
-- 진료서비스에 대한 replica 를 동적으로 늘려주도록 HPA 를 설정한다. 설정은 CPU 사용량이 15프로를 넘어서면 replica 를 10개까지 늘려준다:
+kubectl autoscale deploy diagnosis --min=1 --max=10 --cpu-percent=15
+
 ```
 kubectl autoscale deploy diagnosis --min=1 --max=10 --cpu-percent=15
 ```
 
 
 
-### · 무정지 재배포
-- 모든 프로젝트의 readiness probe 및 liveness probe 설정 완료.
+### · Uninterrupted redistribution
+- Complete readiness probe and liveness probe setup for all projects.
 ```yaml
 readinessProbe:
   httpGet:
