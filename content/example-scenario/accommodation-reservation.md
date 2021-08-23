@@ -41,7 +41,7 @@ Cover AirBnB
 8. It should be possible to give a message whenever the reservation status changes Event driven)
 
 
-## 체크포인트
+## CheckPoint
 
 - analytical design
 
@@ -172,50 +172,52 @@ Cover AirBnB
 
 ![image](https://user-images.githubusercontent.com/15603058/119305002-0edd3000-bca3-11eb-9cc0-1ba8b17f2432.png)
 
-- View Model 추가
+- Add View Model
 
-**1차 완성본에 대한 기능적/비기능적 요구사항을 커버하는지 검증**
+**Verification that functional/non-functional requirements for the first complete version are**
 
 ![image](https://user-images.githubusercontent.com/15603058/119306321-f110ca80-bca4-11eb-804c-a965220bad61.png)
 
-- 호스트가 임대할 숙소를 등록/수정/삭제한다.(ok)
-- 고객이 숙소를 선택하여 예약한다.(ok)
-- 예약과 동시에 결제가 진행된다.(ok)
-- 예약이 되면 예약 내역(Message)이 전달된다.(?)
-- 고객이 예약을 취소할 수 있다.(ok)
-- 예약 사항이 취소될 경우 취소 내역(Message)이 전달된다.(?)
-- 숙소에 후기(review)를 남길 수 있다.(ok)
-- 전체적인 숙소에 대한 정보 및 예약 상태 등을 한 화면에서 확인 할 수 있다.(View-green Sticker 추가로 ok)
+- Register/modify/delete accommodation for the host to rent (ok)
+- The customer selects and makes a reservation (ok)
+- Payment is made at the same time as the reservation. (ok)
+- When a reservation is made, the reservation details (Message) are delivered.(?)
+- The customer can cancel the reservation (ok).
+- If the reservation is canceled, a cancellation message is sent.(?)
+- You can leave a review on the property (ok).
+- You can check the overall accommodation information and reservation status on one screen. (Add View-green Sticker is ok)
     
-**모델 수정**
+**Modify the model**
 
 ![image](https://user-images.githubusercontent.com/15603058/119307481-b740c380-bca6-11eb-9ee6-fda446e299bc.png)
     
-- 수정된 모델은 모든 요구사항을 커버함.
+- The modified model covers all requirements.
 
-**비기능 요구사항에 대한 검증**
+**Verification of non-functional requirements**
 
 ![image](https://user-images.githubusercontent.com/15603058/119311800-79df3480-bcac-11eb-9c1b-0382d981f92f.png)
 
-- 마이크로 서비스를 넘나드는 시나리오에 대한 트랜잭션 처리
-- 고객 예약시 결제처리:  결제가 완료되지 않은 예약은 절대 받지 않는다고 결정하여, ACID 트랜잭션 적용. 예약 완료시 사전에 방 상태를 확인하는 것과 결제처리에 대해서는 Request-Response 방식 처리
-- 결제 완료시 Host 연결 및 예약처리:  reservation 에서 room 마이크로서비스로 예약요청이 전달되는 과정에 있어서 room 마이크로 서비스가 별도의 배포주기를 가지기 때문에 Eventual Consistency 방식으로 트랜잭션 처리함.
-- 나머지 모든 inter-microservice 트랜잭션: 예약상태, 후기처리 등 모든 이벤트에 대해 데이터 일관성의 시점이 크리티컬하지 않은 모든 경우가 대부분이라 판단, Eventual Consistency 를 기본으로 채택함.
+- Transaction processing for scenarios that cross microservices
+- Payment processing at the time of customer reservation: ACID transaction is applied by deciding that reservations that have not been paid will never be accepted. When booking is completed, check the room status in advance and process the request-response method for payment processing
+- Host connection and reservation processing when payment is completed: Since the room microservice has a separate distribution cycle in the process of transferring the reservation request from reservation to the room microservice, the transaction is processed in the eventual consistency method.
+- All other inter-microservice transactions: For all events such as reservation status and post-processing, it is judged that the timing of data consistency is not critical in most cases, so Eventual Consistency is adopted as the default.
 
 
-**헥사고날 아키텍처 다이어그램 도출**
+**Hexagonal Architecture Diagram Derivation**
 
 ![image](https://user-images.githubusercontent.com/80744273/119319091-fc6bf200-bcb4-11eb-9dac-0995c84a82e0.png)
 
 
-- Chris Richardson, MSA Patterns 참고하여 Inbound adaptor와 Outbound adaptor를 구분함
-- 호출관계에서 PubSub 과 Req/Resp 를 구분함
-- 서브 도메인과 바운디드 컨텍스트의 분리:  각 팀의 KPI 별로 아래와 같이 관심 구현 스토리를 나눠가짐
+- Distinguish between inbound adapters and outbound adapters by referring to Chris Richardson, MSA Patterns
+- Distinguish between PubSub and Req/Resp in the call relationship
+- Separation of sub-domains and bounded contexts: Each team’s KPIs share their interest implementation stories as follows
 
 
-## 구현
 
-분석/설계 단계에서 도출된 헥사고날 아키텍처에 따라, 각 BC별로 대변되는 마이크로 서비스들을 스프링부트로 구현하였다. 구현한 각 서비스를 로컬에서 실행하는 방법은 아래와 같다 (각자의 포트넘버는 8081 ~ 808n 이다)
+## avatar
+
+According to the hexagonal architecture derived from the analysis/design phase, microservices represented by each BC were implemented with Spring Boot. The method to run each implemented service locally is as follows (each port number is 8081 ~ 808n)
+
 
 ```
 mvn spring-boot:run
@@ -223,23 +225,25 @@ mvn spring-boot:run
 
 ### · CQRS
 
-숙소(Room) 의 사용가능 여부, 리뷰 및 예약/결재 등 총 Status 에 대하여 고객(Customer)이 조회 할 수 있도록 CQRS 로 구현하였다.
-- room, review, reservation, payment 개별 Aggregate Status 를 통합 조회하여 성능 Issue 를 사전에 예방할 수 있다.
-- 비동기식으로 처리되어 발행된 이벤트 기반 Kafka 를 통해 수신/처리 되어 별도 Table 에 관리한다
-- Table 모델링 (ROOMVIEW)
+CQRS was implemented so that customers can inquire about total status such as availability of rooms, reviews and reservations/payments.
+
+- Performance issues can be prevented in advance by integrating individual aggregate status for room, review, reservation, and payment.
+- Asynchronously processed and issued event-based Kafka is received/processed and managed in a separate table
+- Table modeling (ROOMVIEW)
+
 
   ![image](https://user-images.githubusercontent.com/77129832/119319352-4b198c00-bcb5-11eb-93bc-ff0657feeb9f.png)
-- viewpage MSA ViewHandler 를 통해 구현 ("RoomRegistered" 이벤트 발생 시, Pub/Sub 기반으로 별도 Roomview 테이블에 저장)
+- Implemented through viewpage MSA ViewHandler (when “RoomRegistered” event occurs, it is saved in a separate Roomview table based on Pub/Sub)
   ![image](https://user-images.githubusercontent.com/77129832/119321162-4d7ce580-bcb7-11eb-9030-29ee6272c40d.png)
   ![image](https://user-images.githubusercontent.com/31723044/119350185-fccab400-bcd9-11eb-8269-61868de41cc7.png)
-- 실제로 view 페이지를 조회해 보면 모든 room에 대한 전반적인 예약 상태, 결제 상태, 리뷰 건수 등의 정보를 종합적으로 알 수 있다
+- In fact, if you look up the view page, you can see information such as overall reservation status, payment status, and number of reviews for all rooms.
   ![image](https://user-images.githubusercontent.com/31723044/119357063-1b34ad80-bce2-11eb-94fb-a587261ab56f.png)
 
 
-### · API 게이트웨이
-1. gateway 스프링부트 App을 추가 후 application.yaml내에 각 마이크로 서비스의 routes 를 추가하고 gateway 서버의 포트를 8080 으로 설정함
+### · API Gateway
+1. After adding the gateway Spring Boot App, add routes for each microservice in application.yaml and set the gateway server port to 8080.
 
-- application.yaml 예시
+- application.yaml example
 ```
 spring:
   profiles: docker
@@ -282,8 +286,8 @@ server:
 ```
 
          
-2. Kubernetes용 Deployment.yaml 을 작성하고 Kubernetes에 Deploy를 생성함
-- Deployment.yaml 예시
+2. Write Deployment.yaml for Kubernetes and create Deploy on Kubernetes
+- Deployment.yaml example
 
 
 ```
@@ -313,17 +317,17 @@ spec:
 
 
 
-- Deploy 생성
+- Create a Deploy
 ```
 kubectl apply -f deployment.yaml
 ```     
-- Kubernetes에 생성된 Deploy. 확인
+- Deploy created in Kubernetes. Confirm
             
 ![image](https://user-images.githubusercontent.com/80744273/119321943-1d821200-bcb8-11eb-98d7-bf8def9ebf80.png)
 	    
             
-3. Kubernetes용 Service.yaml을 작성하고 Kubernetes에 Service/LoadBalancer을 생성하여 Gateway 엔드포인트를 확인함. 
-- Service.yaml 예시
+3. Create a Service.yaml for Kubernetes and create a Service/LoadBalancer in Kubernetes to check the Gateway endpoint
+- Service.yaml example
 
 ```
 apiVersion: v1
@@ -344,14 +348,14 @@ apiVersion: v1
 ```             
 
 
-- Service 생성
+- Create Service
 ```
 kubectl apply -f service.yaml            
 ```             
 
 
-- API Gateay 엔드포인트 확인
-- Service  및 엔드포인트 확인 
+- Check API Gateway endpoint 
+- Check Service and endpoint 
 ```
 kubectl get svc -n airbnb           
 ```                 
@@ -359,46 +363,44 @@ kubectl get svc -n airbnb
 
 ## Correlation
 
-Airbnb 프로젝트에서는 PolicyHandler에서 처리 시 어떤 건에 대한 처리인지를 구별하기 위한 Correlation-key 구현을 
-이벤트 클래스 안의 변수로 전달받아 서비스간 연관된 처리를 정확하게 구현하고 있습니다. 
+In the Airbnb project, the Correlation-key implementation for distinguishing the type of processing in PolicyHandler is passed as a variable in the event class to accurately implement the related processing between services.
 
-아래의 구현 예제를 보면
+Take a look at the implementation example below
 
-예약(Reservation)을 하면 동시에 연관된 방(Room), 결제(Payment) 등의 서비스의 상태가 적당하게 변경이 되고,
-예약건의 취소를 수행하면 다시 연관된 방(Room), 결제(Payment) 등의 서비스의 상태값 등의 데이터가 적당한 상태로 변경되는 것을
-확인할 수 있습니다.
+When you make a reservation, the status of services such as room and payment are appropriately changed at the same time. You can check that the data such as the state value is changed to the appropriate state.
 
-예약등록
+
+reservation registration
 ![image](https://user-images.githubusercontent.com/31723044/119320227-54572880-bcb6-11eb-973b-a9a5cd1f7e21.png)
-예약 후 - 방 상태
+After booking - room condition
 ![image](https://user-images.githubusercontent.com/31723044/119320300-689b2580-bcb6-11eb-933e-98be5aadca61.png)
-예약 후 - 예약 상태
+After reservation - reservation status
 ![image](https://user-images.githubusercontent.com/31723044/119320390-810b4000-bcb6-11eb-8c62-48f6765c570a.png)
-예약 후 - 결제 상태
+After booking - payment status
 ![image](https://user-images.githubusercontent.com/31723044/119320524-a39d5900-bcb6-11eb-864b-173711eb9e94.png)
-예약 취소
+cancel reservation
 ![image](https://user-images.githubusercontent.com/31723044/119320595-b6b02900-bcb6-11eb-8d8d-0d5c59603c72.png)
-취소 후 - 방 상태
+After Cancellation - Room Status
 ![image](https://user-images.githubusercontent.com/31723044/119320680-ccbde980-bcb6-11eb-8b7c-66315329aafe.png)
-취소 후 - 예약 상태
+After Cancellation - Reservation Status
 ![image](https://user-images.githubusercontent.com/31723044/119320747-dcd5c900-bcb6-11eb-9c44-fd3781c7c55f.png)
-취소 후 - 결제 상태
+After Cancellation - Payment Status
 ![image](https://user-images.githubusercontent.com/31723044/119320806-ee1ed580-bcb6-11eb-8ccf-8c81385cc8ba.png)
 
 
 
-### · 동기식 호출(Sync) 과 Fallback 처리
+### · Synchronous call (Sync) and Fallback handling
 
-분석 단계에서의 조건 중 하나로 예약 시 숙소(room) 간의 예약 가능 상태 확인 호출은 동기식 일관성을 유지하는 트랜잭션으로 처리하기로 하였다. 호출 프로토콜은 이미 앞서 Rest Repository 에 의해 노출되어있는 REST 서비스를 FeignClient 를 이용하여 호출하도록 한다. 또한 예약(reservation) -> 결제(payment) 서비스도 동기식으로 처리하기로 하였다.
+As one of the conditions in the analysis stage, it was decided to process the reservation availability status check call between rooms when making a reservation as a transaction that maintains synchronous consistency. The calling protocol allows the REST service already exposed by the Rest Repository to be called using FeignClient. Also, the reservation -> payment service was decided to be processed synchronously.
 
-- 룸, 결제 서비스를 호출하기 위하여 Stub과 (FeignClient) 를 이용하여 Service 대행 인터페이스 (Proxy) 를 구현 
+- Implement the service proxy interface (Proxy) using stub and (FeignClient) to call the room and payment service
 
 ```
 # PaymentService.java
 
 package airbnb.external;
 
-<import문 생략>
+<omit the import statement>
 
 @FeignClient(name="Payment", url="${prop.room.url}")
 public interface PaymentService {
@@ -412,7 +414,7 @@ public interface PaymentService {
 
 package airbnb.external;
 
-<import문 생략>
+<omit the import statement>
 
 @FeignClient(name="Room", url="${prop.room.url}")
 public interface RoomService {
@@ -425,7 +427,7 @@ public interface RoomService {
 
 ```
 
-- 예약 요청을 받은 직후(@PostPersist) 가능상태 확인 및 결제를 동기(Sync)로 요청하도록 처리
+- Immediately after receiving the reservation request (@PostPersist), check the availability and process the payment request synchronously (Sync)
 ```
 # Reservation.java (Entity)
 
@@ -433,24 +435,24 @@ public interface RoomService {
     public void onPostPersist(){
 
         ////////////////////////////////
-        // RESERVATION에 INSERT 된 경우 
+        // When INSERTed into RESERVATION
         ////////////////////////////////
 
         ////////////////////////////////////
-        // 예약 요청(reqReserve) 들어온 경우
+        // When a reservation request (reqReserve) is received
         ////////////////////////////////////
 
-        // 해당 ROOM이 Available한 상태인지 체크
+        // Check if the ROOM is available
         boolean result = ReservationApplication.applicationContext.getBean(airbnb.external.RoomService.class)
                         .chkAndReqReserve(this.getRoomId());
         System.out.println("######## Check Result : " + result);
 
         if(result) { 
 
-            // 예약 가능한 상태인 경우(Available)
+            // If reservation is available
 
             //////////////////////////////
-            // PAYMENT 결제 진행 (POST방식) - SYNC 호출
+            // PAYMENT payment in progress (POST method) - SYNC call
             //////////////////////////////
             airbnb.external.Payment payment = new airbnb.external.Payment();
             payment.setRsvId(this.getRsvId());
@@ -460,7 +462,7 @@ public interface RoomService {
                 .approvePayment(payment);
 
             /////////////////////////////////////
-            // 이벤트 발행 --> ReservationCreated
+            // Event publication --> ReservationCreated
             /////////////////////////////////////
             ReservationCreated reservationCreated = new ReservationCreated();
             BeanUtils.copyProperties(this, reservationCreated);
@@ -469,34 +471,34 @@ public interface RoomService {
     }
 ```
 
-- 동기식 호출에서는 호출 시간에 따른 타임 커플링이 발생하며, 결제 시스템이 장애가 나면 주문도 못받는다는 것을 확인:
+- Confirm that synchronous calls result in time coupling with the time of the call, and that orders cannot be taken if the payment system fails:
 
 
 ```
-# 결제 (pay) 서비스를 잠시 내려놓음 (ctrl+c)
+# Pause the pay service temporarily (ctrl+c)
 
-# 예약 요청
+# Reservation request
 http POST http://localhost:8088/reservations roomId=1 status=reqReserve   #Fail
 
-# 결제서비스 재기동
+# Restart payment service
 cd payment
 mvn spring-boot:run
 
-# 예약 요청
+# Reservation request
 http POST http://localhost:8088/reservations roomId=1 status=reqReserve   #Success
 ```
 
-- 또한 과도한 요청시에 서비스 장애가 도미노 처럼 벌어질 수 있다. (서킷브레이커, 폴백 처리는 운영단계에서 설명한다.)
+- Also, in case of excessive request, service failure can occur like dominoes. (Circuit breaker and fallback processing will be explained in the operation phase.)
 
 
 
 
-### · 비동기식 호출 / 시간적 디커플링 / 장애격리 / 최종 (Eventual) 일관성 테스트
+### · Asynchronous Invocation / Temporal Decoupling / Failure Isolation / Eventual Consistency Test
 
 
-결제가 이루어진 후에 숙소 시스템의 상태가 업데이트 되고, 예약 시스템의 상태가 업데이트 되며, 예약 및 취소 메시지가 전송되는 시스템과의 통신 행위는 비동기식으로 처리한다.
+After payment is made, the status of the accommodation system is updated, the status of the reservation system is updated, and communication with the system to which reservation and cancellation messages are transmitted is handled asynchronously.
  
-- 이를 위하여 결제가 승인되면 결제가 승인 되었다는 이벤트를 카프카로 송출한다. (Publish)
+- For this, when the payment is approved, an event indicating that the payment has been approved is transmitted to Kafka. (Publish)
  
 ```
 # Payment.java
@@ -515,10 +517,10 @@ public class Payment {
     @PostPersist
     public void onPostPersist(){
         ////////////////////////////
-        // 결제 승인 된 경우
+        // If payment is approved
         ////////////////////////////
 
-        // 이벤트 발행 -> PaymentApproved
+        // Event publication -> PaymentApproved
         PaymentApproved paymentApproved = new PaymentApproved();
         BeanUtils.copyProperties(this, paymentApproved);
         paymentApproved.publishAfterCommit();
@@ -528,7 +530,7 @@ public class Payment {
 }
 ```
 
-- 예약 시스템에서는 결제 승인 이벤트에 대해서 이를 수신하여 자신의 정책을 처리하도록 PolicyHandler 를 구현한다:
+- Reservation system implements PolicyHandler to receive payment approval event and handle its own policy:
 
 ```
 # Reservation.java
@@ -543,10 +545,10 @@ package airbnb;
         if(this.getStatus().equals("reserved")) {
 
             ////////////////////
-            // 예약 확정된 경우
+            // When the reservation is confirmed
             ////////////////////
 
-            // 이벤트 발생 --> ReservationConfirmed
+            // event occurs --> ReservationConfirmed
             ReservationConfirmed reservationConfirmed = new ReservationConfirmed();
             BeanUtils.copyProperties(this, reservationConfirmed);
             reservationConfirmed.publishAfterCommit();
@@ -558,74 +560,74 @@ package airbnb;
 
 ```
 
-그 외 메시지 서비스는 예약/결제와 완전히 분리되어있으며, 이벤트 수신에 따라 처리되기 때문에, 메시지 서비스가 유지보수로 인해 잠시 내려간 상태 라도 예약을 받는데 문제가 없다.
+Other message services are completely separated from reservation/payment and are processed according to event reception, so there is no problem in receiving reservations even if the message service is temporarily down due to maintenance.
 
 ```
-# 메시지 서비스 (message) 를 잠시 내려놓음 (ctrl+c)
+# Pause message service (ctrl+c)
 
-# 예약 요청
+# Reservation request
 http POST http://localhost:8088/reservations roomId=1 status=reqReserve   #Success
 
-# 예약 상태 확인
-http GET localhost:8088/reservations    #메시지 서비스와 상관없이 예약 상태는 정상 확인
+# Check your reservation status
+http GET localhost:8088/reservations    #Regardless of the message service, the reservation status is normal
 
 ```
 
-## 운영
+## operation
 
-### · CI/CD 설정
+### · CI/CD settings
 
-각 구현체들은 각자의 source repository 에 구성되었고, 사용한 CI/CD는 buildspec.yml을 이용한 AWS codebuild를 사용하였습니다.
+Each implementation was configured in their own source repository, and the CI/CD used was AWS codebuild using buildspec.yml.
 
-- CodeBuild 프로젝트를 생성하고 AWS_ACCOUNT_ID, KUBE_URL, KUBE_TOKEN 환경 변수 세팅을 한다
+- Create a CodeBuild project and set the AWS_ACCOUNT_ID, KUBE_URL, and KUBE_TOKEN environment variables.
 ```
-SA 생성
+SA creation
 kubectl apply -f eks-admin-service-account.yml
 ```
 ![codebuild(sa)](https://user-images.githubusercontent.com/38099203/119293259-ff52ec80-bc8c-11eb-8671-b9a226811762.PNG)
 ```
-Role 생성
+Create Role
 kubectl apply -f eks-admin-cluster-role-binding.yml
 ```
 ![codebuild(role)](https://user-images.githubusercontent.com/38099203/119293300-1abdf780-bc8d-11eb-9b07-ad173237efb1.PNG)
 ```
-Token 확인
+Token confirmation
 kubectl -n kube-system get secret
 kubectl -n kube-system describe secret eks-admin-token-rjpmq
 ```
 ![codebuild(token)](https://user-images.githubusercontent.com/38099203/119293511-84d69c80-bc8d-11eb-99c7-e8929e6a41e4.PNG)
 ```
 buildspec.yml 파일 
-마이크로 서비스 room의 yml 파일 이용하도록 세팅
+Set to use the yml file of the microservice room
 ```
 ![codebuild(buildspec)](https://user-images.githubusercontent.com/38099203/119283849-30292680-bc79-11eb-9f86-cbb715e74846.PNG)
 
-- codebuild 실행
+- run codebuild
 ```
-codebuild 프로젝트 및 빌드 이력
+codebuild project and build history
 ```
 ![codebuild(프로젝트)](https://user-images.githubusercontent.com/38099203/119283851-315a5380-bc79-11eb-9b2a-b4522d22d009.PNG)
 ![codebuild(로그)](https://user-images.githubusercontent.com/38099203/119283850-30c1bd00-bc79-11eb-9547-1ff1f62e48a4.PNG)
 
-- codebuild 빌드 내역 (Message 서비스 세부)
+- codebuild build history (Message service details)
 
 ![image](https://user-images.githubusercontent.com/31723044/119385500-2b0fba00-bd01-11eb-861b-cc31910ff945.png)
 
-- codebuild 빌드 내역 (전체 이력 조회)
+- codebuild build history (view full history)
 
 ![image](https://user-images.githubusercontent.com/31723044/119385401-087da100-bd01-11eb-8b69-ce222e6bb71e.png)
 
 
 
 
-### · 동기식 호출 / 서킷 브레이킹 / 장애격리
+### · Synchronous Call / Circuit Breaking / Fault Isolation
 
-* 서킷 브레이킹 프레임워크의 선택: istio 사용하여 구현함
+* Circuit Breaking Framework of choice: implemented using istio
 
-시나리오는 예약(reservation)--> 룸(room) 시의 연결을 RESTful Request/Response 로 연동하여 구현이 되어있고, 예약 요청이 과도할 경우 CB 를 통하여 장애격리.
+The scenario is implemented by linking the connection at reservation--> room with RESTful Request/Response, and when the reservation request is excessive, fault isolation through CB.
 
-- DestinationRule 를 생성하여 circuit break 가 발생할 수 있도록 설정
-최소 connection pool 설정
+- Create a DestinationRule to allow circuit break to occur. Set a minimum connection pool.
+
 ```
 # destination-rule.yml
 apiVersion: networking.istio.io/v1alpha3
@@ -647,7 +649,7 @@ spec:
 #      maxEjectionPercent: 100
 ```
 
-* istio-injection 활성화 및 room pod container 확인
+* Activate istio-injection and check the room pod container
 
 ```
 kubectl get ns -L istio-injection
@@ -659,9 +661,9 @@ kubectl label namespace airbnb istio-injection=enabled
 ![Circuit Breaker(pod)](https://user-images.githubusercontent.com/38099203/119295568-0cbea580-bc92-11eb-9d2b-8580f3576b47.PNG)
 
 
-* 부하테스터 siege 툴을 통한 서킷 브레이커 동작 확인:
+* Check circuit breaker operation with load tester siege tool:
 
-siege 실행
+run siege
 
 ```
 kubectl run siege --image=apexacme/siege-nginx -n airbnb
@@ -669,7 +671,7 @@ kubectl exec -it siege -c siege -n airbnb -- /bin/bash
 ```
 
 
-- 동시사용자 1로 부하 생성 시 모두 정상
+- When load is created with concurrent user 1, everything is normal.
 ```
 siege -c1 -t10S -v --content-type "application/json" 'http://room:8080/rooms POST {"desc": "Beautiful House3"}'
 
@@ -690,7 +692,7 @@ HTTP/1.1 201     0.03 secs:     256 bytes ==> POST http://room:8080/rooms
 HTTP/1.1 201     0.02 secs:     256 bytes ==> POST http://room:8080/rooms
 ```
 
-- 동시사용자 2로 부하 생성 시 503 에러 168개 발생
+- 168 503 errors occurred when creating a load with simultaneous user 2
 ```
 siege -c2 -t10S -v --content-type "application/json" 'http://room:8080/rooms POST {"desc": "Beautiful House3"}'
 
@@ -734,12 +736,12 @@ Longest transaction:            0.03
 Shortest transaction:           0.00
 ```
 
-- kiali 화면에 서킷 브레이크 확인
+- check circuit break on kiali screen
 
 ![Circuit Breaker(kiali)](https://user-images.githubusercontent.com/38099203/119298194-7f7e4f80-bc97-11eb-8447-678eece29e5c.PNG)
 
 
-- 다시 최소 Connection pool로 부하 다시 정상 확인
+- Check the load again with the minimum connection pool again
 
 ```
 ** SIEGE 4.0.4
@@ -781,34 +783,33 @@ Shortest transaction:           0.00
 
 ```
 
-- 운영시스템은 죽지 않고 지속적으로 CB 에 의하여 적절히 회로가 열림과 닫힘이 벌어지면서 자원을 보호하고 있음을 보여줌.
-  virtualhost 설정과 동적 Scale out (replica의 자동적 추가,HPA) 을 통하여 시스템을 확장 해주는 후속처리가 필요.
+- The operating system does not die and continuously shows that the circuit is properly opened and closed by CB to protect the resource. Post-processing to expand the system through virtualhost configuration and dynamic scale out (automatic addition of replica, HPA) is required.
 
 
-**오토스케일 아웃**
-앞서 CB 는 시스템을 안정되게 운영할 수 있게 해줬지만 사용자의 요청을 100% 받아들여주지 못했기 때문에 이에 대한 보완책으로 자동화된 확장 기능을 적용하고자 한다. 
+**Auto Scale Out Previously**
+CB enabled stable operation of the system, but it did not accept 100% of the user's request, so we want to apply an automated extension function as a complement to this.
 
-- room deployment.yml 파일에 resources 설정을 추가한다
+- Add resources configuration to room deployment.yml file
 ![Autoscale (HPA)](https://user-images.githubusercontent.com/38099203/119283787-0a038680-bc79-11eb-8d9b-d8aed8847fef.PNG)
 
-- room 서비스에 대한 replica 를 동적으로 늘려주도록 HPA 를 설정한다. 설정은 CPU 사용량이 50프로를 넘어서면 replica 를 10개까지 늘려준다:
+- Configure HPA to dynamically grow replicas for the room service. The setting increases the number of replicas to 10 when CPU usage exceeds 50%:
 ```
 kubectl autoscale deployment room -n airbnb --cpu-percent=50 --min=1 --max=10
 ```
 ![Autoscale (HPA)(kubectl autoscale 명령어)](https://user-images.githubusercontent.com/38099203/119299474-ec92e480-bc99-11eb-9bc3-8c5246b02783.PNG)
 
-- 부하를 동시사용자 100명, 1분 동안 걸어준다.
+- Load 100 concurrent users for 1 minute.
 ```
 siege -c100 -t60S -v --content-type "application/json" 'http://room:8080/rooms POST {"desc": "Beautiful House3"}'
 ```
-- 오토스케일이 어떻게 되고 있는지 모니터링을 걸어둔다
+- Monitor how the autoscale is going
 ```
 kubectl get deploy room -w -n airbnb 
 ```
-- 어느정도 시간이 흐른 후 (약 30초) 스케일 아웃이 벌어지는 것을 확인할 수 있다:
+- After some time (about 30 seconds) you can see the scale out occurs:
 ![Autoscale (HPA)(모니터링)](https://user-images.githubusercontent.com/38099203/119299704-6a56f000-bc9a-11eb-9ba8-55e5978f3739.PNG)
 
-- siege 의 로그를 보아도 전체적인 성공률이 높아진 것을 확인 할 수 있다. 
+- If you look at the log of siege, you can see that the overall success rate has increased.
 ```
 Lifting the server siege...
 Transactions:                  15615 hits
@@ -825,9 +826,9 @@ Longest transaction:            2.55
 Shortest transaction:           0.01
 ```
 
-### · 무정지 재배포
+### · Uninterrupted redistribution
 
-* 먼저 무정지 재배포가 100% 되는 것인지 확인하기 위해서 Autoscaler 이나 CB 설정을 제거함
+* First, remove Autoscaler or CB settings to check whether non-stop redistribution is 100%.
 
 ```
 kubectl delete destinationrules dr-room -n airbnb
@@ -835,7 +836,7 @@ kubectl label namespace airbnb istio-injection-
 kubectl delete hpa room -n airbnb
 ```
 
-- seige 로 배포작업 직전에 워크로드를 모니터링 함.
+- Monitoring the workload right before deployment with seige.
 ```
 siege -c100 -t60S -r10 -v --content-type "application/json" 'http://room:8080/rooms POST {"desc": "Beautiful House3"}'
 
@@ -853,12 +854,12 @@ HTTP/1.1 201     0.01 secs:     260 bytes ==> POST http://room:8080/rooms
 
 ```
 
-- 새버전으로의 배포 시작
+- Start deploying to a new version
 ```
 kubectl set image ...
 ```
 
-- seige 의 화면으로 넘어가서 Availability 가 100% 미만으로 떨어졌는지 확인
+- Go to seige's screen and check if Availability has dropped below 100%
 
 ```
 siege -c100 -t60S -r10 -v --content-type "application/json" 'http://room:8080/rooms POST {"desc": "Beautiful House3"}'
@@ -878,10 +879,10 @@ Longest transaction:            0.94
 Shortest transaction:           0.00
 
 ```
-- 배포기간중 Availability 가 평소 100%에서 87% 대로 떨어지는 것을 확인. 원인은 쿠버네티스가 성급하게 새로 올려진 서비스를 READY 상태로 인식하여 서비스 유입을 진행한 것이기 때문. 이를 막기위해 Readiness Probe 를 설정함
+- During the distribution period, it was confirmed that the availability fell from 100% to 87%. The reason is that Kubernetes recognized the newly uploaded service as a READY state and proceeded to introduce the service. To prevent this, readiness probe is set.
 
 ```
-# deployment.yaml 의 readiness probe 의 설정:
+# Configure readiness probe in deployment.yaml:
 ```
 
 ![probe설정](https://user-images.githubusercontent.com/38099203/119301424-71333200-bc9d-11eb-9f75-f8c98fce70a3.PNG)
@@ -890,7 +891,7 @@ Shortest transaction:           0.00
 kubectl apply -f kubernetes/deployment.yml
 ```
 
-- 동일한 시나리오로 재배포 한 후 Availability 확인:
+- Check Availability after redeploying with the same scenario:
 ```
 Lifting the server siege...
 Transactions:                  27657 hits
@@ -908,22 +909,22 @@ Shortest transaction:           0.00
 
 ```
 
-배포기간 동안 Availability 가 변화없기 때문에 무정지 재배포가 성공한 것으로 확인됨.
+Uninterrupted redistribution is confirmed to be successful because availability does not change during the distribution period.
 
 
 ## Self-healing (Liveness Probe)
-- room deployment.yml 파일 수정 
+- Edit room deployment.yml file
 ```
-콘테이너 실행 후 /tmp/healthy 파일을 만들고 
-90초 후 삭제
-livenessProbe에 'cat /tmp/healthy'으로 검증하도록 함
+After running the container, create a /tmp/healthy file
+Delete after 90 seconds
+Make livenessProbe validate with 'cat /tmp/healthy'
 ```
 ![deployment yml tmp healthy](https://user-images.githubusercontent.com/38099203/119318677-8ff0f300-bcb4-11eb-950a-e3c15feed325.PNG)
 
-- kubectl describe pod room -n airbnb 실행으로 확인
+- Check by running kubectl describe pod room -n airbnb
 ```
-컨테이너 실행 후 90초 동인은 정상이나 이후 /tmp/healthy 파일이 삭제되어 livenessProbe에서 실패를 리턴하게 됨
-pod 정상 상태 일때 pod 진입하여 /tmp/healthy 파일 생성해주면 정상 상태 유지됨
+After 90 seconds of running the container, the driver is normal, but after that, the /tmp/healthy file is deleted and livenessProbe returns a failure.
+If the pod is in a normal state, enter the pod and create a /tmp/healthy file to maintain the normal state.
 ```
 
 ![get pod tmp healthy](https://user-images.githubusercontent.com/38099203/119318781-a9923a80-bcb4-11eb-9783-65051ec0d6e8.PNG)
@@ -932,15 +933,15 @@ pod 정상 상태 일때 pod 진입하여 /tmp/healthy 파일 생성해주면 �
 ## Config Map/ Persistence Volume
 - Persistence Volume
 
-1: EFS 생성
+1: Create EFS
 ```
-EFS 생성 시 클러스터의 VPC를 선택해야함
+You must select a VPC for your cluster when creating EFS
 ```
-![클러스터의 VPC를 선택해야함](https://user-images.githubusercontent.com/38099203/119364089-85048580-bce9-11eb-8001-1c20a93b8e36.PNG)
+![You must choose a VPC for your cluster](https://user-images.githubusercontent.com/38099203/119364089-85048580-bce9-11eb-8001-1c20a93b8e36.PNG)
 
-![EFS생성](https://user-images.githubusercontent.com/38099203/119343415-60041880-bcd1-11eb-9c25-1695c858f6aa.PNG)
+![Create EFS](https://user-images.githubusercontent.com/38099203/119343415-60041880-bcd1-11eb-9c25-1695c858f6aa.PNG)
 
-2. EFS 계정 생성 및 ROLE 바인딩
+2. EFS account creation and ROLE binding
 ```
 kubectl apply -f efs-sa.yml
 
@@ -1024,7 +1025,7 @@ roleRef:
 
 ```
 
-3. EFS Provisioner 배포
+3. Deploy EFS Provisioner
 ```
 kubectl apply -f efs-provisioner-deploy.yml
 
@@ -1072,7 +1073,7 @@ efs-provisioner   1/1     1            1           11m
 
 ```
 
-4. 설치한 Provisioner를 storageclass에 등록
+4. Register the installed provisioner to storageclass
 ```
 kubectl apply -f efs-storageclass.yml
 
@@ -1090,7 +1091,7 @@ NAME            PROVISIONER             RECLAIMPOLICY   VOLUMEBINDINGMODE      A
 aws-efs         my-aws.com/aws-efs      Delete          Immediate              false                  4s
 ```
 
-5. PVC(PersistentVolumeClaim) 생성
+5. Create a PersistentVolumeClaim (PVC)
 ```
 kubectl apply -f volume-pvc.yml
 
@@ -1116,14 +1117,14 @@ NAME      STATUS   VOLUME                                     CAPACITY   ACCESS 
 aws-efs   Bound    pvc-43f6fe12-b9f3-400c-ba20-b357c1639f00   6Ki        RWX            aws-efs        4m44s
 ```
 
-6. room pod 적용
+6. room pod application
 ```
 kubectl apply -f deployment.yml
 ```
 ![pod with pvc](https://user-images.githubusercontent.com/38099203/119349966-bd9c6300-bcd9-11eb-9f6d-08e4a3ec82f0.PNG)
 
 
-7. A pod에서 마운트된 경로에 파일을 생성하고 B pod에서 파일을 확인함
+7. Create a file in the mounted path in pod A and check the file in pod B
 ```
 NAME                              READY   STATUS    RESTARTS   AGE
 efs-provisioner-f4f7b5d64-lt7rz   1/1     Running   0          14m
@@ -1136,7 +1137,7 @@ kubectl exec -it pod/room-5df66d6674-n6b7n room -n airbnb -- /bin/sh
 / # cd /mnt/aws
 /mnt/aws # touch intensive_course_work
 ```
-![a pod에서 파일생성](https://user-images.githubusercontent.com/38099203/119372712-9736f180-bcf2-11eb-8e57-1d6e3f4273a5.PNG)
+![Create a file in a pod](https://user-images.githubusercontent.com/38099203/119372712-9736f180-bcf2-11eb-8e57-1d6e3f4273a5.PNG)
 
 ```
 kubectl exec -it pod/room-5df66d6674-pl25l room -n airbnb -- /bin/sh
@@ -1147,12 +1148,12 @@ drwxrws--x    2 root     2000          6144 May 24 15:44 .
 drwxr-xr-x    1 root     root            17 May 24 15:42 ..
 -rw-r--r--    1 root     2000             0 May 24 15:44 intensive_course_work
 ```
-![b pod에서 파일생성 확인](https://user-images.githubusercontent.com/38099203/119373196-204e2880-bcf3-11eb-88f0-a1e91a89088a.PNG)
+![b Confirm file creation in pod](https://user-images.githubusercontent.com/38099203/119373196-204e2880-bcf3-11eb-88f0-a1e91a89088a.PNG)
 
 
 - Config Map
 
-1: cofingmap.yml 파일 생성
+1: Create cofingmap.yml file
 ```
 kubectl apply -f cofingmap.yml
 
@@ -1168,7 +1169,7 @@ data:
   ui_properties_file_name: "user-interface.properties"
 ```
 
-2. deployment.yml에 적용하기
+2. Apply to deployment.yml
 
 ```
 kubectl apply -f deployment.yml
@@ -1176,7 +1177,7 @@ kubectl apply -f deployment.yml
 
 .......
           env:
-			# cofingmap에 있는 단일 key-value
+			# single key-value in cofingmap
             - name: MAX_RESERVATION_PER_PERSION
               valueFrom:
                 configMapKeyRef:

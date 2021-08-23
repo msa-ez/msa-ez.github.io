@@ -4,175 +4,189 @@ sidebar: 'started'
 prev: ''
 next: ''
 ---
-# 인터넷 강의수강 시스템
+# Internet lecture system
 
 ![image](https://user-images.githubusercontent.com/48303857/79727114-d3956280-8326-11ea-8862-e01ca9a0f949.png)
 
-출처 원본: https://github.com/msa-ez/example-academy
+source: https://github.com/msa-ez/example-academy
 
-<h2> 최종 조별과제 - 인터넷 강의수강 시스템</h2>
+<h2> Final group assignment - Internet lecture system</h2>
 
-- 체크포인트 : https://workflowy.com/s/assessment-check-po/T5YrzcMewfo4J6LW
+- Checkpoint : https://workflowy.com/s/assessment-check-po/T5YrzcMewfo4J6LW
 
-## 서비스 시나리오
+## service scenario
 
-유데미, Learning Portal
+<h3>Udemy, Learning Portal</h3>
 
-기능적 요구사항
-1. 학생이 강의를 선택하여 수강신청 한다
-1. 학생이 결제한다
-1. 수강신청이 되면 수강신청 내역이 강사의 강의시스템에 전달된다
-1. 학생이 수강신청을 취소한다
-1. 수강신청이 취소되면 결제가 취소된다
-1. 강사가 강의를 개설한다
-1. 강사가 개설된 강의를 취소한다
-1. 강사가 강의를 취소하면 학생의 수강신청이 취소된다
-1. 학생이 수강신청 내용을 조회한다
-1. 강사가 강의수강 인원을 조회한다
-
-
-비기능적 요구사항
-1. 트랜잭션
-    1. 결제가 되지 않은 수강신청은 아예 신청이 성립되지 않아야 한다  Sync 호출 
-1. 장애격리
-    1. 강의 관리 기능이 수행되지 않더라도 수강신청은 365일 24시간 받을 수 있어야 한다  Async (event-driven), Eventual Consistency
-    1. 결제시스템이 과중되면 사용자를 잠시동안 받지 않고 결제를 잠시후에 하도록 유도한다  Circuit breaker, fallback
-1. 성능
-    1. 학생이 강의관리에서 확인할 수 있는 수강신청내용을 수강신청시스템(프론트엔드)에서 확인할 수 있어야 한다 CQRS
+**Functional Requirements**<br>
+1. The student selects a course and registers for the course<br>
+2. The student pays<br> 
+3. When the course registration is completed, the course registration details are transmitted to the instructor's lecture system<br>
+4. The student cancels the course registration<br> 
+5. Course registration If this is canceled, the payment will be canceled<br>
+6. Instructor opens a course<br>
+7. Instructor cancels an established course<br>
+8. If the instructor cancels a course, the student's course registration is canceled<br>
+9. The student inquires the course registration details<br>
+10. Instructor inquires the number of lectures<br>
 
 
-## 체크포인트
+**Non-functional requirements**<br>
+1. Transaction<br>
+   - 1.  Course registration without payment should not be completed at all. Sync call<br>
+1. Disability isolation<br>
+   - 1. Course registration should be available 24 hours a day, 365 days a year even if the course management function is not performed Async (event-driven), Eventual Consistency<br>
+   - 2. When the payment system is overloaded, it induces users to make payments after a while without receiving any payments Circuit breaker, fallback<br>
+1. Performance<br>
+   - 1. Students take course registration contents that can be checked in the course management Must be able to check in the application system (front-end) CQRS<br>
 
-- 분석 설계
-
-
-  - 이벤트스토밍: 
-    - 스티커 색상별 객체의 의미를 제대로 이해하여 헥사고날 아키텍처와의 연계 설계에 적절히 반영하고 있는가?
-    - 각 도메인 이벤트가 의미있는 수준으로 정의되었는가?
-    - 어그리게잇: Command와 Event 들을 ACID 트랜잭션 단위의 Aggregate 로 제대로 묶었는가?
-    - 기능적 요구사항과 비기능적 요구사항을 누락 없이 반영하였는가?    
-
-  - 서브 도메인, 바운디드 컨텍스트 분리
-    - 팀별 KPI 와 관심사, 상이한 배포주기 등에 따른  Sub-domain 이나 Bounded Context 를 적절히 분리하였고 그 분리 기준의 합리성이 충분히 설명되는가?
-      - 적어도 3개 이상 서비스 분리
-    - 폴리글랏 설계: 각 마이크로 서비스들의 구현 목표와 기능 특성에 따른 각자의 기술 Stack 과 저장소 구조를 다양하게 채택하여 설계하였는가?
-    - 서비스 시나리오 중 ACID 트랜잭션이 크리티컬한 Use 케이스에 대하여 무리하게 서비스가 과다하게 조밀히 분리되지 않았는가?
-  - 컨텍스트 매핑 / 이벤트 드리븐 아키텍처 
-    - 업무 중요성과  도메인간 서열을 구분할 수 있는가? (Core, Supporting, General Domain)
-    - Request-Response 방식과 이벤트 드리븐 방식을 구분하여 설계할 수 있는가?
-    - 장애격리: 서포팅 서비스를 제거 하여도 기존 서비스에 영향이 없도록 설계하였는가?
-    - 신규 서비스를 추가 하였을때 기존 서비스의 데이터베이스에 영향이 없도록 설계(열려있는 아키택처)할 수 있는가?
-    - 이벤트와 폴리시를 연결하기 위한 Correlation-key 연결을 제대로 설계하였는가?
-
-  - 헥사고날 아키텍처
-    - 설계 결과에 따른 헥사고날 아키텍처 다이어그램을 제대로 그렸는가?
     
-- 구현
-  - [DDD] 분석단계에서의 스티커별 색상과 헥사고날 아키텍처에 따라 구현체가 매핑되게 개발되었는가?
-    - Entity Pattern 과 Repository Pattern 을 적용하여 JPA 를 통하여 데이터 접근 어댑터를 개발하였는가
-    - [헥사고날 아키텍처] REST Inbound adaptor 이외에 gRPC 등의 Inbound Adaptor 를 추가함에 있어서 도메인 모델의 손상을 주지 않고 새로운 프로토콜에 기존 구현체를 적응시킬 수 있는가?
-    - 분석단계에서의 유비쿼터스 랭귀지 (업무현장에서 쓰는 용어) 를 사용하여 소스코드가 서술되었는가?
-  - Request-Response 방식의 서비스 중심 아키텍처 구현
-    - 마이크로 서비스간 Request-Response 호출에 있어 대상 서비스를 어떠한 방식으로 찾아서 호출 하였는가? (Service Discovery, REST, FeignClient)
-    - 서킷브레이커를 통하여  장애를 격리시킬 수 있는가?
-  - 이벤트 드리븐 아키텍처의 구현
-    - 카프카를 이용하여 PubSub 으로 하나 이상의 서비스가 연동되었는가?
-    - Correlation-key:  각 이벤트 건 (메시지)가 어떠한 폴리시를 처리할때 어떤 건에 연결된 처리건인지를 구별하기 위한 Correlation-key 연결을 제대로 구현 하였는가?
-    - Message Consumer 마이크로서비스가 장애상황에서 수신받지 못했던 기존 이벤트들을 다시 수신받아 처리하는가?
-    - Scaling-out: Message Consumer 마이크로서비스의 Replica 를 추가했을때 중복없이 이벤트를 수신할 수 있는가
-    - CQRS: Materialized View 를 구현하여, 타 마이크로서비스의 데이터 원본에 접근없이(Composite 서비스나 조인SQL 등 없이) 도 내 서비스의 화면 구성과 잦은 조회가 가능한가?
-
-  - 폴리글랏 플로그래밍
-    - 각 마이크로 서비스들이 하나이상의 각자의 기술 Stack 으로 구성되었는가?
-    - 각 마이크로 서비스들이 각자의 저장소 구조를 자율적으로 채택하고 각자의 저장소 유형 (RDB, NoSQL, File System 등)을 선택하여 구현하였는가?
-  - API 게이트웨이
-    - API GW를 통하여 마이크로 서비스들의 집입점을 통일할 수 있는가?
-    - 게이트웨이와 인증서버(OAuth), JWT 토큰 인증을 통하여 마이크로서비스들을 보호할 수 있는가?
-- 운영
-  - SLA 준수
-    - 셀프힐링: Liveness Probe 를 통하여 어떠한 서비스의 health 상태가 지속적으로 저하됨에 따라 어떠한 임계치에서 pod 가 재생되는 것을 증명할 수 있는가?
-    - 서킷브레이커, 레이트리밋 등을 통한 장애격리와 성능효율을 높힐 수 있는가?
-    - 오토스케일러 (HPA) 를 설정하여 확장적 운영이 가능한가?
-    - 모니터링, 앨럿팅: 
-  - 무정지 운영 CI/CD (10)
-    - Readiness Probe 의 설정과 Rolling update을 통하여 신규 버전이 완전히 서비스를 받을 수 있는 상태일때 신규버전의 서비스로 전환됨을 siege 등으로 증명 
-    - Contract Test :  자동화된 경계 테스트를 통하여 구현 오류나 API 계약위반를 미리 차단 가능한가?
 
 
-## 분석/설계
+## checkpoint
 
-<h3> - TO-BE 조직 (Vertically-Aligned)</h3>
+- analytical design
+- Event Storming:
+    - Do you properly understand the meaning of each sticker color object and properly reflect it in the design in connection with the hexagonal architecture?
+    - Is each domain event defined at a meaningful level?
+    - Aggregation: Are Commands and Events properly grouped into ACID transaction unit Aggregate?
+    - Are functional and non-functional requirements reflected without omission?
 
-### · Event Storming 결과
-**[MSAEz 로 모델링한 이벤트스토밍 결과](http://msaez.io/#/storming/RYTliHDEOOYT0NAZ6Xoodg4HP3H3/18a58ddb3072e7c25041a1c9361a9635)**
+
+  - Separation of subdomains, bounded contexts
+    - Is the sub-domain or Bounded Context properly separated according to the team's KPIs, interests, and different distribution cycles, and is the rationality of the separation criteria sufficiently explained?
+      - Separation of at least 3 services
+    - Polyglot design: Have you designed each microservice by adopting various technology stack and storage structures according to the implementation goals and functional characteristics of each microservice?
+    - In the service scenario, for the use case where the ACID transaction is critical, is the service not excessively and densely separated?
+
+  - Context Mapping / Event Driven Architecture
+    - Can you distinguish between task importance and hierarchy between domains? (Core, Supporting, General Domain)
+    - Can the request-response method and event-driven method be designed separately?
+    - Fault Isolation: Is it designed so that the existing service is not affected even if the supporting service is removed?
+    - Can it be designed (open architecture) so that the database of existing services is not affected when new services are added?
+    - Is the Correlation-key connection properly designed to link events and policies?
 
 
-**조직 및 요구사항 도출 도출**
+  - Hexagonal Architecture
+    - Did you draw the hexagonal architecture diagram according to the design result correctly?
+    
+- avatar
+  - [DDD] Was the implementation developed to be mapped according to the color of each sticker and the hexagonal architecture in the analysis stage?
+    - Have you developed a data access adapter through JPA by applying Entity Pattern and Repository Pattern?
+    - [Hexagonal Architecture] In addition to the REST inbound adapter, is it possible to adapt the existing implementation to a new protocol without damaging the domain model by adding an inbound adapter such as gRPC?
+    - Is the source code described using the ubiquitous language (terms used in the workplace) in the analysis stage?
+
+  - Implementation of service-oriented architecture of Request-Response method
+    - How did you find and call the target service in the Request-Response call between microservices? (Service Discovery, REST, FeignClient)
+    - Is it possible to isolate failures through circuit breakers?
+
+  - Implementing an event-driven architecture
+    - Are more than one service linked with PubSub using Kafka?
+    - Correlation-key: When each event (message) processes which policy, is the Correlation-key connection properly implemented to distinguish which event is connected to which event?
+    - Does the Message Consumer microservice receive and process existing events that were not received in the event of a failure?
+    - Scaling-out: Is it possible to receive events without duplicates when a replica of the Message Consumer microservice is added?
+    - CQRS: By implementing Materialized View, is it possible to configure the screen of my service and view it frequently without accessing the data source of other microservices (without Composite service or join SQL, etc.)?
+
+
+  - polyglot programming
+    - Are each microservices composed of one or more separate technology stacks?
+    - Did each microservice autonomously adopt its own storage structure and implement it by selecting its own storage type (RDB, NoSQL, File System, etc.)?
+
+  - API Gateway
+    - Can the point of entry of microservices be unified through API GW?
+    - Is it possible to secure microservices through gateway, authentication server (OAuth), and JWT token authentication?
+
+- operation
+  - SLA Compliance
+    - Self-Healing: Through the Liveness Probe, as the health status of any service continuously deteriorates, at what threshold can you prove that the pod is regenerated?
+    - Can fault isolation and performance efficiency be improved through circuit breaker and ray limit?
+    - Is it possible to set up an autoscaler (HPA) for scalable operation?
+    - Monitoring, alerting:
+
+  - Nonstop Operation CI/CD (10)
+    - When the new version is fully serviceable through the setting of the Readiness Probe and rolling update, it is proved by siege that the service is converted to the new version of the service.
+    - Contract Test: Is it possible to prevent implementation errors or API contract violations in advance through automated boundary testing?
+
+
+
+## Analysis/Design
+
+<h3> - TO-BE Organization (Vertically-Aligned)</h3>
+
+### · Event Storming result
+**[Eventstorming results modeled with MSAEz ](http://msaez.io/#/storming/RYTliHDEOOYT0NAZ6Xoodg4HP3H3/18a58ddb3072e7c25041a1c9361a9635)**
+
+
+**Derivation of organization and requirements**
 ![image](https://user-images.githubusercontent.com/48303857/79729383-5cfa6400-832a-11ea-89b6-53eca4de1ab8.jpeg)
 
-**이벤트도출, 액터 커맨드 부착, 어그리게잇, 바운디드 컨텍스트로 묶기**
+**Evoking events, attaching actor commands, aggregating, binding to bounded contexts**
 ![image](https://user-images.githubusercontent.com/48303857/79729452-74d1e800-832a-11ea-9b08-0d2807c69a28.jpeg)
 
-    - 도메인 서열 분리 
-        - Core Domain:  수강신청(front), 강의관리 : 핵심 서비스이며, 연간 Up-time SLA 수준을 99.999% 목표, 배포주기는 수강신청의 경우 1주일 1회 미만, 강의관리의 경우 1개월 1회 미만
-        - Supporting Domain:   Dashboard : 경쟁력을 내기위한 서비스이며, SLA 수준은 연간 60% 이상 uptime 목표, 배포주기는 각 팀의 자율이나 표준 스프린트 주기가 1주일 이므로 1주일 1회 이상을 기준으로 함.
-        - General Domain:   결제 : 결제서비스로 3rd Party 외부 서비스를 사용하는 것이 경쟁력이 높음 (핑크색으로 이후 전환할 예정)
+- domain sequence separation 
+    - Core Domain: Course registration (front), course management: This is a core service, and the annual up-time SLA level is set at 99.999%, and the distribution cycle is less than once a week for course registration and less than once a month for course management. 
+    - Supporting Domain: Dashboard: This is a service for competitiveness, and the SLA level is 60% or more per year uptime goal, and the distribution cycle is autonomous by each team, but the standard sprint cycle is one week, so it is based on at least once a week. 
+    - General Domain: Payment: It is highly competitive to use a 3rd party external service as a payment service (to be converted to pink later)
 
-**폴리시 부착**
+
+**Attach the polish**
 
 ![image](https://user-images.githubusercontent.com/48303857/79729649-b4003900-832a-11ea-875f-c0e8dfc6ccb4.jpeg)
 
-**폴리시의 이동과 컨텍스트 매핑 (Blue는 Pub/Sub, Orange는 Req/Resp)**
+**Policy movement and context mapping (Pub/Sub for Blue, Req/Resp for Orange)**
 
 ![image](https://user-images.githubusercontent.com/48303857/79729705-c67a7280-832a-11ea-828f-fc0cc5510e17.jpeg)
 
 ![image](https://user-images.githubusercontent.com/48303857/79729768-d72ae880-832a-11ea-9900-8e0e0e281d87.jpeg)
 
-**완성된 1차 모형**
+**Completed first model**
 
 ![image](https://user-images.githubusercontent.com/48303857/79729946-15c0a300-832b-11ea-8247-4e261f22690d.jpeg)
 
-    - View Model 추가
+- Add View Model
 
 
-**1차 완성본에 대한 기능적/비기능적 요구사항을 커버하는지 검증**
+**Verification that functional/non-functional requirements for the first complete version are covered**
 
-    - 학생이 강의를 선택하여 수강신청 한다 (ok)
-    - 학생이 결제한다 (ok -sync)
-    - 수강신청이 되면 수강신청 내역이 강사의 강의시스템에 전달된다 (ok - event driven)
-    - 학생이 수강신청을 취소한다 (ok)
-    - 수강신청이 취소되면 결제가 취소된다 (ok)
-    - 강사가 강의를 개설한다 (ok)
-    - 강사가 개설된 강의를 취소한다 (ok)
-    - 강사가 강의를 취소하면 학생의 수강신청이 취소된다 (ok)
-    - 학생이 수강신청 내용을 조회한다 (view)
-    - 강사가 강의수강 인원을 조회한다 (view)
+- The student selects a course and registers for the course (ok)
+- Students pay (ok -sync)
+- When a course is registered, course registration details are transmitted to the instructor's lecture system (ok - event driven)
+- The student cancels the course registration (ok)
+- If the course registration is canceled, the payment will be canceled (ok)
+- The instructor opens the lecture (ok)
+- The instructor cancels the opened course (ok)
+- If the instructor cancels the course, the student's course registration will be canceled (ok)
+- The student inquires the course registration details (view)
+- Instructor inquires the number of lectures (view)
 
-**1차 모형에서 요구사항을 커버하도록 모델링됨**
+
+**Modeled to cover requirements in a first-order model**
 
 ![image](https://user-images.githubusercontent.com/48303857/79814397-17d14300-83b9-11ea-8c7e-3517658dff13.png)
 
 
-    - 강의 신청 시 결제처리 : 서비스는 강의를 제공하는 강사의 이익을 제공해야 하기 때문에 수강신청시 결제처리에 대해서는  Request-Response 방식 처리한다.
-    - 강의 관리 기능은 서비스 제공의 측면이 강하며, 한 번 등록 시 여러명이 학생들이 수강신청을 하기 때문에 수강신청(Front)에 대해 강의관리 서비스는 Async (event-driven), Eventual Consistency 방식으로 처리한다.
-    - 결제시스템이 과중되면 사용자를 잠시동안 받지 않고 결제를 잠시후에 하도록 유도한다 Circuit breaker를 사용하여 
-    - 학생이 강의관리에서 확인할 수 있는 수강신청내용을 수강신청시스템(프론트엔드)에서 확인할 수 있어야 한다 CQRS
-    - 결제를 제외한 나머지 inter-microservice 트랜잭션: 모든 이벤트에 대해 데이터 일관성의 시점이 크리티컬하지 않은 모든 경우가 대부분이라 판단, Eventual Consistency 를 기본으로 채택함.    
+- Payment processing when registering for lectures: Since the service must provide the benefit of the instructor who provides the lecture, the request-response method is used for payment processing when registering for courses.
+- The lecture management function has a strong aspect of providing services, and since several students register for courses at one time, the course management service is handled in Async (event-driven) and Eventual Consistency methods. .
+- When the payment system is overloaded, it induces users to make payments after a while without receiving users for a while. Using a circuit breaker
+- Students must be able to check the course registration details that can be checked in the course management in the course registration system (front-end) CQRS
+- Inter-microservice transactions excluding payment: For all events, it is judged that the timing of data consistency is not critical for all events, so Eventual Consistency is adopted as the default.
+   
 
 
-### · 헥사고날 아키텍처 다이어그램 도출
+### · Hexagonal Architecture Diagram Derivation
     
 ![image](https://user-images.githubusercontent.com/63028469/79846797-d3b26280-83f9-11ea-9ad7-a7e6b4bea18e.png)
 
 
-    - Chris Richardson, MSA Patterns 참고하여 Inbound adaptor와 Outbound adaptor를 구분함
-    - 호출관계에서 PubSub 과 Req/Resp 를 구분함
-    - 서브 도메인과 바운디드 컨텍스트의 분리:  각 팀의 KPI 별로 아래와 같이 관심 구현 스토리를 나눠가짐
+- Distinguish between inbound adapter and outbound adapter by referring to Chris Richardson, MSA Patterns
+- Distinguish between PubSub and Req/Resp in the call relationship
+- Separation of sub-domains and bounded contexts: Each team's KPIs share their interest implementation stories as follows
 
 
-## 구현
 
-분석/설계 단계에서 도출된 헥사고날 아키텍처에 따라, 각 BC별로 대변되는 마이크로 서비스들을 스프링부트로 구현하였다. 구현한 각 서비스를 로컬에서 실행하는 방법은 아래와 같다 (각자의 포트넘버는 8081 ~ 808n 이다)
+## avatar
+
+According to the hexagonal architecture derived from the analysis/design phase, microservices represented by each BC were implemented with Spring Boot. The method to run each implemented service locally is as follows (each port number is 8081 ~ 808n)
 
 ```
 cd courseRegistrationSystem
@@ -185,9 +199,9 @@ cd lectureSystem
 mvn spring-boot:run  
 ```
 
-### · DDD 의 적용
+### · Application of DDD
 
-- 각 서비스내에 도출된 핵심 Aggregate Root 객체를 Entity 로 선언하였다: (예시는 paymentSystem 마이크로 서비스). 이때 가능한 현업에서 사용하는 언어 (유비쿼터스 랭귀지)를 그대로 사용하였다. 모델링 시에 영문화 완료하였기 때문에 그대로 개발하는데 큰 지장이 없었다.
+- The core Aggregate Root object derived from each service is declared as an Entity: (Example: paymentSystem microservice). In this case, the language (ubiquitous language) used in the field was used as it is possible. Since the English language was completed during modeling, there was no significant hindrance to development as it is.
 
 ```
 package skademy;
@@ -241,7 +255,7 @@ public class PaymentSystem {
     }
 }
 ```
-- Entity Pattern 과 Repository Pattern 을 적용하여 JPA 를 통하여 다양한 데이터소스 유형 (RDB) 에 대한 별도의 처리가 없도록 데이터 접근 어댑터를 자동 생성하기 위하여 Spring Data REST 의 RestRepository 를 적용하였다
+- By applying Entity Pattern and Repository Pattern, RestRepository of Spring Data REST was applied to automatically create a data access adapter so that there is no separate processing for various data source types (RDB) through JPA.
 ```
 package skademy;
 
@@ -250,27 +264,27 @@ import org.springframework.data.repository.PagingAndSortingRepository;
 public interface PaymentSystemRepository extends PagingAndSortingRepository<PaymentSystem, Long>{
 }
 ```
-- 적용 후 REST API 의 테스트
+- Testing of REST API after application
 ```
-# courseRegistrationSystem 서비스의 수강신청 처리
+# courseRegistrationSystem Service registration processing
 http POST localhost:8081/courseRegistrationSystem lectureId=1
 ```
 ![image](https://user-images.githubusercontent.com/48303857/79857038-272bad00-8408-11ea-8096-7f54b482ea54.png)
 
 
 ```
-# 주문 상태 확인
+# Check order status
 http localhost:8081/courseRegistrationSystem
 ```
 ![image](https://user-images.githubusercontent.com/48303857/79857153-4d514d00-8408-11ea-83be-cf9e002c9ce5.png)
 
 
 
-### · 동기식 호출 과 Fallback 처리
+### · Synchronous Invocation and Fallback Handling
 
-분석단계에서의 조건 중 하나로 수강신청(courseRegistrationSystem)->결제(paymentSystem) 간의 호출은 동기식 일관성을 유지하는 트랜잭션으로 처리하기로 하였다. 호출 프로토콜은 이미 앞서 Rest Repository 에 의해 노출되어있는 REST 서비스를 FeignClient 를 이용하여 호출하도록 한다. 
+As one of the conditions in the analysis phase, the call between course registration (courseRegistrationSystem) -> payment (paymentSystem) was decided to be processed as a transaction that maintains synchronous consistency. The calling protocol allows the REST service already exposed by the Rest Repository to be called using FeignClient. 
 
-- 결제서비스를 호출하기 위하여 Stub과 (FeignClient) 를 이용하여 Service 대행 인터페이스 (Proxy) 를 구현 
+- Implement service proxy interface (Proxy) using stub and (FeignClient) to call payment service  
 
 ```
 # (courseRegistrationSystem) PaymentService.java
@@ -283,7 +297,7 @@ public interface PaymentService {
 }
 ```
 
-- 수강신청 직후(@PostPersist) 결제를 요청하도록 처리
+- Process to request payment immediately after course registration (@PostPersist)
 ```
 #CourseRegistrationSystem.java (Entity)
 
@@ -295,9 +309,9 @@ public interface PaymentService {
 
         this.setLectureId(courseRegistered.getLectureId());
         this.setStudentId(12334);
-        this.setStatus("수강신청중");
+        this.setStatus("Applying for courses");
 
-        System.out.println("##### POST CourseRegistrationSystem 수강신청 : " + this);
+        System.out.println("##### POST CourseRegistrationSystem Enrolment : " + this);
 
         //Following code causes dependency to external APIs
         // it is NOT A GOOD PRACTICE. instead, Event-Policy mapping is recommended.
@@ -306,47 +320,47 @@ public interface PaymentService {
         paymentSystem.setCourseId(this.id);
         // mappings goes here
 
-        //결제 시작
+        //start payment
         PaymentService paymentService = Application.applicationContext.getBean(PaymentService.class);
         paymentService.makePayment(paymentSystem);
 
     }
 ```
 
-- 동기식 호출에서는 호출 시간에 따른 타임 커플링이 발생하며, 결제 시스템이 장애가 나면 주문도 못받는다는 것을 확인:
+- In synchronous calls, time coupling occurs with the time of the call, and confirming that if the payment system fails, the order is not taken:
 
 
 ```
-# 결제(paymentSystem) 서비스를 잠시 내려놓음
+# Put down paymentSystem for a while
 
-#수강신청 처리
+#Course registration processing
 http POST localhost:8081/courseRegistrationSystem lectureId=1   #Fail
 http POST localhost:8081/courseRegistrationSystem lectureId=2   #Fail
 ```
 ![image](https://user-images.githubusercontent.com/48303857/79857341-9a352380-8408-11ea-908a-d776d192bb8e.png)
 
 ```
-#결제서비스 재기동
+#Restart payment service
 cd paymentSystem
 mvn spring-boot:run
 
-#수강신청 처리
+#Course registration processing
 http POST localhost:8081/courseRegistrationSystem lectureId=1   #Success
 http POST localhost:8081/courseRegistrationSystem lectureId=2   #Success
 ```
 ![image](https://user-images.githubusercontent.com/48303857/79857434-c05ac380-8408-11ea-88d4-8a6ce4af0100.png)
 
 
-- 또한 과도한 요청시에 서비스 장애가 도미노 처럼 벌어질 수 있다. (서킷브레이커, 폴백 처리는 운영단계에서 설명한다.)
+- In addition, service failures can occur like dominoes in case of excessive requests. (Circuit breaker and fallback processing will be explained in the operation phase.)
 
 
 
-### · 비동기식 호출 / 시간적 디커플링 / 장애격리 / 최종 (Eventual) 일관성 테스트
+### · Asynchronous Invocation / Temporal Decoupling / Failure Isolation / Eventual Consistency Test
 
 
-결제가 이루어진 후에 수강신청시스템으로 이를 알려주는 행위는 동기식이 아니라 비 동기식으로 처리하여 수강신청 완료처리를 위하여 결제가 블로킹 되지 않도록 처리한다.
+After the payment has been made, the act of notifying the course registration system is handled asynchronously, not synchronously, so that payment is not blocked in order to complete the course registration process.
  
-- 이를 위하여 결제시스템에 기록을 남긴 후에 곧바로 결제완료이 되었다는 도메인 이벤트를 카프카로 송출한다(Publish)
+- To this end, after leaving a record in the payment system, a domain event indicating that the payment has been completed is immediately sent to Kafka (Publish).
  
 ```
 ...
@@ -359,20 +373,20 @@ http POST localhost:8081/courseRegistrationSystem lectureId=2   #Success
     }
 
 ```
-- 수강신청 서비스에서는 결제완료 이벤트에 대해서 이를 수신하여 자신의 정책을 처리하도록 PolicyHandler 를 구현한다:
+- The course registration service implements PolicyHandler to receive the payment completion event and process its own policy.
 
 ```
 public class PolicyHandler{
  ...
     
     @StreamListener(KafkaProcessor.INPUT)
-    public void wheneverPaymentCompleted_수강신청완료(@Payload PaymentCompleted paymentCompleted){
+    public void wheneverPaymentCompleted_EnrollmentComplete(@Payload PaymentCompleted paymentCompleted){
         try {
             if (paymentCompleted.isMe()) {
-                System.out.println("##### listener 수강신청완료 : " + paymentCompleted.toJson());
+                System.out.println("##### listener EnrollmentComplete : " + paymentCompleted.toJson());
                 Optional<CourseRegistrationSystem> courseRegistrationSystemOptional = courseRegistrationSystemRepository.findById(paymentCompleted.getCourseId());
                 CourseRegistrationSystem courseRegistrationSystem = courseRegistrationSystemOptional.get();
-                courseRegistrationSystem.setStatus("결제 완료");
+                courseRegistrationSystem.setStatus("Payment finished");
                 courseRegistrationSystem.setStudentId(courseRegistrationSystem.getStudentId());
 
                 courseRegistrationSystemRepository.save(courseRegistrationSystem);
@@ -383,71 +397,71 @@ public class PolicyHandler{
     }
 
 ```
-강의 시스템은 수강신청/결제와 완전히 분리되어있으며, 이벤트 수신에 따라 처리되기 때문에, 강의 시스템이 유지보수로 인해 잠시 내려간 상태라도 수강신청을 받는데 문제가 없다:
+Since the course system is completely separate from registration/payment and is processed according to the reception of events, there is no problem receiving course registration even if the course system is temporarily down due to maintenance:
 ```
-# 강의 서비스 (lectureSystem) 를 잠시 내려놓음
+# Put down the lecture service (lectureSystem) for a while
 
-#수강신청 처리
+#Course registration processing
 http POST localhost:8081/courseRegistrationSystem lectureId=1   #Success
 http POST localhost:8081/courseRegistrationSystem lectureId=2   #Success
 ```
 ![image](https://user-images.githubusercontent.com/48303857/79857884-6d354080-8409-11ea-9307-02288463bb13.png)
 
 ```
-#수강신청 완료상태 까지 Event 진행확인
+#Check the event progress until the course registration is complete
 ```
 ![image](https://user-images.githubusercontent.com/48303857/79857914-79b99900-8409-11ea-8658-030267f42214.png)
 ```
-#강의 서비스 기동
+#Lecture service start
 cd lectureSystem
 mvn spring-boot:run
 
-#강의수강인원 Update 확인
-콘솔창에서 확인
+# Check class attendance update
+Check in the console window
 ```
 ![image](https://user-images.githubusercontent.com/48303857/79857956-8f2ec300-8409-11ea-98dd-2dd3667855b5.png)
 
-## 운영
+## operation
 
-### · CI/CD 설정
+### · CI/CD settings
 
 
-각 구현체들은 각자의 source repository 에 구성되었고, 사용한 CI/CD 플랫폼은 Azure를 사용하였으며, pipeline build script 는 각 프로젝트 폴더 이하에 azure-pipeline.yml 에 포함되었다.
+Each implementation was configured in their own source repository, the CI/CD platform used was Azure, and the pipeline build script was included in azure-pipeline.yml under each project folder.
 
-- devops를 활용하여 pipeline을 구성하였고, CI CD 자동화를 구현하였다.
+- A pipeline was constructed using devops, and CI CD automation was implemented.
 ![image](https://user-images.githubusercontent.com/18453570/79851343-2262fb00-8400-11ea-85e9-b4627f9a6d0d.PNG)
 
-- 아래와 같이 pod 가 정상적으로 올라간 것을 확인하였다.
+- It was confirmed that the pod was uploaded normally as shown below. 
 ![image](https://user-images.githubusercontent.com/18453570/79851342-21ca6480-8400-11ea-914a-e80e14ea93c7.PNG)
 
-- 아래와 같이 쿠버네티스에 모두 서비스로 등록된 것을 확인할 수 있다.
+- You can see that they are all registered as services in Kubernetes as shown below.
 ![image](https://user-images.githubusercontent.com/18453570/79851335-20993780-8400-11ea-988b-33018c526631.PNG)
 
 
-### · 동기식 호출 / 서킷 브레이킹 / 장애격리
+### · Synchronous Call / Circuit Breaking / Fault Isolation
 
-* 서킷 브레이킹 프레임워크의 선택: Spring FeignClient + Hystrix 옵션을 사용하여 구현함
+* Choice of circuit breaking framework: Implemented using Spring FeignClient + Hystrix option
 
-시나리오는 수강신청(courseRegistration)-->결제(payment) 시의 연결을 RESTful Request/Response 로 연동하여 구현이 되어있고, 결제 요청이 과도할 경우 CB 를 통하여 장애격리.
+The scenario is implemented by linking the connection at courseRegistration-->payment with RESTful Request/Response, and if the payment request is excessive, fault isolation through CB.
 
-- Hystrix 를 설정:  요청처리 쓰레드에서 처리시간이 610 밀리가 넘어서기 시작하여 어느정도 유지되면 CB 회로가 닫히도록 (요청을 빠르게 실패처리, 차단) 설정
+- Set Hystrix: Set the CB circuit to close (fail and block requests quickly) when the processing time starts to exceed 610 millimeters in the request processing thread and is maintained for a certain amount.
 ```
 # application.yml
 
 hystrix:
   command:
-    # 전역설정
+    # Global settings
     default:
       execution.isolation.thread.timeoutInMilliseconds: 610
 
 ```
 
-- 피호출 서비스(결제:payment) 의 임의 부하 처리 - 400 밀리에서 증감 220 밀리 정도 왔다갔다 하게
+- Random load handling of the called service (payment) - fluctuates from 400 millimeters to 220 millimeters
 ```
 # (paymentSystem) PaymentSystem.java (Entity)
 
     @PostPersist
-    public void onPostPersist(){  //결제이력을 저장한 후 적당한 시간 끌기
+    public void onPostPersist(){  //Save the payment history and drag the appropriate time
 
         ...
         
@@ -459,56 +473,54 @@ hystrix:
     }
 ```
 
-* 부하테스터 siege 툴을 통한 서킷 브레이커 동작 확인:
-- 동시사용자 100명
-- 120초 동안 실시
+- Check circuit breaker operation with load tester siege tool:
+    - 100 concurrent users
+    - run for 120 seconds
+    - Excessive request triggers CB Block request
 
-
-* 요청이 과도하여 CB를 동작함 요청을 차단
 ![image](https://user-images.githubusercontent.com/63028499/79851238-01020f00-8400-11ea-85fb-409dd5f9bfd6.PNG)
 
-* 요청을 어느정도 돌려보내고나니, 기존에 밀린 일들이 처리되었고, 회로를 닫아 요청을 다시 받기 시작
+* After some requests have been sent back, the previously delayed tasks have been processed, and the circuit is closed to start accepting requests again.
 ![image](https://user-images.githubusercontent.com/63028499/79851242-01020f00-8400-11ea-9cc9-fdd639a91ed8.PNG)
 
-* 이후 이러한 패턴이 계속 반복되면서 시스템은 도미노 현상이나 자원 소모의 폭주 없이 잘 운영됨
+* After that, as this pattern continues to repeat, the system operates well without domino effects or runaway resource consumption.
 ![image](https://user-images.githubusercontent.com/63028499/79851236-ffd0e200-83ff-11ea-9941-3e6038bbc89f.PNG)
 
-- 운영시스템은 죽지 않고 지속적으로 CB 에 의하여 적절히 회로가 열림과 닫힘이 벌어지면서 자원을 보호하고 있음을 보여줌. 하지만, 66.62% 가 성공하였고, 33.38%가 실패했다는 것은 고객 사용성에 있어 좋지 않기 때문에 Retry 설정과 동적 Scale out (replica의 자동적 추가,HPA) 을 통하여 시스템을 확장 해주는 후속처리가 필요.
+- The operating system does not die and shows that the resource is protected by properly opening and closing the circuit by CB continuously. However, since 66.62% of successes and 33.38% of failures are not good for customer usability, follow-up processing to expand the system through retry settings and dynamic scale out (automatic addition of replicas, HPA) is necessary.
 
-- Availability 가 높아진 것을 확인 (siege)
+- Confirm that availability is increased (siege)
 
-**오토스케일 아웃**
+**autoscale out**
 
-앞서 CB 는 시스템을 안정되게 운영할 수 있게 해줬지만 사용자의 요청을 100% 받아들여주지 못했기 때문에 이에 대한 보완책으로 자동화된 확장 기능을 적용하고자 한다. 
+Previously, CB made it possible to operate the system stably, but it did not accept 100% of the user's request.
 
 
-- 결제서비스에 대한 replica 를 동적으로 늘려주도록 HPA 를 설정한다. 설정은 CPU 사용량이 15프로를 넘어서면 replica 를 10개까지 늘려준다:
+- Configure HPA to dynamically increase replicas for payment services. The setting increases the number of replicas to 10 when CPU usage exceeds 15%:
 ```
 kubectl autoscale deploy pay --min=1 --max=10 --cpu-percent=15
 ```
-- CB 에서 했던 방식대로 워크로드를 2분 동안 걸어준다.
+- Walk the workload for 2 minutes the way CB did.
 ```
 siege -c100 -t120S -r10 --content-type "application/json" 'http://52.231.118.204:8080/courseRegistrationSystems POST {"lectureId": 1}'
 
 ```
 
-- 오토스케일이 어떻게 되고 있는지 모니터링을 걸어둔다:
+- Monitor how autoscale is going:
 ```
 kubectl get deploy pay -w
 ```
-- 어느정도 시간이 흐른 후 (약 30초) 스케일 아웃이 벌어지는 것을 확인할 수 있다:
+- After some time (about 30 seconds) you can see the scale out occurs:
 ![image](https://user-images.githubusercontent.com/63028499/79851254-02cbd280-8400-11ea-9c75-4d60ce42d54d.PNG)
 
-- siege 의 로그를 보아도 전체적인 성공률이 높아진 것을 확인 할 수 있다. 
+- If you look at the log of siege, you can see that the overall success rate has increased.
 ![image](https://user-images.githubusercontent.com/63028499/79851251-02cbd280-8400-11ea-96e7-ea092375e77d.PNG)
 
-### · 무정지 재배포
+### · Uninterrupted redistribution
 
-* 먼저 무정지 재배포가 100% 되는 것인지 확인하기 위해서 Readiness Probe 와 Autoscaler가 있는 상태에서 테스트를 진행함.
-그 결과, 100%로 배포기간 동안 Availability 가 변화없기 때문에 무정지 재배포가 성공한 것으로 확인됨.
+* First, to check whether non-stop redistribution is 100%, the test is conducted in the presence of Readiness Probe and Autoscaler. As a result, it was confirmed that the uninterrupted redistribution was successful because the availability did not change during the distribution period at 100%.
 ![image](https://user-images.githubusercontent.com/18453570/79856578-79b89980-8407-11ea-9daf-697365e0a388.PNG)
 
-* 이후, Readiness와 Autoscaler를 제거한 상태에서 테스트를 진행하여 Availability의 변화를 확인함. 그 결과 20% 대로 떨어진 것을 확인할 수 있음.
+* After that, the change in availability was confirmed by testing with readiness and autoscaler removed. As a result, it can be seen that it has dropped to the 20% range.
 ![image](https://user-images.githubusercontent.com/18453570/79856571-79200300-8407-11ea-84a9-946f3a2a076d.PNG)
 
 

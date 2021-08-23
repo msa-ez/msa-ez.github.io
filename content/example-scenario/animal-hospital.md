@@ -4,70 +4,72 @@ sidebar: 'started'
 prev: ''
 next: ''
 ---
-# 동물병원 진료시스템
+# Veterinary Practice Management System
 
-출처 원본: https://github.com/msa-ez/example-animal-hospital
+Source: https://github.com/msa-ez/example-animal-hospital
 
-<h3>2조 과제 - 동물병원 진료시스템 구축</h3>
+<h3>Article 2 Task - Establishment of veterinary practice management system</h3>
 
-이 시스템은 MSA/DDD/Event Storming/EDA 를 포괄하는 분석/설계/구현/운영 전단계를 커버하도록 구성하였습니다.
-이 시스템은 클라우드 네이티브 애플리케이션 Final Project 수행 테스트를 통과하기 위한 답안을 포함합니다.
+This system is configured to cover all stages of analysis/design/implementation/operation including MSA/DDD/Event Storming/EDA.<br>This system contains answers to pass the Cloud Native Application Final Project performance test.
 
-## 서비스 시나리오
+## service scenario
 
-기능적 요구사항
-1. 고객은 동물병원에 예약 및 예약 취소 변경을 한다.
-1. 예약이 완료된 고객은 진료를 받는다. 
-1. 수납은 고객에게 진료비를 청구한다.
-1. 고객이 치료비를 지불한다.
-1. 예약이 변경/취소되면 진료/처방이 변경/취소된다.
-1. 예약상태가 바뀔 때 마다 카톡으로 알림을 보낸다.
-1. 고객은 Lookup 시스템에서 예약 상태를 조회할 수 있다.
+**Functional requirements**<br>
+1. The customer makes reservations and cancellations of reservations at the veterinary hospital. <br>
+2. Customers who have made a reservation receive treatment. <br>
+3. Receipt bills the customer for medical expenses. <br>
+4. The client pays for the treatment. <br>
+5. If the reservation is changed/cancelled, the treatment/prescription is changed/cancelled. <br>
+6. Whenever the reservation status changes, a notification is sent through KakaoTalk. <br>
+7. The customer can inquire the reservation status in the Lookup system.<br>
+<br><br>
 
-비기능적 요구사항
-1. 트랜잭션
-    1. 진료가 불가능 할 때는 예약이 불가능해야 한다. Sync 호출
-1. 장애격리
-    1. 예약/진료 시스템(core)만 온전하면 시스템은 정상적으로 수행되어야 한다.  Async (event-driven), Eventual Consistency
-    1. 문자 알림, 치료비 수납 시스템에 장애가 생겨도 예약/진료 (core) 시스템은 정상적으로 작동한다.
-    1. 진료시스템이 과중되면 예약을 잠시후에 하도록 유도한다.  Circuit breaker, fallback
-1. 성능
-    1. 고객이 예약/진료/치료 결과를 시스템에서 확인할 수 있어야 한다.(Lookup 시스템으로 구현, CQRS)
-    1. 알림 시스템을 통해 예약/예약취소/예약변경 내용을 문자로 알림을 줄 수 있어야 한다. (Event driven)
+**Non-functional requirements**<br>
+1. Transaction
+  - 1. Reservation should not be possible when medical treatment is not available. Sync call
+2. Isolation of failure 
+  - 1. If only the reservation/treatment system (core) is intact, the system should be performed normally. Async (event-driven), Eventual Consistency
+  - 2.  Even if there is a failure in the text notification and treatment payment system, the reservation/treatment (core) system works normally.
+  - 3. If the treatment system is overloaded, it induces reservations to be made after a while. Circuit breaker, fallback
+3.  Performance
+  - 1. The customer should be able to check the reservation/treatment/treatment result in the system
+  - 2. implemented as a lookup system, CQRS You should be able to give notifications. (Event driven)
 
 
-## 분석/설계
+## Analysis/Design
 
-**[MSAEz 로 모델링한 이벤트스토밍 결과](http://msaez.io/#/storming/0vtSW2vBLoZTFiAsgdwS6H7ODs33/2dac041f4e652d598a042694dfa26b20)**
+**[Eventstorming results modeled with MSAEz](http://msaez.io/#/storming/0vtSW2vBLoZTFiAsgdwS6H7ODs33/2dac041f4e652d598a042694dfa26b20)**
 
-- Core Domain : 예약 (Reservation) 및 진료 (Diagnosis) 도메인
-- Supporting Domain : Lookup(CQRS) 도메인
-- General Domain : 알림(notice) 시스템.
+- Core Domain: Reservation and Diagnosis domain
+- Supporting Domain: Lookup (CQRS) domain
+- General Domain: notice system.
 
-### · 헥사고날 아키텍처 다이어그램 도출
+
+### · Hexagonal Architecture Diagram Derivation
     
 ![image](https://user-images.githubusercontent.com/38850007/79833622-aad4a200-83e6-11ea-80f1-6eb9a59503af.png)
 
 
-## 구현
+## Implementation
 
-분석/설계 단계에서 도출된 헥사고날 아키텍처에 따라, 각 BC별로 대변되는 마이크로 서비스들을 스프링부트로 구현하였다. 구현한 각 서비스를 로컬에서 실행하는 방법은 아래와 같다 (각자의 포트넘버는 8081 ~ 808n 이다)
+According to the hexagonal architecture derived from the analysis/design phase, microservices represented by each BC were implemented with Spring Boot. The method to run each implemented service locally is as follows (each port number is 8081 ~ 808n)
 
-동물병원 예약/진료 시스템은 아래의 7가지 마이크로 서비스로 구성되어 있다.
+The veterinary hospital reservation/treatment system consists of the following 7 microservices.
 
-1. 게이트 웨이: [https://github.com/AnimalHospital2/gateway.git](https://github.com/AnimalHospital2/gateway.git)
-1. Oauth 시스템: [https://github.com/AnimalHospital2/ouath.git](https://github.com/AnimalHospital2/ouath.git)
-1. 예약 시스템: [https://github.com/AnimalHospital2/reservation.git](https://github.com/AnimalHospital2/reservation.git)
-1. 진료 시스템: [https://github.com/AnimalHospital2/diagnosis.git](https://github.com/AnimalHospital2/diagnosis.git)
-1. 수납 시스템: [https://github.com/AnimalHospital2/acceptance.git](https://github.com/AnimalHospital2/acceptance.git)
-1. 알림 시스템: [https://github.com/AnimalHospital2/notice.git](https://github.com/AnimalHospital2/notice.git)
+1. Gateway: [https://github.com/AnimalHospital2/gateway.git](https://github.com/AnimalHospital2/gateway.git)
+2. Oauth system: [https://github.com/AnimalHospital2/ouath.git](https://github.com/AnimalHospital2/ouath.git)
+3. Reservation system: [https://github.com/AnimalHospital2/reservation.git](https://github.com/AnimalHospital2/reservation.git)
+4. Medical system: [https://github.com/AnimalHospital2/diagnosis.git](https://github.com/AnimalHospital2/diagnosis.git)
+5. Accommodation system: [https://github.com/AnimalHospital2/acceptance.git](https://github.com/AnimalHospital2/acceptance.git)
+6. Notification system: [https://github.com/AnimalHospital2/notice.git](https://github.com/AnimalHospital2/notice.git)
 
-- 게이트웨이 시스템은 수업시간에 이용한 예제를 프로젝트에 맞게 설정을 변경하였다. 
-- Oauth 시스템은 수업시간에 이용한 예제를 그대로 활용하였다.
+- The gateway system changed the settings according to the project using the examples used in class.
+- The Oauth system used the example used in class as it is.
 
-모든 시스템은 Spring Boot로 구현하였고 `mvn spring-boot:run` 명령어로 실행할 수 있다.
 
-### · DDD 의 적용
+All systems are implemented with Spring Boot and can be executed with the mvn `mvn spring-boot:run` command.
+
+### · Application of DDD
 
 - 각 서비스내에 도출된 핵심 Aggregate Root 객체를 Entity 로 선언하였다: (예시는 예약 시스템의 Reservation.class). 이때 가능한 현업에서 사용하는 언어 (유비쿼터스 랭귀지)를 그대로 사용하려고 노력했다.
 
@@ -107,13 +109,13 @@ public class Reservation {
 
         medicalRecord.setReservationId(this.getId());
         medicalRecord.setDoctor("Brad pitt");
-        medicalRecord.setMedicalOpinion("별 이상 없습니다.");
-        medicalRecord.setTreatment("그냥 집에서 푹 쉬면 나을 것입니다.");
+        medicalRecord.setMedicalOpinion("no more stars");
+        medicalRecord.setTreatment("Just rest at home and you'll be fine.");
 
         ReservationApplication.applicationContext.getBean(MedicalRecordService.class).diagnosis(medicalRecord);
 
 
-        // Reserved 이벤트 발생
+        // Reserved event occurs
 
         ObjectMapper objectMapper = new ObjectMapper();
         String json = null;
@@ -211,8 +213,7 @@ public class Reservation {
 
 ```
 
-- Entity Pattern 과 Repository Pattern 을 적용하여 JPA 를 통하여 다양한 데이터소스 유형 (RDB or NoSQL) 에 대한 별도의 처리가 없도록 데이터 접근 어댑터를 자동 생성하기 위하여 Spring Data REST 의 RestRepository 를 적용하였다.
-RDB로는 H2를 사용하였다. 
+- By applying Entity Pattern and Repository Pattern, RestRepository of Spring Data REST was applied to automatically create data access adapter so that there is no separate processing for various data source types (RDB or NoSQL) through JPA. H2 was used as RDB. 
 ``` java
 package com.example.reservation;
 
@@ -223,15 +224,15 @@ public interface ReservationRepository extends CrudRepository<Reservation, Long>
 
 }
 ```
-- 적용 후 REST API 의 테스트
+- Testing of REST API after application
 
-주의!!! reservation 서비스에는 FeignClient가 적용되어 있다. 여기에 diagnosis 시스템의 api 주소가 하드코딩되어 있어 로컬 테스트 환경과
-Cloud 테스트 환경에서는 그 값을 달리하여 테스트하여야 한다.
+caution!!! FeignClient is applied to the reservation service. Here, the diagnosis system's api address is hard-coded, so it is necessary to test with different values in the local test environment and in the cloud test environment.
 
-package com.example.reservation.external.MedicalRecordService의 내용을 테스트 환경에 따라 변경해준다.;
+Change the contents of package com.example.reservation.external.MedicalRecordService according to the test environment;
 
 
-- Local 환경 테스트시 
+
+- When testing the local environment
 ``` java
 @FeignClient(name = "diagnosis", url = "http://localhost:8083")
 public interface MedicalRecordService {
