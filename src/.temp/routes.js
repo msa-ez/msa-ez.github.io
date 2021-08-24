@@ -1,85 +1,82 @@
-const c1 = () => import(/* webpackChunkName: "page--src--templates--markdown-page-vue" */ "/Users/kibum0405/Desktop/msa-ez.github.io/src/templates/MarkdownPage.vue")
-const c2 = () => import(/* webpackChunkName: "page--src--pages--404-vue" */ "/Users/kibum0405/Desktop/msa-ez.github.io/src/pages/404.vue")
-const c3 = () => import(/* webpackChunkName: "page--src--pages--index-vue" */ "/Users/kibum0405/Desktop/msa-ez.github.io/src/pages/Index.vue")
-
 export default [
   {
     path: "/templates-language/springboot-java-template/",
-    component: c1
+    component: () => import(/* webpackChunkName: "page--src--templates--markdown-page-vue" */ "/Users/kibum0405/Desktop/msa-ez.github.io/src/templates/MarkdownPage.vue")
   },
   {
     path: "/templates-language/python-template/",
-    component: c1
+    component: () => import(/* webpackChunkName: "page--src--templates--markdown-page-vue" */ "/Users/kibum0405/Desktop/msa-ez.github.io/src/templates/MarkdownPage.vue")
   },
   {
     path: "/tool/infrastructure-modeling/",
-    component: c1
+    component: () => import(/* webpackChunkName: "page--src--templates--markdown-page-vue" */ "/Users/kibum0405/Desktop/msa-ez.github.io/src/templates/MarkdownPage.vue")
   },
   {
     path: "/templates-language/go-template/",
-    component: c1
+    component: () => import(/* webpackChunkName: "page--src--templates--markdown-page-vue" */ "/Users/kibum0405/Desktop/msa-ez.github.io/src/templates/MarkdownPage.vue")
   },
   {
     path: "/tool/event-storming-tool/",
-    component: c1
+    component: () => import(/* webpackChunkName: "page--src--templates--markdown-page-vue" */ "/Users/kibum0405/Desktop/msa-ez.github.io/src/templates/MarkdownPage.vue")
   },
   {
     path: "/started/event-storming-learning/",
-    component: c1
+    component: () => import(/* webpackChunkName: "page--src--templates--markdown-page-vue" */ "/Users/kibum0405/Desktop/msa-ez.github.io/src/templates/MarkdownPage.vue")
   },
   {
     path: "/templates-language/custom-template/",
-    component: c1
+    component: () => import(/* webpackChunkName: "page--src--templates--markdown-page-vue" */ "/Users/kibum0405/Desktop/msa-ez.github.io/src/templates/MarkdownPage.vue")
   },
   {
     path: "/tool/cloud-ide-tool/",
-    component: c1
+    component: () => import(/* webpackChunkName: "page--src--templates--markdown-page-vue" */ "/Users/kibum0405/Desktop/msa-ez.github.io/src/templates/MarkdownPage.vue")
   },
   {
     path: "/tool/development-practice/",
-    component: c1
+    component: () => import(/* webpackChunkName: "page--src--templates--markdown-page-vue" */ "/Users/kibum0405/Desktop/msa-ez.github.io/src/templates/MarkdownPage.vue")
   },
   {
     path: "/started/domain-driven/",
-    component: c1
+    component: () => import(/* webpackChunkName: "page--src--templates--markdown-page-vue" */ "/Users/kibum0405/Desktop/msa-ez.github.io/src/templates/MarkdownPage.vue")
   },
   {
     path: "/example-scenario/online-lecture/",
-    component: c1
+    component: () => import(/* webpackChunkName: "page--src--templates--markdown-page-vue" */ "/Users/kibum0405/Desktop/msa-ez.github.io/src/templates/MarkdownPage.vue")
   },
   {
     path: "/example-scenario/library-system/",
-    component: c1
+    component: () => import(/* webpackChunkName: "page--src--templates--markdown-page-vue" */ "/Users/kibum0405/Desktop/msa-ez.github.io/src/templates/MarkdownPage.vue")
   },
   {
     path: "/example-scenario/food-delivery/",
-    component: c1
-  },
-  {
-    path: "/example-scenario/accommodation-reservation/",
-    component: c1
+    component: () => import(/* webpackChunkName: "page--src--templates--markdown-page-vue" */ "/Users/kibum0405/Desktop/msa-ez.github.io/src/templates/MarkdownPage.vue")
   },
   {
     path: "/example-scenario/animal-hospital/",
-    component: c1
+    component: () => import(/* webpackChunkName: "page--src--templates--markdown-page-vue" */ "/Users/kibum0405/Desktop/msa-ez.github.io/src/templates/MarkdownPage.vue")
+  },
+  {
+    path: "/example-scenario/accommodation-reservation/",
+    component: () => import(/* webpackChunkName: "page--src--templates--markdown-page-vue" */ "/Users/kibum0405/Desktop/msa-ez.github.io/src/templates/MarkdownPage.vue")
   },
   {
     path: "/started/",
-    component: c1
+    component: () => import(/* webpackChunkName: "page--src--templates--markdown-page-vue" */ "/Users/kibum0405/Desktop/msa-ez.github.io/src/templates/MarkdownPage.vue")
   },
   {
     name: "404",
     path: "/404/",
-    component: c2
+    component: () => import(/* webpackChunkName: "page--src--pages--404-vue" */ "/Users/kibum0405/Desktop/msa-ez.github.io/src/pages/404.vue")
   },
   {
     name: "home",
     path: "/",
-    component: c3
+    component: () => import(/* webpackChunkName: "page--src--pages--index-vue" */ "/Users/kibum0405/Desktop/msa-ez.github.io/src/pages/Index.vue")
   },
   {
     name: "*",
     path: "*",
-    component: c2
+    component: () => import(/* webpackChunkName: "page--src--pages--404-vue" */ "/Users/kibum0405/Desktop/msa-ez.github.io/src/pages/404.vue")
   }
 ]
+

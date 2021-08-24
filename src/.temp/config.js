@@ -3,6 +3,6 @@ export default {
   "pathPrefix": "",
   "titleTemplate": "%s - msa-ez.github",
   "siteUrl": "https://example.com",
-  "version": "0.7.22",
+  "version": "0.7.13",
   "catchLinks": true
 }
