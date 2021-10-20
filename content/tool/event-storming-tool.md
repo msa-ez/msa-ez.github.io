@@ -6,7 +6,8 @@ sidebar: 'started'
 
 <h2>MSA Development with MSA Easy</h2>
 
-## 서비스 접속
+## Service Access
+
 [Pease navigate to the URL](http://www.msaez.io)
 <br/>(Chrome web browser is recommended.)
 
@@ -22,7 +23,7 @@ Here's the full screen layout of the MSAEZ tool.
 
 > ![](../../src/img/image30.png)
 
-| 번호 | 이름                | 기능 설명                                                        |
+| Number | Name                | Detail of Fuction                                                 |
 |------|---------------------|----------------------------------------------------------------- |
 | 1    &nbsp;| Zoom Panel          | The ability to enlarge and reduce the screen created on the canvas |
 | 2    &nbsp;| Project Name        | Enter the project name (Package name in case of Java)                         |
@@ -174,7 +175,7 @@ After completing the tasks from 4.2.2 to 4.2.6 above, EventStorming results in t
 
 Relation refers to the line from the Event sticker to the Policy sticker.
 
-<h4>Relation 추가</h4>
+<h4>Relation Addition</h4>
 
 Select the arrow icon from the Event sticker, or just drag and drop it on the Policy sticker to be connected and then the connection will be established.
 
