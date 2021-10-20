@@ -71,7 +71,7 @@ All systems are implemented with Spring Boot and can be executed with the mvn `m
 
 ### · Application of DDD
 
-- 각 서비스내에 도출된 핵심 Aggregate Root 객체를 Entity 로 선언하였다: (예시는 예약 시스템의 Reservation.class). 이때 가능한 현업에서 사용하는 언어 (유비쿼터스 랭귀지)를 그대로 사용하려고 노력했다.
+- The core Aggregate Root object derived in each service is declared as Entity: (Example: Reservation.class of reservation system). At this time, I tried to use the language (ubiquitous language) used in the field as it is possible.
 
 ``` java
 package com.example.reservation;
@@ -743,7 +743,7 @@ feign:
 # (diagnosis) MedicalRecord.java (Entity)
 
     @PrePersist
-    public void onPrePersist(){  //진료이력을 저장한 후 적당한 시간 끌기
+    public void onPrePersist(){  //After saving the medical history, take the appropriate time delay.
         ...
         
         try {
