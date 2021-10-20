@@ -597,7 +597,7 @@ kubectl -n kube-system describe secret eks-admin-token-rjpmq
 ```
 ![codebuild(token)](https://user-images.githubusercontent.com/38099203/119293511-84d69c80-bc8d-11eb-99c7-e8929e6a41e4.PNG)
 ```
-buildspec.yml 파일 
+buildspec.yml file 
 Set to use the yml file of the microservice room
 ```
 ![codebuild(buildspec)](https://user-images.githubusercontent.com/38099203/119283849-30292680-bc79-11eb-9f86-cbb715e74846.PNG)
@@ -960,7 +960,7 @@ efs-provisioner   1         9m1s
   
 kubectl apply -f efs-rbac.yaml
 
-namespace를 반듯이 수정해야함
+You must edit the namespace
 
   
 apiVersion: rbac.authorization.k8s.io/v1

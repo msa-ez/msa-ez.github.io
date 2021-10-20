@@ -742,7 +742,7 @@ def Delete(id: int):
 {{/isRestRepository}}
 {{^isRestRepository}}
 @bp.route("/{{controllerInfo.apiPath}}", methods=["{{controllerInfo.method}}"])
-def {{nameCamelCase}}(): # -> 이부분 수정 
+def {{nameCamelCase}}(): # -> edit this part
     
     '''
     LOGIC GOES HERE

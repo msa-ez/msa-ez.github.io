@@ -119,4 +119,18 @@ export default {
 
 <style>
 @import 'prism-themes/themes/prism-material-oceanic.css';
+
+code[class*=language-]:nth-child(1) {
+  margin-left:-4px;
+}
+
+
+code ::selection {
+		color: #5967d8;
+}
+
+code[class*="language-"]::selection, 
+pre[class*="language-"]::selection, 
+code[class*="language-"] ::selection,
+pre[class*="language-"] ::selection{background-color:white;}
 </style>

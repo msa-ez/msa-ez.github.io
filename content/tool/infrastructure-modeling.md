@@ -120,7 +120,7 @@ This is the area where the object selected from the object palette is implemente
 
 ## Tutorial
 
-<h3>pod 추가 및 터미널 오픈</h3>
+<h3>Add pod and open terminal</h3>
 
 **Add pod and open terminal**
 >![](../../src/img/infrastructure-modeling/image1.png)

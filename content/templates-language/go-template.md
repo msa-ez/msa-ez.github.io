@@ -54,7 +54,7 @@ go build main.go
 ./main
 ``
 
-## Go 기술 Stack 
+## Go Technology Stack 
 
 - Web Framework : echo
 
