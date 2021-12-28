@@ -68,7 +68,6 @@
         </div>
       </div>
     </Layout>
-    <Footer></Footer>
   </div>
 </template>
 
