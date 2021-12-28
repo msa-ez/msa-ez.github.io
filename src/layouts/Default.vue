@@ -40,6 +40,7 @@
         <MenuIcon v-else />
       </button>
     </div>
+    <Footer></Footer>
   </div>
 </template>
 
@@ -55,13 +56,15 @@ query {
 import Sidebar from "@/components/Sidebar";
 import LayoutHeader from "@/components/LayoutHeader";
 import { MenuIcon, XIcon } from 'vue-feather-icons';
+import Footer from '@/components/Footer';
 
 export default {
   components: {
     Sidebar,
     LayoutHeader,
     MenuIcon,
-    XIcon
+    XIcon,
+    Footer
   },
   data() {
     return {
