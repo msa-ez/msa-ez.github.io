@@ -88,8 +88,8 @@ export default {
   },
 
   metaInfo() {
-    const title = 'msaeasy-intro';
-    const description = 'DOCC is a starter theme with instant search and dark mode for writing great technical documentation. Based on Gridsome!';
+    const title = 'msaeasy';
+    const description = 'Event Storming,EventStorming,msaeasy,MSA design,MSA training,MSA lecture,MSA,CNA,Microphone service,Spring boot,SpringBoot,kubernetes,container,intromsaez,Event storming design,microservice education,aquanetis education,springboot education,springbooteducation,CNAlecture,CNAeducation,object-oriented lecture,object-oriented education,CNA implementation,CNA implementation,kubernetes,kubernetes lecture,kubernetes education';
 
     return {
       title: title,

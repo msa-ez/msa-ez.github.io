@@ -9,7 +9,7 @@
                 </div>
             </div>
             <div style = "width:100%; height:100px; text-align:center; font-size:14px; color:white; font-weight:300; line-height:50px; padding-top:20px;">
-                <div>Copyright © 2017 uEngine &nbsp;&nbsp;&nbsp; | &nbsp;&nbsp;&nbsp; All Rights Reserved &nbsp;&nbsp;&nbsp; | &nbsp;&nbsp;&nbsp; Designed By Sppark &nbsp;&nbsp;&nbsp; | &nbsp;&nbsp;&nbsp; Address 서울 서초구 신반포로45길 18 주일빌딩 501호</div>
+                <div>Copyright © 2017 uEngine &nbsp;&nbsp;&nbsp; | &nbsp;&nbsp;&nbsp; All Rights Reserved &nbsp;&nbsp;&nbsp; | &nbsp;&nbsp;&nbsp; Designed By Sppark &nbsp;&nbsp;&nbsp; | &nbsp;&nbsp;&nbsp; Address, Room 501 of the 18ju-il Building, Sinbanpo 45-gil, Seocho-gu, Seoul.</div>
                 <div>Email : help@uengine.org</div>
             </div>
         </div>
@@ -24,7 +24,7 @@
                 </div>
             </div>
             <div style = "width:100%; height:100px; text-align:center; font-size:14px; color:white; font-weight:300; line-height:30px; padding-top:20px;">
-                <div>Copyright © 2017 uEngine <br> All Rights Reserved <br> Designed By Sppark <br> Address 서울 서초구 신반포로45길 18 주일빌딩 501호</div>
+                <div>Copyright © 2017 uEngine <br> All Rights Reserved <br> Designed By Sppark <br> Address, Room 501 of the 18ju-il Building, Sinbanpo 45-gil, Seocho-gu, Seoul.</div>
                 <div>Email : help@uengine.org</div>
             </div>
         </div>

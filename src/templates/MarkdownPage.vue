@@ -2,6 +2,17 @@
   <Layout>
       <div class="flex flex-wrap items-start justify-start">
 
+        <div>
+          <g-link
+            to="http://www.msaez.io/"
+            style="position:absolute; top:5px;"
+            class="flex items-center px-1 py-1 ml-auto text-1xl font-bold leading-none text-white border rounded-lg shadow-lg bg-ui-primary border-ui-primary transition-all duration-200 ease-out transform hover:shadow-xl hover:-translate-y-1"
+          >
+            Practice
+            <ArrowRightCircleIcon class="ml-1" size="1x" />
+          </g-link>
+        </div>
+
         <div class="order-2 w-full md:w-1/3 sm:pl-4 md:pl-6 lg:pl-8 sticky" style="top: 4rem">
           <OnThisPage />
         </div>
@@ -50,11 +61,13 @@ query ($id: ID!) {
 <script>
 import OnThisPage from '@/components/OnThisPage.vue';
 import NextPrevLinks from '@/components/NextPrevLinks.vue';
+import { ArrowRightCircleIcon, ZapIcon, CodeIcon, MoonIcon, SearchIcon } from 'vue-feather-icons';
 
 export default {
   components: {
     OnThisPage,
-    NextPrevLinks
+    NextPrevLinks,
+    ArrowRightCircleIcon
   },
   
   watch: {

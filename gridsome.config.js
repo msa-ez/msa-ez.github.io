@@ -5,7 +5,7 @@
 // To restart press CTRL + C in terminal and run `gridsome develop`
 
 module.exports = {
-  siteName: '',
+  siteName: 'msaez',
   icon: {
     favicon: './src/assets/favicon.png',
     touchicon: './src/assets/favicon.png'
@@ -58,6 +58,12 @@ module.exports = {
               '/example-scenario/library-system/',
               '/example-scenario/animal-hospital/',
               '/example-scenario/online-lecture/',
+            ]
+          },
+          {
+            title: 'Contact',
+            items: [
+              '/contact/question/'
             ]
           },
         ]

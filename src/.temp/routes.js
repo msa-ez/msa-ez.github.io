@@ -28,11 +28,11 @@ export default [
     component: () => import(/* webpackChunkName: "page--src--templates--markdown-page-vue" */ "/Users/kibum0405/Desktop/uengine project/msa-ez.github.io/src/templates/MarkdownPage.vue")
   },
   {
-    path: "/tool/cloud-ide-tool/",
+    path: "/tool/development-practice/",
     component: () => import(/* webpackChunkName: "page--src--templates--markdown-page-vue" */ "/Users/kibum0405/Desktop/uengine project/msa-ez.github.io/src/templates/MarkdownPage.vue")
   },
   {
-    path: "/tool/development-practice/",
+    path: "/tool/cloud-ide-tool/",
     component: () => import(/* webpackChunkName: "page--src--templates--markdown-page-vue" */ "/Users/kibum0405/Desktop/uengine project/msa-ez.github.io/src/templates/MarkdownPage.vue")
   },
   {
@@ -41,6 +41,10 @@ export default [
   },
   {
     path: "/example-scenario/online-lecture/",
+    component: () => import(/* webpackChunkName: "page--src--templates--markdown-page-vue" */ "/Users/kibum0405/Desktop/uengine project/msa-ez.github.io/src/templates/MarkdownPage.vue")
+  },
+  {
+    path: "/contact/question/",
     component: () => import(/* webpackChunkName: "page--src--templates--markdown-page-vue" */ "/Users/kibum0405/Desktop/uengine project/msa-ez.github.io/src/templates/MarkdownPage.vue")
   },
   {
