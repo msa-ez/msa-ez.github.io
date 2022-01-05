@@ -119,8 +119,8 @@ export default {
           content: description,
         },
         {
-          key: 'keyword',
-          name: 'keyword',
+          key: 'keywords',
+          name: 'keywords',
           content: 'Event Storming,EventStorming,msaeasy,MSA design,MSA training,MSA lecture,MSA,CNA,Microphone service,Spring boot,SpringBoot,kubernetes,container,intromsaez,Event storming design,microservice education,aquanetis education,springboot education,springbooteducation,CNAlecture,CNAeducation,object-oriented lecture,object-oriented education,CNA implementation,CNA implementation,kubernetes,kubernetes lecture,kubernetes education',
         }
       ]
