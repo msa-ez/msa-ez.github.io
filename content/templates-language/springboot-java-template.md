@@ -19,7 +19,39 @@ sidebar: 'started'
 
 <h3>The directory structure of the project being generated is as follows:</h3>
 
-**order microservices**
+**order**
+
+- README.md
+- Dockerfile
+- azure-pipelines.yml
+- kubernetes
+  - deployment.yml
+  - service.yml
+- src
+  - main
+    - java
+      - shop
+        - OrderApplication.java
+        - config
+          - kafka
+            - kafkaProcessor.java
+        - domain
+          - Order.java
+          - OrderPlaced.java
+          - OrderCanceled.java
+          - OrderAccepted.java
+        - infra
+          - AbstractEvent.java
+          - OrderController.java
+          - OrderHateoasProcessor.java
+          - PolicyHandler.java
+          - OrderRepository.java
+  - resources
+    - application.yml
+- .gitignire
+- pom.xml
+
+
 
 
 
