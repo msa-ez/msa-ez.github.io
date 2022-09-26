@@ -1,3 +1,9 @@
+---
+description: ''
+sidebar: 'started'
+---
+# on-prem instruction 
+
 # Using GCP Cluster
 
 ### 1. Download helm Charts 
