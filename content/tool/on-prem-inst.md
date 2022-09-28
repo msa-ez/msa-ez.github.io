@@ -11,11 +11,11 @@ sidebar: 'started'
 ---
 ### 2. Create & Connect GCP Cluster
 ---
-### 3. on-prem 설치 
+### 3. Install on-prem 
   - Cluseter ip: ```kubeclt cluseter-info```
-  - Domain: Route53 도메인 중 사용할 도메인 
+  - Domain: Domain to use from Route53 domains
   - token: ```kubectl describe secret default```
-    #### 1. yaml 파일 별 수정 필요 내용 
+    #### 1. Edit the following items from each yaml files.
     - <b>deployment.yaml</b>: Cluseter ip, Domain, token
     - <b>values.yaml</b>: Cluseter ip, Domain
     - <b>2q</b>: Domain  
