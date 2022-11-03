@@ -50,7 +50,7 @@
             </div>
 
             <div style = "width:150px; height:50px; text-align:center; line-height:50px; font-weight:700;  float:left;">
-              <a href = "https://github.com/msa-ez/msa-ez.github.io/issues">Q&A Board</a>
+              <a target="_blank" href = "https://github.com/msa-ez/msa-ez.github.io/issues">Q&A Board</a>
             </div>
 
             <div style="width:50px; float:left; margin-top:10px;">
