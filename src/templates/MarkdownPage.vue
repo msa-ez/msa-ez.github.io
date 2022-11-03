@@ -4,7 +4,7 @@
 
         <div>
           <g-link
-            to="http://www.msaez.io/"
+            to="http://labs.msaez.io/"
             style="position:absolute; top:5px;"
             class="flex items-center px-1 py-1 ml-auto text-1xl font-bold leading-none text-white border rounded-lg shadow-lg bg-ui-primary border-ui-primary transition-all duration-200 ease-out transform hover:shadow-xl hover:-translate-y-1"
           >
