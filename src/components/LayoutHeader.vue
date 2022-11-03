@@ -44,26 +44,24 @@
             <GithubIcon size="1.5x" />
           </a>
 
-        <div class=".clearfix" style="width:250px;">
-          <div style = "width:50px; height:50px; text-align:center; line-height:50px; font-weight:700; float:left;">
-            <a href = "https://intro-kor.msaez.io">Korean</a>
-          </div>
+          <div class=".clearfix" style="width:250px;">
+            <div style = "width:50px; height:50px; text-align:center; line-height:50px; font-weight:700; float:left;">
+              <a href = "https://intro-kor.msaez.io">Korean</a>
+            </div>
 
-          <div style = "width:150px; height:50px; text-align:center; line-height:50px; font-weight:700;  float:left;">
-            <a href = "https://github.com/msa-ez/msa-ez.github.io/issues">Q&A Board</a>
-          </div>
+            <div style = "width:150px; height:50px; text-align:center; line-height:50px; font-weight:700;  float:left;">
+              <a href = "https://github.com/msa-ez/msa-ez.github.io/issues">Q&A Board</a>
+            </div>
 
-          <div style="width:50px; float:left; margin-top:10px;">
-            <ToggleDarkMode>
-              <template slot="default" slot-scope="{ dark }">
-                <MoonIcon v-if="dark" size="1.5x" />
-                <SunIcon v-else size="1.5x" />
-              </template>
-            </ToggleDarkMode>
+            <div style="width:50px; float:left; margin-top:10px;">
+              <ToggleDarkMode>
+                <template slot="default" slot-scope="{ dark }">
+                  <MoonIcon v-if="dark" size="1.5x" />
+                  <SunIcon v-else size="1.5x" />
+                </template>
+              </ToggleDarkMode>
+            </div>
           </div>
-        </div>
-          
-
         </div>
       </div>
     </div>
