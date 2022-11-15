@@ -24,10 +24,6 @@ export default [
     component: c1
   },
   {
-    path: "/tool/google-drive-examples/",
-    component: c1
-  },
-  {
     path: "/tool/event-storming-tool/",
     component: c1
   },
