@@ -32,15 +32,15 @@ export default [
     component: c1
   },
   {
-    path: "/templates-language/custom-template/",
-    component: c1
-  },
-  {
     path: "/tool/cloud-ide-tool/",
     component: c1
   },
   {
     path: "/tool/development-practice/",
+    component: c1
+  },
+  {
+    path: "/custom-template/tutorial/",
     component: c1
   },
   {
@@ -61,6 +61,10 @@ export default [
   },
   {
     path: "/example-scenario/food-delivery/",
+    component: c1
+  },
+  {
+    path: "/custom-template/custom-template/",
     component: c1
   },
   {

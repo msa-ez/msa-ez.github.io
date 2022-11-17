@@ -47,8 +47,14 @@ module.exports = {
             items: [
               '/templates-language/python-template/',
               '/templates-language/springboot-java-template/',
-              '/templates-language/custom-template/',
               '/templates-language/go-template/',
+            ]
+          },
+          {
+            title: 'Custom templates',
+            items: [
+              '/custom-template/custom-template/',
+              '/custom-template/tutorial/',
             ]
           },
           {
