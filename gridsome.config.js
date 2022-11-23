@@ -35,6 +35,7 @@ module.exports = {
           {
             title: 'How to use the tool',
             items: [
+              '/tool/google-drive-examples/',
               '/tool/event-storming-tool/',
               '/tool/cloud-ide-tool/',
               '/tool/infrastructure-modeling/',
