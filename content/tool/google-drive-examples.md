@@ -44,8 +44,6 @@ Click on CREATE button of EventStorming Model and create new model.
 
 <h4>2. Draw Bounded Contexts</h4>
 
-> ![](../../src/img/gd-inst/2.png)
-
 > ![](../../src/img/gd-inst/ggd-1.gif)
 
 Make five bounded contexts, setting the boundary of microservice units.
@@ -53,8 +51,6 @@ Make five bounded contexts, setting the boundary of microservice units.
 The name of each bounded contexts would be dashboard, drive, indexer, video processing, notification.
 
 <h4>3. Pull out Events(orange sticker)</h4>
-
-> ![](../../src/img/gd-inst/3.png)
 
 > ![](../../src/img/gd-inst/ggd-2.gif)
 
@@ -69,8 +65,6 @@ Third Scenario : "If uploaded file is a video, the file is getting video-streame
 Our forth and fifth scenarios are inappropriate to show by the event sticker. So we have three big events on our google drive service.
 
 <h4>4. Add Inputs for the Events</h4>
-
-> ![](../../src/img/gd-inst/4.png)
 
 > ![](../../src/img/gd-inst/ggd-3.gif)
 
@@ -91,8 +85,6 @@ And also the action of indexing files and processing video runs when the event o
 The pub/sub is an abbreviation for publish/subscribe, which means the policy subscribes the published event and make the next event to run.
 
 <h4>5. Add Aggregates(yellow sticker)</h4>
-
-> ![](../../src/img/gd-inst/5.png)
 
 > ![](../../src/img/gd-inst/ggd-4.gif)
 
@@ -147,8 +139,6 @@ And also Index needs 'keywords' which are indexed by the name of the file, and V
 
 <h4>6. Add Attributes for Events</h4>
 
-> ![](../../src/img/gd-inst/6.png)
-
 > ![](../../src/img/gd-inst/ggd-11.gif)
 
 After adding attributes on aggregates, we need to put in the same information on events to activate pub/sub lines.
@@ -159,8 +149,6 @@ Repeat this job on all of three events.
 
 <h4>7. Add Notification Policy</h4>
 
-> ![](../../src/img/gd-inst/7.png)
-
 > ![](../../src/img/gd-inst/ggd-5.gif)
 
 Giving a notification to the user is able to implement by declaring a simple policy sticker.
@@ -170,8 +158,6 @@ Place a policy named 'notify to user' inside the 'notification' and draw a pub/s
 The scenario said "When the file is uploaded or it is created as a video, the user who uploaded the file gets notification", so this policy needs to work whenever the event 'FileUploaded' and 'VideoProcessed' are published.
 
 <h4>8. Add ReadModel(green sticker) & Attributes</h4>
-
-> ![](../../src/img/gd-inst/8.png)
 
 > ![](../../src/img/gd-inst/ggd-8.gif)
 
@@ -193,8 +179,6 @@ We must add attributes here as well, which are the things we must show on the da
 | String  | videoUrl  |
 
 <h4>9. Add CREATE WHEN for ReadModel</h4>
-
-> ![](../../src/img/gd-inst/9.png)
 
 > ![](../../src/img/gd-inst/ggd-10.gif)
 
@@ -219,10 +203,6 @@ And then match the attributes of dashboard and event as shown in the table below
 For 'isUploaded', we don't have to match it with the event but put in the value of 'true' by choosing the option 'Direct Input'.
 
 <h4>10. Add UPDATE WHEN for ReadModel</h4>
-
-> ![](../../src/img/gd-inst/10.png)
-
-> ![](../../src/img/gd-inst/11.png)
 
 > ![](../../src/img/gd-inst/ggd-7.gif)
 
@@ -259,10 +239,6 @@ Before we get into coding by IDE tool, we can check the code family created.
 Click the orange colored button 'CODE' to open the Code Preview window and we can check every code lists that would be added on our explorer later.
 
 <h4>12. Run Gitpod IDE</h4>
-
-> ![](../../src/img/gd-inst/13.png)
-
-> ![](../../src/img/gd-inst/14.png)
 
 > ![](../../src/img/gd-inst/ggd-6.gif)
 
