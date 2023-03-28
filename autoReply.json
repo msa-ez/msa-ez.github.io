@@ -1,10 +1,10 @@
 {
-  { "1" : "서비스를 실행하려는 위치에 porm.xml 파일이 있는지 확인하세요. \n 2. mvn spring-boot:run 명령어를 정확하게 입력하였는지 확인하세요." },
-  { "2" : "1. 서비스가 실행중인 터미널을 닫으세요. \n 2. 서비스가 실행중인 터미널에 Ctrl + C를 입력하세요. \n 3. 터미널에 (fuser-k 8081/tcp)를 입력하세요. \n 앞선 3가지의 방법 이후 다시 명령어(mvn spring-boot:run)를 입력하면 서비스를 다시 실행할 수 있습니다." },
-  { "3" : "pip install httpie 명령어를 입력하여 httpie를 설치해주세요." },
-  { "4" : "터미널에 cd kafka 를 입력하여 카프카로 이동한 뒤, docker-compose up 명령어를 입력해주세요." },
-  { "5" : "터미널에 aws configure를 입력해주세요. \n 이후 안내에 따라 제공받은 엑세스 키, 시크릿 키, 배정받은 리전, json을 입력해주세요. \n 정상 접속이 되었는지는 명령어 aws iam list-account-aliases를 통해 확인 가능합니다." },
-  { "6" : "aws configure를 통해 접속한 후, eksctl create cluster --name [mycluster-userid] --version 1.2x --spot --with-oidc --managed --node-type t3.medium --nodes 3 --nodes-min 1 --node-volume-type gp3 --nodes-max 3 --asg-access --full-ecr-access 를 입력해주세요." },
-  { "7" : "터미널에 ./init.sh 명령어를 입력한다면 초기 설정값을 불러올 수 있습니다." },
-  { "8" : "<서비스 실행> \n 1. 서비스를 실행하려는 위치에 porm.xml 파일이 있는지 확인하세요. \n 2. mvn spring-boot:run 명령어를 정확하게 입력하였는지 확인하세요. \n \n <서비스 종료> \n 1. 서비스가 실행중인 터미널을 닫으세요. \n 2. 서비스가 실행중인 터미널에 Ctrl + C를 입력하세요. \n 3. 터미널에 (fuser-k 8081/tcp)를 입력하세요." }
+  "1" : "서비스를 실행하려는 위치에 porm.xml 파일이 있는지 확인하세요. \n 2. mvn spring-boot:run 명령어를 정확하게 입력하였는지 확인하세요.",
+  "2" : "1. 서비스가 실행중인 터미널을 닫으세요. \n 2. 서비스가 실행중인 터미널에 Ctrl + C를 입력하세요. \n 3. 터미널에 (fuser-k 8081/tcp)를 입력하세요. \n 앞선 3가지의 방법 이후 다시 명령어(mvn spring-boot:run)를 입력하면 서비스를 다시 실행할 수 있습니다.",
+  "3" : "pip install httpie 명령어를 입력하여 httpie를 설치해주세요.",
+  "4" : "터미널에 cd kafka 를 입력하여 카프카로 이동한 뒤, docker-compose up 명령어를 입력해주세요.",
+  "5" : "터미널에 aws configure를 입력해주세요. \n 이후 안내에 따라 제공받은 엑세스 키, 시크릿 키, 배정받은 리전, json을 입력해주세요. \n 정상 접속이 되었는지는 명령어 aws iam list-account-aliases를 통해 확인 가능합니다.",
+  "6" : "aws configure를 통해 접속한 후, eksctl create cluster --name [mycluster-userid] --version 1.2x --spot --with-oidc --managed --node-type t3.medium --nodes 3 --nodes-min 1 --node-volume-type gp3 --nodes-max 3 --asg-access --full-ecr-access 를 입력해주세요.",
+  "7" : "터미널에 ./init.sh 명령어를 입력한다면 초기 설정값을 불러올 수 있습니다.",
+  "8" : "<서비스 실행> \n 1. 서비스를 실행하려는 위치에 porm.xml 파일이 있는지 확인하세요. \n 2. mvn spring-boot:run 명령어를 정확하게 입력하였는지 확인하세요. \n \n <서비스 종료> \n 1. 서비스가 실행중인 터미널을 닫으세요. \n 2. 서비스가 실행중인 터미널에 Ctrl + C를 입력하세요. \n 3. 터미널에 (fuser-k 8081/tcp)를 입력하세요." 
 }
