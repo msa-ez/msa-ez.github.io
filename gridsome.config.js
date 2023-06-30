@@ -56,6 +56,7 @@ module.exports = {
             items: [
               '/custom-template/custom-template/',
               '/custom-template/tutorial/',
+              '/custom-template/designing-template/'
             ]
           },
           {

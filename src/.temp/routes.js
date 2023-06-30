@@ -68,6 +68,10 @@ export default [
     component: c1
   },
   {
+    path: "/custom-template/designing-template/",
+    component: c1
+  },
+  {
     path: "/custom-template/custom-template/",
     component: c1
   },
