@@ -2,7 +2,7 @@
 description: ''
 sidebar: 'started'
 ---
-# Creating custom templates
+# Creating Custom Template
 
 ## Custom Template
 
