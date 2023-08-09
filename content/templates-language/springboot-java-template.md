@@ -2,7 +2,7 @@
 description: ''
 sidebar: 'started'
 ---
-# Spring Boot/Java
+# Spring Boot/Java Template
 
 <h2>By default, MSA-Easy generates source codes in Spring-boot and Spring-cloud template.</h2>
 

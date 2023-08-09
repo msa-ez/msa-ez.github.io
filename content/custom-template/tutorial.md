@@ -2,7 +2,7 @@
 description: ''
 sidebar: 'started'
 ---
-# Tutorial for template design
+# Concept of Custom Template
 
 ## Custom Template
 The custom template adds the desired template in addition to the provided template so that the code can be generated according to the desired template with the result of Eventstorming Model.
@@ -38,8 +38,6 @@ As an example, after changing from the existing Spring Boot to the Axon Framewor
 
 > AggregateRoot.java for Axon Framework
 ![스크린샷 2023-05-16 오후 5 17 09](https://github.com/kykim97/factory-pattern/assets/113568664/a969cc29-1612-4900-b42a-524ba3ceb5ac)
-
-As an example, after changing from the existing Spring Boot to the Axon Framework template, the changes in the Aggregate file are as follows.
 
 >FileAggregate.java
 ![스크린샷 2023-05-16 오후 5 17 54](https://github.com/kykim97/factory-pattern/assets/113568664/f3454a75-15e1-45c7-918c-55f70cfc3b6e)

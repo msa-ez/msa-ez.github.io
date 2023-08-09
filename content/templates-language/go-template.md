@@ -2,7 +2,7 @@
 description: ''
 sidebar: 'started'
 ---
-# Create a Go Template 
+# Go Template 
 
 ## Go DDD tutorial 
 
