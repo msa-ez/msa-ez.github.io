@@ -36,6 +36,8 @@ module.exports = {
             title: 'How to use the tool',
             items: [
               '/tool/google-drive-examples/',
+              '/tool/chat-gpt/',
+              '/tool/market-place/',
               '/tool/event-storming-tool/',
               '/tool/cloud-ide-tool/',
               '/tool/infrastructure-modeling/',
@@ -57,6 +59,8 @@ module.exports = {
               '/custom-template/tutorial/',
               '/custom-template/designing-template/',
               '/custom-template/custom-template/',
+              '/custom-template/mock-server/',
+              '/custom-template/unit-test/',
             ]
           },
           {

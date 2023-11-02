@@ -16,6 +16,10 @@ export default [
     component: c1
   },
   {
+    path: "/tool/market-place/",
+    component: c1
+  },
+  {
     path: "/tool/infrastructure-modeling/",
     component: c1
   },
@@ -29,6 +33,10 @@ export default [
   },
   {
     path: "/tool/event-storming-tool/",
+    component: c1
+  },
+  {
+    path: "/custom-template/unit-test/",
     component: c1
   },
   {
@@ -52,6 +60,10 @@ export default [
     component: c1
   },
   {
+    path: "/tool/chat-gpt/",
+    component: c1
+  },
+  {
     path: "/example-scenario/online-lecture/",
     component: c1
   },
@@ -61,6 +73,10 @@ export default [
   },
   {
     path: "/example-scenario/library-system/",
+    component: c1
+  },
+  {
+    path: "/custom-template/mock-server/",
     component: c1
   },
   {
