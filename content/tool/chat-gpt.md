@@ -45,14 +45,14 @@ sidebar: 'started'
 
 ### Eventstorming Model
 
-> ![](../../src/img/gpt8.png)
+> ![](../../src/img/gptgif1.gif)
 
 5-1. The user story of the service is created.
 
-> ![](../../src/img/gpt9.png)
+> ![](../../src/img/gptgif2.gif)
 
 5-2. Click CREATE MODEL button to call Chat GPT to create domain events that makes up the business.
 
-> ![](../../src/img/gpt10.png)
+> ![](../../src/img/gptgif3.gif)
 
 5-3. Click Generate Aggregate button to create full eventstorming model based on previously created domain events.
