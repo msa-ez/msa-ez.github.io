@@ -5,7 +5,7 @@ prev: ''
 next: ''
 ---
 
-# Pub/Sub 방식의 연동 - Choreography with Idempotency
+# Pub/Sub Communication - Choreography with Idempotency
 
 ## 12st Mall에 중복실행 방지 적용
 

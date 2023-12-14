@@ -3,37 +3,38 @@ description: ''
 sidebar: 'started'
 ---
 
-# [이벤트스토밍] - DDD Food Delivery 예제
+# Food Delivery Example
 
 
-### Food Delivery 예제
+### Food Delivery Example
 
-아래 기능적, 비기능적 요구사항을 충족하도록 시나리오대로 이벤트스토밍을 수행하시오.
-(Eventstorming 수준: Design Level)
+Make an eventstorming model based on the scenario to meet the following functional/non-fuctional requirements.
+(Eventstorming Level: Design Level)
 
-### 기능적 요구사항
-- 고객이 메뉴를 선택하고, 선택한 메뉴에 대해 결제함으로써 주문이 발생한다.
-- 주문이 되면 입점 상점주에게 주문정보가 전달된다.
-- 상점주는 주문을 수락하거나 거절할 수 있다.
-- 상점주는 요리 시작시와 완료 시점에 시스템에 상태를 입력한다.
-- 고객은 아직 요리가 시작되지 않은 주문을 취소할 수 있다.
-- 요리가 시작되면 고객 지역 인근의 라이더들에 의해 배송건 조회가 가능하다.
-- 라이더가 해당 요리를 Pick한 후, 출발전 앱에 등록하면 배송시작 정보가 앱을 통해 고객에게 통보된다.
-- 고객은 주문상태를 중간중간 조회한다.
-- 시스템은 주문상태가 바뀔 때 마다 카톡으로 알림을 발송한다.
-- 라이더가 요리를 전달한뒤 배송확인 버튼을 탭하여, 모든 거래가 완료된다.
+### Functional Requirements
+- Customer selects menu and order it.
+- Customer pay for the selected menu.
+- Order information is being delivered to the storeowner when the order has been placed.
+- Storeowner can accept or reject the order.
+- Storeowner put in the status to the system when they starts and finishes cooking.
+- Customer can cancel the order which cooking hasn't started yet.
+- When the cooking is done, the delivery can be inquired by the riders close to the customer.
+- After rider picks up the food, they notify to customer by app .
+- Customer can inquire the order status anytime.
+- Send a alarm by messenger whenever the order status is changed.
+- Customer tabs on 'DevliveryConfirm' button when they recieve the food, and all transactions are completed.
 
-### 비기능적 요구사항
+### Non-functional Requirements
 
-#### 장애격리
-- 상점관리 기능이 수행되지 않더라도 주문은 365일 24시간 받을 수 있어야 한다 Async (event-driven), Eventual Consistency
-- 결제시스템이 과중되면 사용자를 잠시동안 받지 않고 결제를 잠시후에 하도록 유도한다 Circuit breaker, fallback
+#### Disability Isolation
+- Order must be received 365days and 24hours, even if the store managing function is not performed: Async (event-driven), Eventual Consistency
+- If paying system is overloaded, stop receiving users and encourage them to make payments later: Circuit breaker, fallback
 
-#### 성능
-- 고객이 자주 상점관리에서 확인할 수 있는 배달상태를 주문시스템(프론트엔드)에서 확인할 수 있어야 한다 CQRS
-- 배달상태가 바뀔때마다 카톡 등으로 알림을 줄 수 있어야 한다 Event driven
+#### Performance
+- Customer should be able to check the delivery status at order system(Front-end): CQRS
+- Notification must be working whenever delivery status changes: Event driven
 
-#### 바운디드 컨텍스트
+#### Bounded Contexts
 1. front
 2. store
 3. rider

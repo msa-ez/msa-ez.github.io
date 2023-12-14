@@ -8,26 +8,26 @@ next: ''
 # Orchestration Saga with Axon Framework
 
 
+
 ## Axon Saga Labs
 
-12st Mall 주문 프로세스를 Process Visibility가 높은 Orchestration 타입을 적용한다. 
-기본적으로 생성된 템플릿 코드에 Biz 로직을 추가해 주문 프로세스가 동작하도록 코드를 완성해 본다.
+Apply Orchestration type with high Process Visibility to 12st Mall order process.
+Add Biz logic to the basically created template code to complete the code so that the ordering process works.
 
+### Scenario
 
-### 시나리오
-
-- 주문 커맨드에 따라 OrderPlaced 이벤트가 생성된다.
-- OrderPlaced 이벤트로 Order Saga 프로세스가 구동된다.
-- Saga Process는 배송시작 커맨드를 호출하고 DeliveryStarted 이벤트를 생성한다.
-- 이어, 재고차감 커맨드가 호출되고 StockDecreased 이벤트를 생성한다.
-- 최종 주문상태를 업데이트하는 절차로 Saga Process는 종료된다.
-- 각 커맨드 호출시, 오류가 발생하면 이의 처리를 위해 Compensation Logic이 각각 실행된다. 
+- OrderPlaced event is being created by order command.
+- Order Saga process runs after OrderPlaced event.
+- Saga Process calls start delivery command and creates DeliveryStarted event.
+- Then, decrease stock command is being called and creates StockDecreased event.
+- The Saga Process ends with updating final order status.
+- When calling each commands, the Compensation Logic runs to handle errors.
 
 
 ### Saga Modeling
 
-- 모델 상단의 Fork 메뉴를 클릭한다.
-- 복제돤 모델을 다음과 같이 오케스트레이션 한다.
+- Click Fork button at the top of the model.
+- Orchestrate the copied model as below.
 
 ![image](https://user-images.githubusercontent.com/35618409/229645326-3a24d5e3-81f3-4ecb-9e6f-2101302eb697.png)
 
@@ -45,12 +45,12 @@ next: ''
 
 #### Code Push & Load on GitPod
 
-- Code Preview > Git 아이콘을 눌러 내 레파지토리에 푸쉬한다.
+- Click Git icon from Code Preview to push the code into your own repository.
 ![image](https://user-images.githubusercontent.com/35618409/229663138-ec1a8a2c-a50f-4c3c-ba4c-75c1ea9057ad.png)
 
 ![image](https://user-images.githubusercontent.com/35618409/229649084-15d388b9-3246-43b2-956c-d1012f47ce12.png)
 
-- GitPod 환경에서 로딩한다.
+- Load it on GitPod IDE.
 ![image](https://user-images.githubusercontent.com/35618409/229649200-cd48e7fb-54bb-46af-9806-0f893d9375bb.png)
 
 
@@ -58,128 +58,129 @@ next: ''
 
 #### infra > docker-compose.yml 
 
-- Axon Server는 대시보드를 위한 8024, 메시지 gRPC를 위한 8124 포트를 사용한다.
-- 각 서비스들의 Offset Token 관리를 위한 Token Store(MySQL)가 Lab 실행시 생성된다.
+- Axon Server uses port 8024 for dashboard and 8124 for message gRPC.
+- When running the Lab, Token Store(MySQL) to manage Offset Token of each services.
 
 
 ## Orchestration Code Completion 
 
 ### Product Service
 
-상품 Domain 코드에 Biz 로직을 완성한다.
+Complete Biz logic at product domain code.
 
-- 재고 부족시 도메인 오류 발생코드를 추가한다.
+- Add domain error generating code when out of stock.
 ```
-# ProductAggregate - @DecreaseStockCommand 재고부족시 Exception 발생 
-	if(this.getStock() < command.getStock()) throw new IllegalStateException("Out of Stock. !");  // 코드추가
+# ProductAggregate - @DecreaseStockCommand Exception occurs when out of stock 
+	if(this.getStock() < command.getStock()) throw new IllegalStateException("Out of Stock. !");  // Add code
 ```
 
-- product > ProductAggregate.java 내 다음 코드를 추가한다.
+- Add the following code at product > ProductAggregate.java
 ```
 # @EventSourcingHandler :: StockIncreasedEvent : 
-    setStock(getStock() + event.getStock());  // 코드추가
+    setStock(getStock() + event.getStock());  // Add code
 
 #  @EventSourcingHandler :: StockDecreasedEvent : 
-    setStock(getStock() - event.getStock());  // 코드추가
+    setStock(getStock() - event.getStock());  // Add code
 ```
 
 
 ### Order Service
 
-주문 Domain 코드에 Biz 로직을 완성한다.
+Complete Biz logic at order domain code.
 
-- order > OrderAggregate.java 내 다음 코드를 추가한다.
+- Add the following code at order > OrderAggregate.java
 ```
 # @EventSourcingHandler :: OrderPlacedEvent :
-     setStatus("OrderPlaced"); 			// 코드추가
+     setStatus("OrderPlaced"); 			// Add code
 # @EventSourcingHandler :: OrderCompletedEvent : 
-     setStatus("OrderCompleted"); 		// 코드추가
+     setStatus("OrderCompleted"); 		// Add code
 # @EventSourcingHandler :: OrderCancelledEvent :      
-      setStatus("OrderCancelled");		// 코드추가
+      setStatus("OrderCancelled");		// Add code
 ```
 
 ### Delivery Service
 
-배송 Domain 코드에 Biz 로직을 완성한다.
+Complete Biz logic at delivery domain code.
 
-- delivery > DeliveryAggregate.java 내 다음 코드를 추가한다.
+- Add the following code at delivery > DeliveryAggregate.java
 ```
 # @EventSourcingHandler :: DeliveryStartedEvent :
-      setStatus("DeliveryStarted"); 		// 코드추가
+      setStatus("DeliveryStarted"); 		// Add code
+
 # @EventSourcingHandler :: DeliveryCancelledEvent : 
-      setStatus("DeliveryCancelled"); 		// 코드추가
+      setStatus("DeliveryCancelled"); 		// Add code
 ```
 
 ### OrderSaga 
 
-주문 오케스트레이션을 수행하도록 OrderSaga 코드를 완성한다.
+Complete OrderSaga code to perform order orchestration.
 
 #### 1. Saga Start
 
-- OrderPlaced 이벤트로부터 Correlation key 설정 : 24 라인
+- Set Correlation key from OrderPlaced event : Line 24
 ```
 	@SagaEventHandler(associationProperty = "orderId")
 ```
 
-#### 2. 배송시작 Command 생성 및 호출 : 27라인
+#### 2. Create and call Delivery Start Command : Line 27
 ``` 
 command.setOrderId(event.getOrderId());
 command.setProductId(event.getProductId());
 command.setQty(event.getQty());
 command.setUserId(event.getUserId());
 
-# 배송실패시, 주문취소 Compensation 처리 : OrderCancelCommand
-orderCancelCommand.setOrderId(event.getOrderId());  	// 코드추가
+# When deivery fails, compensate by cancelling order : OrderCancelCommand
+orderCancelCommand.setOrderId(event.getOrderId());  	// Add code
 ```
 
-#### 3. DeliveryStartedEvent 이벤트로부터 Correlation key 설정
+#### 3. Set Correlation key from DeliveryStarted event
 
 ```
 	@SagaEventHandler(associationProperty = "orderId")
 ```
 
-#### 4. 재고차감 Command 생성 및 호출 
+#### 4. Create and call Stock Decrease Command
 ```
 command.setProductId(event.getProductId());
 command.setStock(event.getQty());	
 command.setOrderId(event.getOrderId());
 
-# 재고차감 실패시, 배송취소 Compensation 처리 : CancelDeliveryCommand
-cancelDeliveryCommand.setDeliveryId(event.getDeliveryId());	// 코드추가
+# When stock decrease fails, compensate by cancelling delivery : CancelDeliveryCommand
+cancelDeliveryCommand.setDeliveryId(event.getDeliveryId());	// Add code
 ```
 
-#### 5. StockDecreasedEvent 이벤트로부터 Correlation key 설정
+#### 5. Set Correlation key from StockDecreased event
 
 ```
 	@SagaEventHandler(associationProperty = "orderId")
 ```
 
-#### 6. 주문완료 Command 생성 및 호출 
+#### 6. Create and call Order Complete Command
 ```
 command.setOrderId(event.getOrderId());
 ```
 
 #### 7. Saga End
 
-- OrderCompletedEvent 이벤트로부터 Correlation key 설정
+- Set Correlation key from OrderCompleted event
 ```
 	@SagaEventHandler(associationProperty = "orderId")
 ```
-- Saga Process 종료
+- Saga Process end
 
 
 
-## 12st Mall 테스트
+## 12st Mall Test
 
-- Rest API를 활용해 생성된 Axon Saga 기반 몰을 테스트 한다.
+- Test shopping mall application based on Axon Saga by Rest API.
 
-- 먼저 Common API를 빌드한다.
+- First, build Common API.
 ```
 cd common-api
 mvn clean install
 ```
 
-- 각 마이크로 서비스를 실행한다.
+- Run each microservices.
 ```
 # new terminal
 cd order
@@ -194,52 +195,52 @@ cd delivery
 mvn clean spring-boot:run
 ```
 
-- 상품서비스(:8082)에 테스트용 상품을 등록한다.
+- Add test product at product service(:8082)
 ```
 # new terminal
 http POST :8082/products productName=TV stock=100
 ```
 
-- 등록된 상품 Id를 복사해 둔다.
+- Copy the Id of added product.
 ![image](https://user-images.githubusercontent.com/35618409/229345799-6a86743c-d3b1-43b7-9a94-91c4e50cfd9b.png)
 
-- 복사한 상품 Id로 10개의 TV를 구매하는 주문을 생성한다.
+- Create an order to purchase 10 TVs with the copied productId.
 ```
-http POST :8081/orders productId=[상품 Id] productName=TV qty=10 userId=1001
+http POST :8081/orders productId=[product Id] productName=TV qty=10 userId=1001
 ```
 
-- 생성된 주문 Id를 복사해 둔다.
+- Copy the Id of created order.
 ![image](https://user-images.githubusercontent.com/35618409/229346264-89d2c227-5dc8-454d-acb0-1c24bc0da63d.png)
 
 
-## 12st Mall Saga Compensation 검증
+## Verifying 12st Mall Saga Compensation
 
-### 주문 생성
+### Create an order
 
-- 상품 Id로 100개의 TV를 구매하는 주문을 생성하고 주문번호를 복사해 두자.
+- Create an order to purchase 100 TVs by productId and copy the order number.
 ```
-http POST :8081/orders productId=[상품 Id] productName=TV qty=100 userId=1001
-```
-
-- 재고 개수(90)보다 많은 주문으로 상품서비스에서 오류를 리턴한다.
-
-
-- 주문 번호로 생성된 주문의 최종 상태와 이벤트 이력을 조회해 본다.
-```
-http GET :8081/orders/[주문번호]
-http GET :8081/orders/[주문번호]/events
+http POST :8081/orders productId=[productId] productName=TV qty=100 userId=1001
 ```
 
-- 배송서비스의 배송 상태를 조회해 본다.
+- The product service returns an error with orders greater than the number of stocks(90).
+
+
+- Check the final status and event history of the order created with the orderNumber.
+```
+http GET :8081/orders/[orderNumber]
+http GET :8081/orders/[orderNumber]/events
+```
+
+- Check the delivery status from delivery service.
 ```
 http GET :8083/deliveries
 ```
 
-### [확장 미션] - 주문서비스 Debugging
+### [Extension Mission] - Debugging Order Service
 
-- 주문서비스를 종료한다.
-- OrderSaga 에 SagaEventHandler별로 Break Points를 추가한다.
-- 주문서비스를 디버그 모드로 실행한다.
+- End order service.
+- Add breakpoints at OrderSaga for each SagaEventHandler.
+- Run order service in debug mode.
 
-- 새로운 주문을 생성한 다음 Debug Point를 확인하면서 Orchestration 흐름을 식별한다.
-- 재고보다 많은 수량을 넣어 Debug Point를 확인한다.
+- Create new order and identify the orchestration flow while checking the debug point.
+- Check debug point by putting more quantity than stock.

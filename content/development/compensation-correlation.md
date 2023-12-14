@@ -5,32 +5,35 @@ prev: ''
 next: ''
 ---
 
-# Pub/Sub 방식의 연동 - Compensation 과 Correlation
+# Pub/Sub Communication - Compensation & Correlation
 
 ### Compensation and Correlation
 
-어떠한 이벤트로 인하여 발생한 변경사항들에 대하여 고객이 원하거나 어떠한 기술적 이유로 인하여 해당 트랜잭션을 취소해야 하는 경우 이를 원복하거나 보상해주는 처리를 Compensation 이라고 한다. 그리고 해당 취소건에 대하여 여러개의 마이크로 서비스 내의 데이터간 상관 관계를 키값으로 연결하여 취소해야 하는데, 이러한 관계값에 대한 처리를 Correlation 이라고 한다. 
+Compensation is a process to rollback or compensate the customer for any changes that have occurred from an event or if the transaction is to be cancelled for any technical reason. 
+
+And Correlation is a relationship between data of microservices which has to be cancelled by connecting their key values.
 
 
+### Scenario
 
-### 실습 시나리오
+We published an event called OrderPlaced, which creates an order.
+In this lab, we'll publish an event called OrderCancelled to cancel an order from Order service, and carry out a Compensation from Inventory to rollback the stock for the order.
+For the inventory, the rollback is made by adding the quantity of stock that were initially ordered by having the productId as a Correlation Key.
 
-이전 랩에서 주문을 생성하는 OrderPlaced 라는 이벤트를 발행하였다.  
-이번 랩에서는 주문서비스에서 주문을 취소하는 OrderCancelled 라는 이벤트를 발행 하고,  Inventory 에서는 해당 주문량에 대한 재고량을 다시 원복하는 Compensation을 수행한다. inventory 에 대해서는 해당 주문의 상품 id 를 상관관계 키 (Correlation Key)로 초기 주문되었던 개수만큼을 다시 추가하는 방법으로 복구가 이루어진다. 
 
+### Working Process  
 
-### 작업순서  
+#### Eventstorming 
+- Attach the Command "cancel". This command must be attached on the left side of Order Aggregate.
+- Double click on cancel command and select "DELETE" for http method.
+- Attach an Event "OrderCancelled" on the right side of Order Aggregate, so the event could be published following the cancel command.
 
-#### 이벤트 스토밍 
-- "cancel" Command 의 부착. 이때 해당 이벤트는 Order Aggregate 의 왼쪽에 인접하도록 부착한다.
-- cancel command의 설정창을 열고(더블클릭) http method 로 "DELETE" 를 선택한다.
-- "OrderCancelled" Event 를 부착한다. cancel command 에 따라서 OrderCancelled 라는 이벤트를 발행하도록 Aggregate 의 우측편에 인접하도록 부착한다.
-- OrderCancelled Event 의 속성을 Aggregate 의 것에서 복사한다 (Sync Attributes 클릭)
-- cancel command 와 OrderCancelled event 를 선으로 연결한다.
-- inventory bounded context 내에 Policy 를 추가하고 이름을 "increase stock" 으로 설정한다.
-- OrderCancelled Event 와 "increase stock" Policy 를 연결한다.
+- Click Sync Attributes on OrderCancelled event to duplicate the attributes from the Aggregate.
+- Connect a line between cancel command and OrderCancelled event.
+- Add a Policy at inventory bounded context and name it "increase stock"
+- Connect a line between OrderCancelled Event and "increase stock" Policy.
 
-#### 코드의 생성
+#### Code Generation
 
 - order/../ Order.java
 ```
@@ -41,7 +44,7 @@ next: ''
     }
 ```
 
-- order/../   OrderCancelled.java 와 inventory/../ OrderCancelled.java
+- order/../   OrderCancelled.java & inventory/../ OrderCancelled.java
 ```
 package labshopcompensation.domain;
 
@@ -74,7 +77,7 @@ public class OrderCancelled extends AbstractEvent {
 }
 
 ```
-- inventory/../ PolicyHandler.java 의 wheneverOrderCancelled_increaseStock method
+- wheneverOrderCancelled_increaseStock method from inventory/../ PolicyHandler.java 
 ```
     @StreamListener(
         value = KafkaProcessor.INPUT,
@@ -94,7 +97,7 @@ public class OrderCancelled extends AbstractEvent {
 
 ```
 
-- inventory/../ Inventory.java 의 increaseStock method
+- increaseStock method from inventory/../ Inventory.java
 ```
     public static void increaseStock(OrderCancelled orderCancelled) {
 
@@ -103,43 +106,29 @@ public class OrderCancelled extends AbstractEvent {
     }
 ```
 
-### 유틸리티 설치 (필요시)
-- httpie 와 kafka
-```
-pip install httpie
-
-cd kafka
-docker-compose up
-```
-
-####  주문 취소와 이벤트 확인
-- 생성된 코드를 반영한 후, 주문을 서비스를 재기동 한다.
-
-- 초기 재고량 설정
+#### Cancel an Order & Check the Event
+- Save the generated codes and re-run order service.
+- Set the initial amount of stock.
 ```
 http :8082/inventories id=1  stock=10
 ```
-
-- 다음 명령으로 주문 생성한다:     
+- Create an order by the command below.
 ```
 http localhost:8081/orders productId=1 productName=TV qty=3
 ```
-- 주문에 의한 재고량 확인:
+- Check the left amount of stock after the order.
 ```
 http :8082/inventories/1    # stock=7
 ```
-
-- 주문을 취소한다.
+- Cancel the order.
 ```
 http DELETE localhost:8081/orders/1
 ```
-- 취소에 의한 재고량 확인:
+- Check the left amount of stock after cancelling the order.
 ```
 http :8082/inventories/1    # stock=10
 ```
-
-- Kafka consumer 를 이용하여 OrderCancelled 이벤트가 발행되는 것을 확인한다.
-
+- Use Kafka consumer to check if OrderCancelled event is being published.
 ```
 cd kafka
 docker-compose exec -it kafka /bin/bash
@@ -149,16 +138,14 @@ cd /bin
 ```
 
 
-
-
-#### inventory 서비스의 구현
-- inventory의 Aggregate 인 Inventory.java  에 increaseStock method 를 다음과 같이 구현한다:
+#### Implementing Inventory Service
+- Implement increaseStock method at Inventory.java, the Aggregate of inventory service:
 ```
     public static void increaseStock(OrderCancelled orderCancelled) {
 
         repository().findById(Long.valueOf(orderCancelled.getProductId())).ifPresent(inventory->{
             
-            inventory.setStock(inventory.getStock() + orderCancelled.getQty()); 
+            inventory.setStock(inventory.getStock() - orderCancelled.getQty()); 
             repository().save(inventory);
 
 
@@ -169,4 +156,4 @@ cd /bin
 
 ```
 
-### 확장시나리오: 배송서비스에서 주문 삭제시 배송을 취소하는 작업  
+### Scenario Extension: Cancel an order when the order has been deleted from delivery service

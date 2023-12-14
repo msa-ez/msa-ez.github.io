@@ -44,7 +44,7 @@
                       }"
                     ></span>
                     <span class="triangle"></span>
-                    <h5 v-if="page.title">
+                    <h5 style="margin-top: 3px;" v-if="page.title">
                       {{ page.title }}
                     </h5>
                   </g-link>

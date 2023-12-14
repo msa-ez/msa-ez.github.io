@@ -5,27 +5,27 @@ prev: ''
 next: ''
 ---
 
-# JWT Token 기반 인증 인가
+# JWT Token-based Authorization
 
-### JWT 토큰기반 인증 w/ Keycloak
+### JWT Token-based Authorization w/ Keycloak
 
 #### OAuth2 Stackholders
-- Spring Security와 Spring oauth2를 사용하고, Resource Owner, Client, Authorization Server, Resource Server간의 인증/인가를 실습한다.
-- 여기서 Resouce란 Gateway를 경유하는 Rest APIs를 말한다. 
-- JWT기반 Access_Token을 활용한다.
-- 이번 랩에서는 Gateway를 Client와 Resource Server 역할로 설정한다. 
-- 인증/인가 서버로 Standalone Keycloak(https://www.keycloak.org/) 서버를 활용한다.
+- Use Spring Security and Spring oauth2, and practice the authorization between Resource Owner, Client, Authorization Server and Resource Server.
+- Resource here means the Rest APIs which transfer the Gateway.
+- Use JWT-based Access_Token.
+- In this lab, set Gateway in the role of Client & Resource Server.
+- Use Standalone Keycloak(https://www.keycloak.org/) server for authorization server.
 
 
-#### OAuth2 인증/인가(Keycloak) Endpoint 설정
+#### Set OAuth2 Authorization(Keycloak) Endpoint
 
-본 예제의 디렉토리로 이동한다:
+Move to the directory of this example:
 ```
  cd token-based-auth-Keycloak/
 ```
 
-- Gateway 서비스의 application.yml 파일을 열어본다.
-- 인증/인가를 위한 Authorization Sever의 Endpoint가 등록된다.
+- Open application.yml file of Gateway service.
+- The Endpoint of Authorization Server for authorization would be registered.
 ```yaml
   security:
     oauth2:
@@ -35,8 +35,8 @@ next: ''
             issuer-uri: http://localhost:8080/realms/my_realm
 ```
 
-- KeyCloak에 등록된 Client(Gateway)의 Credential정보(client-id, client-secret)가 설정된다.
-- OAuth2의 Grant Type을 password 방식으로 설정한다.
+- The Credential informations(client-id, client-secret) of the Client(Gateway) registered on KeyCloak is set.
+- Set the Grant Type of OAuth2 into password type.
 ```yaml
   keycloak-spring-gateway-client:
     provider: my-keycloak-provider
@@ -45,55 +45,56 @@ next: ''
     authorization-grant-type: password
 ```
 
-#### OAuth2 Security 상세설정
-- Gateway 서비스의 SecurityConfig.java 파일을 열어본다.
-- spring-cloud-gateway 는 webflux로 기동되기 때문에 @EnableWebFluxSecurity를 적용한다.
-- ServerHttpSecurity에  리소스별  접근제어목록(ACL)을 기술한다.
-- .oauth2Login() OAuth2의 디폴트 로그인 설정이 적용된다.
-- .oauth2ResourceServer() 리소스서버 역할을 부여하고 jwt 형식의 Authorization을 지정한다.
+#### Detail Settings for OAuth2 Security
+- Open SecurityConfig.java file of Gateway service.
+- spring-cloud-gateway runs by webflux: apply @EnableWebFluxSecurity
+- Describe Access Control List(ACL) for each resources at ServerHttpSecurity.
+- Default login settings of .oauth2Login() OAuth2 would be applied.
+- Give the role of .oauth2ResourceServer() and designate the jwt-type Authorization. 
 
 
-#### 서비스 구동
+#### Run the Service
 
-- 먼저 Keycloak 서버를 구동한다.
+- First, run Keycloak Server.
 ```sh
 cd keycloak/bin
 chmod 744 kc.sh
 ./kc.sh start-dev
 ```
 
-- keycloak 서버의 default 포트인 8080으로 실행된다.
+- It runs on the default port of keycloak server, 8080.
 
-- Gateway, Order 서비스를 구동한다.
+- Run Gateway & Order service.
 ```sh
 cd gateway
 mvn spring-boot:run
 cd order
 mvn spring-boot:run
 ```
-- 각각 8088, 8081 포트로 기동된다.
+- It runs on port 8088 and 8081.
 
 
-#### Protected 리소스 접근
-- Security ACL설정(SecurityConfig.java)에 따라 Gateway 서버 및 주문서비스에 접근해 본다.
+#### Get Access to Protected Resources
+- Get access to Gateway server and order service by following Security ACL Settings(SecurityConfig.java).
 ```sh
 http http://localhost:8088
 http http://localhost:8088/orders
 ```
-- JWT인증 토큰이 없어 401(Unauthorized) 접근오류 응답이 내려온다.
+- 401(Unauthorized)a ccess eroor comes out because we don't have JWT access-token.
 
-- 이제는 허가된 리소스에 접근해 본다. (gateway > TestController.java)
+- Get access to the authorized resource. (gateway > TestController.java)
 ```sh
 http http://localhost:8088/test/permitAll
 ```
-- 접근 가능하다. 
+- It's accessible. 
 
 
-#### JWT access_token 발급
+#### Issue JWT access_token
 
-- Keycloak의 인증/인가 Endpoint에 토큰을 요청한다.
-- OAuth2의 'password' Grant type으로 Keycloak에 기 등록된 Client 크리덴셜과 사용자 정보를 제출한다.
+- Request a token to Autorization Endpoint of Keycloak.
+- Submit the user information and Client credential which is already registered at Keycloak by OAuth2's 'password' Grant type.
 > 'password' Grant type은 Client(Gateway)의 로그인 Form으로 제출받은 사용자 정보를 인증서버에 Posting하는 방식이다.
+> The 'password' Grant type is the way of Posting user information submitted by login form to the authorizing server.
 ```sh
 curl -X POST "http://localhost:8080/realms/my_realm/protocol/openid-connect/token" \
 --header "Content-Type: application/x-www-form-urlencoded" \
@@ -104,14 +105,14 @@ curl -X POST "http://localhost:8080/realms/my_realm/protocol/openid-connect/toke
 --data-urlencode "password=1" 
 ```
 
-- 응답으로 access_token과 refresh_token이 내려온다.
-- 출력된 access_token을 복사하여 https://jwt.io/ 페이지에 접속 후 decode해 본다.
-> Header, Payload, Signature로 파싱된다.	
-- user@uengine.org 계정이 가진 Role은 ROLE_USER임을 확인한다.
+- access_token & refresh_token comes out for the response.
+- Copy the access_token and access to https://jwt.io/ then decode it.
+> It is being parsed by Header, Payload and Signature.
+- Check if the Role of user@uengine.org is ROLE_USER.
 
 
-#### access_token으로 Protected 리소스 접근
-- access_token을 복사하여 Request Header에 넣어 Protected 리소스에 접근한다.
+#### Get Access to Protected Resources with access_token
+- Copy the access_token and put it in Request Header to and get access to Protected Resource.
 ```sh
 export access_token=[ACCESS_TOKEN]
 echo $access_token
@@ -121,8 +122,8 @@ http localhost:8088/test/authenticated "Authorization: Bearer $access_token"
 http localhost:8088/test/admin "Authorization: Bearer $access_token"
 ```
 
-- '/test/admin' 리소스는 권한이 불충분(403 Fobidden)하여 접근할 수 없다.
-- 관리자 권한이 있는 계정으로 다시 한번 토큰을 요청한다.
+- '/test/admin' resource is forbidden(403), so cannot be acced.
+- Request token once again with the account that has manager authority.
 
 ```sh
 curl -X POST "http://localhost:8080/realms/my_realm/protocol/openid-connect/token" \
@@ -134,24 +135,24 @@ curl -X POST "http://localhost:8080/realms/my_realm/protocol/openid-connect/toke
 --data-urlencode "password=1" 
 ``` 
 
-- access_token을 복사하여 Request Header에 넣어 Protected 리소스에 접근한다.
+- Copy the access_token and put it in Request Header to and get access to Protected Resource.
 ```sh
 export access_token=[ACCESS_TOKEN]
 http localhost:8088/test/admin "Authorization: Bearer $access_token"
 ```
 
-- 정상적으로 접근이 가능하다.
+- Now it is accesible.
 
 
 #### Wrap up
-- Gateway가 리소스서버 역할까지 수행하므로 각 마이크로서비스 리소스들의 Fine grained한 접근제어를 Gateway에서 관리
-- 이로 인해 ACL 정보 가독성이 떨어지거나, ACL 오류발생 시 잠재적 분쟁 소지
-- MSA별 Autonomous ACL 관리책임 분산을 위해 인증 및 인가를 분리하는 정책 권고
-- Gateway는 인증을 포함한 Coarse grained ACL Policy를 담당하고, 각 MSA에서 Fine grained한 ACL Policy 적용
+- Gateway is taking the role of resource server, so the Gateway manages Fine grained access control of each microservice resources.
+- ACL information wouldn't be legible or there could be potential conflict.
+- We recommend you to separate authorizations to disperse the responsibility of Autonomous ACL for each MSA.
+- Gateway is in charge of Coarse grained ACL Policy including authorization, and applies Fine grained ACL Policy on each MSA.
 
 
 #### Service Clear
-- 다음 Lab을 위해 기동된 모든 서비스 종료
+- Kill all running servers for next lab.
 
 ```
 fuser -k 8080/tcp
@@ -159,5 +160,5 @@ fuser -k 8081/tcp
 fuser -k 8088/tcp
 ```
 
-#### 상세설명
+#### Details
 <iframe width="100%" height="100%" src="https://www.youtube.com/embed/dsUW_JTvqIA" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
