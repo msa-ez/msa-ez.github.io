@@ -2,7 +2,7 @@
 description: ''
 sidebar: 'started'
 ---
-# Designing Custom Template
+# Developing Custom Template
 
 ## Creating Template File
 

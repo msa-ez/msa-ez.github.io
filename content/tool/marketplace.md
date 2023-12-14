@@ -3,7 +3,7 @@ description: ''
 sidebar: 'started'
 ---
 
-# Template/Topping Market Place
+# Template/Topping Marketplace
 
 ## Scheme
 

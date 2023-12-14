@@ -1,6 +1,6 @@
-import plugin_gridsome_plugin_tailwindcss_6 from "/Users/dufwjdrndl/Desktop/uengine/msa-ez.github.io/node_modules/gridsome-plugin-tailwindcss/gridsome.client.js"
-import plugin_gridsome_plugin_google_analytics_7 from "/Users/dufwjdrndl/Desktop/uengine/msa-ez.github.io/node_modules/@gridsome/plugin-google-analytics/gridsome.client.js"
-import plugin_project_9 from "/Users/dufwjdrndl/Desktop/uengine/msa-ez.github.io/gridsome.client.js"
+import plugin_gridsome_plugin_tailwindcss_6 from "/Users/user/Desktop/Intro/msa-ez.github.io/node_modules/gridsome-plugin-tailwindcss/gridsome.client.js"
+import plugin_gridsome_plugin_google_analytics_7 from "/Users/user/Desktop/Intro/msa-ez.github.io/node_modules/@gridsome/plugin-google-analytics/gridsome.client.js"
+import plugin_project_9 from "/Users/user/Desktop/Intro/msa-ez.github.io/gridsome.client.js"
 
 export default [
   {
