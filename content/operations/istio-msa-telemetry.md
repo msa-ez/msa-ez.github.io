@@ -219,7 +219,7 @@ Alert이 Firing 될때마다 슬랙(Slack) 채널로 수신해 보자.
 
 ```
 Recipient : #microservice-digging
-Token : xoxb-4445199624084-4446067374756-CJvKuU5yUOj3HPqQ9OlEJ50A
+Token : 
 
 # Optional Slack settings 을 펼쳐 아래 내용을 추가
 Title : {{len .Alerts.Firing}} firing, {{len .Alerts.Resolved}} resolved
