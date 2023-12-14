@@ -2,7 +2,7 @@
 description: ''
 sidebar: 'started'
 ---
-# Lecture development and practice environment
+# Registration Course
 
 <div style = "height:400px; object-fit: cover;">
 <iframe style = "width:100%; height:100%;" src="https://www.youtube.com/embed/Le0a-NH6xwQ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>

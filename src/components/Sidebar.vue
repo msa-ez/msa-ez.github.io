@@ -10,32 +10,49 @@
       class="pb-4 mb-4 border-ui-border"
       :class="{ 'border-b': index < sidebar.sections.length -1 }"
     >
-      <h3 class="pt-0 mt-0 mb-1 text-sm tracking-tight uppercase border-none">
+      <h3 v-if="section.title">
         {{ section.title }}
       </h3>
-
-      <ul class="max-w-full pl-2 mb-0">
-        <li
-          v-for="page in findPages(section.items)"
-          :id="page.path"
-          :key="page.path"
-          :class="getClassesForAnchor(page)"
-          @mousedown="$emit('navigate')"
-        >
-          <g-link
-            :to="`${page.path}`"
-            class="flex items-center py-1 font-semibold"
-          >
-           <span
-              class="absolute w-2 h-2 -ml-3 rounded-full opacity-0 bg-ui-primary transition transform scale-0 origin-center"
-              :class="{
-                'opacity-100 scale-100': currentPage.path === page.path
-              }"
-            ></span>
-            {{ page.title }}
-          </g-link>
-        </li>
-      </ul>
+        <ul class="max-w-full pl-2 mb-0">
+          <li>
+            <li
+              v-for="secondSection in section.name"
+              :key="secondSection.subTitle"
+              style="margin-top: 15px;"
+            >
+              <h4 style="margin-left: 10px;" v-if="secondSection.subTitle">
+                {{ secondSection.subTitle }}
+              </h4>
+              <ul class="max-w-full pl-2 mb-0">
+                
+                <li
+                  v-for="page in findPages(secondSection.subItems)"
+                  :id="page.path"
+                  :key="page.path"
+                  :class="getClassesForAnchor(page)"
+                  style="margin-top: -5px;"
+                  @mousedown="$emit('navigate')"
+                >
+                  <g-link
+                    :to="`${page.path}`"
+                    class="flex items-center py-1 font-semibold"
+                  >
+                    <span
+                      class="absolute opacity-0 bg-ui-primary transition transform scale-0 origin-center"
+                      :class="{
+                        'opacity-100 scale-100': currentPage.path === page.path
+                      }"
+                    ></span>
+                    <span class="triangle"></span>
+                    <h5 v-if="page.title">
+                      {{ page.title }}
+                    </h5>
+                  </g-link>
+                </li>
+              </ul>
+            </li>
+          </li>
+        </ul>
     </div>
   </div>
 </template>
@@ -48,7 +65,10 @@ query Sidebar {
         name
         sections {
           title
-          items
+          name {
+            subTitle
+            subItems
+          }
         }
       }
     }
@@ -93,3 +113,16 @@ export default {
   },  
 };
 </script>
+<style scoped>
+  /* 삼각형 스타일 */
+  .triangle {
+    width: 0;
+    height: 0;
+    margin-right: 7px;
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    border-top: 8px solid white; /* 조절 가능한 높이와 색상 */
+    transform: rotate(270deg); /* 90도 회전 */
+    margin-left: 5px; /* 조절 가능한 여백 */
+  }
+</style>
