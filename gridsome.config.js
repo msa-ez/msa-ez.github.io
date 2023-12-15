@@ -25,48 +25,40 @@ module.exports = {
         name: 'started',
         sections: [
           {
-            title: 'Getting Started',
-            name: [
-              {
-                subItems:
-                [
-                  '/started/',
-                ]
-              },
-
-            ]
+            firstTitle: 'Getting Started',
+            firstItem: '/started/',
           },
           {
-            title: 'Features',
+            firstTitle: 'Key features',
             name: [
               {
-                subItems:
+                thirdItems:
                 [
                 ]
               },
             ]
           },
           {
-            title: 'Tutorial',
+            firstTitle: 'Tutorial',
             name: [
               {
-                subTitle: 'Concepts',
-                subItems:
+                secondTitle: 'Concepts',
+                thirdItems:
                 [
                   '/started/domain-driven/',
                   '/started/event-storming-learning/',
                 ]
               },
               {
-                subTitle: 'SetUp',
-                subItems:
+                secondTitle: 'SetUp',
+                thirdItems:
                 [
                   
                 ]
               },
               {
-                subTitle: 'Biz Modeling',
-                subItems:
+                secondTitle: 'Biz Modeling',
+                thirdItems:
                 [
                   '/tool/event-storming-tool/',
                   '/tool/google-drive-examples/',
@@ -74,8 +66,8 @@ module.exports = {
                 ]
               },
               {
-                subTitle: 'Code Generation',
-                subItems:
+                secondTitle: 'Code Generation',
+                thirdItems:
                 [
                   '/tool/marketplace/',
                   '/templates-language/go-template/',
@@ -86,41 +78,41 @@ module.exports = {
                 ]
               },
               {
-                subTitle: 'Test Design',
-                subItems:
+                secondTitle: 'Test Design',
+                thirdItems:
                 [
                   '/custom-template/unit-test/',
                   '/custom-template/mock-server/',
                 ]
               },
               {
-                subTitle: 'Infra(K8s) Modeling',
-                subItems:
+                secondTitle: 'Infra(K8s) Modeling',
+                thirdItems:
                 [
                   '/tool/infrastructure-modeling/'
                 ]
               },
               {
-                subTitle: 'LMS Management',
-                subItems:
+                secondTitle: 'Online lecture platform',
+                thirdItems:
                 [
                   '/tool/development-practice/',
                   '/tool/attending-lectures/'
                 ]
               },
               {
-                subTitle: 'Guide labs for Biz',
-                subItems:
+                secondTitle: 'Guide labs for Analysis/Design',
+                thirdItems:
+                [
+                ]
+              },
+              {
+                secondTitle: 'Guide labs for Implementation',
+                thirdItems:
                 [
                   '/business/',
                   '/business/ddd-google-drive/',
                   '/business/eventstorming-fooddelivery/',
-                ]
-              },
-              {
-                subTitle: 'Guide labs for Dev',
-                subItems:
-                [
                   '/development/understanding-jpa-based-single-microservice/',
                   '/development/cna-start/',
                   '/development/monolith-2-misvc/',
@@ -148,8 +140,8 @@ module.exports = {
                 ]
               },
               {
-                subTitle: 'Guide labs for Ops',
-                subItems:
+                secondTitle: 'Guide labs for Ops',
+                thirdItems:
                 [
                   // gcp추가
                   // '/operations/ops-aws-setting/',
@@ -190,11 +182,11 @@ module.exports = {
             ]
           },
           {
-            title: 'Case Studies',
+            firstTitle: 'Case Studies',
             name:[
               {
-                subTitle: 'Example Scenario',
-                subItems:
+                secondTitle: 'Example Scenario',
+                thirdItems:
                 [
                   '/example-scenario/accommodation-reservation/',
                   '/example-scenario/food-delivery/',
@@ -204,8 +196,8 @@ module.exports = {
                 ]
               },
               {
-                subTitle: 'Customers',
-                subItems:
+                secondTitle: 'Customers',
+                thirdItems:
                 [
                  
                 ]
@@ -213,26 +205,27 @@ module.exports = {
             ]
           },
           {
-            title: 'Support',
+            firstTitle: 'Support',
             name:[
               {
-                subTitle: 'FAQ',
-                subItems:
+                secondTitle: 'FAQ',
+                thirdItems:
                 [
                  
                 ]
               },
               {
-                subTitle: 'Q&A',
-                subItems:
+                secondTitle: 'Q&A',
+                thirdItems:
                 [
                  
                 ]
               },
               {
-                subItems:
+                secondTitle: 'Contact',
+                secondItem: '/contact/question/',
+                thirdItems:
                 [
-                  '/contact/question/'
                 ]
               }
               

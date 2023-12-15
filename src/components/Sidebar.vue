@@ -10,23 +10,41 @@
       class="pb-4 mb-4 border-ui-border"
       :class="{ 'border-b': index < sidebar.sections.length -1 }"
     >
-      <h3 v-if="section.title">
-        {{ section.title }}
+      <h3 v-if="section.firstTitle && !section.firstItem">
+        {{ section.firstTitle }}
       </h3>
+      <g-link
+        v-if="section.firstTitle && section.firstItem"
+        :to="`${section.firstItem}`"
+        class="flex items-center py-1 font-semibold"
+      >
+        <h3>
+          {{ section.firstTitle }}
+        </h3>
+      </g-link>
         <ul class="max-w-full pl-2 mb-0">
           <li>
             <li
               v-for="secondSection in section.name"
-              :key="secondSection.subTitle"
+              :key="secondSection.secondTitle"
               style="margin-top: 15px;"
             >
-              <h4 style="margin-left: 10px;" v-if="secondSection.subTitle">
-                {{ secondSection.subTitle }}
+              <h4 style="margin-left: 10px;" v-if="secondSection.secondTitle && !secondSection.secondItem">
+                {{ secondSection.secondTitle }}
               </h4>
+              <g-link
+                v-if="secondSection.secondTitle && secondSection.secondItem"
+                :to="`${secondSection.secondItem}`"
+                class="flex items-center py-1 font-semibold"
+              >
+                <h4 style="margin-left: 10px;">
+                  {{ secondSection.secondTitle }}
+                </h4>
+              </g-link>
               <ul class="max-w-full pl-2 mb-0">
                 
                 <li
-                  v-for="page in findPages(secondSection.subItems)"
+                  v-for="page in findPages(secondSection.thirdItems)"
                   :id="page.path"
                   :key="page.path"
                   :class="getClassesForAnchor(page)"
@@ -43,8 +61,8 @@
                         'opacity-100 scale-100': currentPage.path === page.path
                       }"
                     ></span>
-                    <span class="triangle"></span>
-                    <h5 style="margin-top: 3px;" v-if="page.title">
+                    <span style="margin-top: 5px;" class="triangle"></span>
+                    <h5 style="margin-top: 5px;" v-if="page.title">
                       {{ page.title }}
                     </h5>
                   </g-link>
@@ -64,10 +82,12 @@ query Sidebar {
       sidebar {
         name
         sections {
-          title
+          firstTitle
+          firstItem
           name {
-            subTitle
-            subItems
+            secondTitle
+            secondItem
+            thirdItems
           }
         }
       }
