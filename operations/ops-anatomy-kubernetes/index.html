@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html data-html-server-rendered="true" lang="en" data-vue-tag="%7B%22lang%22:%7B%22ssr%22:%22en%22%7D%7D">
+  <head>
+    <title>쿠버네티스 내부구조 분석 - msaez</title><meta name="gridsome:hash" content="fa5fedf1848133ded319caa58f5dc027d2a72899"><meta data-vue-tag="ssr" charset="utf-8"><meta data-vue-tag="ssr" name="generator" content="Gridsome v0.7.23"><meta data-vue-tag="ssr" data-key="viewport" name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"><meta data-vue-tag="ssr" data-key="format-detection" name="format-detection" content="telephone=no"><meta data-vue-tag="ssr" data-key="og:url" name="og:url" content="undefined/templates-language/springboot-java-template/"><meta data-vue-tag="ssr" name="description" content="undefined"><meta data-vue-tag="ssr" data-key="og:title" name="og:title" content="쿠버네티스 내부구조 분석"><meta data-vue-tag="ssr" data-key="twitter:title" name="twitter:title" content="쿠버네티스 내부구조 분석"><meta data-vue-tag="ssr" data-key="og:description" name="og:description" content="undefined"><meta data-vue-tag="ssr" data-key="twitter:description" name="twitter:description" content="undefined"><meta data-vue-tag="ssr" data-key="og:type" name="og:type" content="website"><meta data-vue-tag="ssr" data-key="twitter:card" name="twitter:card" content="summary_large_image"><meta data-vue-tag="ssr" data-key="og:image" name="og:image" content="undefined/logo.jpg"><meta data-vue-tag="ssr" data-key="twitter:image" name="twitter:image" content="undefined/logo.jpg"><link data-vue-tag="ssr" rel="icon" href="data:,"><link data-vue-tag="ssr" rel="icon" type="image/png" sizes="16x16" href="/assets/static/favicon.ce0531f.f0886199c685a75a52fccefb5e72c094.png"><link data-vue-tag="ssr" rel="icon" type="image/png" sizes="32x32" href="/assets/static/favicon.ac8d93a.f0886199c685a75a52fccefb5e72c094.png"><link data-vue-tag="ssr" rel="icon" type="image/png" sizes="96x96" href="/assets/static/favicon.b9532cc.f0886199c685a75a52fccefb5e72c094.png"><link data-vue-tag="ssr" rel="apple-touch-icon" type="image/png" sizes="76x76" href="/assets/static/favicon.f22e9f3.f0886199c685a75a52fccefb5e72c094.png"><link data-vue-tag="ssr" rel="apple-touch-icon" type="image/png" sizes="152x152" href="/assets/static/favicon.62d22cb.f0886199c685a75a52fccefb5e72c094.png"><link data-vue-tag="ssr" rel="apple-touch-icon" type="image/png" sizes="120x120" href="/assets/static/favicon.1539b60.f0886199c685a75a52fccefb5e72c094.png"><link data-vue-tag="ssr" rel="apple-touch-icon" type="image/png" sizes="167x167" href="/assets/static/favicon.dc0cdc5.f0886199c685a75a52fccefb5e72c094.png"><link data-vue-tag="ssr" rel="apple-touch-icon" type="image/png" sizes="180x180" href="/assets/static/favicon.7b22250.f0886199c685a75a52fccefb5e72c094.png"><link rel="preload" href="/assets/css/0.styles.7b914b4e.css" as="style"><link rel="preload" href="/assets/js/app.1663a9ab.js" as="script"><link rel="preload" href="/assets/js/page--src--templates--markdown-page-vue.eef38ce3.js" as="script"><link rel="prefetch" href="/assets/js/page--src--pages--404-vue.e7647be7.js"><link rel="prefetch" href="/assets/js/page--src--pages--index-vue.ba039b97.js"><link rel="prefetch" href="/assets/js/search.395cc609.js"><link rel="prefetch" href="/assets/js/vendors~search.1cb8046c.js"><link rel="stylesheet" href="/assets/css/0.styles.7b914b4e.css"><noscript data-vue-tag="ssr"><style>.g-image--loading{display:none;}</style></noscript>
+  </head>
+  <body >
+    <div data-server-rendered="true" id="app" class="font-sans antialiased text-ui-typo bg-ui-background"><div class="flex flex-col justify-start min-h-screen"><header class="sticky top-0 z-10 w-full border-b bg-ui-background border-ui-border"><div class="py-2 border-t-2 border-ui-primary"><div class="container"><div class="flex items-center justify-between -mx-2 sm:-mx-4"><div class="flex flex-col items-center px-2 mr-auto sm:px-4 sm:flex-row"><a href="/" title="Home" class="flex items-center text-ui-primary active"><img src="data:image/svg+xml,%3csvg fill='none' viewBox='0 0 120 64' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink'%3e%3cdefs%3e%3cfilter id='__svg-blur-37afcb0017f229c304bfe602273e7d7c'%3e%3cfeGaussianBlur in='SourceGraphic' stdDeviation='40'/%3e%3c/filter%3e%3c/defs%3e%3cimage x='0' y='0' filter='url(%23__svg-blur-37afcb0017f229c304bfe602273e7d7c)' width='120' height='64' xlink:href='data:image/png%3bbase64%2ciVBORw0KGgoAAAANSUhEUgAAAEAAAAAiCAYAAADvVd%2bPAAAACXBIWXMAAC4jAAAuIwF4pT92AAATu0lEQVRo3sVZB3RU15lWIxhscMtunHhd8EkcJzFusb1xwMaAuoQkpFEFUWQwzXEMAQSYElFEkVCbGUmjikZdIJBAqIxmRgUJVRAqmGLABQdwTBDqZebdb/97Z0YIO1nvnrN7mHO%2b89/35pX5vvu3e8fKij69eQ4C48ffg7UZNgK5DrY9ufZ2wtJ5qwfw0cirrDSKahuCrRk0rrKuUFRb05h/Z1VhukZcP378g09vnr2VmZwtR4/Z8nNE9Ed/DAlhRfdM%2bS7X/QXkv/rWtrQ6R2cVW%2bSVNBDkoRoK9EwaCvBMGvQn60fwJcgIPnRuvkfSkBeNPWns4aEadCfrRseudN5lvmrAZU6SZJ%2bobA/Ry3XLyhXV7xPBXxGRh/%2b731PxQ3FsK%2bTi2Fojrx4TQtievP8BQSJHBJ8h%2bzrBje5ZQTaMhEulcTmN2%2bn7G925zgNS/n9K0enF3S5qwC8T8LFAfT9kZojjDMDbgkP34ENwIySnXkNraiN0CfUgAQbph39DaCQyeWT3EuHlhDk0/hXZx36MDxdovOUEnyC8SiQcyS4mbOnNtY8nW0K2lfAFobc/3wGGo05AsTNwwpXgBlbsIs4NHXZEb74zjPnvQJ2ROmKvgmF%2bUr%2bBZpQwZKDZFdaLjt0T%2bgyO8l6jo7zP6KzoNXok9hvpvJG8xUjXE8iqBgXck4alQ8ozxiq5zkAeIFUqa6BPqENNUiPqU1twOu0M6lKaUa06DRJghEhdJ9tMOMzFISwjOBB%2bTZh6T4Tq%2b1w4khU5Y6DAETjuQsRcTJbIGY%2b5YOiIM/oLnECCMAoJqTfP0XA3Z67hTsYfCTMMPbkORvpO6s51Yoa8P7JydTgcVWBeSf2MCDEiT3aI7ACzVwyyoBywtSVg60%2bCfXQcbH46mKNigK7n1wyJe4g8m0fH3nTPYUUj08n1jGafaUyQiKiRrIGsoeSgxngiUiOVx%2bpRlViPWhKHi3I6tZVEahXnuDiEvxHOE%2baYQ8DGIsBfOGma5REiQoTsDdxyknfVfzT2Z8%2bQutUzGHkI4yLczX6fjRx1ZWjczFC3FgN5c0iYuexunhNG8mayM1l/Zm4qIycCQSZpCB6JA5iXNIq4GiNi0ouxdsNWfLx2Azbt2IeUomZsLQOclIMgTwCJABIANPsIVPWgRFGLSnkVd39OBERaCFEep4dGXsM6T1xkFzRXWP2hFlYarZPoOyMXhgtEiZFbqVJRA62yFo3pbXR/tbNZAFshAM2gB3djImck8pwkiDyjmWcjDXvw93oFjLXr0Zv9Pj%2bPkWIvdGiS4ecfiDVr/oRvT8WiP3c2unMd2WDeLFzNCWZ%2bSXfZPNUwF0CQcoofRkLNABb6eYJeeR9%2bYm2FvZFyfFQEOCv76XqTAK5JI1iWeJtIVnHS4wWgcRU0cdVo03ZgzUdr4ObuhqK8YjTlnEVptNbiKXQvt0IwSdwrckjVS9/zAPtX%2b4h0r2WGcx2I0CzcOhUHV68ATHniKWzf8VdIdZvxj5RXITXtwRyne0T2hG0FqpbhH%2br30Jdnj9u57vgg%2bSu4qIxEZgDOij6sJnI790aZ77HGc88/D4c5s/DitKfFueAAH%2bypAubG9QnBvEgAZ/KYtYk3QBVAkK8wk9coq3EiogIXyj/Hnz7%2b09jvePq5X%2bBM5TlUxJgEEteaReMC8NxB9ibhSbMA1pYk%2bBTh9iDlAB7Ld7LeB8p9kZW4995M2U5GV2UyjHnv4FZNFJ5%2b/sWx75xc3IGG7ejOeAc9FAaDebOxPvUcnFQM3skDsCdSYVrAV%2bYtrqe3Iv%2b4Hse%2bBGLKbmK3IhcJFX%2bDd6oB81Q8bIaEAE4kwLaEL1Aj16LcLAAnw12/WtUA/YkqTJg4QQg6wW6CePaRjKOoS21GWaxuPHnuAcYauodE6Rgrg5ZEaK77nZYwuJNJAlQEID0uTDx00kMThd26eQNQvxJtxfsxYfLj45R/EX%2bvjUZ/9kx05zljNG8mDqSVw0FF5SypHw7yPoRSjK9eY5otG1tbTJ/%2bCjaHxyO%2b/BtENwMOCRLcE/oFeUqaYx5wIP7iPQHGzf4l3VX4%2bvmanmdjAzs7O7M3huNsQSdORlWOCVAhNwlwKrmJH580l0BrSx9gY06EpbwSmAVgqAhEauxO8VA7O1thX3jpFaArGcXJ2%2bnYZlwc/wS1R6IgFbngdraj8JJDhw5hLglApVAkQK9UBrXmMn75H0/cF///9thD%2bGjVCiTV9sFNNUKxPyBEsOQAaoJQZRaAk%2bEzW5/WguL847CyNj3DP8Afb775phgHBgbifNlllERqxvKFWQgDrwpklUIARZWtEIB3fOYwUPLSx7P/ncxZgCYIqqi/iodOmGAnwMe1ZflIVR4Q45df/h0ef/wxMY4O/xTQLsJ3mbNFL1Cq3sdLIcWzKam5xvcjOJshobgD/rL5eOZnj90nxKrlS7GbwsRe3i9yABeAyiCylS0iB5TLq8Xsl0RocKn6Khwc7cV9EydOxMWOi/Dy9BLHr73xKs5VdKIsalwIiKpRZeA9Ax1vMMe/ncUDzALYrxWl0CQAQ%2bVCKCO2i4c%2b9dTP4OnhIcZLQ5ZhY2ioGIeGbsK7774rxgEBgZQHNuN2xkyM5L%2bHlqy1cFeNjlUB14RBEgDYcwpQtALyir9jx/54/PQJUyg9%2begkJJR9SbNOiVM1IMjLVP04qjgNrVwv4v9kdCWas9qQmZo1JpyrmytGuw1YtWKVOJ7y6BToi2qgU9bR7OvHl00j7w/oOf7fL4G25hDwko5ZQoALEIy4/dtMbvrTJ3HsWLGItUcfnYpp06aJ88XHCvHh8uVi/NL036O7LhI9WTOpL5iNKzmLIEvqhQfVcj77Kw8DyowiBPnLsDu%2bENHlt1F%2b5hZeefm34v5HH54A5YmLmJfCSIB%2bCodhLErsRin1ABpz7Jce1OJCzWW88ebrYwLYUfKbNu15PPPsM2PnUpSpaFJTOYzRmgQwlUGmja/lx3%2bwlECzBzjYmEPgDXMZxJ3M9xh35%2bjwreKBDz00Cd9c6YCri5M56ViLHHCp/ggU%2b03XTJryBGs7GQdDoT3rz7dnd3Jd2AfJX1MzY2C8tMnrgHffnm66n/D8009i6iOTxn60y5wZiKk2Yq58kHknk8ckG9kq1W1mnn1WElXJ2g6fR1yU3PQMaxtMpOQ8cfLEsWfY2ppy1bpP1qG96AKoQxyrAryF1pjWEc9YSqBoh3vNy1kS4t8pHLoHqKcnASRol7DI3Z9ayOFWSzYKUvaPvWzi1J%2bhpzUJukyRKBlHbPgmSOXB0lfy6axAsYknM9ENcg9YXgCosk7gtd88B7txsT/RlsjPnQl15efwPcTYvERqiVW8ctyR1sZclKoVep4AWUVsFdprOjHtxWlj9xYVFAt3z07JwY6tOzB58mRTWXZ2wnmNSIRi5ikEJF0CD4mqL%2bj4ke/3AJZ22I7GF0YKnXFH/a4E/VIWtuUT88sm4sLJfRhqjMCiZWvw%2b7dnQBF7EJJ%2bNb6sjMD7rv7s3VmzkZGWIn2e4YfCXZ6QJXZL85JHqAz2Md4LuJAIHx6h2NcPIiK7CfsT8nFAVYD4oy2IqzVAdshIOWOAucXdwtwdTdI721vx6f561MRXSWWiqalmLaVtKMopRtS%2baCTGJ6L95GfQxp0S/f71MzcoDF8Sv3fq41PRUNLMKuNqxMxTCzzK1wZE%2bizn2nTo3L29Ab7eH/OCXIdyvrojDzCgcjGRjMKvf/caZEEhuF4bj%2bH8WaIbNDbuAXTL0JM5A/0ngjHaEoEbpaHSxewQtOz%2bzTerFU2pjqnU28cbpbnxYPbxIHIGeCTcxaK0r7D%2byDdYkAsEZQGeKcCcGAluSgN5DHWCu65Is7e04q3QlvbMyLq6hsRGEBGpMo5qeUw1TiU3oyW7HWfyO6gk6kWio4UQTqkboSmqRPS%2bGGzaFMpOVzSxshgdjkeVGYoiS8V1ZHdxnof3FtmMXwqLRsg8TuCVQCyG8p1Yb00Yhhv2AY3bMXDMB3ezqd9Xz8DdjD9wkajrcyQRZqEn/Q%2bs/q/TUfHpa7i2Y/J7ATmG5esKv8POww2G5JJjrESbgDP12/F162o20uWDr5rWMO%2b0a8yn8DjzP6JBwJEa5lvQAN%2b8s8w9vgLOUSfhrM5aWnjo%2bMky9SkUJdJqL0HLSuN1KJPrGFUDgXEZHnwlSJ0ea8lpZ53FF3E0%2bgSTr08YTd2WAcWGxMHotfLFltnftTL8BxsetuY8sMHSC4hFURatANXvsDu8xc2ZLdYJRJrgxFeGUm%2bBg9RX7MJ6S93ZdfKcm1r324aLvvqecwu6Bzr8YOhwZaxjDkPnbOAzdxjPe8Jw3oN1t4Vg5dFTWFC9E0uqd7HF1buwuHo3FmjD2ELdHgTrw43Bur1scdVBLNVFsg%2b0B7FCE81Wl8fiz6UKdlRVYdDKawyU3fmqT7q3OtQxnvmPR5Qb4zcmSenbMxEfmtSYuDnlRc6vOaPdOnz1/vs3Q3pMe34WD5hvpFJI5EfFyjDPicPA1/9mUfi6H/0FDhjimyM6dwx/JmPD52Ug4ky67A9c8QEuuAGfyxi%2bDgFuUvt8YyOGaeYHO2VsiOxohz/bUZrd76eNYot1kQjWRrIg3QGsaVVhdUsiW96oQMjpWCyoiWB%2bleEkyAG2UH8AgVX72BJ9JDTqOjSmnEVtciP0CfWoVIryxpOdQRd/auRY5EmoNqciYVNypGWSlRtVdiSGZXzfbpDYD7SUwkGqAhyjtC7grTHfFLFskBiPibUCx0BPtv3XfSddLnHyQ50%2bBBkG2z0Zu7bG2H01RTpTk4Dighi2J2wD2xW2DX1XDmCkcx4b6PQDzntJmQ1/OS/TRklLiViQbj%2bLbi6APCuZRWUmQHE4nSmLM5i6rpjtbctDYCV5gz6SPCUSIdqDdwuTyg9o42oyyANqiTjP7AN8rc/zQ2P6WaRtU9%2bKWadws5An4rYW4hYRvh8C1mb7C8JNwrdUEtvJaqk6ZJDdTZ7C9wE9qGN8m1z/%2bW8/fMVu6Jz3NCI/NEoiDLR7M1wJRIM%2bFT9/5mXKxrb3St0jv8D1LjWkC57o7/BlJADyGz8xkAAsuHIvVjQpWUZR3n2t8aQJEzHJegKiE%2bVY15aKQE24tLQumnvD1fv29xRVD5EAz9KMzqCMv6AkWrOZZv9Z/l3iphRbImxtFsGKPOKfbxJaNkaJHN8ZfpaOn6Txj253D1/yfWi4S3YFl/3Q1%2bYp4cYKpCbsFgR%2b%2b9uXUHQkFV2tJzB6tw34ZiMGzrmxwS7hAexQw3r4aKNAHsACdfsQ1VoAZX4aEnLTsHLlyjEhFNkpWNOSiCDNXuPS%2bhgs0kV05aaW2DUcbLQ5mJfzL3%2bjZdZ/lPz4rfF/5hm8U%2bTrBfresl1u03vUyXqg1kOEDQmgwxcB3AOMuBbIasqU4oe//tprqNEeQUzEpwhe4IfTmjjgajDr455yfj7i60MZCUAxfQCL9BHMXxOO1W0q6L48g7feMK3swnaGIfryccjKKUnqI408LwTrIk7z966siLVWqQutzP8BUFdXZVOpqLE9GVNpm/xpuhAmb0/hjxO/rxka/ydI7g//IOkR5%2bytyO05caEwxb4KXwVisENmYBe92NWzKkx%2b5Kc/2PZKT9oPXF%2bBvnNeYF3z2cG6LYxCAEIASoABur3Iv6DHrHdmiuuXLQlB2tVK%2bFRw8hFE/IAxpCGOi1XO30vWms5ZBBC/nxKgFVUBq5xdBeK4cP/x/59/ZYY7ZWMCkP2ECzDU6WsY6XRF3zUFXvilqedXxh3A9YslGL7TAgwVstHz89kgJUzpMx8WXreN%2bVJ5W0qzL9PshvqaDouCFor7fLy8UXyjCX41%2b3gCFB5CZA0fNMZxIXL5e8nacAEeyIdI3xOgU%2baKq/4Y6vI1Dp5zZrh5EHPmmhZN0ZF7kK%2bOwIchPliyZAn7x6VYIj%2bP3WnxxpbqHQjURzH/it3Y1ZWHzVu3iHsmP/wwktNSkFqej3R9Idvdms0CtXt5CIwua1ZwMUQaX1QVaUtjqwf2IQFEDhjqkv2OavzoyHlf9J11ZfhuB1auWvP9EGDP/fItfNGexq5o5qC2wElaVblrMLg6iuJ7J1NeKkGgt98PwoZewLLKjmBZo1xaoNk3%2bkGTHEFl4aH8vUGle2wftAdYm8Y%2bU2l8Q7roR3nARyJLeSCJ7dgWyhTR21FRFMsutaaykb%2blse5ziw1njs6G9qjHroCq6Mshp6K4S0tLa6JYWlsJk%2belsMg0BYtMjGWb92xnO8J3Ql5fYHTP3Ajv7C20tF471ti4xn/8QGd/DObjRlzxp25PZhzsmM%2bki74Svv2LETc/MuDLhQZc8jZKn7kZBju80JA3J/vnl5unUOLrXVwVyV3asFC73xig32dY3qQwfNSqMmxoPzS6uTPTsPVCzohfcRhcEv4Mt8RPVo%2bRV5rIU1l8sCJQNbAxVwI1rvnzjnB4hJoi4wVfsAteprb4C2qPPydcDcTNBq/O9t9Y/URWp3xhMWX/pXUx4M1NSEMsd3MsJcux%2bDQ1PHVRWNQQDc%2bM0H4X5ccu/D00tvVI3yA8z0sdahV4YveDE2BIVAIfO7MYu3B3MXhDRCIY6PjWcJdvM9kcQhghkM7/J7uyYAq/fr12%2b%2bRgfcTvyQveJw9wpzAIIruKsJGwkxBD3pG2sGJfjkfahtf5PfPS1tvNS1on3u2mWmvlmbLe6oF/7uUB2duErQR3wnTCo//qnqpyX5v/7Xvck9eNdXWc/P/l578AjufF27Pdj9IAAAAASUVORK5CYII=' /%3e%3c/svg%3e" width="120" data-src="/assets/static/logo.1539b60.bd727e13501e82a0ba322b4ad29fd33a.png" data-srcset="/assets/static/logo.1539b60.bd727e13501e82a0ba322b4ad29fd33a.png 120w" data-sizes="(max-width: 120px) 100vw, 120px" class="text-ui-primary g-image g-image--lazy g-image--loading"><noscript><img src="/assets/static/logo.1539b60.bd727e13501e82a0ba322b4ad29fd33a.png" class="text-ui-primary g-image g-image--loaded" width="120"></noscript></a></div><div class="w-full px-2 sm:px-4 max-w-screen-xs"><!----></div><div class="flex items-center justify-end px-2 sm:px-4"><!----><!----><!----><div class=".clearfix" style="width:250px;"><div style="width:55px; height:50px; text-align:center; line-height:50px; font-weight:700; float:left;"><a style="cursor:pointer;">English</a></div><div style="width:50px; height:50px; text-align:center; line-height:50px; float:left; padding-top: 5px;"><button aria-label="Toggle Darkmode" title="Toggle Darkmode"><svg xmlns="http://www.w3.org/2000/svg" width="1.5em" height="1.5em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-sun"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg></button></div><div style="width:130px; height:50px; text-align:center; line-height:50px; float:left;"><a href="http://labs.msaez.io/" target="_blank" rel="noopener" class="px-4 py-2 ml-auto font-bold leading-none text-white rounded-lg shadow-lg bg-ui-primary">
+              Try MSAEZ
+            </a></div></div></div></div></div></div></header><main class="container relative flex flex-wrap justify-start flex-1 w-full bg-ui-background"><!----><div class="w-full pb-24"><div class="flex flex-wrap items-start justify-start"><div class="order-2 w-full md:w-1/3 sm:pl-4 md:pl-6 lg:pl-8 sticky" style="top:4rem;"><div class="mt-8 sm:pl-4 md:pl-6 md:pt-12 lg:pl-8 sm:pb-16 sm:border-l border-ui-border md:mt-0"><h3 class="pt-0 mt-0 text-sm tracking-wide uppercase border-none">On this page</h3><div><ul><li class="depth-3"><a href="/operations/ops-anatomy-kubernetes/#kubernetes-installation" class="relative flex items-center py-1 text-sm transition transform hover:translate-x-1 pl-2"><span class="absolute w-2 h-2 -ml-3 rounded-full opacity-0 bg-ui-primary transition transform scale-0 origin-center"></span>
+          Kubernetes Installation
+        </a></li><li class="depth-4"><a href="/operations/ops-anatomy-kubernetes/#preparing-a-vm--connect" class="relative flex items-center py-1 text-sm transition transform hover:translate-x-1 pl-3"><span class="absolute w-2 h-2 -ml-3 rounded-full opacity-0 bg-ui-primary transition transform scale-0 origin-center"></span>
+          Preparing a VM &amp; Connect
+        </a></li><li class="depth-3"><a href="/operations/ops-anatomy-kubernetes/#install-k8s-binaries" class="relative flex items-center py-1 text-sm transition transform hover:translate-x-1 pl-2"><span class="absolute w-2 h-2 -ml-3 rounded-full opacity-0 bg-ui-primary transition transform scale-0 origin-center"></span>
+          Install K8s Binaries
+        </a></li><li class="border-t border-dashed border-ui-border pt-2 mt-2 font-semibold depth-2"><a href="/operations/ops-anatomy-kubernetes/#creating-the-kube" class="relative flex items-center py-1 text-sm transition transform hover:translate-x-1"><span class="absolute w-2 h-2 -ml-3 rounded-full opacity-0 bg-ui-primary transition transform scale-0 origin-center"></span>
+          Creating the Kube
+        </a></li><li class="depth-3"><a href="/operations/ops-anatomy-kubernetes/#set-up-kubelet" class="relative flex items-center py-1 text-sm transition transform hover:translate-x-1 pl-2"><span class="absolute w-2 h-2 -ml-3 rounded-full opacity-0 bg-ui-primary transition transform scale-0 origin-center"></span>
+          Set up kubelet
+        </a></li><li class="depth-3"><a href="/operations/ops-anatomy-kubernetes/#set-up-etcd" class="relative flex items-center py-1 text-sm transition transform hover:translate-x-1 pl-2"><span class="absolute w-2 h-2 -ml-3 rounded-full opacity-0 bg-ui-primary transition transform scale-0 origin-center"></span>
+          Set up etcd
+        </a></li><li class="depth-3"><a href="/operations/ops-anatomy-kubernetes/#set-up-kube-apiserver" class="relative flex items-center py-1 text-sm transition transform hover:translate-x-1 pl-2"><span class="absolute w-2 h-2 -ml-3 rounded-full opacity-0 bg-ui-primary transition transform scale-0 origin-center"></span>
+          Set up kube-apiserver
+        </a></li><li class="border-t border-dashed border-ui-border pt-2 mt-2 font-semibold depth-2"><a href="/operations/ops-anatomy-kubernetes/#kubeconfig-file-을-설정하여-kubectl-설정" class="relative flex items-center py-1 text-sm transition transform hover:translate-x-1"><span class="absolute w-2 h-2 -ml-3 rounded-full opacity-0 bg-ui-primary transition transform scale-0 origin-center"></span>
+          kubeconfig File 을 설정하여 kubectl 설정
+        </a></li><li class="depth-3"><a href="/operations/ops-anatomy-kubernetes/#set-up-the-new-config-for-kubelet" class="relative flex items-center py-1 text-sm transition transform hover:translate-x-1 pl-2"><span class="absolute w-2 h-2 -ml-3 rounded-full opacity-0 bg-ui-primary transition transform scale-0 origin-center"></span>
+          Set up the New Config for kubelet
+        </a></li><li class="depth-3"><a href="/operations/ops-anatomy-kubernetes/#set-up-kube-scheduler" class="relative flex items-center py-1 text-sm transition transform hover:translate-x-1 pl-2"><span class="absolute w-2 h-2 -ml-3 rounded-full opacity-0 bg-ui-primary transition transform scale-0 origin-center"></span>
+          Set up kube-scheduler
+        </a></li><li class="depth-3"><a href="/operations/ops-anatomy-kubernetes/#set-up-kube-controller-manager" class="relative flex items-center py-1 text-sm transition transform hover:translate-x-1 pl-2"><span class="absolute w-2 h-2 -ml-3 rounded-full opacity-0 bg-ui-primary transition transform scale-0 origin-center"></span>
+          Set up kube-controller-manager
+        </a></li><li class="depth-3"><a href="/operations/ops-anatomy-kubernetes/#set-up-kube-proxy" class="relative flex items-center py-1 text-sm transition transform hover:translate-x-1 pl-2"><span class="absolute w-2 h-2 -ml-3 rounded-full opacity-0 bg-ui-primary transition transform scale-0 origin-center"></span>
+          Set up kube-proxy
+        </a></li></ul></div></div></div><div class="order-1 w-full md:w-2/3"><div class="content"><h1 id="쿠버네티스-내부구조-분석"><a href="#%EC%BF%A0%EB%B2%84%EB%84%A4%ED%8B%B0%EC%8A%A4-%EB%82%B4%EB%B6%80%EA%B5%AC%EC%A1%B0-%EB%B6%84%EC%84%9D" aria-hidden="true"><span class="icon icon-link"></span></a>쿠버네티스 내부구조 분석</h1>
+<h3 id="kubernetes-installation"><a href="#kubernetes-installation" aria-hidden="true"><span class="icon icon-link"></span></a>Kubernetes Installation</h3>
+<h4 id="preparing-a-vm--connect"><a href="#preparing-a-vm--connect" aria-hidden="true"><span class="icon icon-link"></span></a>Preparing a VM &#x26; Connect</h4>
+<ol>
+<li>Prepare any Cloud VM(EC2, Agent, Compute Engine)</li>
+</ol>
+<ul>
+<li>아마존 콘솔 접속</li>
+<li>서비스 검색 > "EC2" 선택</li>
+<li>실행중인스턴스 > "인스턴스 시작"</li>
+<li>Ubuntu Server 20.04 LTS 선택</li>
+<li>t2.micro 선택 </li>
+<li>검토 및 시작</li>
+<li>새 키 페어 생성 "ubuntu" > 다운로드</li>
+<li>인스턴스 시작</li>
+</ul>
+<blockquote>
+<p>보안 그룹명이 충돌나는 경우 임의의 보안그룹 명으로 변경합니다.</p>
+</blockquote>
+<ul>
+<li>인스턴스 목록 > 생성한 인스턴스 선택 > 연결</li>
+<li>받은 pem 파일을 개발 환경에 업로드 :   File Menu > UploadFiles...</li>
+<li>chmod 400 ubuntu.pem</li>
+</ul>
+<ol>
+<li>
+<p>Connect to VM (here, aws EC2 Linux-AMI)</p>
+<pre class="language-bash"><code class="language-bash"><span class="token function">ssh</span> -i ./k8s.pem ubuntu@ec2-3-35-209-101.ap-northeast-2.compute.amazonaws.com</code></pre>
+</li>
+<li>
+<p>Set root passwd and switching User to root</p>
+<pre class="language-bash"><code class="language-bash"><span class="token function">sudo</span> <span class="token function">passwd</span> root
+<span class="token function">su</span> -</code></pre>
+</li>
+<li>
+<p>Update and upgrade Ubuntu:</p>
+<pre class="language-bash"><code class="language-bash"><span class="token function">apt</span> update
+<span class="token function">apt</span> upgrade -y</code></pre>
+</li>
+</ol>
+<h3 id="install-k8s-binaries"><a href="#install-k8s-binaries" aria-hidden="true"><span class="icon icon-link"></span></a>Install K8s Binaries</h3>
+<p>The next steps will prepare CRI and Software for kube setup.</p>
+<ol>
+<li>
+<p>도커엔진을 설치:</p>
+<pre class="language-bash"><code class="language-bash"><span class="token function">apt</span> <span class="token function">install</span> docker.io -y</code></pre>
+</li>
+<li>
+<p>K8s 의 바이너리 파일을 다운 받는다:</p>
+<pre class="language-bash"><code class="language-bash"><span class="token function">wget</span> https://storage.googleapis.com/kubernetes-release/release/v1.9.11/kubernetes-server-linux-amd64.tar.gz
+<span class="token function">tar</span> -xzf kubernetes-server-linux-amd64.tar.gz</code></pre>
+</li>
+<li>
+<p>Install the K8s binaries:</p>
+<pre class="language-bash"><code class="language-bash"><span class="token builtin class-name">cd</span> kubernetes/server/bin/
+<span class="token function">mv</span> kubectl kubelet kube-apiserver kube-controller-manager kube-scheduler kube-proxy /usr/bin/
+<span class="token builtin class-name">cd</span></code></pre>
+</li>
+<li>
+<p><code>kubectl</code> 이 실행되는지 확인한다:</p>
+<pre class="language-bash"><code class="language-bash">kubectl</code></pre>
+</li>
+<li>
+<p>압축파일이 더 이상 필요없으니 삭제:</p>
+<pre class="language-bash"><code class="language-bash"><span class="token function">rm</span> -rf kubernetes kubernetes-server-linux-amd64.tar.gz</code></pre>
+</li>
+</ol>
+<hr>
+<h2 id="creating-the-kube"><a href="#creating-the-kube" aria-hidden="true"><span class="icon icon-link"></span></a>Creating the Kube</h2>
+<h3 id="set-up-kubelet"><a href="#set-up-kubelet" aria-hidden="true"><span class="icon icon-link"></span></a>Set up kubelet</h3>
+<p>다음단계는 Kubelet 의 동작을 이해한다</p>
+<ol>
+<li>
+<p>큐블릿을 위한 디렉토리를 만든다:</p>
+<pre class="language-bash"><code class="language-bash"><span class="token function">mkdir</span> -p /etc/kubernetes/manifests</code></pre>
+</li>
+<li>
+<p>큐블릿을 백그라운드(데몬)로 실행한다:</p>
+<pre class="language-bash"><code class="language-bash">kubelet --pod-manifest-path /etc/kubernetes/manifests <span class="token operator">&amp;></span> /etc/kubernetes/kubelet.log <span class="token operator">&amp;</span></code></pre>
+</li>
+<li>
+<p>큐블릿의 상태와 기본 로그를 확인한다:</p>
+<pre class="language-bash"><code class="language-bash"><span class="token function">ps</span> -au <span class="token operator">|</span> <span class="token function">grep</span> kubelet
+<span class="token function">head</span> /etc/kubernetes/kubelet.log</code></pre>
+</li>
+<li>
+<p>큐블릿의 manifest directory 에 yaml 을 위치하면, 큐블릿이 해당 yaml 을 도커엔진을 통해 컨테이너를 생성해주기 때문에 그를 테스트할 yaml 을 하나 만든다.</p>
+<pre class="language-bash"><code class="language-bash"><span class="token function">cat</span> <span class="token operator">&lt;&lt;</span>EOF <span class="token operator">></span> /etc/kubernetes/manifests/kubelet-test.yaml</code></pre>
+<pre class="language-yaml"><code class="language-yaml"><span class="token key atrule">apiVersion</span><span class="token punctuation">:</span> v1
+<span class="token key atrule">kind</span><span class="token punctuation">:</span> Pod
+<span class="token key atrule">metadata</span><span class="token punctuation">:</span>
+<span class="token key atrule">name</span><span class="token punctuation">:</span> kubelet<span class="token punctuation">-</span>test
+<span class="token key atrule">spec</span><span class="token punctuation">:</span>
+<span class="token key atrule">containers</span><span class="token punctuation">:</span>
+<span class="token punctuation">-</span> <span class="token key atrule">name</span><span class="token punctuation">:</span> alpine
+    <span class="token key atrule">image</span><span class="token punctuation">:</span> alpine
+    <span class="token key atrule">command</span><span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token string">"/bin/sh"</span><span class="token punctuation">,</span> <span class="token string">"-c"</span><span class="token punctuation">]</span>
+    <span class="token key atrule">args</span><span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token string">"while true; do echo SuPeRgIaNt; sleep 15; done"</span><span class="token punctuation">]</span></code></pre>
+<pre class="language-bash"><code class="language-bash">EOF</code></pre>
+</li>
+<li>
+<p>파일이 생성된 직후에 도커에 해당 pod 가 생성되었는지 확인한다.:</p>
+<pre class="language-bash"><code class="language-bash">docker <span class="token function">ps</span></code></pre>
+</li>
+<li>
+<p>컨테이너의 로그를 확인한다</p>
+<pre class="language-bash"><code class="language-bash">docker logs <span class="token punctuation">{</span>CONTAINER ID<span class="token punctuation">}</span></code></pre>
+</li>
+</ol>
+<h3 id="set-up-etcd"><a href="#set-up-etcd" aria-hidden="true"><span class="icon icon-link"></span></a>Set up etcd</h3>
+<p>이번단계는 etcd 에 쿠버네티스의 상태를 보존하는 것을 확인한다.</p>
+<ol>
+<li>
+<p>etcd 와 etcdctl를 다운받고 압축해제 한다:</p>
+<pre class="language-bash"><code class="language-bash"><span class="token function">wget</span> https://github.com/etcd-io/etcd/releases/download/v3.2.26/etcd-v3.2.26-linux-amd64.tar.gz
+<span class="token function">tar</span> -xzf etcd-v3.2.26-linux-amd64.tar.gz</code></pre>
+</li>
+<li>
+<p>etcd 와 etcdctl 바이너리를 설치한다.</p>
+<pre class="language-bash"><code class="language-bash"><span class="token function">mv</span> etcd-v3.2.26-linux-amd64/etcd /usr/bin/etcd
+<span class="token function">mv</span> etcd-v3.2.26-linux-amd64/etcdctl /usr/bin/etcdctl</code></pre>
+</li>
+<li>
+<p>불필요한 리소스를 삭제한다:</p>
+<pre class="language-bash"><code class="language-bash"><span class="token function">rm</span> -rf etcd-v3.2.26-linux-amd64 etcd-v3.2.26-linux-amd64.tar.gz</code></pre>
+</li>
+<li>
+<p>etcd를 실행한다:</p>
+<pre class="language-bash"><code class="language-bash">etcd --listen-client-urls http://0.0.0.0:2379 --advertise-client-urls http://localhost:2379 <span class="token operator">&amp;></span> /etc/kubernetes/etcd.log <span class="token operator">&amp;</span></code></pre>
+</li>
+<li>
+<p>etcd 가 건강하게 실행되고 있는지 다음과 같이 확인된다::</p>
+<pre class="language-bash"><code class="language-bash">etcdctl cluster-health</code></pre>
+</li>
+<li>
+<p>쿠버네티스 내에 디플로이된 모든 리소스들을 한번 확인해본다:</p>
+<pre class="language-bash"><code class="language-bash">kubectl get all --all-namespaces</code></pre>
+</li>
+</ol>
+<h3 id="set-up-kube-apiserver"><a href="#set-up-kube-apiserver" aria-hidden="true"><span class="icon icon-link"></span></a>Set up kube-apiserver</h3>
+<p>이번 단계는 apiserver 가 어떻게 실행되는지 이해합니다.</p>
+<ol>
+<li>
+<p>kube-apiserver 를 실행한다</p>
+<pre class="language-bash"><code class="language-bash">kube-apiserver --etcd-servers<span class="token operator">=</span>http://localhost:2379 --service-cluster-ip-range<span class="token operator">=</span><span class="token number">10.0</span>.0.0/16 --bind-address<span class="token operator">=</span><span class="token number">0.0</span>.0.0 --insecure-bind-address<span class="token operator">=</span><span class="token number">0.0</span>.0.0 <span class="token operator">&amp;></span> /etc/kubernetes/apiserver.log <span class="token operator">&amp;</span></code></pre>
+</li>
+<li>
+<p>실행상태와 시작로그를 확인한다:</p>
+<pre class="language-bash"><code class="language-bash"><span class="token function">ps</span> -au <span class="token operator">|</span> <span class="token function">grep</span> apiserver
+<span class="token function">head</span> /etc/kubernetes/apiserver.log</code></pre>
+</li>
+<li>
+<p>API 를 확인해보고 반응을 확인한다:</p>
+<pre class="language-bash"><code class="language-bash"><span class="token function">curl</span> http://localhost:8080/api/v1/nodes</code></pre>
+</li>
+</ol>
+<h2 id="kubeconfig-file-을-설정하여-kubectl-설정"><a href="#kubeconfig-file-%EC%9D%84-%EC%84%A4%EC%A0%95%ED%95%98%EC%97%AC-kubectl-%EC%84%A4%EC%A0%95" aria-hidden="true"><span class="icon icon-link"></span></a>kubeconfig File 을 설정하여 kubectl 설정</h2>
+<p>이번 과정은 kubectl 을 제대로 설정해본다.</p>
+<ol>
+<li>
+<p>kubectl 이 API server 를 제대로 바라보고 있는지 확인한다</p>
+<pre class="language-bash"><code class="language-bash">kubectl cluster-info</code></pre>
+</li>
+<li>
+<p>kubeconfig file에 API server address 가 잘 설정되었는지 확인한다</p>
+<pre class="language-bash"><code class="language-bash">kubectl config set-cluster kube-from-scratch --server<span class="token operator">=</span>http://localhost:8080
+kubectl config view</code></pre>
+</li>
+<li>
+<p>우리가 접속할 apiserver 로 kubectl 의 context 를 지정한다:</p>
+<pre class="language-bash"><code class="language-bash">kubectl config set-context kube-from-scratch --cluster<span class="token operator">=</span>kube-from-scratch
+kubectl config view</code></pre>
+</li>
+<li>
+<p>Use the context created earlier for kubectl:</p>
+<pre class="language-bash"><code class="language-bash">kubectl config use-context kube-from-scratch
+kubectl config view</code></pre>
+</li>
+<li>
+<p>check that resources can now be seen on the cluster:</p>
+<pre class="language-bash"><code class="language-bash">kubectl get all --all-namespaces
+kubectl get node</code></pre>
+</li>
+</ol>
+<h3 id="set-up-the-new-config-for-kubelet"><a href="#set-up-the-new-config-for-kubelet" aria-hidden="true"><span class="icon icon-link"></span></a>Set up the New Config for kubelet</h3>
+<p>The next steps will take the configuration created and use it to configure kubelet.</p>
+<ol>
+<li>
+<p>Restart kubelet with a new flag pointing it to the apiserver (this step may fail once or twice, try again):</p>
+<pre class="language-bash"><code class="language-bash"><span class="token function">pkill</span> -f kubelet
+kubelet --register-node --kubeconfig<span class="token operator">=</span><span class="token string">".kube/config"</span> <span class="token operator">&amp;></span> /etc/kubernetes/kubelet.log <span class="token operator">&amp;</span></code></pre>
+</li>
+<li>
+<p>Check its status and initial logs:</p>
+<pre class="language-bash"><code class="language-bash"><span class="token function">ps</span> -au <span class="token operator">|</span> <span class="token function">grep</span> kubelet
+<span class="token function">head</span> /etc/kubernetes/kubelet.log</code></pre>
+</li>
+<li>
+<p>Check to see that kubelet has registered as a node:</p>
+<pre class="language-bash"><code class="language-bash">kubectl get node</code></pre>
+</li>
+<li>
+<p>Check to see the old Pod is not coming up:</p>
+<pre class="language-bash"><code class="language-bash">docker <span class="token function">ps</span></code></pre>
+</li>
+<li>
+<p>Check that the Pod manifest is still present:</p>
+<pre class="language-bash"><code class="language-bash"><span class="token function">ls</span> /etc/kubernetes/manifests</code></pre>
+</li>
+<li>
+<p>이제 kubelet 으로 pod 를 생성해봅니다. 우리가 설치한 control plane 들이 잘 동작하는지 확인하게 됩니다:</p>
+<pre class="language-bash"><code class="language-bash"><span class="token function">cat</span> <span class="token operator">&lt;&lt;</span>EOF <span class="token operator">></span> ./kube-test.yaml</code></pre>
+<pre class="language-yaml"><code class="language-yaml"><span class="token key atrule">apiVersion</span><span class="token punctuation">:</span> v1
+<span class="token key atrule">kind</span><span class="token punctuation">:</span> Pod
+<span class="token key atrule">metadata</span><span class="token punctuation">:</span>
+<span class="token key atrule">name</span><span class="token punctuation">:</span> kube<span class="token punctuation">-</span>test
+<span class="token key atrule">labels</span><span class="token punctuation">:</span>
+    <span class="token key atrule">app</span><span class="token punctuation">:</span> kube<span class="token punctuation">-</span>test
+<span class="token key atrule">spec</span><span class="token punctuation">:</span>
+<span class="token key atrule">containers</span><span class="token punctuation">:</span>
+<span class="token punctuation">-</span> <span class="token key atrule">name</span><span class="token punctuation">:</span> nginx
+    <span class="token key atrule">image</span><span class="token punctuation">:</span> nginx
+    <span class="token key atrule">ports</span><span class="token punctuation">:</span>
+    <span class="token punctuation">-</span> <span class="token key atrule">name</span><span class="token punctuation">:</span>  http
+    <span class="token key atrule">containerPort</span><span class="token punctuation">:</span> <span class="token number">80</span>
+    <span class="token key atrule">protocol</span><span class="token punctuation">:</span> TCP</code></pre>
+<pre class="language-bash"><code class="language-bash">EOF
+kubectl create -f kube-test.yaml</code></pre>
+</li>
+<li>
+<p>Check the Pod's status:</p>
+<pre class="language-bash"><code class="language-bash">kubectl get po</code></pre>
+</li>
+</ol>
+<h3 id="set-up-kube-scheduler"><a href="#set-up-kube-scheduler" aria-hidden="true"><span class="icon icon-link"></span></a>Set up kube-scheduler</h3>
+<p>다음 단계는 scheduler 를 통해서 pod 가 생성될 수 있도록 설정합니다</p>
+<ol>
+<li>
+<p>Scheduler를 시작합니다:</p>
+<pre class="language-bash"><code class="language-bash">kube-scheduler --master<span class="token operator">=</span>http://localhost:8080/ <span class="token operator">&amp;></span> /etc/kubernetes/scheduler.log <span class="token operator">&amp;</span></code></pre>
+</li>
+<li>
+<p>스케쥴러의 상태와 시작로그를 확인합니다:</p>
+<pre class="language-bash"><code class="language-bash"><span class="token function">ps</span> -au <span class="token operator">|</span> <span class="token function">grep</span> scheduler
+<span class="token function">head</span> /etc/kubernetes/scheduler.log</code></pre>
+</li>
+<li>
+<p>Check to see if the Pod was scheduled:</p>
+<pre class="language-bash"><code class="language-bash">kubectl get po</code></pre>
+</li>
+<li>
+<p>Delete the Pod:</p>
+<pre class="language-bash"><code class="language-bash">kubectl delete po --all</code></pre>
+</li>
+</ol>
+<h3 id="set-up-kube-controller-manager"><a href="#set-up-kube-controller-manager" aria-hidden="true"><span class="icon icon-link"></span></a>Set up kube-controller-manager</h3>
+<p>다음단계는 ReplicaSet 등을 관리해주는 다양한 쿠버네티스 객체의 행위를 지원하는 controller 매니저를 설치합니다.</p>
+<ol>
+<li>
+<p>레플리카 3개가 설정된 Deployment를 준비한다:</p>
+<pre class="language-bash"><code class="language-bash"><span class="token function">cat</span> <span class="token operator">&lt;&lt;</span>EOF <span class="token operator">></span> ./replica-test.yaml</code></pre>
+<pre class="language-yaml"><code class="language-yaml"><span class="token key atrule">apiVersion</span><span class="token punctuation">:</span> apps/v1
+<span class="token key atrule">kind</span><span class="token punctuation">:</span> Deployment
+<span class="token key atrule">metadata</span><span class="token punctuation">:</span>
+<span class="token key atrule">name</span><span class="token punctuation">:</span> replica<span class="token punctuation">-</span>test
+<span class="token key atrule">spec</span><span class="token punctuation">:</span>
+<span class="token key atrule">replicas</span><span class="token punctuation">:</span> <span class="token number">3</span>
+<span class="token key atrule">selector</span><span class="token punctuation">:</span>
+    <span class="token key atrule">matchLabels</span><span class="token punctuation">:</span>
+    <span class="token key atrule">app</span><span class="token punctuation">:</span> replica<span class="token punctuation">-</span>test
+<span class="token key atrule">template</span><span class="token punctuation">:</span>
+    <span class="token key atrule">metadata</span><span class="token punctuation">:</span>
+    <span class="token key atrule">name</span><span class="token punctuation">:</span> replica<span class="token punctuation">-</span>test
+    <span class="token key atrule">labels</span><span class="token punctuation">:</span>
+        <span class="token key atrule">app</span><span class="token punctuation">:</span> replica<span class="token punctuation">-</span>test
+    <span class="token key atrule">spec</span><span class="token punctuation">:</span>
+    <span class="token key atrule">containers</span><span class="token punctuation">:</span>
+    <span class="token punctuation">-</span> <span class="token key atrule">name</span><span class="token punctuation">:</span> nginx
+        <span class="token key atrule">image</span><span class="token punctuation">:</span> nginx
+        <span class="token key atrule">ports</span><span class="token punctuation">:</span>
+        <span class="token punctuation">-</span> <span class="token key atrule">name</span><span class="token punctuation">:</span>  http
+        <span class="token key atrule">containerPort</span><span class="token punctuation">:</span> <span class="token number">80</span>
+        <span class="token key atrule">protocol</span><span class="token punctuation">:</span> TCP</code></pre>
+<pre class="language-bash"><code class="language-bash">EOF
+kubectl create -f replica-test.yaml</code></pre>
+</li>
+<li>
+<p>Check the Deployment's status:</p>
+<pre class="language-bash"><code class="language-bash">kubectl get deploy</code></pre>
+</li>
+<li>
+<p><code>Pending</code> 상태임을 확인한다:</p>
+<pre class="language-bash"><code class="language-bash">kubectl get po</code></pre>
+</li>
+<li>
+<p>controller-manager를 시작한다:</p>
+<pre class="language-bash"><code class="language-bash">kube-controller-manager --master<span class="token operator">=</span>http://localhost:8080 <span class="token operator">&amp;></span> /etc/kubernetes/controller-manager.log <span class="token operator">&amp;</span></code></pre>
+</li>
+<li>
+<p>Check its status and initial logs:</p>
+<pre class="language-bash"><code class="language-bash"><span class="token function">ps</span> -au <span class="token operator">|</span> <span class="token function">grep</span> controller
+<span class="token function">head</span> /etc/kubernetes/controller-manager.log</code></pre>
+</li>
+<li>
+<p>Check the status of the Deployment:</p>
+<pre class="language-bash"><code class="language-bash">kubectl get deploy</code></pre>
+</li>
+<li>
+<p>이제 3개의 Replica 가 생성되어 각 pod 의 상태가 <code>AVAILABLE</code> 로 변경된 것을 확인한다:</p>
+<pre class="language-bash"><code class="language-bash">kubectl rollout resume deploy/replica-test
+kubectl rollout status deploy/replica-test</code></pre>
+</li>
+<li>
+<p>Check the new Pods:</p>
+<pre class="language-bash"><code class="language-bash">kubectl get po</code></pre>
+</li>
+</ol>
+<h3 id="set-up-kube-proxy"><a href="#set-up-kube-proxy" aria-hidden="true"><span class="icon icon-link"></span></a>Set up kube-proxy</h3>
+<p>이제 외부 트래픽을 Pod 로 전송하는 kube-proxy 를 설치하고 이들이 어떻게 동작하는지 이해한다:</p>
+<ol>
+<li>
+<p>앞서의 <code>replica-test</code> Deployment에 대한 service 를 만들어준다:</p>
+<pre class="language-bash"><code class="language-bash"><span class="token function">cat</span> <span class="token operator">&lt;&lt;</span>EOF <span class="token operator">></span> ./service-test.yaml</code></pre>
+<pre class="language-yaml"><code class="language-yaml"><span class="token key atrule">apiVersion</span><span class="token punctuation">:</span> v1
+<span class="token key atrule">kind</span><span class="token punctuation">:</span> Service
+<span class="token key atrule">metadata</span><span class="token punctuation">:</span>
+<span class="token key atrule">name</span><span class="token punctuation">:</span> replica<span class="token punctuation">-</span>test
+<span class="token key atrule">spec</span><span class="token punctuation">:</span>
+<span class="token key atrule">type</span><span class="token punctuation">:</span> ClusterIP
+<span class="token key atrule">ports</span><span class="token punctuation">:</span>
+<span class="token punctuation">-</span> <span class="token key atrule">name</span><span class="token punctuation">:</span> http
+    <span class="token key atrule">port</span><span class="token punctuation">:</span> <span class="token number">80</span>
+<span class="token key atrule">selector</span><span class="token punctuation">:</span>
+    <span class="token key atrule">app</span><span class="token punctuation">:</span> replica<span class="token punctuation">-</span>test</code></pre>
+<pre class="language-bash"><code class="language-bash">    EOF
+    kubectl create -f service-test.yaml</code></pre>
+</li>
+<li>
+<p>Curl the service to see if any Pod is contacted:</p>
+<pre class="language-bash"><code class="language-bash">kubectl get svc
+<span class="token function">curl</span> <span class="token punctuation">{</span>CLUSTER IP<span class="token punctuation">}</span>:80</code></pre>
+</li>
+<li>
+<p>Start kube-proxy:</p>
+<pre class="language-bash"><code class="language-bash">kube-proxy --master<span class="token operator">=</span>http://localhost:8080/ <span class="token operator">&amp;></span> /etc/kubernetes/proxy.log <span class="token operator">&amp;</span></code></pre>
+</li>
+<li>
+<p>Check its status and initial logs:</p>
+<pre class="language-bash"><code class="language-bash"><span class="token function">ps</span> -au <span class="token operator">|</span> <span class="token function">grep</span> proxy
+<span class="token function">head</span> /etc/kubernetes/proxy.log</code></pre>
+</li>
+<li>
+<p>Curl the Service again to see if any Pod is contacted:</p>
+<pre class="language-bash"><code class="language-bash">kubectl get svc
+<span class="token function">curl</span> <span class="token punctuation">{</span>CLUSTER IP<span class="token punctuation">}</span>:80</code></pre>
+</li>
+</ol>
+</div><div class="mt-8 pt-8 lg:mt-12 lg:pt-12 border-t border-ui-border"><div><div class="flex flex-col sm:flex-row justify-between items-center"><!----><!----></div></div></div></div></div></div></main></div><!----><div data-v-8b0e8098><div style="width:100%; padding-bottom:30px; background-color:#1E88E5;" data-v-8b0e8098><div class="flex logo-style" data-v-8b0e8098><div data-v-8b0e8098><img src="data:image/svg+xml,%3csvg fill='none' viewBox='0 0 331 174' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink'%3e%3cdefs%3e%3cfilter id='__svg-blur-37afcb0017f229c304bfe602273e7d7c'%3e%3cfeGaussianBlur in='SourceGraphic' stdDeviation='40'/%3e%3c/filter%3e%3c/defs%3e%3cimage x='0' y='0' filter='url(%23__svg-blur-37afcb0017f229c304bfe602273e7d7c)' width='331' height='174' xlink:href='data:image/png%3bbase64%2ciVBORw0KGgoAAAANSUhEUgAAAEAAAAAiCAYAAADvVd%2bPAAAACXBIWXMAAC4jAAAuIwF4pT92AAATu0lEQVRo3sVZB3RU15lWIxhscMtunHhd8EkcJzFusb1xwMaAuoQkpFEFUWQwzXEMAQSYElFEkVCbGUmjikZdIJBAqIxmRgUJVRAqmGLABQdwTBDqZebdb/97Z0YIO1nvnrN7mHO%2b89/35pX5vvu3e8fKij69eQ4C48ffg7UZNgK5DrY9ufZ2wtJ5qwfw0cirrDSKahuCrRk0rrKuUFRb05h/Z1VhukZcP378g09vnr2VmZwtR4/Z8nNE9Ed/DAlhRfdM%2bS7X/QXkv/rWtrQ6R2cVW%2bSVNBDkoRoK9EwaCvBMGvQn60fwJcgIPnRuvkfSkBeNPWns4aEadCfrRseudN5lvmrAZU6SZJ%2bobA/Ry3XLyhXV7xPBXxGRh/%2b731PxQ3FsK%2bTi2Fojrx4TQtievP8BQSJHBJ8h%2bzrBje5ZQTaMhEulcTmN2%2bn7G925zgNS/n9K0enF3S5qwC8T8LFAfT9kZojjDMDbgkP34ENwIySnXkNraiN0CfUgAQbph39DaCQyeWT3EuHlhDk0/hXZx36MDxdovOUEnyC8SiQcyS4mbOnNtY8nW0K2lfAFobc/3wGGo05AsTNwwpXgBlbsIs4NHXZEb74zjPnvQJ2ROmKvgmF%2bUr%2bBZpQwZKDZFdaLjt0T%2bgyO8l6jo7zP6KzoNXok9hvpvJG8xUjXE8iqBgXck4alQ8ozxiq5zkAeIFUqa6BPqENNUiPqU1twOu0M6lKaUa06DRJghEhdJ9tMOMzFISwjOBB%2bTZh6T4Tq%2b1w4khU5Y6DAETjuQsRcTJbIGY%2b5YOiIM/oLnECCMAoJqTfP0XA3Z67hTsYfCTMMPbkORvpO6s51Yoa8P7JydTgcVWBeSf2MCDEiT3aI7ACzVwyyoBywtSVg60%2bCfXQcbH46mKNigK7n1wyJe4g8m0fH3nTPYUUj08n1jGafaUyQiKiRrIGsoeSgxngiUiOVx%2bpRlViPWhKHi3I6tZVEahXnuDiEvxHOE%2baYQ8DGIsBfOGma5REiQoTsDdxyknfVfzT2Z8%2bQutUzGHkI4yLczX6fjRx1ZWjczFC3FgN5c0iYuexunhNG8mayM1l/Zm4qIycCQSZpCB6JA5iXNIq4GiNi0ouxdsNWfLx2Azbt2IeUomZsLQOclIMgTwCJABIANPsIVPWgRFGLSnkVd39OBERaCFEep4dGXsM6T1xkFzRXWP2hFlYarZPoOyMXhgtEiZFbqVJRA62yFo3pbXR/tbNZAFshAM2gB3djImck8pwkiDyjmWcjDXvw93oFjLXr0Zv9Pj%2bPkWIvdGiS4ecfiDVr/oRvT8WiP3c2unMd2WDeLFzNCWZ%2bSXfZPNUwF0CQcoofRkLNABb6eYJeeR9%2bYm2FvZFyfFQEOCv76XqTAK5JI1iWeJtIVnHS4wWgcRU0cdVo03ZgzUdr4ObuhqK8YjTlnEVptNbiKXQvt0IwSdwrckjVS9/zAPtX%2b4h0r2WGcx2I0CzcOhUHV68ATHniKWzf8VdIdZvxj5RXITXtwRyne0T2hG0FqpbhH%2br30Jdnj9u57vgg%2bSu4qIxEZgDOij6sJnI790aZ77HGc88/D4c5s/DitKfFueAAH%2bypAubG9QnBvEgAZ/KYtYk3QBVAkK8wk9coq3EiogIXyj/Hnz7%2b09jvePq5X%2bBM5TlUxJgEEteaReMC8NxB9ibhSbMA1pYk%2bBTh9iDlAB7Ld7LeB8p9kZW4995M2U5GV2UyjHnv4FZNFJ5%2b/sWx75xc3IGG7ejOeAc9FAaDebOxPvUcnFQM3skDsCdSYVrAV%2bYtrqe3Iv%2b4Hse%2bBGLKbmK3IhcJFX%2bDd6oB81Q8bIaEAE4kwLaEL1Aj16LcLAAnw12/WtUA/YkqTJg4QQg6wW6CePaRjKOoS21GWaxuPHnuAcYauodE6Rgrg5ZEaK77nZYwuJNJAlQEID0uTDx00kMThd26eQNQvxJtxfsxYfLj45R/EX%2bvjUZ/9kx05zljNG8mDqSVw0FF5SypHw7yPoRSjK9eY5otG1tbTJ/%2bCjaHxyO%2b/BtENwMOCRLcE/oFeUqaYx5wIP7iPQHGzf4l3VX4%2bvmanmdjAzs7O7M3huNsQSdORlWOCVAhNwlwKrmJH580l0BrSx9gY06EpbwSmAVgqAhEauxO8VA7O1thX3jpFaArGcXJ2%2bnYZlwc/wS1R6IgFbngdraj8JJDhw5hLglApVAkQK9UBrXmMn75H0/cF///9thD%2bGjVCiTV9sFNNUKxPyBEsOQAaoJQZRaAk%2bEzW5/WguL847CyNj3DP8Afb775phgHBgbifNlllERqxvKFWQgDrwpklUIARZWtEIB3fOYwUPLSx7P/ncxZgCYIqqi/iodOmGAnwMe1ZflIVR4Q45df/h0ef/wxMY4O/xTQLsJ3mbNFL1Cq3sdLIcWzKam5xvcjOJshobgD/rL5eOZnj90nxKrlS7GbwsRe3i9yABeAyiCylS0iB5TLq8Xsl0RocKn6Khwc7cV9EydOxMWOi/Dy9BLHr73xKs5VdKIsalwIiKpRZeA9Ax1vMMe/ncUDzALYrxWl0CQAQ%2bVCKCO2i4c%2b9dTP4OnhIcZLQ5ZhY2ioGIeGbsK7774rxgEBgZQHNuN2xkyM5L%2bHlqy1cFeNjlUB14RBEgDYcwpQtALyir9jx/54/PQJUyg9%2begkJJR9SbNOiVM1IMjLVP04qjgNrVwv4v9kdCWas9qQmZo1JpyrmytGuw1YtWKVOJ7y6BToi2qgU9bR7OvHl00j7w/oOf7fL4G25hDwko5ZQoALEIy4/dtMbvrTJ3HsWLGItUcfnYpp06aJ88XHCvHh8uVi/NL036O7LhI9WTOpL5iNKzmLIEvqhQfVcj77Kw8DyowiBPnLsDu%2bENHlt1F%2b5hZeefm34v5HH54A5YmLmJfCSIB%2bCodhLErsRin1ABpz7Jce1OJCzWW88ebrYwLYUfKbNu15PPPsM2PnUpSpaFJTOYzRmgQwlUGmja/lx3%2bwlECzBzjYmEPgDXMZxJ3M9xh35%2bjwreKBDz00Cd9c6YCri5M56ViLHHCp/ggU%2b03XTJryBGs7GQdDoT3rz7dnd3Jd2AfJX1MzY2C8tMnrgHffnm66n/D8009i6iOTxn60y5wZiKk2Yq58kHknk8ckG9kq1W1mnn1WElXJ2g6fR1yU3PQMaxtMpOQ8cfLEsWfY2ppy1bpP1qG96AKoQxyrAryF1pjWEc9YSqBoh3vNy1kS4t8pHLoHqKcnASRol7DI3Z9ayOFWSzYKUvaPvWzi1J%2bhpzUJukyRKBlHbPgmSOXB0lfy6axAsYknM9ENcg9YXgCosk7gtd88B7txsT/RlsjPnQl15efwPcTYvERqiVW8ctyR1sZclKoVep4AWUVsFdprOjHtxWlj9xYVFAt3z07JwY6tOzB58mRTWXZ2wnmNSIRi5ikEJF0CD4mqL%2bj4ke/3AJZ22I7GF0YKnXFH/a4E/VIWtuUT88sm4sLJfRhqjMCiZWvw%2b7dnQBF7EJJ%2bNb6sjMD7rv7s3VmzkZGWIn2e4YfCXZ6QJXZL85JHqAz2Md4LuJAIHx6h2NcPIiK7CfsT8nFAVYD4oy2IqzVAdshIOWOAucXdwtwdTdI721vx6f561MRXSWWiqalmLaVtKMopRtS%2baCTGJ6L95GfQxp0S/f71MzcoDF8Sv3fq41PRUNLMKuNqxMxTCzzK1wZE%2bizn2nTo3L29Ab7eH/OCXIdyvrojDzCgcjGRjMKvf/caZEEhuF4bj%2bH8WaIbNDbuAXTL0JM5A/0ngjHaEoEbpaHSxewQtOz%2bzTerFU2pjqnU28cbpbnxYPbxIHIGeCTcxaK0r7D%2byDdYkAsEZQGeKcCcGAluSgN5DHWCu65Is7e04q3QlvbMyLq6hsRGEBGpMo5qeUw1TiU3oyW7HWfyO6gk6kWio4UQTqkboSmqRPS%2bGGzaFMpOVzSxshgdjkeVGYoiS8V1ZHdxnof3FtmMXwqLRsg8TuCVQCyG8p1Yb00Yhhv2AY3bMXDMB3ezqd9Xz8DdjD9wkajrcyQRZqEn/Q%2bs/q/TUfHpa7i2Y/J7ATmG5esKv8POww2G5JJjrESbgDP12/F162o20uWDr5rWMO%2b0a8yn8DjzP6JBwJEa5lvQAN%2b8s8w9vgLOUSfhrM5aWnjo%2bMky9SkUJdJqL0HLSuN1KJPrGFUDgXEZHnwlSJ0ea8lpZ53FF3E0%2bgSTr08YTd2WAcWGxMHotfLFltnftTL8BxsetuY8sMHSC4hFURatANXvsDu8xc2ZLdYJRJrgxFeGUm%2bBg9RX7MJ6S93ZdfKcm1r324aLvvqecwu6Bzr8YOhwZaxjDkPnbOAzdxjPe8Jw3oN1t4Vg5dFTWFC9E0uqd7HF1buwuHo3FmjD2ELdHgTrw43Bur1scdVBLNVFsg%2b0B7FCE81Wl8fiz6UKdlRVYdDKawyU3fmqT7q3OtQxnvmPR5Qb4zcmSenbMxEfmtSYuDnlRc6vOaPdOnz1/vs3Q3pMe34WD5hvpFJI5EfFyjDPicPA1/9mUfi6H/0FDhjimyM6dwx/JmPD52Ug4ky67A9c8QEuuAGfyxi%2bDgFuUvt8YyOGaeYHO2VsiOxohz/bUZrd76eNYot1kQjWRrIg3QGsaVVhdUsiW96oQMjpWCyoiWB%2bleEkyAG2UH8AgVX72BJ9JDTqOjSmnEVtciP0CfWoVIryxpOdQRd/auRY5EmoNqciYVNypGWSlRtVdiSGZXzfbpDYD7SUwkGqAhyjtC7grTHfFLFskBiPibUCx0BPtv3XfSddLnHyQ50%2bBBkG2z0Zu7bG2H01RTpTk4Dighi2J2wD2xW2DX1XDmCkcx4b6PQDzntJmQ1/OS/TRklLiViQbj%2bLbi6APCuZRWUmQHE4nSmLM5i6rpjtbctDYCV5gz6SPCUSIdqDdwuTyg9o42oyyANqiTjP7AN8rc/zQ2P6WaRtU9%2bKWadws5An4rYW4hYRvh8C1mb7C8JNwrdUEtvJaqk6ZJDdTZ7C9wE9qGN8m1z/%2bW8/fMVu6Jz3NCI/NEoiDLR7M1wJRIM%2bFT9/5mXKxrb3St0jv8D1LjWkC57o7/BlJADyGz8xkAAsuHIvVjQpWUZR3n2t8aQJEzHJegKiE%2bVY15aKQE24tLQumnvD1fv29xRVD5EAz9KMzqCMv6AkWrOZZv9Z/l3iphRbImxtFsGKPOKfbxJaNkaJHN8ZfpaOn6Txj253D1/yfWi4S3YFl/3Q1%2bYp4cYKpCbsFgR%2b%2b9uXUHQkFV2tJzB6tw34ZiMGzrmxwS7hAexQw3r4aKNAHsACdfsQ1VoAZX4aEnLTsHLlyjEhFNkpWNOSiCDNXuPS%2bhgs0kV05aaW2DUcbLQ5mJfzL3%2bjZdZ/lPz4rfF/5hm8U%2bTrBfresl1u03vUyXqg1kOEDQmgwxcB3AOMuBbIasqU4oe//tprqNEeQUzEpwhe4IfTmjjgajDr455yfj7i60MZCUAxfQCL9BHMXxOO1W0q6L48g7feMK3swnaGIfryccjKKUnqI408LwTrIk7z966siLVWqQutzP8BUFdXZVOpqLE9GVNpm/xpuhAmb0/hjxO/rxka/ydI7g//IOkR5%2bytyO05caEwxb4KXwVisENmYBe92NWzKkx%2b5Kc/2PZKT9oPXF%2bBvnNeYF3z2cG6LYxCAEIASoABur3Iv6DHrHdmiuuXLQlB2tVK%2bFRw8hFE/IAxpCGOi1XO30vWms5ZBBC/nxKgFVUBq5xdBeK4cP/x/59/ZYY7ZWMCkP2ECzDU6WsY6XRF3zUFXvilqedXxh3A9YslGL7TAgwVstHz89kgJUzpMx8WXreN%2bVJ5W0qzL9PshvqaDouCFor7fLy8UXyjCX41%2b3gCFB5CZA0fNMZxIXL5e8nacAEeyIdI3xOgU%2baKq/4Y6vI1Dp5zZrh5EHPmmhZN0ZF7kK%2bOwIchPliyZAn7x6VYIj%2bP3WnxxpbqHQjURzH/it3Y1ZWHzVu3iHsmP/wwktNSkFqej3R9Idvdms0CtXt5CIwua1ZwMUQaX1QVaUtjqwf2IQFEDhjqkv2OavzoyHlf9J11ZfhuB1auWvP9EGDP/fItfNGexq5o5qC2wElaVblrMLg6iuJ7J1NeKkGgt98PwoZewLLKjmBZo1xaoNk3%2bkGTHEFl4aH8vUGle2wftAdYm8Y%2bU2l8Q7roR3nARyJLeSCJ7dgWyhTR21FRFMsutaaykb%2blse5ziw1njs6G9qjHroCq6Mshp6K4S0tLa6JYWlsJk%2belsMg0BYtMjGWb92xnO8J3Ql5fYHTP3Ajv7C20tF471ti4xn/8QGd/DObjRlzxp25PZhzsmM%2bki74Svv2LETc/MuDLhQZc8jZKn7kZBju80JA3J/vnl5unUOLrXVwVyV3asFC73xig32dY3qQwfNSqMmxoPzS6uTPTsPVCzohfcRhcEv4Mt8RPVo%2bRV5rIU1l8sCJQNbAxVwI1rvnzjnB4hJoi4wVfsAteprb4C2qPPydcDcTNBq/O9t9Y/URWp3xhMWX/pXUx4M1NSEMsd3MsJcux%2bDQ1PHVRWNQQDc%2bM0H4X5ccu/D00tvVI3yA8z0sdahV4YveDE2BIVAIfO7MYu3B3MXhDRCIY6PjWcJdvM9kcQhghkM7/J7uyYAq/fr12%2b%2bRgfcTvyQveJw9wpzAIIruKsJGwkxBD3pG2sGJfjkfahtf5PfPS1tvNS1on3u2mWmvlmbLe6oF/7uUB2duErQR3wnTCo//qnqpyX5v/7Xvck9eNdXWc/P/l578AjufF27Pdj9IAAAAASUVORK5CYII=' /%3e%3c/svg%3e" width="331" data-src="/assets/static/logo.34ff00f.bd727e13501e82a0ba322b4ad29fd33a.png" data-srcset="/assets/static/logo.34ff00f.bd727e13501e82a0ba322b4ad29fd33a.png 331w" data-sizes="(max-width: 331px) 100vw, 331px" class="g-image g-image--lazy g-image--loading" data-v-8b0e8098 data-v-8b0e8098><noscript data-v-8b0e8098 data-v-8b0e8098><img src="/assets/static/logo.34ff00f.bd727e13501e82a0ba322b4ad29fd33a.png" class="g-image g-image--loaded" width="331"></noscript></div></div><div style="width:100%; text-align:center; font-size:14px; color:white; font-weight:300; line-height:1.5; padding-top:20px;" data-v-8b0e8098><div data-v-8b0e8098><div data-v-8b0e8098><div class="footer-top-div" data-v-8b0e8098>© MSA-Ez Authors 2023.  </div><div class="footer-top-div" data-v-8b0e8098>© 2023 uEngine All rights reserved.</div></div><div data-v-8b0e8098>
+                    uEngine has registered trademarks and uses trademarks. and MSA-Ez is licensed under the GNU General Public License version 3.0.
+                </div></div><div class="footer-bot" data-v-8b0e8098><div data-v-8b0e8098><a href="https://www.gnu.org/licenses/gpl-3.0.en.html#license-text" target="_blank" style="color:#fff;" data-v-8b0e8098>
+                        See LICENSE
+                    </a>
+                      |   
+                </div><div data-v-8b0e8098><a href="https://github.com/msa-ez/platform" target="_blank" style="color:#fff;" data-v-8b0e8098>
+                        Github Site
+                    </a>
+                      |   
+                </div><div data-v-8b0e8098>E-Mail: help@uengine.org</div></div></div></div></div></div>
+    <script src="/assets/js/app.1663a9ab.js" defer></script><script src="/assets/js/page--src--templates--markdown-page-vue.eef38ce3.js" defer></script>
+  </body>
+</html>

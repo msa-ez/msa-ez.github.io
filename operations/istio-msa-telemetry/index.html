@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html data-html-server-rendered="true" lang="en" data-vue-tag="%7B%22lang%22:%7B%22ssr%22:%22en%22%7D%7D">
+  <head>
+    <title>[Service Mesh] MSA 모니터링 w/ Istio addon Grafana - msaez</title><meta name="gridsome:hash" content="fa5fedf1848133ded319caa58f5dc027d2a72899"><meta data-vue-tag="ssr" charset="utf-8"><meta data-vue-tag="ssr" name="generator" content="Gridsome v0.7.23"><meta data-vue-tag="ssr" data-key="viewport" name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"><meta data-vue-tag="ssr" data-key="format-detection" name="format-detection" content="telephone=no"><meta data-vue-tag="ssr" data-key="og:url" name="og:url" content="undefined/templates-language/springboot-java-template/"><meta data-vue-tag="ssr" name="description" content="undefined"><meta data-vue-tag="ssr" data-key="og:title" name="og:title" content="[Service Mesh] MSA 모니터링 w/ Istio addon Grafana"><meta data-vue-tag="ssr" data-key="twitter:title" name="twitter:title" content="[Service Mesh] MSA 모니터링 w/ Istio addon Grafana"><meta data-vue-tag="ssr" data-key="og:description" name="og:description" content="undefined"><meta data-vue-tag="ssr" data-key="twitter:description" name="twitter:description" content="undefined"><meta data-vue-tag="ssr" data-key="og:type" name="og:type" content="website"><meta data-vue-tag="ssr" data-key="twitter:card" name="twitter:card" content="summary_large_image"><meta data-vue-tag="ssr" data-key="og:image" name="og:image" content="undefined/logo.jpg"><meta data-vue-tag="ssr" data-key="twitter:image" name="twitter:image" content="undefined/logo.jpg"><link data-vue-tag="ssr" rel="icon" href="data:,"><link data-vue-tag="ssr" rel="icon" type="image/png" sizes="16x16" href="/assets/static/favicon.ce0531f.f0886199c685a75a52fccefb5e72c094.png"><link data-vue-tag="ssr" rel="icon" type="image/png" sizes="32x32" href="/assets/static/favicon.ac8d93a.f0886199c685a75a52fccefb5e72c094.png"><link data-vue-tag="ssr" rel="icon" type="image/png" sizes="96x96" href="/assets/static/favicon.b9532cc.f0886199c685a75a52fccefb5e72c094.png"><link data-vue-tag="ssr" rel="apple-touch-icon" type="image/png" sizes="76x76" href="/assets/static/favicon.f22e9f3.f0886199c685a75a52fccefb5e72c094.png"><link data-vue-tag="ssr" rel="apple-touch-icon" type="image/png" sizes="152x152" href="/assets/static/favicon.62d22cb.f0886199c685a75a52fccefb5e72c094.png"><link data-vue-tag="ssr" rel="apple-touch-icon" type="image/png" sizes="120x120" href="/assets/static/favicon.1539b60.f0886199c685a75a52fccefb5e72c094.png"><link data-vue-tag="ssr" rel="apple-touch-icon" type="image/png" sizes="167x167" href="/assets/static/favicon.dc0cdc5.f0886199c685a75a52fccefb5e72c094.png"><link data-vue-tag="ssr" rel="apple-touch-icon" type="image/png" sizes="180x180" href="/assets/static/favicon.7b22250.f0886199c685a75a52fccefb5e72c094.png"><link rel="preload" href="/assets/css/0.styles.7b914b4e.css" as="style"><link rel="preload" href="/assets/js/app.1663a9ab.js" as="script"><link rel="preload" href="/assets/js/page--src--templates--markdown-page-vue.eef38ce3.js" as="script"><link rel="prefetch" href="/assets/js/page--src--pages--404-vue.e7647be7.js"><link rel="prefetch" href="/assets/js/page--src--pages--index-vue.ba039b97.js"><link rel="prefetch" href="/assets/js/search.395cc609.js"><link rel="prefetch" href="/assets/js/vendors~search.1cb8046c.js"><link rel="stylesheet" href="/assets/css/0.styles.7b914b4e.css"><noscript data-vue-tag="ssr"><style>.g-image--loading{display:none;}</style></noscript>
+  </head>
+  <body >
+    <div data-server-rendered="true" id="app" class="font-sans antialiased text-ui-typo bg-ui-background"><div class="flex flex-col justify-start min-h-screen"><header class="sticky top-0 z-10 w-full border-b bg-ui-background border-ui-border"><div class="py-2 border-t-2 border-ui-primary"><div class="container"><div class="flex items-center justify-between -mx-2 sm:-mx-4"><div class="flex flex-col items-center px-2 mr-auto sm:px-4 sm:flex-row"><a href="/" title="Home" class="flex items-center text-ui-primary active"><img src="data:image/svg+xml,%3csvg fill='none' viewBox='0 0 120 64' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink'%3e%3cdefs%3e%3cfilter id='__svg-blur-37afcb0017f229c304bfe602273e7d7c'%3e%3cfeGaussianBlur in='SourceGraphic' stdDeviation='40'/%3e%3c/filter%3e%3c/defs%3e%3cimage x='0' y='0' filter='url(%23__svg-blur-37afcb0017f229c304bfe602273e7d7c)' width='120' height='64' xlink:href='data:image/png%3bbase64%2ciVBORw0KGgoAAAANSUhEUgAAAEAAAAAiCAYAAADvVd%2bPAAAACXBIWXMAAC4jAAAuIwF4pT92AAATu0lEQVRo3sVZB3RU15lWIxhscMtunHhd8EkcJzFusb1xwMaAuoQkpFEFUWQwzXEMAQSYElFEkVCbGUmjikZdIJBAqIxmRgUJVRAqmGLABQdwTBDqZebdb/97Z0YIO1nvnrN7mHO%2b89/35pX5vvu3e8fKij69eQ4C48ffg7UZNgK5DrY9ufZ2wtJ5qwfw0cirrDSKahuCrRk0rrKuUFRb05h/Z1VhukZcP378g09vnr2VmZwtR4/Z8nNE9Ed/DAlhRfdM%2bS7X/QXkv/rWtrQ6R2cVW%2bSVNBDkoRoK9EwaCvBMGvQn60fwJcgIPnRuvkfSkBeNPWns4aEadCfrRseudN5lvmrAZU6SZJ%2bobA/Ry3XLyhXV7xPBXxGRh/%2b731PxQ3FsK%2bTi2Fojrx4TQtievP8BQSJHBJ8h%2bzrBje5ZQTaMhEulcTmN2%2bn7G925zgNS/n9K0enF3S5qwC8T8LFAfT9kZojjDMDbgkP34ENwIySnXkNraiN0CfUgAQbph39DaCQyeWT3EuHlhDk0/hXZx36MDxdovOUEnyC8SiQcyS4mbOnNtY8nW0K2lfAFobc/3wGGo05AsTNwwpXgBlbsIs4NHXZEb74zjPnvQJ2ROmKvgmF%2bUr%2bBZpQwZKDZFdaLjt0T%2bgyO8l6jo7zP6KzoNXok9hvpvJG8xUjXE8iqBgXck4alQ8ozxiq5zkAeIFUqa6BPqENNUiPqU1twOu0M6lKaUa06DRJghEhdJ9tMOMzFISwjOBB%2bTZh6T4Tq%2b1w4khU5Y6DAETjuQsRcTJbIGY%2b5YOiIM/oLnECCMAoJqTfP0XA3Z67hTsYfCTMMPbkORvpO6s51Yoa8P7JydTgcVWBeSf2MCDEiT3aI7ACzVwyyoBywtSVg60%2bCfXQcbH46mKNigK7n1wyJe4g8m0fH3nTPYUUj08n1jGafaUyQiKiRrIGsoeSgxngiUiOVx%2bpRlViPWhKHi3I6tZVEahXnuDiEvxHOE%2baYQ8DGIsBfOGma5REiQoTsDdxyknfVfzT2Z8%2bQutUzGHkI4yLczX6fjRx1ZWjczFC3FgN5c0iYuexunhNG8mayM1l/Zm4qIycCQSZpCB6JA5iXNIq4GiNi0ouxdsNWfLx2Azbt2IeUomZsLQOclIMgTwCJABIANPsIVPWgRFGLSnkVd39OBERaCFEep4dGXsM6T1xkFzRXWP2hFlYarZPoOyMXhgtEiZFbqVJRA62yFo3pbXR/tbNZAFshAM2gB3djImck8pwkiDyjmWcjDXvw93oFjLXr0Zv9Pj%2bPkWIvdGiS4ecfiDVr/oRvT8WiP3c2unMd2WDeLFzNCWZ%2bSXfZPNUwF0CQcoofRkLNABb6eYJeeR9%2bYm2FvZFyfFQEOCv76XqTAK5JI1iWeJtIVnHS4wWgcRU0cdVo03ZgzUdr4ObuhqK8YjTlnEVptNbiKXQvt0IwSdwrckjVS9/zAPtX%2b4h0r2WGcx2I0CzcOhUHV68ATHniKWzf8VdIdZvxj5RXITXtwRyne0T2hG0FqpbhH%2br30Jdnj9u57vgg%2bSu4qIxEZgDOij6sJnI790aZ77HGc88/D4c5s/DitKfFueAAH%2bypAubG9QnBvEgAZ/KYtYk3QBVAkK8wk9coq3EiogIXyj/Hnz7%2b09jvePq5X%2bBM5TlUxJgEEteaReMC8NxB9ibhSbMA1pYk%2bBTh9iDlAB7Ld7LeB8p9kZW4995M2U5GV2UyjHnv4FZNFJ5%2b/sWx75xc3IGG7ejOeAc9FAaDebOxPvUcnFQM3skDsCdSYVrAV%2bYtrqe3Iv%2b4Hse%2bBGLKbmK3IhcJFX%2bDd6oB81Q8bIaEAE4kwLaEL1Aj16LcLAAnw12/WtUA/YkqTJg4QQg6wW6CePaRjKOoS21GWaxuPHnuAcYauodE6Rgrg5ZEaK77nZYwuJNJAlQEID0uTDx00kMThd26eQNQvxJtxfsxYfLj45R/EX%2bvjUZ/9kx05zljNG8mDqSVw0FF5SypHw7yPoRSjK9eY5otG1tbTJ/%2bCjaHxyO%2b/BtENwMOCRLcE/oFeUqaYx5wIP7iPQHGzf4l3VX4%2bvmanmdjAzs7O7M3huNsQSdORlWOCVAhNwlwKrmJH580l0BrSx9gY06EpbwSmAVgqAhEauxO8VA7O1thX3jpFaArGcXJ2%2bnYZlwc/wS1R6IgFbngdraj8JJDhw5hLglApVAkQK9UBrXmMn75H0/cF///9thD%2bGjVCiTV9sFNNUKxPyBEsOQAaoJQZRaAk%2bEzW5/WguL847CyNj3DP8Afb775phgHBgbifNlllERqxvKFWQgDrwpklUIARZWtEIB3fOYwUPLSx7P/ncxZgCYIqqi/iodOmGAnwMe1ZflIVR4Q45df/h0ef/wxMY4O/xTQLsJ3mbNFL1Cq3sdLIcWzKam5xvcjOJshobgD/rL5eOZnj90nxKrlS7GbwsRe3i9yABeAyiCylS0iB5TLq8Xsl0RocKn6Khwc7cV9EydOxMWOi/Dy9BLHr73xKs5VdKIsalwIiKpRZeA9Ax1vMMe/ncUDzALYrxWl0CQAQ%2bVCKCO2i4c%2b9dTP4OnhIcZLQ5ZhY2ioGIeGbsK7774rxgEBgZQHNuN2xkyM5L%2bHlqy1cFeNjlUB14RBEgDYcwpQtALyir9jx/54/PQJUyg9%2begkJJR9SbNOiVM1IMjLVP04qjgNrVwv4v9kdCWas9qQmZo1JpyrmytGuw1YtWKVOJ7y6BToi2qgU9bR7OvHl00j7w/oOf7fL4G25hDwko5ZQoALEIy4/dtMbvrTJ3HsWLGItUcfnYpp06aJ88XHCvHh8uVi/NL036O7LhI9WTOpL5iNKzmLIEvqhQfVcj77Kw8DyowiBPnLsDu%2bENHlt1F%2b5hZeefm34v5HH54A5YmLmJfCSIB%2bCodhLErsRin1ABpz7Jce1OJCzWW88ebrYwLYUfKbNu15PPPsM2PnUpSpaFJTOYzRmgQwlUGmja/lx3%2bwlECzBzjYmEPgDXMZxJ3M9xh35%2bjwreKBDz00Cd9c6YCri5M56ViLHHCp/ggU%2b03XTJryBGs7GQdDoT3rz7dnd3Jd2AfJX1MzY2C8tMnrgHffnm66n/D8009i6iOTxn60y5wZiKk2Yq58kHknk8ckG9kq1W1mnn1WElXJ2g6fR1yU3PQMaxtMpOQ8cfLEsWfY2ppy1bpP1qG96AKoQxyrAryF1pjWEc9YSqBoh3vNy1kS4t8pHLoHqKcnASRol7DI3Z9ayOFWSzYKUvaPvWzi1J%2bhpzUJukyRKBlHbPgmSOXB0lfy6axAsYknM9ENcg9YXgCosk7gtd88B7txsT/RlsjPnQl15efwPcTYvERqiVW8ctyR1sZclKoVep4AWUVsFdprOjHtxWlj9xYVFAt3z07JwY6tOzB58mRTWXZ2wnmNSIRi5ikEJF0CD4mqL%2bj4ke/3AJZ22I7GF0YKnXFH/a4E/VIWtuUT88sm4sLJfRhqjMCiZWvw%2b7dnQBF7EJJ%2bNb6sjMD7rv7s3VmzkZGWIn2e4YfCXZ6QJXZL85JHqAz2Md4LuJAIHx6h2NcPIiK7CfsT8nFAVYD4oy2IqzVAdshIOWOAucXdwtwdTdI721vx6f561MRXSWWiqalmLaVtKMopRtS%2baCTGJ6L95GfQxp0S/f71MzcoDF8Sv3fq41PRUNLMKuNqxMxTCzzK1wZE%2bizn2nTo3L29Ab7eH/OCXIdyvrojDzCgcjGRjMKvf/caZEEhuF4bj%2bH8WaIbNDbuAXTL0JM5A/0ngjHaEoEbpaHSxewQtOz%2bzTerFU2pjqnU28cbpbnxYPbxIHIGeCTcxaK0r7D%2byDdYkAsEZQGeKcCcGAluSgN5DHWCu65Is7e04q3QlvbMyLq6hsRGEBGpMo5qeUw1TiU3oyW7HWfyO6gk6kWio4UQTqkboSmqRPS%2bGGzaFMpOVzSxshgdjkeVGYoiS8V1ZHdxnof3FtmMXwqLRsg8TuCVQCyG8p1Yb00Yhhv2AY3bMXDMB3ezqd9Xz8DdjD9wkajrcyQRZqEn/Q%2bs/q/TUfHpa7i2Y/J7ATmG5esKv8POww2G5JJjrESbgDP12/F162o20uWDr5rWMO%2b0a8yn8DjzP6JBwJEa5lvQAN%2b8s8w9vgLOUSfhrM5aWnjo%2bMky9SkUJdJqL0HLSuN1KJPrGFUDgXEZHnwlSJ0ea8lpZ53FF3E0%2bgSTr08YTd2WAcWGxMHotfLFltnftTL8BxsetuY8sMHSC4hFURatANXvsDu8xc2ZLdYJRJrgxFeGUm%2bBg9RX7MJ6S93ZdfKcm1r324aLvvqecwu6Bzr8YOhwZaxjDkPnbOAzdxjPe8Jw3oN1t4Vg5dFTWFC9E0uqd7HF1buwuHo3FmjD2ELdHgTrw43Bur1scdVBLNVFsg%2b0B7FCE81Wl8fiz6UKdlRVYdDKawyU3fmqT7q3OtQxnvmPR5Qb4zcmSenbMxEfmtSYuDnlRc6vOaPdOnz1/vs3Q3pMe34WD5hvpFJI5EfFyjDPicPA1/9mUfi6H/0FDhjimyM6dwx/JmPD52Ug4ky67A9c8QEuuAGfyxi%2bDgFuUvt8YyOGaeYHO2VsiOxohz/bUZrd76eNYot1kQjWRrIg3QGsaVVhdUsiW96oQMjpWCyoiWB%2bleEkyAG2UH8AgVX72BJ9JDTqOjSmnEVtciP0CfWoVIryxpOdQRd/auRY5EmoNqciYVNypGWSlRtVdiSGZXzfbpDYD7SUwkGqAhyjtC7grTHfFLFskBiPibUCx0BPtv3XfSddLnHyQ50%2bBBkG2z0Zu7bG2H01RTpTk4Dighi2J2wD2xW2DX1XDmCkcx4b6PQDzntJmQ1/OS/TRklLiViQbj%2bLbi6APCuZRWUmQHE4nSmLM5i6rpjtbctDYCV5gz6SPCUSIdqDdwuTyg9o42oyyANqiTjP7AN8rc/zQ2P6WaRtU9%2bKWadws5An4rYW4hYRvh8C1mb7C8JNwrdUEtvJaqk6ZJDdTZ7C9wE9qGN8m1z/%2bW8/fMVu6Jz3NCI/NEoiDLR7M1wJRIM%2bFT9/5mXKxrb3St0jv8D1LjWkC57o7/BlJADyGz8xkAAsuHIvVjQpWUZR3n2t8aQJEzHJegKiE%2bVY15aKQE24tLQumnvD1fv29xRVD5EAz9KMzqCMv6AkWrOZZv9Z/l3iphRbImxtFsGKPOKfbxJaNkaJHN8ZfpaOn6Txj253D1/yfWi4S3YFl/3Q1%2bYp4cYKpCbsFgR%2b%2b9uXUHQkFV2tJzB6tw34ZiMGzrmxwS7hAexQw3r4aKNAHsACdfsQ1VoAZX4aEnLTsHLlyjEhFNkpWNOSiCDNXuPS%2bhgs0kV05aaW2DUcbLQ5mJfzL3%2bjZdZ/lPz4rfF/5hm8U%2bTrBfresl1u03vUyXqg1kOEDQmgwxcB3AOMuBbIasqU4oe//tprqNEeQUzEpwhe4IfTmjjgajDr455yfj7i60MZCUAxfQCL9BHMXxOO1W0q6L48g7feMK3swnaGIfryccjKKUnqI408LwTrIk7z966siLVWqQutzP8BUFdXZVOpqLE9GVNpm/xpuhAmb0/hjxO/rxka/ydI7g//IOkR5%2bytyO05caEwxb4KXwVisENmYBe92NWzKkx%2b5Kc/2PZKT9oPXF%2bBvnNeYF3z2cG6LYxCAEIASoABur3Iv6DHrHdmiuuXLQlB2tVK%2bFRw8hFE/IAxpCGOi1XO30vWms5ZBBC/nxKgFVUBq5xdBeK4cP/x/59/ZYY7ZWMCkP2ECzDU6WsY6XRF3zUFXvilqedXxh3A9YslGL7TAgwVstHz89kgJUzpMx8WXreN%2bVJ5W0qzL9PshvqaDouCFor7fLy8UXyjCX41%2b3gCFB5CZA0fNMZxIXL5e8nacAEeyIdI3xOgU%2baKq/4Y6vI1Dp5zZrh5EHPmmhZN0ZF7kK%2bOwIchPliyZAn7x6VYIj%2bP3WnxxpbqHQjURzH/it3Y1ZWHzVu3iHsmP/wwktNSkFqej3R9Idvdms0CtXt5CIwua1ZwMUQaX1QVaUtjqwf2IQFEDhjqkv2OavzoyHlf9J11ZfhuB1auWvP9EGDP/fItfNGexq5o5qC2wElaVblrMLg6iuJ7J1NeKkGgt98PwoZewLLKjmBZo1xaoNk3%2bkGTHEFl4aH8vUGle2wftAdYm8Y%2bU2l8Q7roR3nARyJLeSCJ7dgWyhTR21FRFMsutaaykb%2blse5ziw1njs6G9qjHroCq6Mshp6K4S0tLa6JYWlsJk%2belsMg0BYtMjGWb92xnO8J3Ql5fYHTP3Ajv7C20tF471ti4xn/8QGd/DObjRlzxp25PZhzsmM%2bki74Svv2LETc/MuDLhQZc8jZKn7kZBju80JA3J/vnl5unUOLrXVwVyV3asFC73xig32dY3qQwfNSqMmxoPzS6uTPTsPVCzohfcRhcEv4Mt8RPVo%2bRV5rIU1l8sCJQNbAxVwI1rvnzjnB4hJoi4wVfsAteprb4C2qPPydcDcTNBq/O9t9Y/URWp3xhMWX/pXUx4M1NSEMsd3MsJcux%2bDQ1PHVRWNQQDc%2bM0H4X5ccu/D00tvVI3yA8z0sdahV4YveDE2BIVAIfO7MYu3B3MXhDRCIY6PjWcJdvM9kcQhghkM7/J7uyYAq/fr12%2b%2bRgfcTvyQveJw9wpzAIIruKsJGwkxBD3pG2sGJfjkfahtf5PfPS1tvNS1on3u2mWmvlmbLe6oF/7uUB2duErQR3wnTCo//qnqpyX5v/7Xvck9eNdXWc/P/l578AjufF27Pdj9IAAAAASUVORK5CYII=' /%3e%3c/svg%3e" width="120" data-src="/assets/static/logo.1539b60.bd727e13501e82a0ba322b4ad29fd33a.png" data-srcset="/assets/static/logo.1539b60.bd727e13501e82a0ba322b4ad29fd33a.png 120w" data-sizes="(max-width: 120px) 100vw, 120px" class="text-ui-primary g-image g-image--lazy g-image--loading"><noscript><img src="/assets/static/logo.1539b60.bd727e13501e82a0ba322b4ad29fd33a.png" class="text-ui-primary g-image g-image--loaded" width="120"></noscript></a></div><div class="w-full px-2 sm:px-4 max-w-screen-xs"><!----></div><div class="flex items-center justify-end px-2 sm:px-4"><!----><!----><!----><div class=".clearfix" style="width:250px;"><div style="width:55px; height:50px; text-align:center; line-height:50px; font-weight:700; float:left;"><a style="cursor:pointer;">English</a></div><div style="width:50px; height:50px; text-align:center; line-height:50px; float:left; padding-top: 5px;"><button aria-label="Toggle Darkmode" title="Toggle Darkmode"><svg xmlns="http://www.w3.org/2000/svg" width="1.5em" height="1.5em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-sun"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg></button></div><div style="width:130px; height:50px; text-align:center; line-height:50px; float:left;"><a href="http://labs.msaez.io/" target="_blank" rel="noopener" class="px-4 py-2 ml-auto font-bold leading-none text-white rounded-lg shadow-lg bg-ui-primary">
+              Try MSAEZ
+            </a></div></div></div></div></div></div></header><main class="container relative flex flex-wrap justify-start flex-1 w-full bg-ui-background"><!----><div class="w-full pb-24"><div class="flex flex-wrap items-start justify-start"><div class="order-2 w-full md:w-1/3 sm:pl-4 md:pl-6 lg:pl-8 sticky" style="top:4rem;"><div class="mt-8 sm:pl-4 md:pl-6 md:pt-12 lg:pl-8 sm:pb-16 sm:border-l border-ui-border md:mt-0"><h3 class="pt-0 mt-0 text-sm tracking-wide uppercase border-none">On this page</h3><div><ul><li class="font-semibold depth-2"><a href="/operations/istio-msa-telemetry/#prometheusgrafana기반-k8s-통합-모니터링" class="relative flex items-center py-1 text-sm transition transform hover:translate-x-1"><span class="absolute w-2 h-2 -ml-3 rounded-full opacity-0 bg-ui-primary transition transform scale-0 origin-center"></span>
+          Prometheus/Grafana기반 K8s 통합 모니터링
+        </a></li><li class="depth-3"><a href="/operations/istio-msa-telemetry/#모니터링-서버-설치하기-if-not-installed" class="relative flex items-center py-1 text-sm transition transform hover:translate-x-1 pl-2"><span class="absolute w-2 h-2 -ml-3 rounded-full opacity-0 bg-ui-primary transition transform scale-0 origin-center"></span>
+          모니터링 서버 설치하기 (If not Installed)
+        </a></li><li class="depth-4"><a href="/operations/istio-msa-telemetry/#모니터링-대상-마이크로서비스-배포" class="relative flex items-center py-1 text-sm transition transform hover:translate-x-1 pl-3"><span class="absolute w-2 h-2 -ml-3 rounded-full opacity-0 bg-ui-primary transition transform scale-0 origin-center"></span>
+          모니터링 대상 마이크로서비스 배포
+        </a></li><li class="depth-3"><a href="/operations/istio-msa-telemetry/#promql-test-in-expression-browser" class="relative flex items-center py-1 text-sm transition transform hover:translate-x-1 pl-2"><span class="absolute w-2 h-2 -ml-3 rounded-full opacity-0 bg-ui-primary transition transform scale-0 origin-center"></span>
+          PromQL Test in Expression Browser
+        </a></li><li class="border-t border-dashed border-ui-border pt-2 mt-2 font-semibold depth-2"><a href="/operations/istio-msa-telemetry/#서비스-모니터링-in-grafana" class="relative flex items-center py-1 text-sm transition transform hover:translate-x-1"><span class="absolute w-2 h-2 -ml-3 rounded-full opacity-0 bg-ui-primary transition transform scale-0 origin-center"></span>
+          서비스 모니터링 in Grafana
+        </a></li><li class="depth-4"><a href="/operations/istio-msa-telemetry/#built-in-dashboard-뷰" class="relative flex items-center py-1 text-sm transition transform hover:translate-x-1 pl-3"><span class="absolute w-2 h-2 -ml-3 rounded-full opacity-0 bg-ui-primary transition transform scale-0 origin-center"></span>
+          Built-in Dashboard 뷰
+        </a></li><li class="depth-4"><a href="/operations/istio-msa-telemetry/#grafana-providing-dashboard-활용하기" class="relative flex items-center py-1 text-sm transition transform hover:translate-x-1 pl-3"><span class="absolute w-2 h-2 -ml-3 rounded-full opacity-0 bg-ui-primary transition transform scale-0 origin-center"></span>
+          Grafana providing Dashboard 활용하기
+        </a></li><li class="depth-3"><a href="/operations/istio-msa-telemetry/#dashboard-customizing" class="relative flex items-center py-1 text-sm transition transform hover:translate-x-1 pl-2"><span class="absolute w-2 h-2 -ml-3 rounded-full opacity-0 bg-ui-primary transition transform scale-0 origin-center"></span>
+          Dashboard Customizing
+        </a></li><li class="depth-4"><a href="/operations/istio-msa-telemetry/#dashboard-참조-url" class="relative flex items-center py-1 text-sm transition transform hover:translate-x-1 pl-3"><span class="absolute w-2 h-2 -ml-3 rounded-full opacity-0 bg-ui-primary transition transform scale-0 origin-center"></span>
+          Dashboard 참조 URL
+        </a></li><li class="depth-3"><a href="/operations/istio-msa-telemetry/#이상감지--alerting" class="relative flex items-center py-1 text-sm transition transform hover:translate-x-1 pl-2"><span class="absolute w-2 h-2 -ml-3 rounded-full opacity-0 bg-ui-primary transition transform scale-0 origin-center"></span>
+          이상감지 &amp; Alerting
+        </a></li><li class="depth-4"><a href="/operations/istio-msa-telemetry/#가상-시나리오" class="relative flex items-center py-1 text-sm transition transform hover:translate-x-1 pl-3"><span class="absolute w-2 h-2 -ml-3 rounded-full opacity-0 bg-ui-primary transition transform scale-0 origin-center"></span>
+          가상 시나리오
+        </a></li><li class="depth-4"><a href="/operations/istio-msa-telemetry/#alert-조건-설정" class="relative flex items-center py-1 text-sm transition transform hover:translate-x-1 pl-3"><span class="absolute w-2 h-2 -ml-3 rounded-full opacity-0 bg-ui-primary transition transform scale-0 origin-center"></span>
+          Alert 조건 설정
+        </a></li><li class="depth-4"><a href="/operations/istio-msa-telemetry/#1-set-a-query-and-alert-condition" class="relative flex items-center py-1 text-sm transition transform hover:translate-x-1 pl-3"><span class="absolute w-2 h-2 -ml-3 rounded-full opacity-0 bg-ui-primary transition transform scale-0 origin-center"></span>
+          1. Set a query and alert Condition
+        </a></li><li class="depth-4"><a href="/operations/istio-msa-telemetry/#2-alert-evauation" class="relative flex items-center py-1 text-sm transition transform hover:translate-x-1 pl-3"><span class="absolute w-2 h-2 -ml-3 rounded-full opacity-0 bg-ui-primary transition transform scale-0 origin-center"></span>
+          2. Alert evauation
+        </a></li><li class="depth-4"><a href="/operations/istio-msa-telemetry/#3-add-alert-details" class="relative flex items-center py-1 text-sm transition transform hover:translate-x-1 pl-3"><span class="absolute w-2 h-2 -ml-3 rounded-full opacity-0 bg-ui-primary transition transform scale-0 origin-center"></span>
+          3. Add Alert details
+        </a></li><li class="depth-4"><a href="/operations/istio-msa-telemetry/#4-save-and-confim-the-alert" class="relative flex items-center py-1 text-sm transition transform hover:translate-x-1 pl-3"><span class="absolute w-2 h-2 -ml-3 rounded-full opacity-0 bg-ui-primary transition transform scale-0 origin-center"></span>
+          4. Save and Confim the Alert
+        </a></li><li class="depth-4"><a href="/operations/istio-msa-telemetry/#명시적-alert-발생ddos-attack" class="relative flex items-center py-1 text-sm transition transform hover:translate-x-1 pl-3"><span class="absolute w-2 h-2 -ml-3 rounded-full opacity-0 bg-ui-primary transition transform scale-0 origin-center"></span>
+          명시적 Alert 발생(DDOS Attack)
+        </a></li><li class="depth-3"><a href="/operations/istio-msa-telemetry/#notification-설정" class="relative flex items-center py-1 text-sm transition transform hover:translate-x-1 pl-2"><span class="absolute w-2 h-2 -ml-3 rounded-full opacity-0 bg-ui-primary transition transform scale-0 origin-center"></span>
+          Notification 설정
+        </a></li><li class="depth-4"><a href="/operations/istio-msa-telemetry/#slack-설정" class="relative flex items-center py-1 text-sm transition transform hover:translate-x-1 pl-3"><span class="absolute w-2 h-2 -ml-3 rounded-full opacity-0 bg-ui-primary transition transform scale-0 origin-center"></span>
+          Slack 설정
+        </a></li><li class="depth-4"><a href="/operations/istio-msa-telemetry/#테스트-slack-notification" class="relative flex items-center py-1 text-sm transition transform hover:translate-x-1 pl-3"><span class="absolute w-2 h-2 -ml-3 rounded-full opacity-0 bg-ui-primary transition transform scale-0 origin-center"></span>
+          테스트 Slack Notification
+        </a></li><li class="depth-3"><a href="/operations/istio-msa-telemetry/#기타-notification-type" class="relative flex items-center py-1 text-sm transition transform hover:translate-x-1 pl-2"><span class="absolute w-2 h-2 -ml-3 rounded-full opacity-0 bg-ui-primary transition transform scale-0 origin-center"></span>
+          기타 Notification Type
+        </a></li><li class="depth-4"><a href="/operations/istio-msa-telemetry/#e-mail" class="relative flex items-center py-1 text-sm transition transform hover:translate-x-1 pl-3"><span class="absolute w-2 h-2 -ml-3 rounded-full opacity-0 bg-ui-primary transition transform scale-0 origin-center"></span>
+          E-Mail
+        </a></li><li class="depth-4"><a href="/operations/istio-msa-telemetry/#기타-notification-설정-참조-url" class="relative flex items-center py-1 text-sm transition transform hover:translate-x-1 pl-3"><span class="absolute w-2 h-2 -ml-3 rounded-full opacity-0 bg-ui-primary transition transform scale-0 origin-center"></span>
+          기타 Notification 설정 참조 URL
+        </a></li></ul></div></div></div><div class="order-1 w-full md:w-2/3"><div class="content"><h1 id="service-mesh-msa-모니터링-w-istio-addon-grafana"><a href="#service-mesh-msa-%EB%AA%A8%EB%8B%88%ED%84%B0%EB%A7%81-w-istio-addon-grafana" aria-hidden="true"><span class="icon icon-link"></span></a>[Service Mesh] MSA 모니터링 w/ Istio addon Grafana</h1>
+<h2 id="prometheusgrafana기반-k8s-통합-모니터링"><a href="#prometheusgrafana%EA%B8%B0%EB%B0%98-k8s-%ED%86%B5%ED%95%A9-%EB%AA%A8%EB%8B%88%ED%84%B0%EB%A7%81" aria-hidden="true"><span class="icon icon-link"></span></a>Prometheus/Grafana기반 K8s 통합 모니터링</h2>
+<ul>
+<li>프로메테우스는 SoundCloud 에서 만든 go언어 기반 오픈소스 모니터링 툴</li>
+<li>kubernetes 환경에서 모니터링하기 원하는 리소스로부터 metirc을 수집하고 해당 메트릭을 이용해서 모니터링</li>
+<li>이상 증세가 발생했을 때 Slack, Mail 또는 다른 Webhook을 이용해서 알림을 주는 등 확장 기능 제공</li>
+</ul>
+<h3 id="모니터링-서버-설치하기-if-not-installed"><a href="#%EB%AA%A8%EB%8B%88%ED%84%B0%EB%A7%81-%EC%84%9C%EB%B2%84-%EC%84%A4%EC%B9%98%ED%95%98%EA%B8%B0-if-not-installed" aria-hidden="true"><span class="icon icon-link"></span></a>모니터링 서버 설치하기 (If not Installed)</h3>
+<ul>
+<li>다운로드한 Istio 폴더에서 Addon Server YAML로 설치</li>
+</ul>
+<pre class="language-text"><code class="language-text">kubectl apply -f samples/addons</code></pre>
+<h4 id="모니터링-대상-마이크로서비스-배포"><a href="#%EB%AA%A8%EB%8B%88%ED%84%B0%EB%A7%81-%EB%8C%80%EC%83%81-%EB%A7%88%EC%9D%B4%ED%81%AC%EB%A1%9C%EC%84%9C%EB%B9%84%EC%8A%A4-%EB%B0%B0%ED%8F%AC" aria-hidden="true"><span class="icon icon-link"></span></a>모니터링 대상 마이크로서비스 배포</h4>
+<ul>
+<li>Shop 네임스페이스를 만들고, 주문과 배송서비스를 배포한다.</li>
+<li>클라이언트용 Pod도 배포한다.</li>
+</ul>
+<pre class="language-text"><code class="language-text">kubectl create ns shop
+kubectl label namespace shop istio-injection=enabled
+kubectl apply -f https://raw.githubusercontent.com/acmexii/demo/master/edu/order-liveness.yaml -n shop
+kubectl expose deploy order --port=8080 -n shop
+kubectl apply -f https://raw.githubusercontent.com/acmexii/demo/master/edu/delivery-rediness-v1.yaml -n shop
+kubectl expose deploy delivery --port=8080 -n shop
+# Client Pod deploy
+kubectl apply -f https://raw.githubusercontent.com/acmexii/demo/master/edu/siege-pod.yaml -n shop</code></pre>
+<h3 id="promql-test-in-expression-browser"><a href="#promql-test-in-expression-browser" aria-hidden="true"><span class="icon icon-link"></span></a>PromQL Test in Expression Browser</h3>
+<ul>
+<li>먼저, (External-IP 개수 제약에 따라) Istio 다른 Dashboard들의 Service Type을 ClusterIP로 수정해 두자.</li>
+</ul>
+<pre class="language-text"><code class="language-text">kubectl patch svc kiali -n istio-system -p &#39;{&quot;spec&quot;: {&quot;type&quot;: &quot;ClusterIP&quot;}}&#39;
+kubectl patch svc tracing -n istio-system -p &#39;{&quot;spec&quot;: {&quot;type&quot;: &quot;ClusterIP&quot;}}&#39;</code></pre>
+<ul>
+<li>
+<ul>
+<li>Prometheus UI 사용을 위해 Service Scope을 LoadBalancer Type으로 수정한다.</li>
+</ul>
+</li>
+</ul>
+<pre class="language-text"><code class="language-text">kubectl patch service/prometheus -n istio-system -p &#39;{&quot;spec&quot;: {&quot;type&quot;: &quot;LoadBalancer&quot;}}&#39;</code></pre>
+<ul>
+<li>Prometheus service EXTERNAL-IP:9090에 접속한다.</li>
+<li>아래와 같은 PromQL Playground WebUI가 나타난다.
+<img src="https://user-images.githubusercontent.com/35618409/204709566-2bb3035e-631a-458e-aa4c-d1f4dfb94d3d.png" alt="image"></li>
+<li>계속하기 전 주문 서비스 엔드 포인트를 조회한다.</li>
+</ul>
+<pre class="language-text"><code class="language-text">kubectl exec -it pod/siege -n shop -- /bin/bash
+http GET http://order:8080
+http GET http://order:8080/orders</code></pre>
+<ul>
+<li>다시 Expression 브라우저 화면에서</li>
+<li>입력란에 커서를 두고, 메트릭을 입력하면 사용 가능한 메트릭이 자동완성되어 나타난다. </li>
+<li>istio_requests 입력하고, 나타난 메트릭 중 'istio_requests_total'을 입력하고 실행(Execute 클릭) 한다.
+<img src="https://user-images.githubusercontent.com/35618409/204707729-ef1279f4-9cfa-4540-8591-4c901ede7e99.png" alt="image"></li>
+<li>조회된 결과는 해당 메트릭으로 가능한 모든 라벨(메트릭의 필터)을 보여준다.</li>
+<li>이번엔 라벨을 활용하여 주문서비스 모든 요청횟수를 조회해 본다.</li>
+</ul>
+<pre class="language-text"><code class="language-text">istio_requests_total{destination_service_name=&quot;order&quot;,app=&quot;order&quot;}</code></pre>
+<ul>
+<li>멀티 라벨로 주문서비스의 다차원 데이터 모델을 조회해 본다.</li>
+</ul>
+<pre class="language-text"><code class="language-text">istio_requests_total{app=&quot;order&quot;, destination_service=&quot;order.shop.svc.cluster.local&quot;, response_code = &quot;200&quot;}
+istio_requests_total{app=&quot;order&quot;, destination_service=&quot;order.shop.svc.cluster.local&quot;, response_code != &quot;500&quot;}</code></pre>
+<ul>
+<li>아래와 같이 Kubernetes 메타정보와 응답코드를 포함한 Label 정보가 출력된다.
+<img src="https://user-images.githubusercontent.com/35618409/204709400-86633082-50ec-46a7-af14-c29dfc1d069e.png" alt="image"></li>
+<li>이번엔 Siege로 주문서비스에 부하를 발생한다.</li>
+</ul>
+<pre class="language-text"><code class="language-text">siege -c30 -t40S -v http://order:8080</code></pre>
+<ul>
+<li>Expression Browser에 아래 쿼리로 모니터링한다.</li>
+</ul>
+<pre class="language-text"><code class="language-text">rate(istio_requests_total{app=&quot;order&quot;,destination_service=&quot;order.shop.svc.cluster.local&quot;,response_code=&quot;200&quot;}[5m])</code></pre>
+<ul>
+<li>'Graph' 탭을 클릭한다.</li>
+<li>지난 5분간 Data로 PromQL기반의 그래프가 나타난다.
+<img src="https://user-images.githubusercontent.com/35618409/183346842-1dda3245-d264-452e-9a2a-9c016ff7318e.png" alt="image"></li>
+<li>보다 상세한 Istio기반 메트릭은 아래 링크를 참조한다.</li>
+<li><a href="https://istio.io/latest/docs/reference/config/metrics/" target="_blank" rel="noopener noreferrer">Istio Standard Metrics 참조</a></li>
+<li>이제, Istio 메트릭 기반으로 Grafana를 통해 대쉬보드를 시각화해 보자</li>
+</ul>
+<h2 id="서비스-모니터링-in-grafana"><a href="#%EC%84%9C%EB%B9%84%EC%8A%A4-%EB%AA%A8%EB%8B%88%ED%84%B0%EB%A7%81-in-grafana" aria-hidden="true"><span class="icon icon-link"></span></a>서비스 모니터링 in Grafana</h2>
+<ul>
+<li>Grafana 서비스 Open </li>
+</ul>
+<pre class="language-text"><code class="language-text">kubectl patch service/grafana -n istio-system -p &#39;{&quot;spec&quot;: {&quot;type&quot;: &quot;LoadBalancer&quot;}}&#39;</code></pre>
+<ul>
+<li>Grafana service EXTERNAL-IP에 접속한다.</li>
+<li>아래와 같은 Grafana main WebUI가 나타난다.
+<img src="https://user-images.githubusercontent.com/35618409/183338028-f5ac4664-d30d-445b-8596-630afad7fc2c.png" alt="image"></li>
+</ul>
+<h4 id="built-in-dashboard-뷰"><a href="#built-in-dashboard-%EB%B7%B0" aria-hidden="true"><span class="icon icon-link"></span></a>Built-in Dashboard 뷰</h4>
+<ul>
+<li>왼쪽 Search 아이콘 메뉴를 클릭 후, Istio 폴더를 펼친다.</li>
+<li>목록 중, Istio Service Dashboard를 클릭한다.</li>
+<li>조회 조건에서 order.shop.svc.cluster.local 설정하면 istio Built-in Dashboard가 나타난다.</li>
+</ul>
+<h4 id="grafana-providing-dashboard-활용하기"><a href="#grafana-providing-dashboard-%ED%99%9C%EC%9A%A9%ED%95%98%EA%B8%B0" aria-hidden="true"><span class="icon icon-link"></span></a>Grafana providing Dashboard 활용하기</h4>
+<ul>
+<li>왼쪽 메뉴 중, 돋보기 아래 '사각형 4개가 모여있는' 메뉴를 클릭한다.
+<img src="https://user-images.githubusercontent.com/35618409/204796971-0e1840ce-4781-421c-90a0-680bebcbb172.png" alt="image"></li>
+<li>Grafana dashboard id 입력란에 '6417'번을 입력하고 Load를 클릭 후, 로딩된 차트를 확인한다.</li>
+<li>동일한 방법으로 Grafana dashboard id 입력란에 '315'번을 입력하고 차트를 로딩한다.</li>
+<li>접속한 Siege 터미널에서 주문서비스로 부하를 발생시킨다.</li>
+</ul>
+<pre class="language-text"><code class="language-text">kubectl exec -it pod/siege -n shop -- /bin/bash
+siege -c20 -t30S -v http://order:8080</code></pre>
+<ul>
+<li>부하량에 따른 서비스 차트의 실시간 Gauge를 확인한다.</li>
+<li>아래와 같이 Network IO, CPU, Memory 사용량이 실시간 증가한다.
+<img src="https://user-images.githubusercontent.com/35618409/183344194-8f4e571b-3640-4c54-8896-e7b7c6b3a7ca.png" alt="image"></li>
+</ul>
+<h3 id="dashboard-customizing"><a href="#dashboard-customizing" aria-hidden="true"><span class="icon icon-link"></span></a>Dashboard Customizing</h3>
+<ul>
+<li>'315' id의 쿠버네티스 모니터링 차트에서 주문서비스 요청율(rps)을 상단에 추가해 본다.</li>
+<li>화면 상단의 'Add panel'을 클릭하여 empty panel을 추가한다.
+<img src="https://user-images.githubusercontent.com/35618409/183352278-f8e02a99-cb2d-4fa3-9e20-5a1b55a147e0.png" alt="image"></li>
+</ul>
+<ul>
+<li>새로운 패널을 추가할 수 있는 Blank 페이지가 로딩된다.</li>
+<li>UI 오른쪽에 Panel title에 '주문서비스 요청율'을 입력한다.</li>
+<li>왼쪽 아래 Metric Browser 란에 아래 PromQL을 입력한다.</li>
+<li>(이때, Builder가 아닌, 'Code'를 선택하여 직접 붙여넣는다.)</li>
+</ul>
+<pre class="language-text"><code class="language-text">rate(istio_requests_total{app=&quot;order&quot;,destination_service=&quot;order.shop.svc.cluster.local&quot;}[5m])</code></pre>
+<p><img src="https://github.com/acmexii/demo/assets/35618409/1c5f5aa8-8a78-447c-a451-32c461f73ec9" alt="grafana-edit"></p>
+<ul>
+<li>apply를 눌러 적용한다.</li>
+<li>패널을 추가한 다음, 패널의 모서리를 클릭하여 전체 크기로 조정한다.</li>
+<li>상단의 저장 아이콘을 눌러 차트를 저장한다.
+<img src="https://github.com/acmexii/demo/assets/35618409/af02a248-c7f0-4467-95ae-780bda93fbda" alt="grafana-customized"></li>
+<li>클러스터 현황과 주문팀 요청율을 모니터링할 수 있는 대쉬보드가 완성되었다.</li>
+</ul>
+<h4 id="dashboard-참조-url"><a href="#dashboard-%EC%B0%B8%EC%A1%B0-url" aria-hidden="true"><span class="icon icon-link"></span></a>Dashboard 참조 URL</h4>
+<ul>
+<li>아래 링크를 통해 Grafana가 제공하는 더 많은 대쉬보드를 검색하여 참고할 수 있다.</li>
+<li><a href="https://grafana.com/grafana/dashboards/" target="_blank" rel="noopener noreferrer">Grafana Dashboard 참조</a></li>
+</ul>
+<h3 id="이상감지--alerting"><a href="#%EC%9D%B4%EC%83%81%EA%B0%90%EC%A7%80--alerting" aria-hidden="true"><span class="icon icon-link"></span></a>이상감지 &#x26; Alerting</h3>
+<h4 id="가상-시나리오"><a href="#%EA%B0%80%EC%83%81-%EC%8B%9C%EB%82%98%EB%A6%AC%EC%98%A4" aria-hidden="true"><span class="icon icon-link"></span></a>가상 시나리오</h4>
+<ul>
+<li>외부로부터 주문서비스로의 DDOS 공격에 대한 트래픽 임계치를 설정하고 이상이 감지되었을 때 이를 설정된 채널에 얼럿팅해 본다.</li>
+<li>얼럿팅 채널은 슬랙(Slack)을 적용한다.   </li>
+</ul>
+<h4 id="alert-조건-설정"><a href="#alert-%EC%A1%B0%EA%B1%B4-%EC%84%A4%EC%A0%95" aria-hidden="true"><span class="icon icon-link"></span></a>Alert 조건 설정</h4>
+<ul>
+<li>수정한 쿠버네티스 클러스터 차트(id: 315)의 '주문서비스 요청율' Graph를 편집한다.</li>
+<li>하단의 3번째 탭인 Alert을 클릭하여 Alert Rule을 생성한다.
+<img src="https://user-images.githubusercontent.com/35618409/204773849-5f135040-fc0e-4213-82fb-424f93b3ea49.png" alt="image"></li>
+</ul>
+<h4 id="1-set-a-query-and-alert-condition"><a href="#1-set-a-query-and-alert-condition" aria-hidden="true"><span class="icon icon-link"></span></a>1. Set a query and alert Condition</h4>
+<p><img src="https://github.com/acmexii/demo/assets/35618409/fcdccf29-12d0-4285-9bf9-025b5ae0ffb0" alt="grafana-alert-1"></p>
+<ul>
+<li>Alert을 위한 Query와 임계치를 설정한다.</li>
+<li>임계치를 "평균 초당 RPS 20"으로 설정한다.</li>
+<li>Condition WHEN > avg() 선택, IS ABOVE > 20 입력</li>
+</ul>
+<h4 id="2-alert-evauation"><a href="#2-alert-evauation" aria-hidden="true"><span class="icon icon-link"></span></a>2. Alert evauation</h4>
+<p><img src="https://github.com/acmexii/demo/assets/35618409/ed83486e-bc9c-478c-bb96-4ea6df44c345" alt="grafana-alert-2"></p>
+<ul>
+<li>매 10초마다 체크하되, 임계치를 초과하여 15초 이상 지속되면 DDOS 공격으로 간주한다.</li>
+</ul>
+<h4 id="3-add-alert-details"><a href="#3-add-alert-details" aria-hidden="true"><span class="icon icon-link"></span></a>3. Add Alert details</h4>
+<p><img src="https://github.com/acmexii/demo/assets/35618409/f91fafd4-2cf5-4aca-9a4f-e432709fdd65" alt="grafana-alert-3"></p>
+<ul>
+<li>저장 폴더와 그룹정보를 설정한다.</li>
+<li>Folder는 istio를 선택하고, Group에는 'shop'을 입력한다.</li>
+</ul>
+<h4 id="4-save-and-confim-the-alert"><a href="#4-save-and-confim-the-alert" aria-hidden="true"><span class="icon icon-link"></span></a>4. Save and Confim the Alert</h4>
+<p><img src="https://github.com/acmexii/demo/assets/35618409/8bebe366-dbe4-40d1-8603-5967c8f11a40" alt="grafana-alert-4"></p>
+<ul>
+<li>최종 설정된 Alert을 확인한다. (Normal)상태로 조회된다.</li>
+<li>임계치를 초과하면 Pending으로, 설정된 10초이상 지속되면 Firing 상태로 전환된다.</li>
+<li>Alert이 설정된 차트 제목앞에 ♥가 붙는다.</li>
+<li>설정 내용을 정리해 보면,</li>
+<li>10초 주기로 평가해서 요청율이 20을 넘게되면 "Pending" 상태로 바뀌고, 15초 동안 지속되면 Alert이 "Firing"된다.</li>
+<li>이때, 요청율이 15초 동안 지속되지 않으면 다시 "Normal" 상태로 전환된다.</li>
+<li>차트 제목앞에 붙는 ♥의 색상으로도 Alert 상태 구분 가능 (녹색:Normal, 황색:Alert Pending, 적색:Alert Firing)</li>
+</ul>
+<h4 id="명시적-alert-발생ddos-attack"><a href="#%EB%AA%85%EC%8B%9C%EC%A0%81-alert-%EB%B0%9C%EC%83%9Dddos-attack" aria-hidden="true"><span class="icon icon-link"></span></a>명시적 Alert 발생(DDOS Attack)</h4>
+<ul>
+<li>Siege 부하로 초당 요청율이 임계치를 상회하도록 워크로드를 발생시킨다..</li>
+</ul>
+<pre class="language-text"><code class="language-text">kubectl exec -it pod/siege -n shop -- /bin/bash
+siege -c10 -t40S -v http://order:8080</code></pre>
+<ul>
+<li>Alerting 메뉴의 Alert rules 탭을 보면 'PENDING' 상태를 가진 '주문서비스 요청율'이 목록에서 조회된다.</li>
+<li>(15초 이상 경과되면, 설정된 DDOS 공격으로 간주되어 'Firing' 상태로 바뀐다.
+<img src="https://github.com/acmexii/demo/assets/35618409/b8608379-9cc5-42f4-aeb1-87efb55e7aef" alt="grafana-alert-5"></li>
+</ul>
+<h3 id="notification-설정"><a href="#notification-%EC%84%A4%EC%A0%95" aria-hidden="true"><span class="icon icon-link"></span></a>Notification 설정</h3>
+<p>Alert이 Firing 될때마다 슬랙(Slack) 채널로 수신해 보자.</p>
+<ul>
+<li>Alerting 메뉴의 두번째 메뉴인 "Contact points"를 클릭한다.
+<img src="https://user-images.githubusercontent.com/35618409/204790130-ab2c09b4-1079-45ab-b682-44b4dd541bfa.png" alt="image"></li>
+<li>기본 Contact points를 Slack으로 받기 위해 grafana-default-email 편집 아이콘(몽당 연필)을 누른다.</li>
+<li>grafana-default-email 이름을 가진 Email 타입의 Alert rules 이 보이는데 편집 아이콘(몽당 연필)을 눌러 본다.
+<img src="https://user-images.githubusercontent.com/35618409/204790625-5b3ce11b-257d-44d8-9078-5c177322accb.png" alt="image"></li>
+<li>이름을 grafana-default-slack으로 수정한다.</li>
+<li>Contact point type을 'Slack'으로 지정한다.</li>
+</ul>
+<h4 id="slack-설정"><a href="#slack-%EC%84%A4%EC%A0%95" aria-hidden="true"><span class="icon icon-link"></span></a>Slack 설정</h4>
+<pre class="language-text"><code class="language-text">Recipient : #microservice-digging
+Token : 
+
+# Optional Slack settings 을 펼쳐 아래 내용을 추가
+Title : {{len .Alerts.Firing}} firing, {{len .Alerts.Resolved}} resolved
+Text Body : {{range.Alerts}}{{.Status}}: {{.Labels.alertname}}{{end}}</code></pre>
+<ul>
+<li>테스트를 눌러 동작 여부를 확인한다.
+<img src="https://user-images.githubusercontent.com/35618409/204793483-96d8333d-3445-41fc-b57e-9f6d33114d97.png" alt="image"></li>
+<li>Token과 API 설정이 올바르다면 얼럿 메시지가 수신된다.</li>
+<li><img src="https://user-images.githubusercontent.com/35618409/204793841-591eeacf-23f6-4844-b422-ba1bc38a3be3.png" alt="image">  </li>
+<li>테스트까지 종료 후, Save contact point 를 눌러 저장한다.</li>
+</ul>
+<h4 id="테스트-slack-notification"><a href="#%ED%85%8C%EC%8A%A4%ED%8A%B8-slack-notification" aria-hidden="true"><span class="icon icon-link"></span></a>테스트 Slack Notification</h4>
+<ul>
+<li>다시 Siege 부하로 워크로드를 발생시키고 Alerting 상태와 Slack을 모니터한다...</li>
+</ul>
+<pre class="language-text"><code class="language-text">kubectl exec -it pod/siege -n shop -- /bin/bash
+siege -c10 -t40S -v http://order:8080</code></pre>
+<ul>
+<li>슬랙 채널에 DDOS 공격에 의한 Alet 메시지 수신이 자동으로 확인된다.
+<img src="https://user-images.githubusercontent.com/35618409/204797293-59740055-385a-4ecd-8ad5-9ca3c3ef2ae8.png" alt="image"></li>
+</ul>
+<h3 id="기타-notification-type"><a href="#%EA%B8%B0%ED%83%80-notification-type" aria-hidden="true"><span class="icon icon-link"></span></a>기타 Notification Type</h3>
+<p>Kafka를 포함한 다양한 Contact point Type과 각 Type별 필요한 추가정보를 설정을 할 수 있다.</p>
+<h4 id="e-mail"><a href="#e-mail" aria-hidden="true"><span class="icon icon-link"></span></a>E-Mail</h4>
+<ul>
+<li>Notification이 Email 인 경우, 수신자 메일주소를 등록한다.</li>
+<li>
+<p>'Test' 버튼을 눌러보자.</p>
+<blockquote>
+<p>SMTP 정보를 grafana.ini에 등록해야 한다는 메시지가 출력된다.</p>
+</blockquote>
+</li>
+</ul>
+<pre class="language-text"><code class="language-text">kubectl edit cm grafana -n istio-system</code></pre>
+<ul>
+<li>default 설정</li>
+</ul>
+<pre class="language-text"><code class="language-text">  grafana.ini: |
+    [analytics]
+    check_for_updates = true
+    [grafana_net]
+    url = https://grafana.net
+    [log]
+    mode = console
+    [paths]
+    data = /var/lib/grafana/
+    logs = /var/log/grafana
+    plugins = /var/lib/grafana/plugins
+    provisioning = /etc/grafana/provisioning</code></pre>
+<ul>
+<li>아래 내용을 추가한다. (GMail 일 경우, 예시)</li>
+</ul>
+<pre class="language-text"><code class="language-text">    [smtp]
+    enabled = true
+    host = smtp.gmail.com:587
+    user = gmail-user@gmail.com  # Mail Account
+    password = ************             # Password
+    skip_verify = true</code></pre>
+<ul>
+<li>편집 후, Grafana Pod를 재시작한다.</li>
+</ul>
+<pre class="language-text"><code class="language-text">kubectl delete pod/GRAFANA-POD-객체 -n istio-system</code></pre>
+<ul>
+<li>SMTP 설정은 메일 서버의 2-Factor인증에 따라 제대로 working하지 않을 수 있다.</li>
+</ul>
+<h4 id="기타-notification-설정-참조-url"><a href="#%EA%B8%B0%ED%83%80-notification-%EC%84%A4%EC%A0%95-%EC%B0%B8%EC%A1%B0-url" aria-hidden="true"><span class="icon icon-link"></span></a>기타 Notification 설정 참조 URL</h4>
+<p><a href="https://grafana.com/docs/grafana/latest/alerting/contact-points/notifiers/" target="_blank" rel="noopener noreferrer">https://grafana.com/docs/grafana/latest/alerting/contact-points/notifiers/</a></p>
+</div><div class="mt-8 pt-8 lg:mt-12 lg:pt-12 border-t border-ui-border"><div><div class="flex flex-col sm:flex-row justify-between items-center"><!----><!----></div></div></div></div></div></div></main></div><!----><div data-v-8b0e8098><div style="width:100%; padding-bottom:30px; background-color:#1E88E5;" data-v-8b0e8098><div class="flex logo-style" data-v-8b0e8098><div data-v-8b0e8098><img src="data:image/svg+xml,%3csvg fill='none' viewBox='0 0 331 174' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink'%3e%3cdefs%3e%3cfilter id='__svg-blur-37afcb0017f229c304bfe602273e7d7c'%3e%3cfeGaussianBlur in='SourceGraphic' stdDeviation='40'/%3e%3c/filter%3e%3c/defs%3e%3cimage x='0' y='0' filter='url(%23__svg-blur-37afcb0017f229c304bfe602273e7d7c)' width='331' height='174' xlink:href='data:image/png%3bbase64%2ciVBORw0KGgoAAAANSUhEUgAAAEAAAAAiCAYAAADvVd%2bPAAAACXBIWXMAAC4jAAAuIwF4pT92AAATu0lEQVRo3sVZB3RU15lWIxhscMtunHhd8EkcJzFusb1xwMaAuoQkpFEFUWQwzXEMAQSYElFEkVCbGUmjikZdIJBAqIxmRgUJVRAqmGLABQdwTBDqZebdb/97Z0YIO1nvnrN7mHO%2b89/35pX5vvu3e8fKij69eQ4C48ffg7UZNgK5DrY9ufZ2wtJ5qwfw0cirrDSKahuCrRk0rrKuUFRb05h/Z1VhukZcP378g09vnr2VmZwtR4/Z8nNE9Ed/DAlhRfdM%2bS7X/QXkv/rWtrQ6R2cVW%2bSVNBDkoRoK9EwaCvBMGvQn60fwJcgIPnRuvkfSkBeNPWns4aEadCfrRseudN5lvmrAZU6SZJ%2bobA/Ry3XLyhXV7xPBXxGRh/%2b731PxQ3FsK%2bTi2Fojrx4TQtievP8BQSJHBJ8h%2bzrBje5ZQTaMhEulcTmN2%2bn7G925zgNS/n9K0enF3S5qwC8T8LFAfT9kZojjDMDbgkP34ENwIySnXkNraiN0CfUgAQbph39DaCQyeWT3EuHlhDk0/hXZx36MDxdovOUEnyC8SiQcyS4mbOnNtY8nW0K2lfAFobc/3wGGo05AsTNwwpXgBlbsIs4NHXZEb74zjPnvQJ2ROmKvgmF%2bUr%2bBZpQwZKDZFdaLjt0T%2bgyO8l6jo7zP6KzoNXok9hvpvJG8xUjXE8iqBgXck4alQ8ozxiq5zkAeIFUqa6BPqENNUiPqU1twOu0M6lKaUa06DRJghEhdJ9tMOMzFISwjOBB%2bTZh6T4Tq%2b1w4khU5Y6DAETjuQsRcTJbIGY%2b5YOiIM/oLnECCMAoJqTfP0XA3Z67hTsYfCTMMPbkORvpO6s51Yoa8P7JydTgcVWBeSf2MCDEiT3aI7ACzVwyyoBywtSVg60%2bCfXQcbH46mKNigK7n1wyJe4g8m0fH3nTPYUUj08n1jGafaUyQiKiRrIGsoeSgxngiUiOVx%2bpRlViPWhKHi3I6tZVEahXnuDiEvxHOE%2baYQ8DGIsBfOGma5REiQoTsDdxyknfVfzT2Z8%2bQutUzGHkI4yLczX6fjRx1ZWjczFC3FgN5c0iYuexunhNG8mayM1l/Zm4qIycCQSZpCB6JA5iXNIq4GiNi0ouxdsNWfLx2Azbt2IeUomZsLQOclIMgTwCJABIANPsIVPWgRFGLSnkVd39OBERaCFEep4dGXsM6T1xkFzRXWP2hFlYarZPoOyMXhgtEiZFbqVJRA62yFo3pbXR/tbNZAFshAM2gB3djImck8pwkiDyjmWcjDXvw93oFjLXr0Zv9Pj%2bPkWIvdGiS4ecfiDVr/oRvT8WiP3c2unMd2WDeLFzNCWZ%2bSXfZPNUwF0CQcoofRkLNABb6eYJeeR9%2bYm2FvZFyfFQEOCv76XqTAK5JI1iWeJtIVnHS4wWgcRU0cdVo03ZgzUdr4ObuhqK8YjTlnEVptNbiKXQvt0IwSdwrckjVS9/zAPtX%2b4h0r2WGcx2I0CzcOhUHV68ATHniKWzf8VdIdZvxj5RXITXtwRyne0T2hG0FqpbhH%2br30Jdnj9u57vgg%2bSu4qIxEZgDOij6sJnI790aZ77HGc88/D4c5s/DitKfFueAAH%2bypAubG9QnBvEgAZ/KYtYk3QBVAkK8wk9coq3EiogIXyj/Hnz7%2b09jvePq5X%2bBM5TlUxJgEEteaReMC8NxB9ibhSbMA1pYk%2bBTh9iDlAB7Ld7LeB8p9kZW4995M2U5GV2UyjHnv4FZNFJ5%2b/sWx75xc3IGG7ejOeAc9FAaDebOxPvUcnFQM3skDsCdSYVrAV%2bYtrqe3Iv%2b4Hse%2bBGLKbmK3IhcJFX%2bDd6oB81Q8bIaEAE4kwLaEL1Aj16LcLAAnw12/WtUA/YkqTJg4QQg6wW6CePaRjKOoS21GWaxuPHnuAcYauodE6Rgrg5ZEaK77nZYwuJNJAlQEID0uTDx00kMThd26eQNQvxJtxfsxYfLj45R/EX%2bvjUZ/9kx05zljNG8mDqSVw0FF5SypHw7yPoRSjK9eY5otG1tbTJ/%2bCjaHxyO%2b/BtENwMOCRLcE/oFeUqaYx5wIP7iPQHGzf4l3VX4%2bvmanmdjAzs7O7M3huNsQSdORlWOCVAhNwlwKrmJH580l0BrSx9gY06EpbwSmAVgqAhEauxO8VA7O1thX3jpFaArGcXJ2%2bnYZlwc/wS1R6IgFbngdraj8JJDhw5hLglApVAkQK9UBrXmMn75H0/cF///9thD%2bGjVCiTV9sFNNUKxPyBEsOQAaoJQZRaAk%2bEzW5/WguL847CyNj3DP8Afb775phgHBgbifNlllERqxvKFWQgDrwpklUIARZWtEIB3fOYwUPLSx7P/ncxZgCYIqqi/iodOmGAnwMe1ZflIVR4Q45df/h0ef/wxMY4O/xTQLsJ3mbNFL1Cq3sdLIcWzKam5xvcjOJshobgD/rL5eOZnj90nxKrlS7GbwsRe3i9yABeAyiCylS0iB5TLq8Xsl0RocKn6Khwc7cV9EydOxMWOi/Dy9BLHr73xKs5VdKIsalwIiKpRZeA9Ax1vMMe/ncUDzALYrxWl0CQAQ%2bVCKCO2i4c%2b9dTP4OnhIcZLQ5ZhY2ioGIeGbsK7774rxgEBgZQHNuN2xkyM5L%2bHlqy1cFeNjlUB14RBEgDYcwpQtALyir9jx/54/PQJUyg9%2begkJJR9SbNOiVM1IMjLVP04qjgNrVwv4v9kdCWas9qQmZo1JpyrmytGuw1YtWKVOJ7y6BToi2qgU9bR7OvHl00j7w/oOf7fL4G25hDwko5ZQoALEIy4/dtMbvrTJ3HsWLGItUcfnYpp06aJ88XHCvHh8uVi/NL036O7LhI9WTOpL5iNKzmLIEvqhQfVcj77Kw8DyowiBPnLsDu%2bENHlt1F%2b5hZeefm34v5HH54A5YmLmJfCSIB%2bCodhLErsRin1ABpz7Jce1OJCzWW88ebrYwLYUfKbNu15PPPsM2PnUpSpaFJTOYzRmgQwlUGmja/lx3%2bwlECzBzjYmEPgDXMZxJ3M9xh35%2bjwreKBDz00Cd9c6YCri5M56ViLHHCp/ggU%2b03XTJryBGs7GQdDoT3rz7dnd3Jd2AfJX1MzY2C8tMnrgHffnm66n/D8009i6iOTxn60y5wZiKk2Yq58kHknk8ckG9kq1W1mnn1WElXJ2g6fR1yU3PQMaxtMpOQ8cfLEsWfY2ppy1bpP1qG96AKoQxyrAryF1pjWEc9YSqBoh3vNy1kS4t8pHLoHqKcnASRol7DI3Z9ayOFWSzYKUvaPvWzi1J%2bhpzUJukyRKBlHbPgmSOXB0lfy6axAsYknM9ENcg9YXgCosk7gtd88B7txsT/RlsjPnQl15efwPcTYvERqiVW8ctyR1sZclKoVep4AWUVsFdprOjHtxWlj9xYVFAt3z07JwY6tOzB58mRTWXZ2wnmNSIRi5ikEJF0CD4mqL%2bj4ke/3AJZ22I7GF0YKnXFH/a4E/VIWtuUT88sm4sLJfRhqjMCiZWvw%2b7dnQBF7EJJ%2bNb6sjMD7rv7s3VmzkZGWIn2e4YfCXZ6QJXZL85JHqAz2Md4LuJAIHx6h2NcPIiK7CfsT8nFAVYD4oy2IqzVAdshIOWOAucXdwtwdTdI721vx6f561MRXSWWiqalmLaVtKMopRtS%2baCTGJ6L95GfQxp0S/f71MzcoDF8Sv3fq41PRUNLMKuNqxMxTCzzK1wZE%2bizn2nTo3L29Ab7eH/OCXIdyvrojDzCgcjGRjMKvf/caZEEhuF4bj%2bH8WaIbNDbuAXTL0JM5A/0ngjHaEoEbpaHSxewQtOz%2bzTerFU2pjqnU28cbpbnxYPbxIHIGeCTcxaK0r7D%2byDdYkAsEZQGeKcCcGAluSgN5DHWCu65Is7e04q3QlvbMyLq6hsRGEBGpMo5qeUw1TiU3oyW7HWfyO6gk6kWio4UQTqkboSmqRPS%2bGGzaFMpOVzSxshgdjkeVGYoiS8V1ZHdxnof3FtmMXwqLRsg8TuCVQCyG8p1Yb00Yhhv2AY3bMXDMB3ezqd9Xz8DdjD9wkajrcyQRZqEn/Q%2bs/q/TUfHpa7i2Y/J7ATmG5esKv8POww2G5JJjrESbgDP12/F162o20uWDr5rWMO%2b0a8yn8DjzP6JBwJEa5lvQAN%2b8s8w9vgLOUSfhrM5aWnjo%2bMky9SkUJdJqL0HLSuN1KJPrGFUDgXEZHnwlSJ0ea8lpZ53FF3E0%2bgSTr08YTd2WAcWGxMHotfLFltnftTL8BxsetuY8sMHSC4hFURatANXvsDu8xc2ZLdYJRJrgxFeGUm%2bBg9RX7MJ6S93ZdfKcm1r324aLvvqecwu6Bzr8YOhwZaxjDkPnbOAzdxjPe8Jw3oN1t4Vg5dFTWFC9E0uqd7HF1buwuHo3FmjD2ELdHgTrw43Bur1scdVBLNVFsg%2b0B7FCE81Wl8fiz6UKdlRVYdDKawyU3fmqT7q3OtQxnvmPR5Qb4zcmSenbMxEfmtSYuDnlRc6vOaPdOnz1/vs3Q3pMe34WD5hvpFJI5EfFyjDPicPA1/9mUfi6H/0FDhjimyM6dwx/JmPD52Ug4ky67A9c8QEuuAGfyxi%2bDgFuUvt8YyOGaeYHO2VsiOxohz/bUZrd76eNYot1kQjWRrIg3QGsaVVhdUsiW96oQMjpWCyoiWB%2bleEkyAG2UH8AgVX72BJ9JDTqOjSmnEVtciP0CfWoVIryxpOdQRd/auRY5EmoNqciYVNypGWSlRtVdiSGZXzfbpDYD7SUwkGqAhyjtC7grTHfFLFskBiPibUCx0BPtv3XfSddLnHyQ50%2bBBkG2z0Zu7bG2H01RTpTk4Dighi2J2wD2xW2DX1XDmCkcx4b6PQDzntJmQ1/OS/TRklLiViQbj%2bLbi6APCuZRWUmQHE4nSmLM5i6rpjtbctDYCV5gz6SPCUSIdqDdwuTyg9o42oyyANqiTjP7AN8rc/zQ2P6WaRtU9%2bKWadws5An4rYW4hYRvh8C1mb7C8JNwrdUEtvJaqk6ZJDdTZ7C9wE9qGN8m1z/%2bW8/fMVu6Jz3NCI/NEoiDLR7M1wJRIM%2bFT9/5mXKxrb3St0jv8D1LjWkC57o7/BlJADyGz8xkAAsuHIvVjQpWUZR3n2t8aQJEzHJegKiE%2bVY15aKQE24tLQumnvD1fv29xRVD5EAz9KMzqCMv6AkWrOZZv9Z/l3iphRbImxtFsGKPOKfbxJaNkaJHN8ZfpaOn6Txj253D1/yfWi4S3YFl/3Q1%2bYp4cYKpCbsFgR%2b%2b9uXUHQkFV2tJzB6tw34ZiMGzrmxwS7hAexQw3r4aKNAHsACdfsQ1VoAZX4aEnLTsHLlyjEhFNkpWNOSiCDNXuPS%2bhgs0kV05aaW2DUcbLQ5mJfzL3%2bjZdZ/lPz4rfF/5hm8U%2bTrBfresl1u03vUyXqg1kOEDQmgwxcB3AOMuBbIasqU4oe//tprqNEeQUzEpwhe4IfTmjjgajDr455yfj7i60MZCUAxfQCL9BHMXxOO1W0q6L48g7feMK3swnaGIfryccjKKUnqI408LwTrIk7z966siLVWqQutzP8BUFdXZVOpqLE9GVNpm/xpuhAmb0/hjxO/rxka/ydI7g//IOkR5%2bytyO05caEwxb4KXwVisENmYBe92NWzKkx%2b5Kc/2PZKT9oPXF%2bBvnNeYF3z2cG6LYxCAEIASoABur3Iv6DHrHdmiuuXLQlB2tVK%2bFRw8hFE/IAxpCGOi1XO30vWms5ZBBC/nxKgFVUBq5xdBeK4cP/x/59/ZYY7ZWMCkP2ECzDU6WsY6XRF3zUFXvilqedXxh3A9YslGL7TAgwVstHz89kgJUzpMx8WXreN%2bVJ5W0qzL9PshvqaDouCFor7fLy8UXyjCX41%2b3gCFB5CZA0fNMZxIXL5e8nacAEeyIdI3xOgU%2baKq/4Y6vI1Dp5zZrh5EHPmmhZN0ZF7kK%2bOwIchPliyZAn7x6VYIj%2bP3WnxxpbqHQjURzH/it3Y1ZWHzVu3iHsmP/wwktNSkFqej3R9Idvdms0CtXt5CIwua1ZwMUQaX1QVaUtjqwf2IQFEDhjqkv2OavzoyHlf9J11ZfhuB1auWvP9EGDP/fItfNGexq5o5qC2wElaVblrMLg6iuJ7J1NeKkGgt98PwoZewLLKjmBZo1xaoNk3%2bkGTHEFl4aH8vUGle2wftAdYm8Y%2bU2l8Q7roR3nARyJLeSCJ7dgWyhTR21FRFMsutaaykb%2blse5ziw1njs6G9qjHroCq6Mshp6K4S0tLa6JYWlsJk%2belsMg0BYtMjGWb92xnO8J3Ql5fYHTP3Ajv7C20tF471ti4xn/8QGd/DObjRlzxp25PZhzsmM%2bki74Svv2LETc/MuDLhQZc8jZKn7kZBju80JA3J/vnl5unUOLrXVwVyV3asFC73xig32dY3qQwfNSqMmxoPzS6uTPTsPVCzohfcRhcEv4Mt8RPVo%2bRV5rIU1l8sCJQNbAxVwI1rvnzjnB4hJoi4wVfsAteprb4C2qPPydcDcTNBq/O9t9Y/URWp3xhMWX/pXUx4M1NSEMsd3MsJcux%2bDQ1PHVRWNQQDc%2bM0H4X5ccu/D00tvVI3yA8z0sdahV4YveDE2BIVAIfO7MYu3B3MXhDRCIY6PjWcJdvM9kcQhghkM7/J7uyYAq/fr12%2b%2bRgfcTvyQveJw9wpzAIIruKsJGwkxBD3pG2sGJfjkfahtf5PfPS1tvNS1on3u2mWmvlmbLe6oF/7uUB2duErQR3wnTCo//qnqpyX5v/7Xvck9eNdXWc/P/l578AjufF27Pdj9IAAAAASUVORK5CYII=' /%3e%3c/svg%3e" width="331" data-src="/assets/static/logo.34ff00f.bd727e13501e82a0ba322b4ad29fd33a.png" data-srcset="/assets/static/logo.34ff00f.bd727e13501e82a0ba322b4ad29fd33a.png 331w" data-sizes="(max-width: 331px) 100vw, 331px" class="g-image g-image--lazy g-image--loading" data-v-8b0e8098 data-v-8b0e8098><noscript data-v-8b0e8098 data-v-8b0e8098><img src="/assets/static/logo.34ff00f.bd727e13501e82a0ba322b4ad29fd33a.png" class="g-image g-image--loaded" width="331"></noscript></div></div><div style="width:100%; text-align:center; font-size:14px; color:white; font-weight:300; line-height:1.5; padding-top:20px;" data-v-8b0e8098><div data-v-8b0e8098><div data-v-8b0e8098><div class="footer-top-div" data-v-8b0e8098>© MSA-Ez Authors 2023.  </div><div class="footer-top-div" data-v-8b0e8098>© 2023 uEngine All rights reserved.</div></div><div data-v-8b0e8098>
+                    uEngine has registered trademarks and uses trademarks. and MSA-Ez is licensed under the GNU General Public License version 3.0.
+                </div></div><div class="footer-bot" data-v-8b0e8098><div data-v-8b0e8098><a href="https://www.gnu.org/licenses/gpl-3.0.en.html#license-text" target="_blank" style="color:#fff;" data-v-8b0e8098>
+                        See LICENSE
+                    </a>
+                      |   
+                </div><div data-v-8b0e8098><a href="https://github.com/msa-ez/platform" target="_blank" style="color:#fff;" data-v-8b0e8098>
+                        Github Site
+                    </a>
+                      |   
+                </div><div data-v-8b0e8098>E-Mail: help@uengine.org</div></div></div></div></div></div>
+    <script src="/assets/js/app.1663a9ab.js" defer></script><script src="/assets/js/page--src--templates--markdown-page-vue.eef38ce3.js" defer></script>
+  </body>
+</html>
