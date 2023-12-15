@@ -97,7 +97,7 @@ module.exports = {
                 thirdItems:
                 [
                   '/tool/development-practice/',
-                  '/tool/attending-lectures/'
+                  // '/tool/attending-lectures/'
                 ]
               },
               {
@@ -113,20 +113,20 @@ module.exports = {
                   '/business/',
                   '/business/ddd-google-drive/',
                   '/business/eventstorming-fooddelivery/',
-                  '/development/understanding-jpa-based-single-microservice/',
+                  // '/development/understanding-jpa-based-single-microservice/',
                   '/development/cna-start/',
                   '/development/monolith-2-misvc/',
                   '/development/circuit-breaker/',
                   '/development/kafka-basic/',
                   '/development/pub-sub/',
                   '/development/compensation-correlation/',
-                  '/development/pubsub-idempotency/',
-                  '/development/pubsub-deadline/',
+                  // '/development/pubsub-idempotency/',
+                  // '/development/pubsub-deadline/',
                   '/development/kafka-scaling/',
-                  '/development/kafka-scaling-concurrenty-handling/',
+                  // '/development/kafka-scaling-concurrenty-handling/',
                   '/development/kafka-retry-dlq/',
-                  '/development/kafka-connect/',
-                  '/development/choreography-saga/',
+                  // '/development/kafka-connect/',
+                  // '/development/choreography-saga/',
                   '/development/orchestration-saga/',
                   '/development/gateway/',
                   '/development/token-based-auth/',
@@ -135,14 +135,14 @@ module.exports = {
                   '/development/dp-graphql/',
                   '/development/dp-cqrs/',
                   '/development/contract-test/',
-                  '/development/conteact-messaging/',
-                  '/development/ops-docker/',
+                  // '/development/conteact-messaging/',
+                  // '/development/ops-docker/',
                 ]
               },
-              {
-                secondTitle: 'Guide labs for Ops',
-                thirdItems:
-                [
+              // {
+              //   secondTitle: 'Guide labs for Ops',
+              //   thirdItems:
+              //   [
                   // gcp추가
                   // '/operations/ops-aws-setting/',
                   // '/operations/ops-aws-csi-setting/',
@@ -177,8 +177,8 @@ module.exports = {
                   // '/operations/gitops-argo-cd/',
                   // '/operations/ops-anatomy-kubernetes/',
                   // '/operations/ops-utility/',
-                ]
-              },
+              //   ]
+              // },
             ]
           },
           {
