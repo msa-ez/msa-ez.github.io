@@ -5,7 +5,7 @@
         <div class="flex flex-col items-center">
           <div class="flex flex-col items-center mb-2 text-ui-primary">
             <h2 class="text-3xl text-6xl font-black tracking-tighter border-none">
-              MSA Easy
+              MSAEZ
             </h2>
           </div>
           <h1 class=" text-center">
@@ -33,9 +33,9 @@
             <g-image style = "width:100%;" src="~/img/img_1.png"  />
             <p class="text-lg text-left">
               <br>
-              MSA Easy is a tool that supports from building Microservices to operation by providing analysis, design, implementation,
+              MSAEZ is a tool that supports from building Microservices to operation by providing analysis, design, implementation,
               and monitoring required. It analyzes and designs domains through event-storming-based collaboration and automatically generates MSA source codes from the designed domain model.
-              In the analysis and design phase, MSA Easy is used to identify the boundaries of the target domain and define the contract.
+              In the analysis and design phase, MSAEZ is used to identify the boundaries of the target domain and define the contract.
             </p>
           </div>
 
