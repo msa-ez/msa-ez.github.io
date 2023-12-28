@@ -10,7 +10,9 @@
       class="pb-4 mb-4 border-ui-border"
       :class="{ 'border-b': index < sidebar.sections.length -1 }"
     >
-      <h3 v-if="section.firstTitle && !section.firstItem">
+      <h3 v-if="section.firstTitle && !section.firstItem"
+        style="font-size: 17px;"
+      >
         {{ section.firstTitle }}
       </h3>
       <g-link
@@ -18,7 +20,7 @@
         :to="`${section.firstItem}`"
         class="flex items-center py-1 font-semibold"
       >
-        <h3>
+        <h3 style="font-size: 17px;">
           {{ section.firstTitle }}
         </h3>
       </g-link>
@@ -29,7 +31,7 @@
               :key="secondSection.secondTitle"
               style="margin-top: 15px;"
             >
-              <h4 style="margin-left: 10px;" v-if="secondSection.secondTitle && !secondSection.secondItem">
+              <h4 style="margin-left: 10px;font-size: 16px;" v-if="secondSection.secondTitle && !secondSection.secondItem">
                 {{ secondSection.secondTitle }}
               </h4>
               <g-link
@@ -41,7 +43,7 @@
                   {{ secondSection.secondTitle }}
                 </h4>
               </g-link>
-              <ul class="max-w-full pl-2 mb-0">
+              <ul class="max-w-full pl-2 mb-0 text-sm">
                 
                 <li
                   v-for="page in findPages(secondSection.thirdItems)"
