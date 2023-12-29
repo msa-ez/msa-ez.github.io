@@ -5,7 +5,7 @@ prev: ''
 next: ''
 ---
 
-# Pub/Sub Communication - Choreography with Deadline added
+# Pub/Sub 방식의 연동 - Choreography with Deadline added
 
 ## 12st Mall에 데드라인 추가 적용
 

@@ -7,35 +7,33 @@ next: ''
 
 # Application Packaging with Container (Docker)
 
-### How to Utilize Docker Image
+### 도커 이미지 무작정 따라해 보기   
 
-#### Create an image-based Conatiner
+#### 이미지 기반 컨테이너 생성 
 
 ```
 docker image ls
-docker run --name my-nginx -d -p 8080:80 nginx
-docker run --name my-new-nginx -d -p 8081:80 nginx
+docker image pull nginx:latest
+docker run --name my-nginx -d -p 8080:80 nginx:latest
+docker run --name my-new-nginx -d -p 8081:80 nginx:latest
 
-docker image ls
 docker container ls   # = docker ps
 ```  
 
-- Check the Service
-  - Cloud IDE > Labs > Open Ports > 8080
-  - Cloud IDE > Labs > Open Ports > 8081
-
-- Check by httpie
+- 서비스 확인
 ```
-http :8080
-http :8081
+http GET http://localhost:8080
+http GET http://localhost:8081
 ```
 
-#### Delete Container & Image
-
-- Before deleting the image, we must get rid of the container using them.
-
+#### 이미지 삭제하기
 ```
-docker container ls ; // check the running container
+docker image rm nginx:latest
+```
+
+- 삭제하려는 이미지를 사용하는 컨테이너 정리가 우선
+```
+docker container ls ; 실행중인 컨테이너 확인
 docker container stop my-nginx  #docker stop <containerid>
 docker container stop my-new-nginx
 docker container rm my-nginx
@@ -43,73 +41,73 @@ docker container rm my-new-nginx
 docker image rm nginx
 docker images
 ```
-- Delete all at once:
+- 한번에 삭제:
 ```
 docker stop $(docker ps -a -q) && docker rm $(docker ps -a -q)
 ```
 
-#### Create Image
+### 이미지 만들기
 
-- Create a build script(Dockerfile) of application & image.
-  - Cloud IDE > File > Folder > put in 'Docker'
-  - Create two files below under the created folder.
-  - Cloud IDE > File > New File > put in 'index.html'
-  - Put in the line below at index.html 
-  
+- 어플리케이션 및 이미지 빌드 스크립트(Dockerfile) 생성
+  - Cloud IDE > New Folder > Docker 입력
+  - 생성한 폴더 하위에 아래 2개 파일 생성
+  - Cloud IDE > New File > index.html 입력
+  - 아래 내용을 복사하여 저장   
 ```
-   <h1> Hi~ My name is Hong Gil-Dong...~~~ </h1>
+<html>
+<body>
+<center>
+<br/></br>
+<img src="https://raw.githubusercontent.com/acmexii/demo/master/materials/smile.jpg">
+<br/></br>
+<h1> Hi~ My name is Hong Gil-Dong...~~~ </h1>
+</center>
+</body>
+</html>
 ```
 
-- Save it.
-- Cloud IDE > File > New File > put in 'Dockerfile' (no extension)
-- Put in the line below at Dockerfile
+- Cloud IDE > New File > Dockerfile (확장자 없음)
+- 아래 내용을 복사하여 저장 
+```
+FROM nginx
+COPY index.html /usr/share/nginx/html/
+```
+
+#### 이미지 빌드하기
 
 ```
-    FROM nginx
-    COPY index.html /usr/share/nginx/html/
+docker build -t My-Dockerhub-Id/welcome:v1 .
+docker image ls
 ```
+
+#### 이미지 Remote Registry(Hub.docker.com)에 푸시하기
+
+- 도커허브 계정 생성
+- https://hub.docker.com 접속
+  - 가입(Sign-Up) 및 E-Mail verification 수행  
  
--  Save it.
-
-- Build the image
-
 ```
-docker build -t apexacme/welcome:v1 .
-docker images
-docker run -p 8080:80 apexacme/welcome:v1
-```
-
-#### Push Image to Remote Registry(Hub.docker.com)
-
-- Create docker hub account
-- Access to https://hub.docker.com
-  - Sign-Up & E-Mail verification
- 
-```
-docker login 
-docker push apexacme/welcome:v1
-# ex) If 'apexacme' is your account:
-```  
-> Notice: If the error 'access denied' came out, you are not logged in or you didn't make your repository name with your account name. e.g. apexacme --> your own account
-
-
-#### Check the Image created at Docker Hub
-
-- Access to https://hub.docker.com
-- Reload repositories menu and check pushed images.
-
-
-#### Create a Container based on Docker Hub Image
-
-```
-docker image rm apexacme/welcome:v1
-docker run --name=welcome -d -p 8080:80 apexacme/welcome:v1
+docker push My-Dockerhub-Id/welcome:v1
+# 권한 오류 발생시,docker login 실행
 ```  
 
-- Check if the service is running well:
-Open new terminal and put in the command below. (Menu > Terminal > New Terminal)
+#### Docker Hub에 생성된 이미지 확인  
+
+- https://hub.docker.com 접속
+- repositories 메뉴 Reload 후 Push된 이미지 확인
+
+
+#### Docker Hub 이미지 기반 컨테이너 생성  
+
 ```
-$ http localhost:8080
+# 먼저 로컬 이미지를 삭제하자.
+docker image rm My-Dockerhub-Id/welcome:v1
+docker run --name=welcome -d -p 8080:80 My-Dockerhub-Id/welcome:v1
+```  
+
+- 서비스가 잘 기동 되었는지 확인:
+```
+$ http http://localhost:8080
 
 HTTP/1.1 200 OK
 Accept-Ranges: bytes
@@ -125,37 +123,37 @@ Server: nginx/1.19.10
 ```
 
 
-### Packaging Java Application
-- Open a terminal, move to order/delivery/gateway folder and run the command below.
+### 자바 애플리케이션의 패키징
+- 터미널을 열어서 order 와 delivery, gateway 폴더로 각각 이동하여 아래 명령어를 실행한다.
 ````
 cd inventory
 mvn package -B -Dmaven.test.skip=true
 ````
-- Check if the jar file has been created at target folder.
+- target 폴더에 jar 파일이 생성이 되었는지 확인한다.
 ```
 java -jar target/inventory-0.0.1-SNAPSHOT.jar
 ```
-Check if we can run it by the command.
-- ctrl+c to get out of jar execution.
+명령으로 실행이 가능한지 확인한다.
+- ctrl+c 를 눌러서 jar 실행에서 빠져 나온다.
 
 
-- Check if Dockerfile is placed on the top root of order, delivery and gateway.
-- Run the command below at the file path of Dockerfile. 
+- order 와 delivery, gateway 의 최상위 root 에 Dockerfile 이 있는지 확인 한다.
+- Dockerfile 파일이 있는 경로에서 아래 명령을 실행 한다.  
 
 ````
  docker login
- docker build -t [dockerhub ID]/inventory:[Today's date] .     
+ docker build -t [dockerhub ID]/inventory:[오늘날짜] .     
  docker images
- docker push [dockerhub ID]/inventory:[Today's date]  
+ docker push [dockerhub ID]/inventory:[오늘날짜]  
 ````
- - Run it by docker run
+ - docker run 으로 실행해보기
  ```
- docker run  [dockerhub ID]/inventory:[Today's date]  
+ docker run  [dockerhub ID]/inventory:[오늘날짜]  
  ```
 
 
-### Preview of Next Lab
-Kubernetes Sandbox: https://kubernetes.io/docs/tutorials/kubernetes-basics/deploy-app/deploy-interactive/
+### 다음과정 미리보기
+쿠버네티스 샌드박스: https://kubernetes.io/docs/tutorials/kubernetes-basics/deploy-app/deploy-interactive/
 
 ```
 $ kubectl run myhomepage --image=jinyoung/welcome:v1
@@ -207,7 +205,7 @@ myhomepage-58dd9ffb74   1         1         1       27m
 
 
 
-#### New Terminal
+#### 새 터미널
 
 $ kubectl delete po --all
 
@@ -215,7 +213,7 @@ pod "myhomepage-58dd9ffb74-wjf68" deleted
 
 
 
-Check if desired & current of rs remains (pod regenerates) on the previous terminal:
+### 아까 터미널에서 rs 의 desired 와 current 가 유지됨 (pod 가 재생됨)을 확인:
 
 myhomepage-58dd9ffb74   1         0         0       28m
 myhomepage-58dd9ffb74   1         1         0       28m
@@ -225,31 +223,31 @@ myhomepage-58dd9ffb74   1         1         1       28m
 ```
 
 
-### Using Github Container Registry
+### Github Container Registry 사용하기
 
 #### Login 
 ```
-docker login ghcr.io -u <github account> -p <Personal Access Token>
+docker login ghcr.io -u <github계정명> -p <Personal Access Token>
 ```
 
-* github account is not an e-mail address, it is github's self account string.
-* To get Personal Access Token, Generate New Token at Account > Settings > Developer Settings > Personal Access Token, and give "write package" for authority and get the created token.
+* github 계정명은 이메일주소가 아닌 github 자체 계정 문자열입니다. 
+* Personal Access Token을 얻으려면, Account > Settings > Developer Settings > Personal Access Token 에서 Generate New Token 한후, 권한으로 "write package" 를 부여하신 후 생성된 토큰을 얻으면 됩니다.
 
-#### Example for Build / Push
+#### Build / Push예시
 ```
 docker build -t ghcr.io/jinyoung/welcome:v2021101202 .
 
 docker push ghcr.io/jinyoung/homepage:v2021101202
 ```
 
-* Add ghcr.io/ in front of image name when you build.
-* Keep the same image name when you push.
+* build 시 이미지명은 앞에 꼭 ghcr.io/를 추가
+* push 시에는 항상 동일한 이미지명 준수
 
-#### Check the Image and Set Access Authority
+#### 이미지 확인 및 접근권한설정
 
-You can check at Account > Your Repositories > Packages
+Account > Your Repositories > Packages 에서 확인가능
 
-To set authority, click Setting package, click Set Visibility, set Public at pop-up, then check the name.
+권한을 설정하기 위해서는 Setting package 를 클릭한 후, Set Visibility 를 클릭하고 팝업에서 Public 설정 후, 이름을 확인해주고 설정완료.
 
-#### Details
+#### 상세설명
 <iframe width="100%" height="100%" src="https://www.youtube.com/embed/RO3Mw8Gks9Q" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>

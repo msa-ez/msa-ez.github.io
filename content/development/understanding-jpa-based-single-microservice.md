@@ -5,7 +5,7 @@ prev: ''
 next: ''
 ---
 
-# Understanding JPA Based Single Microservice
+# 마이크로서비스 구현 및 동작원리 이해
 
 ## 마이크로서비스 구현 및 동작원리 이해
 

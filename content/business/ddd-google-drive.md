@@ -3,26 +3,23 @@ description: ''
 sidebar: 'started'
 ---
 
-# Google Drive Example
+# [이벤트스토밍] - 구글 드라이브 예제
 
-## Google Drive Examples
+### 구글 드라이브 예제
+#### 아래 시나리오대로  이벤트 스토밍 하시오.
+(eventstorming 수준: Design level)
 
-### Scenario
+1. 사용자가 파일을 업로드한다
+1. 파일이 업로드 될때 마다, 파일의 위치를 파일 이름으로 인덱싱한다
+1. 업로드된 파일이 비디오 인 경우, 파일을 비디오 스트리밍 처리한다 (결과는 비디오 스트림 서비스 접속 url)
+1. 파일이 업로드 될때와, 비디오로 생성되었을 때, 파일을 업로드한 유저에게 노티가 된다
+1. 대시보드에서는 업로드 시킨 파일의 상태 (파일사이즈, 파일명, 인덱싱여부, 업로드여부, 비디오 url) 가 표시된다.
 
-1. User uploads a file.
- 
-2. Whenever a file is uploaded, the location of the file is being indexed by the name of the file.
- 
-3. If uploaded file is a video, the file is getting video-streamed(the result is the video streaming service url).
- 
-4. When the file is uploaded or it is created as a video, the user who uploaded the file gets notification.
- 
-5. The dashboard displays the status of uploaded files(size, name, indexing status, upload status, video url).
+#### Project Name : google drive
 
-The List of Bounded Contexts: 
- 
-1. dashboard
-2. drive
-3. indexer
-4. video processing
-5. notification
+#### 바운디드 컨텍스트
+1. drive
+2. indexer
+3. video processing
+4. notification
+5. dashboard
