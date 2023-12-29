@@ -2,17 +2,17 @@
 description: ''
 sidebar: 'started'
 ---
-# 조건문
+# Conditional Statements
 
-## 1. 조건문이란?
+## 1. What are Conditional Statements?
 
-조건문은 특정 속성이나 상황에 대해 판별하여 상황에 맞는 결과값을 가져올 때 사용할 수 있습니다.
+Conditional statements are used to determine the appropriate result based on specific attributes or situations. 
 
-일반적으로 {{#속성}}{{/속성}}를 사용할 수 있습니다.
+Typically, {{#property}}{{/property}} syntax is used.
 
-## 2. 참 조건문
+## 2. True Conditional Statements
 
-참 조건문은 속성의 결과값이 true인 경우에만 하단의 코드블록을 실행할 때 사용할 수 있습니다.
+True conditional statements are used when the result is to be executed only if the property's value is true.
 
 Template
 ```
@@ -38,15 +38,17 @@ public class Company {
 ```
 ![](https://github.com/msa-ez/platform/assets/123912988/4a47a7a4-cb96-4f7d-944b-4927be573373)
 
-현재 aggregateRoot.fieldDescriptors의 isKey에 대하여 id필드는 true의 값을, name필드는 ""의 값을 가지고 있습니다.
+In the current context, the isKey attribute for aggregateRoot.
 
-이때, {{#isKey}}{{/isKey}}를 통해 isKey의 데이터인 id필드에만 '@Id'가 생성되도록 설정할 수 있습니다.
+fieldDescriptors has a value of true for the id field and false for the name field. 
 
-## 3. 거짓 조건문
+Using {{#isKey}}{{/isKey}}, the '@Id' annotation is added only for the id field.
 
-{{#속성}}{{/속성}}과 반대로 특정 속성에 대하여 거짓인 경우에만 하단의 블록을 실행할 때 사용할 수 있습니다.
+## 3. False Conditional Statements
 
-일반적으로 {{^ 조건문}}{{/조건문}}으로 사용하며, {{#unless 조건문}}{{/unless}}를 통해서도 조건이 거짓인 경우에 대해 설정할 수 있습니다.
+Opposite to {{#property}}{{/property}}, 
+
+you can use {{^condition}}{{/condition}} or, alternatively, {{#unless condition}}{{/unless}} to execute a block of code only when a specific condition is false.
 
 
 Template
@@ -74,21 +76,17 @@ public class Company {
 }
 ```
 
-현재 aggregateRoot.fieldDescriptors의 isVO에 대한 데이터로 id필드는 값이 존재하지 않으며, name필드는 ""로 나타나고 있습니다.
+In this example, using {{^isVO}}{{/isVO}}, fields without values for isVO (in this case, id) are initially selected. 
 
-따라서 {{^isVO}}{{/isVo}}를 통해 필드의 속성중 isVO가 false 조건에 부합하는 id, name필드를 1차로 선별한 후,
-
-{{#isKey}}{{/isKey}}를 통해 isKey가 true인 id필드를 2차로 선별하였습니다.
-
-즉, 두 조건문을 사용하여 VO필드가 아니면서 동시에 key값을 가진 필드 id에만 @Id가 생성되는 것을 확인할 수 있습니다.
+Then, {{#isKey}}{{/isKey}} further refines the selection to only include id fields with a true isKey condition.
 
 ## 4. if ~ else ~
 
-조건문의 참과 거짓에 따라 서로 다른 결과값을 가져올 수 있습니다.
+Conditional statements with if and else can yield different results based on whether the condition is true or false.
 
-{{#if 조건문}}{{else}}{{/if}}의 형태로 사용 가능하며, {{if 조건문}}에 부합될 경우 하단의 블록 코드가 실행되고,
+Use the {{#if condition}}{{else}}{{/if}} format. 
 
-조건에 부합되지 않을 경우 {{else}} 하단의 블록 코드가 실행됩니다.
+The code within {{#if condition}} will be executed if the condition is true; otherwise, the code within {{else}} will be executed.
 
 Template
 ```
@@ -114,6 +112,6 @@ public class Company {
     private String name;
 }
 ```
-예시를 보면 {{#if isKey}}를 통해 조건에 부합한 id필드에만 '@Id'가 추가되도록 설정하였고,
+In this example, {{#if isKey}} ensures that '@Id' is added only for the id field if the condition is true. 
 
-조건에 부합하지 않은 name 필드의 경우 {{else}}조건에 부합되어 'private String name;'만 결과값으로 반환되는것을 확인할 수 있습니다.
+If the condition is false, as in the case of the name field, the code within {{else}} is executed, resulting in 'private String name;'.
