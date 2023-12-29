@@ -61,7 +61,7 @@
             <p class="text-lg text-left">
               <br>
               One of the greatest strengths of MSA is the polyglot architecture that can apply the optimal technology for each service.
-              ES2CD is capable of generating code for each microservice identified as a result of event storming,
+              MSAEZ is capable of generating code for each microservice identified as a result of event storming,
               and supports extension to various languages and information engineering Notation through ‘user-defined templates’.
             </p>
           </div>
