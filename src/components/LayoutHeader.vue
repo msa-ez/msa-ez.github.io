@@ -44,7 +44,13 @@
             <GithubIcon size="1.5x" />
           </a>
 
-          <div class=".clearfix" style="width:250px;">
+          <div class=".clearfix" style="width:290px;">
+            <a style="display:block; width:50px; height:50px; line-height:50px; float:left; padding-top: 13px;"
+              href="https://github.com/msa-ez/platform?tab=readme-ov-file#running-on-docker-compose-with-github" target="_blank"
+            >
+              <GithubIcon size="1.5x" style="margin:0 auto; "/>
+            </a>
+
             <div style="width:55px; height:50px; text-align:center; line-height:50px; font-weight:700; float:left;">
               <a @click="languageExchange()" style="cursor:pointer;">English</a>
             </div>
