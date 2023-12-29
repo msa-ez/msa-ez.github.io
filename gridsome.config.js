@@ -25,7 +25,7 @@ module.exports = {
         name: 'started',
         sections: [
           {
-            firstTitle: '소개',
+            firstTitle: 'Introduction',
             firstItem: '/started/',
           },
           {
@@ -33,44 +33,44 @@ module.exports = {
             firstItem: '/tool/google-drive-examples/',
           },
           {
-            firstTitle: '비즈니스 모델링',
+            firstTitle: 'Business Modeling',
             name:[
               {
-                secondTitle: '이벤트스토밍',
+                secondTitle: 'Eventstorming',
                 secondItem: '/business/'
               },
               {
-                secondTitle: 'ChatGPT 기반 모델 생성',
+                secondTitle: 'Creating Models with ChatGPT',
                 secondItem: '/tool/chat-gpt/'
               }
             ]
           },
           {
-            firstTitle: 'MSA 코드 구현',
+            firstTitle: 'MSA Code Implementation',
             name:[
               {
-                secondTitle: '모델 기반 코드 자동 생성',
+                secondTitle: 'Automatic Code Generation from Models',
                 secondItem: '/tool/model-driven/'
               },
               {
-                secondTitle: '마켓플레이스',
+                secondTitle: 'Marketplace',
                 secondItem: '/tool/marketplace/'
               },
               {
-                secondTitle: '테스트 자동화',
+                secondTitle: 'Automated Testing',
                 secondItem: '/custom-template/unit-test/'
               },
               {
-                secondTitle: 'ChatGPT 기반 코드 구현',
+                secondTitle: 'Code Implementation with ChatGPT',
                 secondItem: '/tool/si-gpt/'
               }
             ]
           },
           {
-            firstTitle: '코드 구현 실습',
+            firstTitle: 'Code Implementation Practice',
             name:[
               {
-                secondTitle: '마이크로서비스 실행',
+                secondTitle: 'Running Microservices',
                 secondItem: '/development/cna-start/'
               },
               {
@@ -78,11 +78,11 @@ module.exports = {
                 secondItem: '/development/gateway/'
               },
               {
-                secondTitle: 'Req/Res방식 연계',
+                secondTitle: 'Req/Res Integration',
                 secondItem: '/development/monolith-2-misvc/'
               },
               {
-                secondTitle: 'Pub/Sub방식 연계',
+                secondTitle: 'Pub/Sub Integration',
                 secondItem: '/development/pub-sub/'
               },
               {
@@ -90,23 +90,24 @@ module.exports = {
                 secondItem: '/development/choreography-saga/'
               },
               {
-                secondTitle: 'JWT Token 인증',
+                secondTitle: 'JWT Token Authentication',
                 secondItem: '/development/oauth2with-keycloak/'
               },
               {
-                secondTitle: 'CQRS 데이터프로젝션',
+                secondTitle: 'CQRS Data Projection',
                 secondItem: '/development/dp-cqrs/'
               },
             ]
           },
           {
-            firstTitle: 'K8s 배포 모델링',
+            firstTitle: 'K8s Deployment Modeling',
+            firstItem: '/tool/k8s-modeling/'
           },
           {
-            firstTitle: '배포 모델링 실습',
+            firstTitle: 'Deployment Modeling Practice',
             name:[
               {
-                secondTitle: '기본 배포 다이어그래밍',
+                secondTitle: 'Basic Deployment Diagramming',
                 secondItem: '/operation/ops-deploy-diagramming-basic-objects/'
               },
               {
@@ -114,11 +115,11 @@ module.exports = {
                 secondItem: '/operation/ops-deploy-diagramming-advanced-ingress/'
               },
               {
-                secondTitle: '서비스 자동확장(HPA)',
+                secondTitle: 'Service Auto-Scaling (HPA)',
                 secondItem: '/operation/ops-deploy-diagramming-advanced-hpa/'
               },
               {
-                secondTitle: '퍼시스턴스 볼륨(PV)',
+                secondTitle: 'Persistence Volume (PV)',
                 secondItem: '/operation/ops-deploy-diagramming-advanced-pvc/'
               },
               {
@@ -128,18 +129,18 @@ module.exports = {
             ]
           },
           {
-            firstTitle: '커스텀 템플릿',
+            firstTitle: 'Custom Template',
             name:[
               {
-                secondTitle: '템플릿 구조',
+                secondTitle: 'Template Structure',
                 secondItem: '/custom-template/template-structure/'
               },
               {
-                secondTitle: '반복문',
+                secondTitle: 'For Loop',
                 secondItem: '/custom-template/for-loop/'
               },
               {
-                secondTitle: '조건문',
+                secondTitle: 'Conditional Statement',
                 secondItem: '/custom-template/conditional-statement/'
               },
               {
@@ -147,7 +148,7 @@ module.exports = {
                 secondItem: '/custom-template/helper/'
               },
               {
-                secondTitle: 'Template Editor 사용법',
+                secondTitle: 'Template Editor',
                 secondItem: '/custom-template/template-editor/'
               },
             ]
@@ -167,26 +168,26 @@ module.exports = {
           // },
 
           {
-            firstTitle: '예제 시나리오',
+            firstTitle: 'Example Scenarios',
             name:[
               {
-                secondTitle: '숙소 예약',
+                secondTitle: 'Hotel Reservation',
                 secondItem: '/example-scenario/accommodation-reservation/'
               },
               {
-                secondTitle: '음식 배달',
+                secondTitle: 'Food Delivery',
                 secondItem: '/example-scenario/food-delivery/'
               },
               {
-                secondTitle: '도서관 시스템',
+                secondTitle: 'Library System',
                 secondItem: '/example-scenario/library-system/'
               },
               {
-                secondTitle: '동물병원 진료 시스템',
+                secondTitle: 'Animal Hospital System',
                 secondItem: '/example-scenario/animal-hospital/'
               },
               {
-                secondTitle: '인터넷 강의수강 시스템',
+                secondTitle: 'Online Lecture System',
                 secondItem: '/example-scenario/online-lecture/'
               },
             ]

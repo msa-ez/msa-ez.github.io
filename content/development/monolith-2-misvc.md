@@ -5,75 +5,74 @@ prev: ''
 next: ''
 ---
 
-# Req/Res 방식의 MSA 연동 
+# Request/Response Communication in MSA Integration
 
-모노리식 서비스에서 특정 부분을 마이크로서비스로 떼어내고, 모노리스와 마이크로서비스가 Req/Res 방식으로 상호 통신하는 예제를 가이드를 따라 수행한다. 
+In this guide, we will follow the steps to separate a specific part from a monolithic service and have the monolith and microservices communicate using a Req/Res (Request/Response) approach.
 
-## 이벤트스토밍 모델 준비
+## EventStorming Model Preparation
 
-- 아래 모델을 새 탭에서 로딩한다.
-[모델 링크 : https://www.msaez.io/#/storming/labshopmonolith-230822](https://www.msaez.io/#/storming/labshopmonolith-230822)
-- 브라우져에 모델이 로딩되지 않으면, 우측 상단의 (사람모양) 아바타 아이콘을 클릭하여 **반드시** 깃헙(Github) 계정으로 로그인 후, 리로드 한다.
-- 아래처럼 렙에 필요한 이벤트스토밍 기본 모델이 출력된다.
-- 로딩된 모델은 우측 팔레트 영역에 스티커 목록이 나타나지 않는다. 상단 메뉴영역에서 포크 아이콘(FORK)을 클릭해 주어진 모델을 복제한다. 
+- Open the model in a new tab using the link below:
+[Model Link : https://www.msaez.io/#/storming/labshopmonolith-230822](https://www.msaez.io/#/storming/labshopmonolith-230822)
+- If the model doesn't load, click on the avatar icon (person shape) in the upper right, log in with your Github account, and then reload.
+- Verify that the model, as needed for the level, is displayed.
 ![image](https://github.com/acmexii/demo/assets/35618409/7950c0df-eee8-44e3-a79f-7448a4caa30e)
-- 우측 팔레트 영역에 스티커 목록들이 나타나는 것이 확인된다.
+- Ensure that the model is loaded, and if not, fork it using the Fork icon.
 
-### 기존 Monolith에서 일부 영역을 마이크로서비스로 분리
+### Separating a Part from the Existing Monolith
 
-본 랩에 주어진 모델을 활용하여 가이드에 따라 모노리스에서 상품서비스를 분리하는 모델링을 수행한다. 
+Utilize the given model to guide you through the process of modeling, separating the product service from the monolith.
 
-### 이벤트스토밍
+### EventStorming
 
-- monolith 바운디드 컨텍스트를 주문 도메인 스티커에만 한정
-- 새로운 bounded context를 추가하고 이름을 "inventory"로 설정
-- inventory aggregate 객체들을 묶음 선택하여 inventory bounded context 내로 이동
+- Limit the monolith's bounded context to the order domain sticker only.
+- Add a new bounded context and name it "inventory."
+- Select and move the aggregate objects of the inventory bounded context.
 <img width="874" alt="image" src="https://user-images.githubusercontent.com/487999/190896320-72973cf1-c1dc-44f4-a46a-9be87d072284.png">
 
-- 재고량을 감소시키는 Command 의 추가: inventory BC 내에 Command  스티커를 추가하고, 아래 커맨드 이름을 복사하여 사용한다. 
+- Add a command to decrease the stock: Add the "decrease stock" command sticker to the inventory BC, and copy the command name below:
 ```
 decrease stock
 ```
-- 이때 Command 스티커는 Inventory Aggregate 스티커의 왼쪽에 인접하게 부착한다.
-- Command 의 설정:  "decrease stock" command 를 더블클릭한 후, Method Type을 'Extend Verb URI'를 선택하고 **Attribute로 type: Integer, name: qty를 추가**해 준다.
-- 속성 추가후, 반드시 'Add Attribute'를 클릭하거나 엔터키로 설정을 확인한다. 
+- Attach the Command sticker to the left of the Inventory Aggregate sticker.
+- Configure the "decrease stock" command: Double-click on the "decrease stock" command sticker, choose "Extend Verb URI" for Method Type, and add an attribute with type: Integer and name: qty.
+- After adding the attribute, click 'Add Attribute' or press Enter to confirm.
 <img width="784" alt="image" src="https://user-images.githubusercontent.com/487999/190896393-30889e96-6cbc-4e7f-9631-25c0d004635d.png">
 
-- 원격 호출선 연결:  monolith 내의 OrderPlaced Event 스티커와 inventory 의 decrease stock Command 스티커를 연결. 이때 Req/res 라는 표시가 나타남.
+- Connect the OrderPlaced Event sticker in the monolith to the "decrease stock" Command sticker in the inventory. The connection should indicate Req/Res.
 <img width="859" alt="image" src="https://user-images.githubusercontent.com/487999/190896427-f91962cd-f8ab-4113-bd85-5abe1ada3bcd.png">
 
-## Code 생성 및 내 Git 리파지토리에 푸쉬 
-- 모델링 메뉴의 'CODE' > 'Code Preview'를 클릭한다. 
-- 상단의 'Push to Git' 메뉴를 클릭해 나타나는 다이얼로그 박스에서 'Create New Repository'를 선택하고, 'CREATE'를 누른다.
-> 초기 Github 계정으로 로그인 하였으므로, 나의 Git 정보가 자동으로 표시된다. 
-![image](https://github.com/acmexii/demo/assets/35618409/dcb1966e-e0d1-43f3-9920-457660923259)
-- 모델 기반 코드가 내 Github에 푸쉬된다.
-![image](https://github.com/acmexii/demo/assets/35618409/6581f400-adb8-4963-bf03-511d459c5e32)
-- 좌측 메뉴 'IDE'를 누른다음, Cloud IDE 목록에서 'Open GitPod'를 클릭한다.
+## Code Generation and Push to Git Repository
+- Click on 'CODE' > 'Code Preview' in the modeling menu.
+- In the dialog that appears, select 'Create New Repository,' and click 'CREATE.'
 
-### 호출측 소스코드의 확인
-- Cloud IDE상에 로딩된 코드 목록에서 아래 리소스를 찾아 본다.
-- monolith/../ Order.java 의 @PostPersist 내에 호출을 위해 생성된 샘플코드를 확인한다:
+> Since you logged in with your Github account initially, your Git information is automatically displayed.
+![image](https://github.com/acmexii/demo/assets/35618409/dcb1966e-e0d1-43f3-9920-457660923259)
+- The model-based code is pushed to your Github.
+![image](https://github.com/acmexii/demo/assets/35618409/6581f400-adb8-4963-bf03-511d459c5e32)
+- Click on 'IDE' in the left menu, and then click 'Open GitPod' in the Cloud IDE list.
+
+### Check the Source Code on the Calling Side
+- Check the generated sample code in monolith/../Order.java within the @PostPersist section:
 
 ```
 @PostPersist
 public void onPostPersist() {
     labshopmonolith.external.DecreaseStockCommand decreaseStockCommand = new labshopmonolith.external.DecreaseStockCommand();
 
-  // 주문수량 정보를 커맨드 객체에 적재한다. 
+  // Load the order quantity information into the command object.
     decreaseStockCommand.setQty(getQty()); 
     
-  // InventoryService Proxy를 통해 커맨드 객체와 함께 원격호출 한다.
+  // Make a remote call through the InventoryService Proxy with the command object.
     MonolithApplication.applicationContext
         .getBean(labshopmonolith.external.InventoryService.class)
         .decreaseStock((Long.valueOf(getProductId())), decreaseStockCommand);
 }
 ```
-> 우리는 decreaseStock stub 메서드를 로컬 객체를 호출하는것처럼 호출하지만 실제적으로는 inventory 원격객체를 호출하는 결과가 될 것이다.
-> 재고량 수정을 위하여 qty 값을 전달하는 Command 객체와 해당 제품 id 를 path 로 전달하는 첫번째 아규먼트로 productId를 전달한다.
+> Even though we call the decreaseStock stub method as if we were calling a local object, it will actually result in a remote call to the inventory object. 
+> We pass the qty value to the Command object for modifying the stock amount and the product id as the first argument to productId in the path.
 
 
-- monolith/../ external 패키지 내에 생성된 FeignClient 관련 Stub 코드들을 참고한다 (InventoryService.java, DecreaseStockCommand.java, Inventory.java)
+- Check the generated FeignClient-related stub code in monolith/../external package (InventoryService.java, DecreaseStockCommand.java, Inventory.java):
 ```
 @FeignClient(name = "inventory", url = "${api.url.inventory}")
 public interface InventoryService {
@@ -88,9 +87,9 @@ public interface InventoryService {
 
 }
 ```
-> FeignClient 는 실제로는 inventory 원격객체를 호출하는 proxy 객체를 생성할 것이다. application.yaml 의 api.url.inventory 설정값의 url 로 PUT 메서드를 해당 path 로 호출하는 원격 호출의 구현체가 채워진다. 
+> The FeignClient will actually create a proxy object that calls the inventory remote object. The implementation of the remote call, which sends a PUT method to the specified path using the configured url in application.yaml under api.url.inventory, will be filled.
 
-## 피호출측 소스코드의 확인과 구현
+## Check and Implement the Code on the Called Side
 - inventory/.. /infra/InventoryController.java
 ```
 public class InventoryController {
@@ -119,45 +118,45 @@ public class InventoryController {
     }
 }
 ```
-> decreaseStock 에 대한 원격호출을 받을 수 있는 REST Service Mapping 이다.
-> 호출을 받으면 Inventory 어그리거트의 decreaseStock 으로 전달하는 input adapter 역할을 한다(hexagonal architecture). 실제 비즈니스 로직 (재고량 감소)은 어그리거트 내부에서만 ubiquitous 언어로 구현되어야 한다.
+> This is the REST service mapping for receiving the remote call for decreaseStock.
+> It acts as an input adapter, passing the input to the decreaseStock method inside the Inventory aggregate, where the actual business logic (decreasing stock) is implemented using ubiquitous language.
 
-- inventory/../Inventory.java 의 구현
+- Implement the decreaseStock method in inventory/../Inventory.java:
 ```
     public void decreaseStock(DecreaseStockCommand decreaseStockCommand) {
         setStock(getStock() - decreaseStockCommand.getQty().longValue());  // Copy & Paste this code
     }
 ```
 
-### Proxy 객체를 통한 동기호출 테스트
+### Test Synchronous Call via Proxy Object
 
-#### inventory 서비스의 테스트
+#### Test the inventory service
 
-- inventory 서비스를 기동시키고 httpie 툴을 통하여 서비스가 잘 호출되는지 테스트한다:
+- Run the inventory service and test whether the service is called correctly using the httpie tool:
 ```
 cd inventory
 mvn spring-boot:run
 ```
 
-- 인벤토리에 테스트할 상품을 먼저 등록하고 사전 검증한다.
+- Register a test product in the inventory and perform a pre-check:
 ```
 http :8083/inventories id=1 stock=10
 http PUT :8083/inventories/1/decreasestock qty=3
 http :8083/inventories/1  # stock must be 7
 ```
 
-#### monolith 를 통하여 inventory 동기호출
+#### Call inventory synchronously through monolith
 
-- monolith 를 기동시키고 실제 주문을 통하여 inventory 가 호출되는지 확인한다:
+- Run the monolith and verify if inventory is called through an actual order:
 
 ```
 cd monolith
 mvn spring-boot:run
 
-#새 터미널
+#In a new terminal
 http :8082/orders productId=1 qty=5
 http :8083/inventories/1  # stock must be 2
 ```
 
-# 참고
-1. 파일 다운로드 받기:  터미널 열고 > zip -r test.zip ./* 하신후, 생성된 test.zip 을 우클릭 다운로드
+# References
+1. To download files: Open the terminal > zip -r test.zip ./ > Download the generated test.zip by right-clicking.

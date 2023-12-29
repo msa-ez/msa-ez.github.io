@@ -8,67 +8,69 @@ next: ''
 
 ## Instruction
 
-주어진 12번가 이벤트스토밍 모델을 기반으로, MSA-Ez가 제공하는 쿠버네티스 오브젝트 생성을 위한 배포 모델링 도구를 활용해 스토리지를 위한 메니페스트를 자동 생성하고 이를 클러스터에 적용해 본다.
+Based on the provided 12th event storming model, utilize the deployment modeling tool provided by MSA-Ez to automatically generate the manifest YAML for Kubernetes objects. Apply these manifests to the cluster to set up storage.
 
 ## 이벤트스토밍 모델 준비
 
-- 아래 모델을 새 탭에서 로딩한다.
-[모델 링크 : https://www.msaez.io/#/storming/mallbasic-for-ops](https://www.msaez.io/#/storming/mallbasic-for-ops)
-- 브라우져에 모델이 로딩되지 않으면, 우측 상단의 (사람모양) 아바타 아이콘을 클릭하여 **반드시** 깃헙(Github) 계정으로 로그인 후, 리로드 한다.
-- 아래처럼 주문, 배송, 상품으로 구성된 12번가 이벤트스토밍 기본 모델이 출력된다.   
-- 로딩된 모델은 우측 팔레트 영역에 스티커 목록이 나타나지 않는다. 상단 메뉴영역에서 포크 아이콘(FORK)을 클릭해 주어진 모델을 복제한다. 
+- Load the model from the link in a new tab.
+[Model Link : https://www.msaez.io/#/storming/mallbasic-for-ops](https://www.msaez.io/#/storming/mallbasic-for-ops)
+- If the model doesn't load in the browser, click on the avatar icon (person-shaped) in the upper right, log in with your Github account, and reload.
+- The 12th event storming model consisting of orders, delivery, and products should appear.
+- The loaded model will not display the sticker list in the right palette. Click on the FORK icon in the top menu to clone the given model.
 ![image](https://github.com/acmexii/demo/assets/35618409/1e16e849-7ae9-4b33-b39c-db4ef0939507)
-- 우측 팔레트 영역에 스티커 목록들이 나타나는 것이 확인된다.
+- The sticker list should now appear in the right palette.
 
 
-## 배포 모델링
+## Deployment Modeling
 
-- Fork된 모델에 Ingress 토핑을 추가하자. 
-- Ingress 토핑 추가는 메뉴에서 'Code' > 'Preview' > 'Toppings' 에서 아래처럼 Service Mesh 하위의 Ingress를 체크 하기만 하면 된다.
+- Add Ingress topping to the forked model.
+- Adding Ingress topping is as simple as going to 'Code' > 'Preview' > 'Toppings' in the menu and checking Ingress under Service Mesh.
 ![image](https://github.com/acmexii/demo/assets/35618409/a55fc02b-2c67-492e-a233-10aee09d3cee)
 
-- Ingress가 적용된 상태에서 모델 상단 메뉴의 'DEPLOY'를 클릭한다.
+- With Ingress applied, click on 'DEPLOY' in the model's top menu.
 ![image](https://github.com/acmexii/demo/assets/35618409/07d45fce-528a-4261-a1e3-c100e068c6b0)
 
-- 아래 그럼처럼 쿠버네티스 기본 배포모형인 Service와 Deployment를 가진 서비스 상단에 Ingress 도식이 추가되어 나타난다.
+- The Kubernetes default deployment model, which includes Services and Deployments, will now show an added Ingress diagram at the top of the service stack.
 ![image](https://github.com/acmexii/demo/assets/35618409/9a3ffc7d-4910-4b6f-b3a7-0178f15abb17)
-- 또한, Ingress 게이트웨이에서 각 단위 서비스로 라우팅되는 패스(path) 이름이 자동으로 설정되어 보인다.
+- Additionally, automatic path names for routing from the Ingress gateway to each individual service will be displayed.
 
-- Cloud IDE를 활용해 각 서비스의 이미지를 생성하고 푸쉬한 다음, 생성한 이미지 이름을 Deployment 객체에 설정한다. 
+- Use a Cloud IDE to generate and push images for each service. Then, set the created image names in the Deployment objects.
 
-## Persistence 객체 모델링
 
-- 모델링 도구영역에서 'Persistence' > 'PersistentVolumeClaim'을 선택해 PVC 스티커를 생성한다.
+
+## Persistence Object Modeling
+
+- In the modeling tool, select 'Persistence' > 'PersistentVolumeClaim' to create a PVC sticker.
 ![image](https://github.com/acmexii/demo/assets/35618409/5d4b0cc8-7159-4aab-ab72-9c424efd896f)
 
-- 생성한 PVC 스티커를 더블 클릭하여 주문서비스를 위한 스토리지 정보를 아래와 같이 입력한다. 
+- Double-click on the created PVC sticker and input the storage information for the order service as follows:
 > Name : o-data
 > Access Modes : ReadWriteOnce
 > Storage : 10 Gi
 > Volume Mode : Filesystem
 ![image](https://github.com/acmexii/demo/assets/35618409/298d7014-97f7-4eb8-b5e1-c8949989ca51)
-- 이때, YAML 스펙의 14라인(storageClassName 항목)을 삭제하여 대다수 CSP들에 설정된 디폴드 스토리지 클래스(Provisioner)를 사용하도록 한다.
-- 그런 다음, 'order' Deployment 객체를 클릭하여 화살표 도구를 이용, 'o-data' PVC로 매핑을 설정한다.
+- At this point, delete line 14 (storageClassName) in the YAML spec to use the default storage class (Provisioner) set by most CSPs.
+- Next, click on the 'order' Deployment object, use the arrow tool to map it to the 'o-data' PVC.
 ![image](https://github.com/acmexii/demo/assets/35618409/be3accc4-bda3-473d-8745-3e04eae4c2ac)
-- 매핑이 설정되고 나면, 주문서비스 배포 YAML 스펙에는 o-data 스토리지를 사용하는 volume 마운트 정보가 자동으로 주입된다.
+- Once the mapping is set, the order service deployment YAML spec will automatically include volume mount information using the 'o-data' storage.
 ![image](https://github.com/acmexii/demo/assets/35618409/22696b78-e9a3-4b2e-afa9-06845f376174)
-- 나머지 배송과 상품서비스에 대해서도 동일하게 볼륨 모델링을 적용한다.
+- Apply the same volume modeling to the delivery and product services.
 ![image](https://github.com/acmexii/demo/assets/35618409/e7f9d971-148c-4f7d-a9a0-ea90e3fdf300)
 
 
-## 클러스터에 배포하기
+## Deploy to the Cluster
 
-- 설정된 클러스터 컨텍스트상에서 클라이언트(kubectl)을 활용해 수동으로 배포한다.
+- Manually deploy using the client (kubectl) on the configured cluster context.
 ```
 kubectl apply -f kubernetes/template/template.yml
 ```
-- 대상 클러스터에 Kafka가 설치되지 않은 경우, Helm으로 Kafka를 설치한다.
+- If Kafka is not installed on the target cluster, install Kafka using Helm.
 ```
 helm repo add bitnami https://charts.bitnami.com/bitnami
 helm repo update
 helm install my-kafka bitnami/kafka --version 23.0.5
 ```
-- Ingress Controller가 없을 경우, Ingress Controller도 설치한다.
+- If there is no Ingress Controller, install the Ingress Controller.
 ```
 helm repo add stable https://charts.helm.sh/stable
 helm repo add ingress-nginx https://kubernetes.github.io/ingress-nginx
@@ -78,11 +80,11 @@ kubectl create namespace ingress-basic
 helm install nginx-ingress ingress-nginx/ingress-nginx --namespace=ingress-basic
 ```
 
-- 생성된 PVC 배포를 조회해 본다.
+- Check the deployed PVCs.
 ```
 kubectl get pvc 
 ```
-- 다음과 같이 배포된 PVC 스펙이 조회되어 출력된다. (GCP 예시)
+- The deployed PVC specs will be displayed, similar to the following (example from GCP):
 ```
 NAME              STATUS   VOLUME                                     CAPACITY   ACCESS MODES   STORAGECLASS   AGE
 d-data            Bound    pvc-05cadaa8-0dd4-407f-85f5-d25fbb02939b   10Gi       RWO            standard-rwo   49m
@@ -91,12 +93,12 @@ o-data            Bound    pvc-6b3a94e4-d7e6-42f3-9c4c-d4cc675db94d   10Gi      
 p-data            Bound    pvc-ab492454-4c05-4e58-8462-67d8e0f7c3aa   10Gi       RWO            standard-rwo   49m
 ```
 
-## 주문 컨테이너 스토리지 확인
+## Verify Order Container Storage
 
-- 주문 컨테이너에 접속하여 바인딩된 스토리지를 확인하고 데이터를 생성해 본다. 
+- Access the order container to check the bound storage and create data.
 ```
 kubectl exec -it pod/ORDER 객체 -- /bin/sh
 ls /data
 ```
-- 클라우드 서비스 제공자가 지원하는 스토리지가 PVC 클레임에 명시된 사이즈만큼 조회된다.
+- The storage size specified in the PVC claim will be visible, showcasing the supported storage by the cloud service provider.
 
