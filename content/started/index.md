@@ -2,67 +2,31 @@
 description: ''
 sidebar: 'started'
 ---
-## Introduction
+# Introduction
+
+[**MSAEZ**](https://www.msaez.io/) is an integrated platform designed to support the analysis, design, implementation, and operation of microservices. Through this platform, business experts and developers can collaboratively analyze and design the target domain using domain-centric design and event storming techniques. Additionally, it enables the automatic generation of source code based on Clean Architecture for each designed subdomain.
 
 ![](../../src/img/started/simage.png)
 
-MSAEZ is a tool that supports analysis, design, implementation, and monitoring necessary for the operation of microservices. It facilitates domain analysis and design through collaborative event storming, automatically generating MSA (Microservices Architecture) source code from the designed domain model.
+MSAEZ supports the full lifecycle of BizDevOps using ChatGPT for automation and guidance, providing an optimal execution environment for agile cloud-native application implementation.
 
-Recently adopted by leading global companies such as IBM and Pivotal in the realm of Microservices Architecture, MSAEZ provides a modeling environment for event-driven domain analysis techniques. It enables developers to implement business logic based on the modeling results by simultaneously generating MSA template code and files required for cloud deployment.
+**Key Features of MSAEZ:**
 
-The generated code can be seamlessly integrated with cloud IDEs, allowing developers to immediately embark on development tasks. This tool supports the creation of a service based on the ideas of business experts, providing a solution where a single idea can lead to the creation of a service.
+1. **Online Event Storming Collaboration Tool:**
+   MSAEZ provides a web-based platform with sticky note and whiteboard functionalities for online event storming collaboration. Event Storming, rooted in Domain-Driven Design (DDD), allows all stakeholders to define and understand events in the service, fostering a comprehensive approach to how events occur and their interactions.
 
-![](../../src/img/started/simagee.png)
+2. **Template-Based Clean Code Generation:**
+   Leveraging the Mustache template engine, MSAEZ facilitates easy automatic generation of skeleton code from the designed model. Business developers can customize the generated code by adding various microservices patterns, referred to as "Topping," as optional features.
 
-![](../../src/img/started/simageee.png)
+3. **Custom Template Support:**
+   In addition to built-in DSL templates (Java, Python, Go, NodeJS, Spring-boot-Mybatis, Spring-boot-JPA), MSAEZ allows developers to create and apply custom templates. Detailed guidelines and manuals are provided for creating custom templates, enabling optimization for the specific framework needs of organizations implementing microservices.
 
-<p align="center"> MSAEZ </p>
+4. **Latest OpenAI-Based Expertise Support:**
+   MSAEZ utilizes state-of-the-art OpenAI engines, including ChatGPT, to support agile product (microservices) development. It provides interfaces within the MSAEZ tool for automating event storming, generating business logic, and facilitating automatic testing/debugging across all stages.
 
----
+5. **Integration with Version Control and Cloud IDE Usage:**
+   MSAEZ supports the storage of model-based generated code in GIT repositories. Users can seamlessly commit and push the code to their Git repositories through MSAEZ's integrated UI. The platform also allows developers to load repository code into cloud IDEs (GitPod, CODESPACE) for immediate implementation and testing of business logic, creating an agile environment.
 
-## Open-source transition
+   Additionally, MSAEZ ensures smooth integration between design changes in event storming and ongoing implementation by utilizing branch merging functionality in version control.
 
-As of November 2023, the entire MSAEZ service has transitioned to open-source.
-
-All users can download and use the project from the following address.
-
-https://github.com/msa-ez/platform
-
----
-
-## ChatGPT Integration Service
-
-We have applied AI-based technology from ChatGPT to facilitate easier business design.
-
-For detailed information, please refer to the document below.
-
-https://intro-kor.msaez.io/tool/chat-gpt/
-
----
-
-## Effectiveness
-
-Compared to the standard framework-based development of general SI companies, the development of microservices through the event storming tool has several advantages.
-
-| **Section**           | **When applying the standard development methodology**        | **When applying the event storming tool**              |
-| ---------------------- | ----------------------------- | ---------------------- |
-| Ease of analysis and design | Analysis and design personnel understand professional tools (UML, BPM, ERD, etc) and create products using them | From domain experts to UI/UX personnel, developers can analyze and design without any tools |
-| System scalability | Mutual interference increases with DB-level sticky reference (JOIN Query) due to designing the data structure first | Less interference between services by defining individual services after identifying business domains |
-| MSA Development Productivity | Manual development by developers with MSA implementation skills | The tool automatically generates the initial source code |
-| MSA Code Diversity | Implement all service code in a single language provided by the framework | A user-defined extension template can be created in a language that matches the characteristics of each service |
-| Maintenance Flexibility | Constraints exist for SM organizations to understand the standard framework | With the application of ubiquitous language and the application of MSA Chassis for each event-storming sticker, SM is relatively advantageous. |
-
-MSAEZ supports the entire MSA lifecycle, from analysis to operation. The source code, which was developed manually by developers with existing MSA skills, is automatically generated by the tool, and version control and electronic storage of results, which are impossible offline, is one of the advantages provided by MSAEZ which is a software-based event storming tool.
-
----
-
-## Running Environment
-
-| **Section**           | **Contents**        |
-| ----------------- | ----------------------------- |
-| Supporting OS | Windows, Linux, Mac OS |
-| Supporting Cloud | All Cloud Platform (AWS, GCP, MS Azure, etc.) |
-| Service Type | On-Premise or SaaS |
-| Required Spec | 512MB Memory or more | 
-| Supporting Browser | Cross-browser (IE, Edge 등 MS계열 제외) |
-| Installation Module | X |
+Experience MSAEZ, the platform that seamlessly integrates business planning, implementation, testing, and deployment into a cloud-native workflow, supporting the Biz-Dev-Ops full lifecycle. No installation is needed, and it operates entirely in a browser, fostering collaborative teamwork with the latest OpenAI engines for business planners, DevOps developers, and cloud operators.

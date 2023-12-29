@@ -3,23 +3,29 @@ description: ''
 sidebar: 'started'
 ---
 
-# Template/Topping Marketplace
 
-## Scheme
+# Marketplace
 
-As an extension version of MSAEZ's auto code generation, the Marketplace simply provides more options to developers by adding more diverse language templates, frameworks, and toppings to the code.
+## Overview
 
-## How-to
-> ![](../../src/img/mp1.png)
+The Marketplace is one of MSAEZ's automated code generation features, allowing customization of microservice code for each service such as order, delivery, and product based on the Event Storming model. Users can change the language (or specific framework) settings or add microservices patterns (UI Framework, API Gateway, Service Mesh, BFF, Testing, etc.) to the automatically generated 'clean code.'
 
-Enter Marketplace which can apply diverse templates on the code created based on eventstorming model.
+DevOps developers can effortlessly add implementation code to their services by simply selecting the desired implementation language or microservices pattern from the UI list provided by the platform. (The added implementation code is also applied to the runtime deployment modeling.)
 
-> ![](../../src/img/mp2.png)
+The areas in the Marketplace where languages or specific frameworks are implemented are referred to as 'templates,' while the areas where microservices patterns are implemented are called 'toppings.'
 
-> ![](../../src/img/mp4.png)
+## Application Method
 
-Categories are organized by languages and frameworks, and it is divided by templates and toppings, so users can select the option they want.
+![](../../src/img/mp1.png)
 
-> ![](../../src/img/mp5.png)
+1. Enter the Marketplace where various templates can be added to the code generated based on the Event Storming model.
 
-Selected language templates and toppings can be selected at CODE PREVIEW and can be applied to the code.
+![](../../src/img/mp2.png)
+
+![](../../src/img/mp4.png)
+
+2. Categories are organized by language and framework, with templates and toppings separated, allowing users to choose the desired options.
+
+![](../../src/img/mp5.png)
+
+3. The applied language templates and toppings can be selected in the CODE PREVIEW window and applied to the code.

@@ -2,15 +2,16 @@
 description: ''
 sidebar: 'started'
 ---
-# Eventstorming - 12stmall
+# Eventstorming - Shopping Mall
 
 ## Instruction
-Performing EventStorming based on the Given Shopping Mall Scenario
+Performing EventStorming based on the given Shopping Mall Scenario
 
-## MSAEZ 모델링 도구 접속
+## MSAEZ Modeling Tool Access
 - Open the Chrome browser and go to https://www.msaez.io.
 - Click on the avatar icon in the upper right corner and login with your Github account.
 - Click on the first item, EventStorming, from the NEW menu.
+
 ![image](https://github.com/acmexii/demo/assets/35618409/d35919e8-3ff6-4a13-bccc-6935f4d87dbf)
 
 ## Basic Scenario - Order and Order Cancellation
@@ -21,7 +22,7 @@ Performing EventStorming based on the Given Shopping Mall Scenario
 - When an order is canceled, the delivery is canceled as well.
 - When the delivery is picked up, the stock quantity increases.
 
-## 이벤트스토밍
+## EventStorming
 
 ### Step 1: Events (Orange Color)
 The first step of EventStorming involves attaching domain events based on the narrative (verbs).

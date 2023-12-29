@@ -49,7 +49,7 @@ module.exports = {
             firstTitle: 'MSA Code Implementation',
             name:[
               {
-                secondTitle: 'Automatic Code Generation from Models',
+                secondTitle: 'Automatic Code Generation',
                 secondItem: '/tool/model-driven/'
               },
               {
@@ -57,7 +57,7 @@ module.exports = {
                 secondItem: '/tool/marketplace/'
               },
               {
-                secondTitle: 'Automated Testing',
+                secondTitle: 'Test Automation',
                 secondItem: '/custom-template/unit-test/'
               },
               {

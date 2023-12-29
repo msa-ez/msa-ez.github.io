@@ -3,7 +3,8 @@ description: ''
 sidebar: 'started'
 ---
 
-# Chat GPT-based Model Generation
+# Creating Models with ChatGPT
+
 ## Generating business model utilizing OpenAI
 
 ![](../../src/img/gpt0.png)
