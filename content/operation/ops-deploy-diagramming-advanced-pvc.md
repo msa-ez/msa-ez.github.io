@@ -10,7 +10,7 @@ next: ''
 
 Based on the provided 12th event storming model, utilize the deployment modeling tool provided by MSA-Ez to automatically generate the manifest YAML for Kubernetes objects. Apply these manifests to the cluster to set up storage.
 
-## 이벤트스토밍 모델 준비
+## Event Storming Model Preparation
 
 - Load the model from the link in a new tab.
 [Model Link : https://www.msaez.io/#/storming/mallbasic-for-ops](https://www.msaez.io/#/storming/mallbasic-for-ops)
