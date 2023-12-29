@@ -25,209 +25,189 @@ module.exports = {
         name: 'started',
         sections: [
           {
-            firstTitle: 'Getting Started',
+            firstTitle: '소개',
             firstItem: '/started/',
           },
           {
-            firstTitle: 'Key features',
-            firstItem: '/started/key-features',
-            name: [
-              {
-                thirdItems:
-                [
-                ]
-              },
-            ]
+            firstTitle: 'Quick Start',
+            firstItem: '/tool/google-drive-examples/',
           },
           {
-            firstTitle: 'Tutorial',
-            name: [
-              {
-                secondTitle: 'Concepts',
-                thirdItems:
-                [
-                  '/started/domain-driven/',
-                  '/started/event-storming-learning/',
-                ]
-              },
-              {
-                secondTitle: 'SetUp',
-                thirdItems:
-                [
-                  
-                ]
-              },
-              {
-                secondTitle: 'Biz Modeling',
-                thirdItems:
-                [
-                  '/tool/event-storming-tool/',
-                  '/tool/google-drive-examples/',
-                  '/tool/chat-gpt/'
-                ]
-              },
-              {
-                secondTitle: 'Code Generation',
-                thirdItems:
-                [
-                  '/tool/marketplace/',
-                  '/templates-language/go-template/',
-                  '/templates-language/python-template/',
-                  '/templates-language/springboot-java-template/',
-                  '/custom-template/designing-template/',
-                  '/custom-template/custom-template/'
-                ]
-              },
-              {
-                secondTitle: 'Test Design',
-                thirdItems:
-                [
-                  '/custom-template/unit-test/',
-                  '/custom-template/mock-server/',
-                ]
-              },
-              {
-                secondTitle: 'Infra(K8s) Modeling',
-                thirdItems:
-                [
-                  '/tool/infrastructure-modeling/'
-                ]
-              },
-              {
-                secondTitle: 'Online lecture platform',
-                thirdItems:
-                [
-                  '/tool/development-practice/',
-                  // '/tool/attending-lectures/'
-                ]
-              },
-              {
-                secondTitle: 'Guide labs for Analysis/Design',
-                thirdItems:
-                [
-                ]
-              },
-              {
-                secondTitle: 'Guide labs for Implementation',
-                thirdItems:
-                [
-                  '/business/',
-                  '/business/ddd-google-drive/',
-                  '/business/eventstorming-fooddelivery/',
-                  // '/development/understanding-jpa-based-single-microservice/',
-                  '/development/cna-start/',
-                  '/development/monolith-2-misvc/',
-                  '/development/circuit-breaker/',
-                  '/development/kafka-basic/',
-                  '/development/pub-sub/',
-                  '/development/compensation-correlation/',
-                  // '/development/pubsub-idempotency/',
-                  // '/development/pubsub-deadline/',
-                  '/development/kafka-scaling/',
-                  // '/development/kafka-scaling-concurrenty-handling/',
-                  '/development/kafka-retry-dlq/',
-                  // '/development/kafka-connect/',
-                  // '/development/choreography-saga/',
-                  '/development/orchestration-saga/',
-                  '/development/gateway/',
-                  '/development/token-based-auth/',
-                  '/development/oauth2with-keycloak/',
-                  '/development/dp-frontend/',
-                  '/development/dp-graphql/',
-                  '/development/dp-cqrs/',
-                  '/development/contract-test/',
-                  // '/development/conteact-messaging/',
-                  // '/development/ops-docker/',
-                ]
-              },
-              // {
-              //   secondTitle: 'Guide labs for Ops',
-              //   thirdItems:
-              //   [
-                  // gcp추가
-                  // '/operations/ops-aws-setting/',
-                  // '/operations/ops-aws-csi-setting/',
-                  // '/operations/azure/',
-                  // '/operations/ops-kubernetes/',
-                  // '/operations/ops-deploy-my-app/',
-                  // '/operations/end-to-end/',
-                  // '/operations/ops-pod-status/',
-                  // '/operations/ops-label-annotation/',
-                  // '/operations/ops-autoscale/',
-                  // '/operations/service/',
-                  // '/operations/ops-readiness/',
-                  // '/operations/ops-persistence-volume-efs/',
-                  // '/operations/ops-persistence-volume-azure/',
-                  // '/operations/ops-persistence-volume-gcp/',
-                  // '/operations/ops-configmap/',
-                  // '/operations/ops-persistence-volume/',
-                  // '/operations/ops-ingress/',
-                  // '/operations/ops-ingress-virtualhost/',
-                  // '/operations/ops-service-mesh-istio-2/',
-                  // '/operations/istio-traffic/',
-                  // '/operations/istio-resiliency-part1/',
-                  // '/operations/istio-resiliency-part2/',
-                  // '/operations/istio-metric-based-hpa/',
-                  // '/operations/istio-msa-telemetry/',
-                  // '/operations/istio-sre-monitoring/',
-                  // '/operations/microservice-logging/',
-                  // '/operations/microservice-logging2/',
-                  // '/operations/apply-security-to-12st-mall/',
-                  // '/operations/ops-argo-rollout-canary-istio/',
-                  // '/operations/service-mesh-ab-testing/',
-                  // '/operations/gitops-argo-cd/',
-                  // '/operations/ops-anatomy-kubernetes/',
-                  // '/operations/ops-utility/',
-              //   ]
-              // },
-            ]
-          },
-          {
-            firstTitle: 'Case Studies',
+            firstTitle: '비즈니스 모델링',
             name:[
               {
-                secondTitle: 'Example Scenario',
-                thirdItems:
-                [
-                  '/example-scenario/accommodation-reservation/',
-                  '/example-scenario/food-delivery/',
-                  '/example-scenario/library-system/',
-                  '/example-scenario/animal-hospital/',
-                  '/example-scenario/online-lecture/',
-                ]
+                secondTitle: '이벤트스토밍',
+                secondItem: '/business/'
               },
               {
-                secondTitle: 'Customers',
-                thirdItems:
-                [
-                 
-                ]
+                secondTitle: 'ChatGPT 기반 모델 생성',
+                secondItem: '/tool/chat-gpt/'
               }
+            ]
+          },
+          {
+            firstTitle: 'MSA 코드 구현',
+            name:[
+              {
+                secondTitle: '모델 기반 코드 자동 생성',
+                secondItem: '/tool/model-driven/'
+              },
+              {
+                secondTitle: '마켓플레이스',
+                secondItem: '/tool/marketplace/'
+              },
+              {
+                secondTitle: '테스트 자동화',
+                secondItem: '/custom-template/unit-test/'
+              },
+              {
+                secondTitle: 'ChatGPT 기반 코드 구현',
+                secondItem: '/tool/si-gpt/'
+              }
+            ]
+          },
+          {
+            firstTitle: '코드 구현 실습',
+            name:[
+              {
+                secondTitle: '마이크로서비스 실행',
+                secondItem: '/development/cna-start/'
+              },
+              {
+                secondTitle: 'API Gateway',
+                secondItem: '/development/gateway/'
+              },
+              {
+                secondTitle: 'Req/Res방식 연계',
+                secondItem: '/development/monolith-2-misvc/'
+              },
+              {
+                secondTitle: 'Pub/Sub방식 연계',
+                secondItem: '/development/pub-sub/'
+              },
+              {
+                secondTitle: 'Orchestration Saga',
+                secondItem: '/development/choreography-saga/'
+              },
+              {
+                secondTitle: 'JWT Token 인증',
+                secondItem: '/development/oauth2with-keycloak/'
+              },
+              {
+                secondTitle: 'CQRS 데이터프로젝션',
+                secondItem: '/development/dp-cqrs/'
+              },
+            ]
+          },
+          {
+            firstTitle: 'K8s 배포 모델링',
+          },
+          {
+            firstTitle: '배포 모델링 실습',
+            name:[
+              {
+                secondTitle: '기본 배포 다이어그래밍',
+                secondItem: '/operation/ops-deploy-diagramming-basic-objects/'
+              },
+              {
+                secondTitle: 'Ingress Gateway',
+                secondItem: '/operation/ops-deploy-diagramming-advanced-ingress/'
+              },
+              {
+                secondTitle: '서비스 자동확장(HPA)',
+                secondItem: '/operation/ops-deploy-diagramming-advanced-hpa/'
+              },
+              {
+                secondTitle: '퍼시스턴스 볼륨(PV)',
+                secondItem: '/operation/ops-deploy-diagramming-advanced-pvc/'
+              },
+              {
+                secondTitle: 'Istio - Service Mesh',
+                secondItem: '/operation/ops-deploy-diagramming-advanced-istio/'
+              },
+            ]
+          },
+          {
+            firstTitle: '커스텀 템플릿',
+            name:[
+              {
+                secondTitle: '템플릿 구조',
+                secondItem: '/custom-template/template-structure/'
+              },
+              {
+                secondTitle: '반복문',
+                secondItem: '/custom-template/for-loop/'
+              },
+              {
+                secondTitle: '조건문',
+                secondItem: '/custom-template/conditional-statement/'
+              },
+              {
+                secondTitle: 'Helper',
+                secondItem: '/custom-template/helper/'
+              },
+              {
+                secondTitle: 'Template Editor 사용법',
+                secondItem: '/custom-template/template-editor/'
+              },
+            ]
+          },
+          // {
+          //   firstTitle: '테스트',
+          //   name:[
+          //     {
+          //       secondTitle: 'Unit 테스트',
+          //       secondItem: '/custom-template/unit-test/'
+          //     },
+          //     {
+          //       secondTitle: 'API 서비스 테스트',
+          //       secondItem: '/custom-template/mock-server/'
+          //     }
+          //   ]
+          // },
+
+          {
+            firstTitle: '예제 시나리오',
+            name:[
+              {
+                secondTitle: '숙소 예약',
+                secondItem: '/example-scenario/accommodation-reservation/'
+              },
+              {
+                secondTitle: '음식 배달',
+                secondItem: '/example-scenario/food-delivery/'
+              },
+              {
+                secondTitle: '도서관 시스템',
+                secondItem: '/example-scenario/library-system/'
+              },
+              {
+                secondTitle: '동물병원 진료 시스템',
+                secondItem: '/example-scenario/animal-hospital/'
+              },
+              {
+                secondTitle: '인터넷 강의수강 시스템',
+                secondItem: '/example-scenario/online-lecture/'
+              },
             ]
           },
           {
             firstTitle: 'Support',
             name:[
-              {
-                secondTitle: 'FAQ',
-                thirdItems:
-                [
+              // {
+              //   secondTitle: 'FAQ',
+              //   thirdItems:
+              //   [
                  
-                ]
-              },
+              //   ]
+              // },
               {
                 secondTitle: 'Q&A',
-                thirdItems:
-                [
-                 
-                ]
+                secondLink:'https://github.com/msa-ez/platform/issues',
               },
               {
                 secondTitle: 'Contact',
                 secondItem: '/contact/question/',
-                thirdItems:
-                [
-                ]
               }
               
             ]
