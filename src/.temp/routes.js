@@ -48,10 +48,6 @@ export default [
     component: c1
   },
   {
-    path: "/development/understanding-jpa-based-single-microservice/",
-    component: c1
-  },
-  {
     path: "/templates-language/go-template/",
     component: c1
   },
@@ -68,11 +64,15 @@ export default [
     component: c1
   },
   {
-    path: "/development/token-based-auth/",
+    path: "/started/event-storming-learning/",
     component: c1
   },
   {
-    path: "/started/event-storming-learning/",
+    path: "/custom-template/template-editor/",
+    component: c1
+  },
+  {
+    path: "/custom-template/template-structure/",
     component: c1
   },
   {
@@ -108,27 +108,11 @@ export default [
     component: c1
   },
   {
-    path: "/development/pubsub-deadline/",
-    component: c1
-  },
-  {
-    path: "/development/pubsub-idempotency/",
-    component: c1
-  },
-  {
     path: "/contact/question/",
     component: c1
   },
   {
     path: "/development/oauth2with-keycloak/",
-    component: c1
-  },
-  {
-    path: "/development/ops-docker/",
-    component: c1
-  },
-  {
-    path: "/development/orchestration-saga/",
     component: c1
   },
   {
@@ -144,27 +128,15 @@ export default [
     component: c1
   },
   {
-    path: "/development/kafka-scaling-concurrenty-handling/",
-    component: c1
-  },
-  {
-    path: "/development/kafka-retry-dlq/",
-    component: c1
-  },
-  {
-    path: "/development/kafka-basic/",
-    component: c1
-  },
-  {
-    path: "/development/kafka-connect/",
-    component: c1
-  },
-  {
-    path: "/development/kafka-scaling/",
-    component: c1
-  },
-  {
     path: "/example-scenario/food-delivery/",
+    component: c1
+  },
+  {
+    path: "/custom-template/helper/",
+    component: c1
+  },
+  {
+    path: "/custom-template/for-loop/",
     component: c1
   },
   {
@@ -180,19 +152,15 @@ export default [
     component: c1
   },
   {
-    path: "/development/dp-frontend/",
-    component: c1
-  },
-  {
-    path: "/development/dp-graphql/",
-    component: c1
-  },
-  {
     path: "/business/ddd-google-drive/",
     component: c1
   },
   {
     path: "/business/eventstorming-fooddelivery/",
+    component: c1
+  },
+  {
+    path: "/custom-template/conditional-statement/",
     component: c1
   },
   {
@@ -204,23 +172,7 @@ export default [
     component: c1
   },
   {
-    path: "/development/circuit-breaker/",
-    component: c1
-  },
-  {
     path: "/development/cna-start/",
-    component: c1
-  },
-  {
-    path: "/development/compensation-correlation/",
-    component: c1
-  },
-  {
-    path: "/development/conteact-messaging/",
-    component: c1
-  },
-  {
-    path: "/development/contract-test/",
     component: c1
   },
   {

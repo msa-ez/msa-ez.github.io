@@ -118,9 +118,9 @@ keycloak-client:
         jwt:
           jwk-set-uri: ${keycloak-client.server-url}/realms/${keycloak-client.realm}/protocol/openid-connect/certs
 ```
-> 51라인에 OAuth Client value인 12stmall 입력
-> 52라인에 KeyCloakd에 생성된 client-secret 입력
-> 53라인에 KeyCloakd에 설정한 redirect-uri 입력 
+> Enter '12stmall' as the OAuth Client value on line 51.
+> Input the client-secret generated in KeyCloak on line 52.
+> Provide the redirect-uri configured in KeyCloak on line 53.
 
 ### Test User Creation
  
