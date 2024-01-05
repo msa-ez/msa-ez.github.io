@@ -7,8 +7,8 @@
 module.exports = {
   siteName: 'msaez',
   icon: {
-    favicon: './src/assets/favicon.png',
-    touchicon: './src/assets/favicon.png'
+    favicon: './src/img/logo.png',
+    touchicon: './src/img/logo.png',
   },
   siteUrl: (process.env.SITE_URL ? process.env.SITE_URL : 'https://example.com'),
   settings: {
@@ -107,6 +107,10 @@ module.exports = {
             firstTitle: 'Deployment Modeling Practice',
             name:[
               {
+                secondTitle: 'K8s Deployment Modeling',
+                secondItem: '/tool/k8s-modeling/'
+              },
+              {
                 secondTitle: 'Basic Deployment Diagramming',
                 secondItem: '/operation/ops-deploy-diagramming-basic-objects/'
               },
@@ -132,20 +136,24 @@ module.exports = {
             firstTitle: 'Custom Template',
             name:[
               {
+                secondTitle: 'Creating Custom Template',
+                secondItem: '/custom-template/template-editor-custom-template/'
+              },
+              {
                 secondTitle: 'Template Structure',
                 secondItem: '/custom-template/template-structure/'
               },
               {
-                secondTitle: 'For Loop',
-                secondItem: '/custom-template/for-loop/'
-              },
-              {
-                secondTitle: 'Conditional Statement',
-                secondItem: '/custom-template/conditional-statement/'
+                secondTitle: 'Loop & Conditional Statement',
+                secondItem: '/custom-template/loop-conditional-statement/'
               },
               {
                 secondTitle: 'Helper',
                 secondItem: '/custom-template/helper/'
+              },
+              {
+                secondTitle: 'Global Helper',
+                secondItem: '/custom-template/global-helper/'
               },
               {
                 secondTitle: 'Template Editor',
