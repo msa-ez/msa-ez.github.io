@@ -104,3 +104,7 @@ routes.js
 
 # TernJS port file
 .tern-port
+
+plugins-server.js
+
+icons.js
