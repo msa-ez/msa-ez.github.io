@@ -5,37 +5,37 @@ export default {
   "touchicons": [
     {
       "width": 76,
-      "src": "/assets/static/src/img/logo.png?width=76&key=46987f1"
+      "src": "/assets/static/logo.f22e9f3.bd727e13501e82a0ba322b4ad29fd33a.png"
     },
     {
       "width": 152,
-      "src": "/assets/static/src/img/logo.png?width=152&key=46987f1"
+      "src": "/assets/static/logo.62d22cb.bd727e13501e82a0ba322b4ad29fd33a.png"
     },
     {
       "width": 120,
-      "src": "/assets/static/src/img/logo.png?width=120&key=46987f1"
+      "src": "/assets/static/logo.1539b60.bd727e13501e82a0ba322b4ad29fd33a.png"
     },
     {
       "width": 167,
-      "src": "/assets/static/src/img/logo.png?width=167&key=46987f1"
+      "src": "/assets/static/logo.dc0cdc5.bd727e13501e82a0ba322b4ad29fd33a.png"
     },
     {
       "width": 180,
-      "src": "/assets/static/src/img/logo.png?width=180&key=46987f1"
+      "src": "/assets/static/logo.7b22250.bd727e13501e82a0ba322b4ad29fd33a.png"
     }
   ],
   "favicons": [
     {
       "width": 16,
-      "src": "/assets/static/src/img/logo.png?width=16&key=5e8f2fa"
+      "src": "/assets/static/logo.ce0531f.bd727e13501e82a0ba322b4ad29fd33a.png"
     },
     {
       "width": 32,
-      "src": "/assets/static/src/img/logo.png?width=32&key=5e8f2fa"
+      "src": "/assets/static/logo.ac8d93a.bd727e13501e82a0ba322b4ad29fd33a.png"
     },
     {
       "width": 96,
-      "src": "/assets/static/src/img/logo.png?width=96&key=5e8f2fa"
+      "src": "/assets/static/logo.b9532cc.bd727e13501e82a0ba322b4ad29fd33a.png"
     }
   ]
 }
