@@ -7,8 +7,8 @@
 module.exports = {
   siteName: 'msaez',
   icon: {
-    favicon: './src/assets/favicon.png',
-    touchicon: './src/assets/favicon.png'
+    favicon: './src/img/logo.png',
+    touchicon: './src/img/logo.png',
   },
   siteUrl: (process.env.SITE_URL ? process.env.SITE_URL : 'https://example.com'),
   settings: {
