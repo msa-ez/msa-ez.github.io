@@ -1,18 +1,15 @@
 <template>
   <Layout>
       <div class="flex flex-wrap items-start justify-start">
-        <div class="order-2 lg:w-1/4 sm:w-full md:w-1/3 sm:pl-4 md:pl-6 lg:pl-8 sticky" style="top: 4rem;">
+        <div class="order-2 w-full md:w-1/3 sm:pl-4 md:pl-6 lg:pl-8 sticky" style="top: 4rem">
           <OnThisPage />
         </div>
-
-        <div class="order-1 lg:w-3/4 sm:w-full md:w-2/3">
+        <div class="order-1 w-full md:w-2/3">
           <div class="content" v-html="$page.markdownPage.content" />
-
           <div class="mt-8 pt-8 lg:mt-12 lg:pt-12 border-t border-ui-border">
             <NextPrevLinks />
           </div>
         </div>
-
       </div>
   </Layout>
 </template>
@@ -51,32 +48,58 @@ import OnThisPage from '@/components/OnThisPage.vue';
 import NextPrevLinks from '@/components/NextPrevLinks.vue';
 import { ArrowRightCircleIcon, ZapIcon, CodeIcon, MoonIcon, SearchIcon } from 'vue-feather-icons';
 
+
 export default {
   components: {
     OnThisPage,
     NextPrevLinks,
     ArrowRightCircleIcon
   },
+  metaInfo: {
+    title: 'msaez',
+    meta: [
+      { charset: 'utf-8' },
+      { name: 'viewport', content: 'width=device-width, initial-scale=1' }
+    ],
+  },
+  mounted() {
+    this.wrapTables();
+  },
   
   watch: {
     "$page.markdownPage.content":function(newvalue){
       this.track()
+    },
+    "$page.markdownPage.content"() {
+      this.track();
+      this.$nextTick(function () {
+        this.wrapTables();
+      });
     }
   },
   methods: {
     track() {
-
-         var getTitle = this.$page.markdownPage && this.$page.markdownPage.title ?
-             this.$page.markdownPage.title : this.$route.path
-         var location = window.location.hostname
-         if (location && location != 'localhost') {
-             getTitle = `${location}_${getTitle}`
-         }
-         this.$ga.page({
-             page: this.$route.path,
-             title: getTitle
-         })
+      var getTitle = this.$page.markdownPage && this.$page.markdownPage.title ?
+          this.$page.markdownPage.title : this.$route.path
+      var location = window.location.hostname
+      if (location && location != 'localhost') {
+          getTitle = `${location}_${getTitle}`
+      }
+      this.$ga.page({
+          page: this.$route.path,
+          title: getTitle
+      })
     },
+    wrapTables() {
+      // 페이지의 모든 테이블을 찾아 각각을 overflow 스타일이 적용된 div로 감쌉니다.
+      const tables = this.$el.querySelectorAll('.content table');
+      tables.forEach((table) => {
+        const wrapper = document.createElement('div');
+        wrapper.style.overflow = 'auto';
+        table.parentNode.insertBefore(wrapper, table);
+        wrapper.appendChild(table);
+      });
+    }
 },
 
 
@@ -120,18 +143,4 @@ export default {
 
 <style>
 @import 'prism-themes/themes/prism-material-oceanic.css';
-
-code[class*=language-]:nth-child(1) {
-  margin-left:-4px;
-}
-
-
-code ::selection {
-		color: #5967d8;
-}
-
-code[class*="language-"]::selection, 
-pre[class*="language-"]::selection, 
-code[class*="language-"] ::selection,
-pre[class*="language-"] ::selection{background-color:white;}
 </style>

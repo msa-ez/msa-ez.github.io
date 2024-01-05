@@ -1,5 +1,5 @@
 <template>
-  <div class="font-sans antialiased text-ui-typo bg-ui-background">
+  <div class="antialiased text-ui-typo bg-ui-background">
     <div class="flex flex-col justify-start min-h-screen">
 
       <header
@@ -11,15 +11,14 @@
       </header>
 
       <main class="container relative flex flex-wrap justify-start flex-1 w-full bg-ui-background">
-
         <aside
           v-if="hasSidebar"
-          class="sidebar flex-1 w-1/6"
+          class="sidebar flex-1 w-1/6 is-mobile-aside"
           :class="{ 'open': sidebarOpen }"
           :style="sidebarStyle"
         >
           <div class="w-full pb-16 bg-ui-background">
-            <Sidebar @navigate="sidebarOpen = false" />
+            <Sidebar @navigate="sidebarOpen = false" @closeSidebar="sidebarOpen = false" />
           </div>
         </aside>
 
@@ -70,7 +69,12 @@ export default {
     return {
       headerHeight: 0,
       sidebarOpen: false,
+      homeFooterNone: false,
     }
+  },
+  mounted() {
+    this.setHeaderHeight();
+    window.addEventListener('resize', this.setHeaderHeight);
   },
   watch: {
     sidebarOpen: function(isOpen) {
@@ -82,21 +86,21 @@ export default {
       this.$nextTick(() => {
         this.headerHeight = this.$refs.header.offsetHeight;
       });
-    }
+    },
   },
   computed: {
     sidebarStyle() {
       return {
         top: this.headerHeight + 'px',
-        height: `calc(100vh - ${this.headerHeight}px)`
+        height: `calc(100vh - ${this.headerHeight}px)`,
       }
     },
     hasSidebar() {
       return this.$page && this.headerHeight > 0;
     }
   },
-  mounted() {
-    this.setHeaderHeight();
+  beforeDestroy() {
+    window.removeEventListener('resize', this.setHeaderHeight);
   },
   metaInfo() {
     return {
@@ -242,9 +246,11 @@ blockquote {
 
     li {
       @apply mb-2;
+      overflow-wrap: break-word;
 
       p {
         @apply mb-0;
+        overflow-wrap: break-word;
       }
 
       &:last-child {
@@ -252,6 +258,10 @@ blockquote {
       }
     }
   }
+}
+
+div {
+  overflow-wrap: break-word;
 }
 
 blockquote {
@@ -315,6 +325,12 @@ table {
   @screen lg {
     @apply w-1/4 px-0 bg-transparent top-0 bottom-auto inset-x-auto sticky z-0;
     transform: translateX(0);
+  }
+}
+
+@media only screen and (max-width: 607px) {
+  .is-mobile-aside {
+    // margin-top:47px;
   }
 }
 </style>

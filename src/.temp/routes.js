@@ -1,6 +1,12 @@
+<<<<<<< HEAD
 const c1 = () => import(/* webpackChunkName: "page--src--templates--markdown-page-vue" */ "/Users/user/Desktop/Intro/msa-ez.github.io/src/templates/MarkdownPage.vue")
 const c2 = () => import(/* webpackChunkName: "page--src--pages--404-vue" */ "/Users/user/Desktop/Intro/msa-ez.github.io/src/pages/404.vue")
 const c3 = () => import(/* webpackChunkName: "page--src--pages--index-vue" */ "/Users/user/Desktop/Intro/msa-ez.github.io/src/pages/Index.vue")
+=======
+const c1 = () => import(/* webpackChunkName: "page--src--templates--markdown-page-vue" */ "/Users/kibumpark/Desktop/uEngine-project/msa-ez.github.io/src/templates/MarkdownPage.vue")
+const c2 = () => import(/* webpackChunkName: "page--src--pages--404-vue" */ "/Users/kibumpark/Desktop/uEngine-project/msa-ez.github.io/src/pages/404.vue")
+const c3 = () => import(/* webpackChunkName: "page--src--pages--index-vue" */ "/Users/kibumpark/Desktop/uEngine-project/msa-ez.github.io/src/pages/Index.vue")
+>>>>>>> 582a2988e0f5a796a9ac0cd1d31e3e85e6484064
 
 export default [
   {
