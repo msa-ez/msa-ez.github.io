@@ -14,7 +14,7 @@ Specifically, we'll learn about framework-level code that orchestrates commands 
 ### EventStorming Model Preparation
 
 - Open the model in a new tab using the link below:
-[Model Link : https://www.msaez.io/#/storming/axon-mallorchestrationsaga:v1.5](https://www.msaez.io/#/storming/axon-mallorchestrationsaga:v1.5)
+[Model Link](https://www.msaez.io/#/storming/axon-mallorchestrationsaga:v1.5)
 - If the model doesn't load, click on the avatar icon (person shape) in the upper right, log in with your Github account, and then reload.
 - Verify that the stickers appear in the right palette area.
 - Click on the Fork icon in the top menu to clone the model.

@@ -19,7 +19,7 @@ In this hands-on exercise, we will implement Single Sign-On using microservices 
 
 
 - Load the model from the following link in a new tab
-[Model Link : https://www.msaez.io/#/storming/labshopoauthkeycloak-0821](https://www.msaez.io/#/storming/labshopoauthkeycloak-0821)
+[Model Link](https://www.msaez.io/#/storming/labshopoauthkeycloak-0821)
 - If the model doesn't load in the browser, click the avatar icon in the upper right corner, log in with your GitHub account, and reload.
 - Ensure the necessary Event Storming basic model is displayed in the right palette.
 - Clone the loaded model by clicking the FORK icon in the top menu.

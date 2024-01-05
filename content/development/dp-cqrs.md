@@ -12,7 +12,7 @@ We will design a Query Model (Materialized View) based on the detailed models of
 ## EventStorming Model Preparation
 
 - Open the model in a new tab using the link below:
-[Model Link : https://www.msaez.io/#/storming/labcqrs-231022](https://www.msaez.io/#/storming/labcqrs-231022)
+[Model Link](https://www.msaez.io/#/storming/labcqrs-231022)
 - If the model doesn't load, click on the avatar icon (person shape) in the upper right, log in with your Github account, and then reload.
 - Verify that the model, as needed for the level, is displayed.
 - If the loaded model doesn't show the sticker list in the right palette, click the FORK icon in the top menu to clone the given model.

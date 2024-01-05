@@ -30,9 +30,7 @@ The List of Bounded Contexts:
 4. video processing
 5. notification
 
-## Instructions
-
-### Modeling
+## Modeling
 
 <h4>1. Create an EventStorming Model</h4>
 
@@ -252,7 +250,7 @@ When the repository is created, three options come out: 'Local IDE', 'Cloud IDE'
 
 ※ If it doesn't work well, click the profile image of Github interlocking dialog and check if the switch 'Using gitpod to open Project IDE' is on.
 
-### Run the Project
+## Run the Project
 
 <h4>13. Run Drive Service</h4>
 
@@ -550,7 +548,7 @@ mvn clean spring-boot:run
 
 Gateway server is on port 8088, so click on the globe icon on the right side of the port and move on to the web page.
 
-### Operating Web Application
+## Operating Web Application
 
 <h4>23. Home Page</h4>
 

@@ -4,7 +4,6 @@ sidebar: 'started'
 ---
 # Eventstorming - Shopping Mall
 
-## Instruction
 Performing EventStorming based on the given Shopping Mall Scenario
 
 ## MSAEZ Modeling Tool Access

@@ -12,7 +12,7 @@ In this hands-on exercise, we will practice the Pub/Sub pattern for event messag
 ### Event Storming Model Preparation
 
 - Load the model from the following link in a new tab:
-[Model Link : https://www.msaez.io/#/storming/labshoppubsub-2:2023-pubsub2](https://www.msaez.io/#/storming/labshoppubsub-2:2023-pubsub2)
+[Model Link](https://www.msaez.io/#/storming/labshoppubsub-2:2023-pubsub2)
 - If the model doesn't load in the browser, click the avatar icon in the upper right corner, log in with your GitHub account, and reload.
 - Confirm that the required Event Storming basic model is displayed.
 ![image](https://github.com/acmexii/demo/assets/35618409/39ccf71e-3977-4093-9bae-7c2a1254d710)

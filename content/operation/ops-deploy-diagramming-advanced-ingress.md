@@ -6,14 +6,12 @@ next: ''
 ---
 # Ingress Deployment Model Design
 
-## Instruction
-
 Based on the provided 12th event storming model, utilize the deployment modeling tool provided by MSA-Ez to automatically generate the manifest YAML for Kubernetes objects. Apply these manifests to the cluster.
 
 ## Event Storming Model Preparation
 
 - Load the model from the link in a new tab.
-[Model Link : https://www.msaez.io/#/storming/mallbasic-for-ops](https://www.msaez.io/#/storming/mallbasic-for-ops)
+[Model Link](https://www.msaez.io/#/storming/mallbasic-for-ops)
 - If the model doesn't load in the browser, click on the avatar icon (person-shaped) in the upper right, log in with your Github account, and reload.
 - The 12th event storming model consisting of orders, delivery, and products should appear. 
 - The loaded model will not display the sticker list in the right palette. Click on the FORK icon in the top menu to clone the given model.

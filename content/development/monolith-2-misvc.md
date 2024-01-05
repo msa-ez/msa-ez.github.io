@@ -12,7 +12,7 @@ In this guide, we will follow the steps to separate a specific part from a monol
 ## EventStorming Model Preparation
 
 - Open the model in a new tab using the link below:
-[Model Link : https://www.msaez.io/#/storming/labshopmonolith-230822](https://www.msaez.io/#/storming/labshopmonolith-230822)
+[Model Link](https://www.msaez.io/#/storming/labshopmonolith-230822)
 - If the model doesn't load, click on the avatar icon (person shape) in the upper right, log in with your Github account, and then reload.
 - Verify that the model, as needed for the level, is displayed.
 ![image](https://github.com/acmexii/demo/assets/35618409/7950c0df-eee8-44e3-a79f-7448a4caa30e)
