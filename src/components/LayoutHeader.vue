@@ -178,9 +178,9 @@ export default {
       me.currentPathTwo = me.currentUrl.split("/")[2];
       
       if(me.currentPath != null && me.currentPathTwo != null) {
-        window.location.href="https://intro.msaez.io/" + me.currentPath + "/" + me.currentPathTwo;
+        window.location.href="https://intro-kor.msaez.io/" + me.currentPath + "/" + me.currentPathTwo;
       }else {
-        window.location.href="https://intro.msaez.io/";
+        window.location.href="https://intro-kor.msaez.io/";
       }
     }
   }
