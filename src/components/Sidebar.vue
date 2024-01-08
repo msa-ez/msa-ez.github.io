@@ -4,19 +4,19 @@
     v-if="showSidebar"
     class="pt-8"
   >
-    <div
+    <div style="margin-top:5px;"
       v-for="(section, index) in sidebar.sections"
       :key="section.title"
     >
-      <h3 style="margin-top: 3px; font-size: 16px;" v-if="section.firstTitle && !section.firstItem && !section.firstLink">
+      <div style="font-weight:700; font-size:14px; margin-bottom:5px;" v-if="section.firstTitle && !section.firstItem && !section.firstLink">
         {{ section.firstTitle }}
-      </h3>
+      </div>
       <g-link
         v-if="section.firstTitle && section.firstItem && !section.firstLink"
         :to="`${section.firstItem}`"
         class="flex items-center py-1"
       >
-        <h3 style="margin-bottom: 0px; font-size: 16px;">
+        <h3 style="margin:-5px 0px 0px 0px; font-size: 16px;" :class="getClassesForAnchor(section)" @mousedown="$emit('navigate')">
           {{ section.firstTitle }}
         </h3>
       </g-link>
@@ -42,45 +42,19 @@
             :to="`${secondSection.secondItem}`"
             class="flex items-center py-1"
           >
-            <h4 style="margin-left: 10px; margin-bottom: 0px; font-size: 14px;">
+            <div style="padding:2px 0px; margin-left:15px; font-size: 14px;" :class="getClassesForAnchor(secondSection)" @mousedown="$emit('navigate')">
               {{ secondSection.secondTitle }}
-            </h4>
+            </div>
           </g-link>
           <g-link
             v-if="secondSection.secondTitle && !secondSection.secondItem && secondSection.secondLink"
             :to="`${secondSection.secondLink}`"
             class="flex items-center py-1"
           >
-            <h4 style="margin-left: 10px; margin-bottom: 0px; font-size: 14px;">
+            <h4 style="margin-left: 15px; margin-bottom: 0px; font-size: 14px;">
               {{ secondSection.secondTitle }}
             </h4>
           </g-link>
-          <!-- <ul class="max-w-full pl-2 mb-0 text-sm" style="margin-top: 5px;">
-            <li
-              v-for="page in findPages(secondSection.thirdItems)"
-              :id="page.path"
-              :key="page.path"
-              :class="getClassesForAnchor(page)"
-              style="margin-top: -10px;"
-              @mousedown="$emit('navigate')"
-            >
-              <g-link
-                :to="`${page.path}`"
-                class="flex items-center py-1"
-              >
-                <span
-                  class="absolute opacity-0 bg-ui-primary transition transform scale-0 origin-center"
-                  :class="{
-                    'opacity-100 scale-100': currentPage.path === page.path
-                  }"
-                ></span>
-                <span style="margin-top: 0px; margin-bottom: 7px;"  class="triangle"></span>
-                <h6 style="margin-top: 0px; margin-bottom: 7px;"  v-if="page.title">
-                  {{ page.title }}
-                </h6>
-              </g-link>
-            </li>
-          </ul> -->
         </div>
     </div>
   </div>
@@ -111,8 +85,15 @@ query Sidebar {
 export default {
   data() {
     return {
-      expanded: []
+      expanded: [],
+      currentPath: String
     };
+  },
+  watch: {
+    '$route'(to) {
+      // 라우트가 변경될 때마다 실행될 로직
+      this.currentPath = to.path
+    }
   },
   computed: {
     pages() {
@@ -132,11 +113,10 @@ export default {
     }
   },
   methods: {
-    getClassesForAnchor({ path }) {
+    getClassesForAnchor(path) {
       return {
-        "text-ui-primary": this.currentPage.path === path,
-        "transition transform hover:translate-x-1 hover:text-ui-primary": ! this.currentPage.path === path
-      };
+        active: this.currentPath === path.secondItem || this.currentPath === path.firstItem
+      }
     },
     findPages(links) {
       return links.map(link => this.pages.find(page => page.path === link));
@@ -145,6 +125,10 @@ export default {
 };
 </script>
 <style scoped>
+.active {
+  color:#5A67D8;
+  font-weight: 900;
+}
   /* 삼각형 스타일 */
   .triangle {
     width: 0;
