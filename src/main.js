@@ -4,12 +4,8 @@ import DefaultLayout from '~/layouts/Default.vue'
 import Vue from 'vue'
 import VueAnalytics from 'vue-analytics'
 import Meta from 'vue-meta';
-import {Icon} from '@iconify/vue2';
 
 
-
-
-Vue.component('Icon', Icon);
 Vue.use(Meta, {
   keyName: 'metaInfo',
   attribute: 'data-vue-meta',
