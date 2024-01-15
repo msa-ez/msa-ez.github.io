@@ -4,11 +4,11 @@ sidebar: 'started'
 ---
 # K8s Deployment Modeling
 
-The 12th Microservices implemented and designed using the Domain-Driven Design (DDD) pattern are deployed and operated in a cloud-native infrastructure environment. The term 'cloud-native infrastructure environment' refers to each service that constitutes the 12th shopping mall being deployed not on a single VM but independently operated, isolated, and using container virtualization technology known as Docker (https://www.docker.com).
+The 12th Microservices implemented and designed using the Domain-Driven Design (DDD) pattern are deployed and operated in a cloud-native infrastructure environment. The term 'cloud-native infrastructure environment' refers to each service that constitutes the 12th shopping mall being deployed not on a single VM but independently operated, isolated, and using container virtualization technology known as **[Docker](https://www.docker.com)**.
 
-The management platform for these containers is called a 'container orchestrator,' with Kubernetes being a prominent example. Kubernetes provides orchestration features such as Self Healing, Auto Scale-Out, Service Mesh, Monitoring, Tracing, etc., ensuring the processes of the deployed 12th shopping mall comply with SLA while operating independently (For detailed information, refer to http://www.kubernetes.io).
+The management platform for these containers is called a 'container orchestrator,' with Kubernetes being a prominent example. Kubernetes provides orchestration features such as Self Healing, Auto Scale-Out, Service Mesh, Monitoring, Tracing, etc., ensuring the processes of the deployed 12th shopping mall comply with SLA while operating independently. **[More Info](http://www.kubernetes.io)**
 
-MSAEZ is built on the foundation of Event Storming models, providing deployment diagramming tools necessary for Kubernetes cluster deployment. The designed deployment model is stored in a Git version control server and is automatically deployed using the Argo stack, which synchronizes Git versioning with the operational environment versioning (For detailed information, refer to https://argoproj.github.io/).
+MSAEZ is built on the foundation of Event Storming models, providing deployment diagramming tools necessary for Kubernetes cluster deployment. The designed deployment model is stored in a Git version control server and is automatically deployed using the Argo stack, which synchronizes Git versioning with the operational environment versioning. **[More Info](https://argoproj.github.io/)**
 
 ![image](https://github.com/acmexii/demo/assets/35618409/4a51c1e3-400f-4d5b-8d0a-edb742f12e94)
 

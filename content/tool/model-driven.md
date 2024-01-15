@@ -2,7 +2,7 @@
 description: ''
 sidebar: 'started'
 ---
-# Automatic Code Generation
+# Code Generation
 
 In this session, we will explore the code generation feature of MSAEZ and demonstrate how to utilize the automatically generated code with various microservices patterns based on the previously created event storming model.
 
@@ -28,13 +28,13 @@ The file structure is generated based on stickers using default templates. The p
 
 **Dockerfile**
 - This file is necessary for creating a Docker image.
-- When building with Docker, it is configured with "--spring.profiles.active=docker" to read the profiles set in the `application.yml` file.
+- When building with Docker, it is configured with **--spring.profiles.active=docker** to read the profiles set in the `application.yml` file.
 
 ## Integration with GitPod Cloud IDE
 
 ![GitPod Integration](../../src/img/image46.png)
 
-Click the "Push to Git" button in the Code Preview Menu Panel, and in the dialog that appears, click the Create button to create a new repository in your GitHub account.
+Click the **Push to Git** button in the Code Preview Menu Panel, and in the dialog that appears, click the Create button to create a new repository in your **GitHub** account.
 
 ![Create Repository](../../src/img/image47.png)
 

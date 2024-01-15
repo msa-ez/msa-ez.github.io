@@ -6,24 +6,27 @@ next: ''
 ---
 # 12st Mall Basic Deploy
 
-Based on the provided 12th event storming model, use the deployment modeling tool provided by MSA-Ez to automatically generate the manifest YAML for Kubernetes objects. Apply these manifests to the cluster for deployment.
+Based on the provided 12th event storming model, use the deployment modeling tool provided by MSAEZ to automatically generate the manifest YAML for Kubernetes objects. Apply these manifests to the cluster for deployment.
 
 ## Event Storming Model Preparation
 
 - Load the model from the link in a new tab.
-[Model Link](https://www.msaez.io/#/storming/mallbasic-for-ops)
-- If the model doesn't load in the browser, click on the avatar icon (person-shaped) in the upper right, log in with your Github account, and reload.
+**[Model Link](https://www.msaez.io/#/storming/mallbasic-for-ops)**
+- If the model doesn't load in the browser, click on the avatar icon (person-shaped) in the upper right, log in with your **Github** account, and reload.
 - The 12th event storming model consisting of orders, delivery, and products should appear.
 - The loaded model will not display the sticker list in the right palette. Click on the FORK icon in the top menu to clone the given model.
+
 ![image](https://github.com/acmexii/demo/assets/35618409/1e16e849-7ae9-4b33-b39c-db4ef0939507)
 - The sticker list should now appear in the right palette.
 
 ## Deployment Modeling
 
-- Click on 'DEPLOY' in the model's top menu.
+- Click on **DEPLOY** in the model's top menu.
+
 ![image](https://github.com/acmexii/demo/assets/35618409/07d45fce-528a-4261-a1e3-c100e068c6b0)
 
 - The default Kubernetes deployment model, including Services and Deployments, will be displayed, organized by bounded context.
+
 ![image](https://github.com/acmexii/demo/assets/35618409/ad81f353-7b71-4381-bd42-3ceb25a1a698)
 
 - First, complete the business logic using Cloud IDE. Dockerize each service by generating Docker images and pushing them to the repository.
@@ -37,9 +40,11 @@ docker push [dockerhub ID]/order:v1 .
 ``` 
 
 - In the properties pane that appears when clicking on the Deployment object for each service, enter the image as follows.
+
 ![image](https://github.com/acmexii/demo/assets/35618409/0aa6cb13-65b0-49b9-a243-e78b7d21a709)
 
-- Click on 'KUBECTL' in the upper right of the deployment model to view the deployment manifest YAML.
+- Click on **KUBECTL** in the upper right of the deployment model to view the deployment manifest YAML.
+
 ![image](https://github.com/acmexii/demo/assets/35618409/70cfdffa-bacd-4f63-bc4e-5f40b9ad8999)
 
 - The merged deployment specifications will be shown in template.yml.
@@ -79,11 +84,12 @@ replicaset.apps/order-647876474       1         1         1       37s
 replicaset.apps/product-5849b8c769    1         1         1       37s
 ```
 
-## Understanding On-Prem MSA-Ez Deployment
+## Understanding On-Prem MSAEZ Deployment
 
-- On-Prem MSA-Ez provides automated toolchains for building and deploying microservices.
+- On-Prem MSAEZ provides automated toolchains for building and deploying microservices.
 - Depending on the version of the event storming model, each service image is tagged, built, and pushed to the configured Harbor container registry.
 - Subsequently, the manifest YAML is updated, and Argo CD, based on GitOps configuration, automatically detects and deploys it to the specified cluster.
+
 ![image](https://github.com/acmexii/demo/assets/35618409/4a51c1e3-400f-4d5b-8d0a-edb742f12e94)
 
 - Check the Argo endpoint.
@@ -98,6 +104,7 @@ password : kubectl -n argocd get secret argocd-initial-admin-secret -o jsonpath=
 ```
 
 - The deployment progress and results based on the configured deployment strategy can be checked as follows.
+
 ![image](https://github.com/acmexii/demo/assets/35618409/f9201dfb-5a29-42eb-9b89-df90b380609d)
 
 

@@ -14,7 +14,7 @@ This feature enables the automatic generation of source code based on the comple
 By delegating testing and debugging tasks, traditionally handled by developers, to AI, this functionality allows services to be implemented with just an idea from business experts.
 
 <div style="height: 400px; object-fit: cover;">
-<iframe style="width: 100%; height: 100%;" src="https://www.youtube.com/embed/JuCN-bD7Jkk" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<iframe style="width: 100%; height: 100%;" src="https://www.youtube.com/embed/yZMueAKEqwI" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 </div><br>
 
 For detailed steps, refer to the demo video above.

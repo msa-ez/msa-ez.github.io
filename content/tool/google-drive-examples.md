@@ -242,7 +242,7 @@ Click the orange colored button 'CODE' to open the Code Preview window and we ca
 
 Now let's open IDE tool to run the service. We are going to use Gitpod IDE, provided by Github and based on VSCode.
 
-To use Gitpod, first we should create a repository at our Github account and interlock it with Gitpod.
+To use Gitpod, first we should create a repository at our **Github** account and interlock it with Gitpod.
 
 Click the git icon placed on the upper-left side of the Code Preview area and then create a repository of our project.
 

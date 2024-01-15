@@ -13,9 +13,9 @@ Specifically, we'll learn about framework-level code that orchestrates commands 
 
 ### EventStorming Model Preparation
 
-- Open the model in a new tab using the link below:
-[Model Link](https://www.msaez.io/#/storming/axon-mallorchestrationsaga:v1.5)
-- If the model doesn't load, click on the avatar icon (person shape) in the upper right, log in with your Github account, and then reload.
+- Open the model in a new tab using the link :
+**[Model Link](https://www.msaez.io/#/storming/axon-mallorchestrationsaga:v1.5)**
+- If the model doesn't load, click on the avatar icon (person shape) in the upper right, log in with your **Github** account, and then reload.
 - Verify that the stickers appear in the right palette area.
 - Click on the Fork icon in the top menu to clone the model.
 
@@ -127,7 +127,7 @@ Complete the OrderSaga code to perform the order orchestration.
 
 - Set correlation key from the OrderPlaced event: Line 24
 ```
-	@SagaEventHandler(associationProperty = "orderId")
+@SagaEventHandler(associationProperty = "orderId")
 ```
 
 #### 2. Generate and Invoke Start Delivery Command: Line 27
@@ -144,7 +144,7 @@ orderCancelCommand.setOrderId(event.getOrderId());  	// Add this line
 #### 3. Set Correlation Key from DeliveryStartedEvent
 
 ```
-	@SagaEventHandler(associationProperty = "orderId")
+@SagaEventHandler(associationProperty = "orderId")
 ```
 
 #### 4. Generate and Invoke Decrease Stock Command 
@@ -160,7 +160,7 @@ cancelDeliveryCommand.setDeliveryId(event.getDeliveryId());	// Add this line
 #### 5. Set Correlation Key from StockDecreasedEvent
 
 ```
-	@SagaEventHandler(associationProperty = "orderId")
+@SagaEventHandler(associationProperty = "orderId")
 ```
 
 #### 6. Generate and Invoke Order Completed Command
@@ -172,7 +172,7 @@ command.setOrderId(event.getOrderId());
 
 - Set Correlation Key from OrderCompletedEvent
 ```
-	@SagaEventHandler(associationProperty = "orderId")
+@SagaEventHandler(associationProperty = "orderId")
 ```
 - End Saga Process
 
@@ -218,6 +218,7 @@ http POST :8081/orders productId=[상품 Id] productName=TV qty=10 userId=1001
 ```
 
 - Copy the order ID.
+
 ![image](https://user-images.githubusercontent.com/35618409/229346264-89d2c227-5dc8-454d-acb0-1c24bc0da63d.png)
 
 

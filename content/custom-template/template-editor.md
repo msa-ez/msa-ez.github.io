@@ -2,8 +2,9 @@
 description: ''
 sidebar: 'started'
 ---
-After explaining how to utilize Template Editor by creating custom templates, let's delve into using the Template Editor with the templates integrated into MSAEZ.
+# Template Editor
 
+After explaining how to utilize Template Editor by creating custom templates, let's delve into using the Template Editor with the templates integrated into MSAEZ.
 
 ![](https://github.com/msa-ez/platform/assets/123912988/cc4af1ed-58eb-4829-b571-8fd11fbe1dc0)
 
@@ -39,7 +40,7 @@ Next, using the 'Model Explorer' on the left, let's refer to it to add {{keyFiel
 
 As shown in the image above, after adding data inside the class, click the execute button in the top right. This will show the changed result based on the code declared in the 'EDIT TEMPLATE' section.
 
-## 4. 변환된 파일 확인
+## 4. Check Edited File
 
 If you modify the code in 'EDIT TEMPLATE' and proceed with the conversion, you can confirm the converted results in the right section as shown in the example below.
 
@@ -68,4 +69,4 @@ Then, scroll to the right, where you'll find the 'open git Menu' icon.
 
 ![](https://github.com/msa-ez/platform/assets/123912988/c099e3ee-10b5-4016-9cbf-168ecb5f90ac)
 
-Click the icon, as shown in the image above, allows you to create it in your GitHub account repository. After renaming the repository according to your purpose, clicking 'Create' will generate the GitHub repository with the specified name.
+Click the icon, as shown in the image above, allows you to create it in your **GitHub** account repository. After renaming the repository according to your purpose, clicking 'Create' will generate the GitHub repository with the specified name.

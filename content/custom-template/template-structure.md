@@ -2,7 +2,7 @@
 description: ''
 sidebar: 'started'
 ---
-## Template File Structure
+# Template File Structure
 A template file consists of metadata that sets essential options and template code that declares dynamically changing data. 
 
 Using the Aggregate.java file as a reference, let's explore how to structure a template file.

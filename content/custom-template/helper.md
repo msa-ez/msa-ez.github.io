@@ -2,6 +2,8 @@
 description: ''
 sidebar: 'started'
 ---
+# Helper
+
 Let's delve into how to utilize helpers in Handlebars templates to generate desired output. Helpers are predefined functions that return a result based on specified conditions or logic, often used for more complex processing within templates. Here's how you can use helpers:
 
 ```
