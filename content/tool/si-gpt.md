@@ -5,6 +5,10 @@ sidebar: 'started'
 
 # Code Implementation with ChatGPT
 
+<div style = "height:400px; object-fit: cover;">
+<iframe style = "width:100%; height:100%;" src="https://www.youtube.com/embed/JuCN-bD7Jkk" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+</div><br>
+
 <h2>Unit Testing and Debugging with OpenAI</h2>
 
 ![](../../src/img/sigptimg.png)

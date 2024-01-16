@@ -7,6 +7,10 @@ next: ''
 
 # Request/Response Communication in MSA Integration
 
+<div style = "height:400px; object-fit: cover;">
+<iframe style = "width:100%; height:100%;" src="https://www.youtube.com/embed/jL_i3o0IEbY" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+</div><br>
+
 In this guide, we will follow the steps to separate a specific part from a monolithic service and have the monolith and microservices communicate using a Req/Res (Request/Response) approach.
 
 ## EventStorming Model Preparation

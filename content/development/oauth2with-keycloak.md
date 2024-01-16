@@ -7,6 +7,10 @@ next: ''
 
 # JWT Token-based Authentication and Authorization
 
+<div style = "height:400px; object-fit: cover;">
+<iframe style = "width:100%; height:100%;" src="https://www.youtube.com/embed/byxWzQIAQTE" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+</div><br>
+
 In this hands-on exercise, we will implement Single Sign-On using microservices and the OAuth2 components: Authorization Server, Client, and Resource Server. The Gateway serves as the single entry point, acting as both the Client and Resource Server. We will utilize Keycloak as the Authorization Server.
 
 ## JWT-based Authentication with Keycloak

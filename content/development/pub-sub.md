@@ -7,6 +7,10 @@ next: ''
 
 # Pub/Sub Integration
 
+<div style = "height:400px; object-fit: cover;">
+<iframe style = "width:100%; height:100%;" src="https://www.youtube.com/embed/QvRiuKCZUmM" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+</div><br>
+
 In this hands-on exercise, we will practice the Pub/Sub pattern for event messaging between microservices. Specifically, when an order event (OrderPlaced) is triggered in the Order service, the Inventory service will subscribe to this event and adjust (decrease) the inventory level accordingly.
 
 ### Event Storming Model Preparation
