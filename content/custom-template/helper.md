@@ -4,7 +4,11 @@ sidebar: 'started'
 ---
 # Helper
 
-Let's delve into how to utilize helpers in Handlebars templates to generate desired output. Helpers are predefined functions that return a result based on specified conditions or logic, often used for more complex processing within templates. Here's how you can use helpers:
+This is an explanation of how to return values from template files using helpers.
+
+A helper refers to a pre-defined type of function that returns the necessary result through logic configured for specific conditions. It is also known as a 'helper function.'
+
+The usage of a helper is as follows:
 
 ```
 {{#HelperName argument}}{{/HelperName}}
@@ -19,15 +23,17 @@ window.$HandleBars.registerHelper('HelperName', function (Helper에 전달된 �
 </function>
 ```
 
-Begin by declaring a helper in the form of {{#HelperName argument}}{{/HelperName}}. 
+Firstly, a helper can be declared in the form of {{#HelperName argument}}{{/HelperName}}. 
 
-Subsequently, define the corresponding helper function in the <function\> block, specifying the operations to be performed and the result to be returned.
+Next, declare the helper function corresponding to 'HelperName' in the <function> block. In this block, you can specify the operations of the helper function and declare the result to be returned, which can then be used to return the desired value.
 
-The argument here refers to the data you want to send to the helper function, aiding in its operations.
+Here, the argument represents the data sent to the helper function and plays a role in assisting the operation of the function.
 
 
-## 2 Filtering Data Using Helpers
-In a previous explanation, we discussed how to generate '@Id' for the id field with isKey set to true in Company.java. Now, let's explore using a helper to set data annotations.
+## Data Filtering Using Helpers
+In the previous explanation, we discussed how to generate '@Id' for the id field in Order.java with iskey set to true for each field.
+
+Now, let's explore how to set data (annotations) using helpers.
 
 Template
 ```
@@ -62,9 +68,7 @@ public class Order {
     private String productName;
 }
 ```
-In the 'addIdAnnotation' helper, the argument is set to aggregateRoot.fieldDescriptors. 
+Looking at the argument of the 'addIdAnnotation' helper, it sends aggregateRoot.fieldDescriptors. In this case, the addIdAnnotation function declared in the <function\> block returns a result only for fields with className 'Long'.
 
-The helper function addIdAnnotation checks each field descriptor, and if the className is 'Long', it returns the annotation @GeneratedValue(strategy=GenerationType.AUTO).
-
-Here, the 'addIdAnnotation' helper is selectively applied only to the Id field, resulting in the creation of annotations solely for the Id field.
+Here, the 'addIdAnnotation' helper is applied only to the Id field, so you can see that the annotation is generated only for the Id field.
 
