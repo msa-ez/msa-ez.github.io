@@ -20,12 +20,12 @@ We will design a Query Model (Materialized View) based on the detailed models of
 ![image](https://github.com/acmexii/demo/assets/35618409/c9a4575c-d8e2-424b-9587-7ca789dca2e1)
 - Confirm that the sticker list is now visible in the right palette.
 
-## CQRS 모델링 
+## CQRS Modeling 
 
 - Assume the establishment of a new Customer Center team launching the **MyPage** service.
 - Design a Query Model (Materialized View) based on the detailed models of the Order Service and Delivery Service.
 
-### MODELING
+### Modeling
 - Add the **customercenter** BC.
 - Add a green sticker (**MyPage**) for the Read Model.
 - Define Read Model attributes:

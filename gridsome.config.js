@@ -100,10 +100,6 @@ module.exports = {
             ]
           },
           {
-            firstTitle: 'K8s Deployment Modeling',
-            firstItem: '/tool/k8s-modeling/'
-          },
-          {
             firstTitle: 'Deployment Modeling Practice',
             name:[
               {

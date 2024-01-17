@@ -16,7 +16,7 @@ Click the 'Base' button on the left to choose a template integrated into MSAEZ. 
 
 Click the 'Edit Template' icon in the top-left to access the Template Editor.
 
-## 2. Choosing Template Files:
+## Choosing Template Files:
 
 To modify the selected template's code, you need to choose the template file.
 
@@ -26,7 +26,7 @@ In the Template Editor's left 'Template Explorer,' navigate to the folder and fi
 
 Selecting a template file updates the code displayed in the 'EDIT TEMPLATE' section.
 
-## 3. Editing Template Code:
+## Editing Template Code:
 
 ![](https://github.com/msa-ez/platform/assets/123912988/f77e8e08-fa7c-4ce6-bf23-acc59c2a703c)
 
@@ -40,7 +40,7 @@ Next, using the 'Model Explorer' on the left, let's refer to it to add {{keyFiel
 
 As shown in the image above, after adding data inside the class, click the execute button in the top right. This will show the changed result based on the code declared in the 'EDIT TEMPLATE' section.
 
-## 4. Check Edited File
+## Check Edited File
 
 If you modify the code in 'EDIT TEMPLATE' and proceed with the conversion, you can confirm the converted results in the right section as shown in the example below.
 
@@ -54,7 +54,7 @@ In this example, files for the Aggregate stickers Order and Delivery created dur
 
 By selecting a file, you can examine the converted code for the chosen file, allowing you to verify the results for each file.
 
-## 5. Applying Changes to Modified Files
+## Applying Changes to Modified Files
 
 
 After going through the previous steps to modify the template, you can create a new template repository or update an existing template repository using the modified template.
