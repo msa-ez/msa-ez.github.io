@@ -6,45 +6,60 @@ next: ''
 ---
 # Istio Mesh
 
-Based on the provided 12th event storming model, utilize the deployment modeling tool provided by MSA-Ez to automatically generate the manifest YAML for Kubernetes objects. Apply these manifests to the cluster.
+Based on the provided 12th event storming model, utilize the deployment modeling tool provided by MSAEZ to automatically generate the manifest YAML for Kubernetes objects. Apply these manifests to the cluster.
 
 
 ## Event Storming Model Preparation
 
 - Load the model from the link in a new tab.
-[Model Link](https://www.msaez.io/#/storming/mallbasic-for-ops)
-- If the model doesn't load in the browser, click on the avatar icon (person-shaped) in the upper right, log in with your Github account, and reload.
+**[Model Link](https://www.msaez.io/#/storming/mallbasic-for-ops)**
+- If the model doesn't load in the browser, click on the avatar icon (person-shaped) in the upper right, log in with your **Github** account, and reload.
 - The 12th event storming model consisting of orders, delivery, and products should appear. 
 - The loaded model will not display the sticker list in the right palette. Click on the FORK icon in the top menu to clone the given model.
+
 ![image](https://github.com/acmexii/demo/assets/35618409/1e16e849-7ae9-4b33-b39c-db4ef0939507)
 - The sticker list should now appear in the right palette.
 
 ## Deployment Modeling
 
 - Add Istio topping to the forked model.
-- Adding Istio topping is as simple as going to 'Code' > 'Preview' > 'Toppings' in the menu and checking Istio under Service Mesh.
+- Adding Istio topping is as simple as going to **Code** > **Preview** > **Toppings** in the menu and checking Istio under Service Mesh.
+
 ![image](https://github.com/acmexii/demo/assets/35618409/4dfd204a-39c0-4f34-a2e6-d14802cd5d7b)
 
-- After adding Istio topping, if you check the Kubernetes folder in the code list, you'll see 'template' > 'istio.yml' added.
+- After adding Istio topping, if you check the Kubernetes folder in the code list, you'll see **template** > **istio.yml** added.
+
 ![image](https://github.com/acmexii/demo/assets/35618409/5ed07284-52d9-4058-82e4-40c343d41b3f)
-- The Istio CRDs objects added by MSA-Ez are as follows:
+
+- The Istio CRDs objects added by MSAEZ are as follows:
+
 > Gateway: Istio Ingressgateway-based Istio Gateway 
-> VirtualService: An object determining how requests route to which service (or Subset) and the amount of traffic it should receive.
+
+> VirtualService: An object determining how requests route to which service (or Subset) and the amount of traffic it should receive
+
 > DestinationRule: Defines Subsets (stable, canary) for each service container and sets routing policies (load balancing, connection pool, etc.)
 
 
 ## Detailed Design of Istio Objects
 
-- Click on 'DEPLOY' in the top menu to see the Istio object model.
+- Click on **DEPLOY** in the top menu to see the Istio object model.
+
 ![image](https://github.com/acmexii/demo/assets/35618409/07d45fce-528a-4261-a1e3-c100e068c6b0)
 
 ![image](https://github.com/acmexii/demo/assets/35618409/e4ee1273-bf3a-43bb-8b8b-604307c677be)
-> 'main-gw' Gateway object using Istio Ingressgateway
-> 'drule-order' DestinationRule object with two Subsets (stable, canary)
-> 'vsvc-order' VirtualService object routing the 'order' Service with weights based on Subsets
-  > Various conditions (uri, method, headers, port, source Labels, gateways, queryParams) for routing can be configured
-  > The default two Subsets (stable, canary) are identical, so modifying the weights will still route to the same service, but can be used for future Blue-Green and Canary deployments
+
+> **main-gw** Gateway object using Istio Ingressgateway
+
+> **drule-order** DestinationRule object with two Subsets (stable, canary)
+
+> **vsvc-order** VirtualService object routing the **order** Service with weights based on Subsets
+
+> Various conditions (uri, method, headers, port, source Labels, gateways, queryParams) for routing can be configured
+
+> The default two Subsets (stable, canary) are identical, so modifying the weights will still route to the same service, but can be used for future Blue-Green and Canary deployments
+
 - Similar Istio CRDs objects are automatically generated for the delivery and product services.
+
 ![image](https://github.com/acmexii/demo/assets/35618409/32f67182-ef3e-4773-bfe1-fe7b49bc96b6)
 
 
@@ -66,7 +81,7 @@ cd istio-$ISTIO_VERSION
 export PATH=$PWD/bin:$PATH
 ```
 
-- Install Istio with the 'demo' profile.
+- Install Istio with the **demo** profile.
 ```
 istioctl install --set profile=demo --set hub=gcr.io/istio-release
 ```
@@ -77,7 +92,7 @@ istioctl install --set profile=demo --set hub=gcr.io/istio-release
     ✔ Ingress gateways installed
     ✔ Installation complete
 ```
-- Set Istio to be applied to the 'default' namespace.
+- Set Istio to be applied to the **default** namespace.
 ```
 kubectl label namespace default istio-injection=enabled
 ```

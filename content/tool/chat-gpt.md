@@ -5,6 +5,10 @@ sidebar: 'started'
 
 # Creating Models with ChatGPT
 
+<div style = "height:400px; object-fit: cover;">
+<iframe style = "width:100%; height:100%;" src="https://www.youtube.com/embed/HSMEgOJj3Co" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+</div><br>
+
 ## Generating business model utilizing OpenAI
 
 ![](../../src/img/gpt0.png)

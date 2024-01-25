@@ -88,7 +88,7 @@ Once event storming model creation is complete, click **CODE** button in the top
 
 |  | 이름                | 기능 설명                                                              |
 |------|---------------------|----------------------------------------------------------------------- |
-| 1  | Push to Git | Connects to the user's GitHub account, creates a repository, and integrates with GitPod IDE |
+| 1  | Push to Git | Connects to the user's **GitHub** account, creates a repository, and integrates with GitPod IDE |
 | 2  | Edit Template | Directly modifies the applied template file |
 | 3  | Design Patterns | |
 | 4  | Download Archive | Downloads the entire source code as a local file |

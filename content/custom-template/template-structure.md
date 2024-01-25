@@ -2,10 +2,10 @@
 description: ''
 sidebar: 'started'
 ---
-## Template File Structure
-A template file consists of metadata that sets essential options and template code that declares dynamically changing data. 
+# Template File Structure
+A template file consists of metadata, which sets essential options, and template code, which declares dynamically changing data. 
 
-Using the Aggregate.java file as a reference, let's explore how to structure a template file.
+Let's use the previously created Aggregate.java file as a reference to explain how to structure a template file.
 
 ## 1. Defining Metadata
 Metadata refers to the way the template iterates through data, the type and location of the generated files, and other configuration options. At the top of the template file, you can set options as follows:
@@ -20,23 +20,31 @@ path: {{boundedContext.name}}/{{{options.packagePath}}}/domain
 
 ### 1.1 Setting File Type
 
-Use the forEach to define the type of file the template will generate. The value of forEach can be stickers modeled, and in this case, it is set to Aggregate.
+You must set how the template file will be created. 
+
+The forEach option can be used for this purpose, and it can take the values of stickers modeled. 
+
+In this case, it is set to Aggregate.
 
 ### 1.2 Setting File Name
 
-Use fileName to set the name of the generated file. Since the file is generated based on the number of stickers corresponding to forEach, dynamically generate the file name based on the specified conventions. 
+For a template file set with forEach: Aggregate, multiple files will be created based on the number of Aggregates. 
 
-In this example, it is set to {{namePascalCase}}.java, where the result will be dynamically replaced with the value of namePascalCase from each Aggregate.
+To ensure each file has a unique name, use the fileName option. Here, the file name is set to {{namePascalCase}}.java. 
 
-### 1.3 Setting File Path
-Finally, use path to set the path where the Order.java will be generated. The current Company.java should be generated under the domain subdirectory. 
+This allows each file to be uniquely identified based on the namePascalCase value of the corresponding Aggregate.
 
-Therefore, by referencing the data in the 'Model Explorer', set the paths so that the files specified by fileName are created under the domain.
+### 1.3 Setting File Paths
+Finally, use the path option to define where the Aggregate.java files will be created. 
 
-Once the metadata options are set, input a hyphen ('---') at the bottom of the last metadata to separate it from the template code.
+The current setup places the files under the 'domain' directory, and the path is constructed based on the data from the 'Model Explorer.'
+
+Once metadata options are configured, you can separate them from the template code by adding a dash line ('---') at the end.
 
 
 ## 2. Template Code
+
+Template files can leverage data generated through modeling in the 'Model Explorer' to structure the template code. Mustache ({{}}) can be used to bring in data. Mustache is a simple template engine supporting various languages.
 
 ### 2.1 Mustache
 
@@ -74,10 +82,12 @@ id
 ```
 Among the fields of the Aggregate sticker, the current id field is set as the keyField. To retrieve the name of the id field, you access the name attribute inside keyFieldDescriptor.
 
-### 2.3 Accessing Outer Attributes
+### 2.3 Accessing External Scope Attributes
 In contrast to accessing inner attributes, there are situations where you need to access attributes outside the current scope.
 
-To access attributes in the outer scope, use '../', and it's written as {{../outerAttribute}}.
+To access attributes outside the current scope, use '../'. 
+
+For instance, {{../externalAttribute}} allows access to attributes in the external scope:
 
 Template
 ```
@@ -94,8 +104,7 @@ In the example, to retrieve the name of the Aggregate sticker while within the a
 you need to access the outer attribute using {{../name}}.
 
 ### 2.4 Naming Conventions
-
-Data related to names within stickers is generated using various naming conventions. You can leverage these conventions to access event attributes and create methods, as shown below:
+Sticker data related to names is often generated with various naming conventions. You can utilize these conventions to access event attributes and create methods dynamically:
 
 Template
 ```
@@ -115,4 +124,6 @@ public void onPostPersist() {
 }
 ```
 
-In this example, methods are created by accessing the event stickers within the lifeCycles attribute and utilizing the naming conventions generated for the event stickers.
+Here, the template accesses the lifeCycles attribute and dynamically generates methods based on the trigger attribute. 
+
+The template then accesses the events attribute to create instances of event stickers using the generated naming conventions.

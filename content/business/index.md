@@ -8,11 +8,10 @@ Performing EventStorming based on the given Shopping Mall Scenario
 
 ## MSAEZ Modeling Tool Access
 - Open the Chrome browser and go to https://www.msaez.io.
-- Click on the avatar icon in the upper right corner and login with your Github account.
-- Click on the first item, EventStorming, from the NEW menu.
+- Click on the avatar icon in the upper right corner and login with your **Github** account.
+- Click **New > Eventstorming**
 
-![image](https://github.com/acmexii/demo/assets/35618409/d35919e8-3ff6-4a13-bccc-6935f4d87dbf)
-
+![image](https://github.com/msa-ez/msa-ez.github.io/assets/113568664/777c8e0c-1482-4fda-b43a-25eaee26314e)
 ## Basic Scenario - Order and Order Cancellation
 - Customer selects a product and places an order.
 - When an order is placed, the delivery of the product begins.
@@ -23,19 +22,19 @@ Performing EventStorming based on the given Shopping Mall Scenario
 
 ## EventStorming
 
-### Step 1: Events (Orange Color)
+### Step 1: Events (Orange)
 The first step of EventStorming involves attaching domain events based on the narrative (verbs).
 
 From the scenario, we can extract the following domain events:
 
-- Customer selects a product and places an order. -> OrderPlaced
-- When an order is placed, the delivery of the product begins. -> DeliveryStarted
-- Upon completion of delivery, the stock quantity of the product decreases. -> StockDecreased
+- Customer selects a product and places an order. -> **OrderPlaced**
+- When an order is placed, the delivery of the product begins. -> **DeliveryStarted**
+- Upon completion of delivery, the stock quantity of the product decreases. -> **StockDecreased**
 Similarly, for the order cancellation process:
 
 ![image](https://github.com/acmexii/demo/assets/35618409/f5270052-f6e8-4f2d-82dc-f134ad8e11d6)
 
-### Step 2. CCommands (Sky Blue) and Actors (Yellow)
+### Step 2. Commands (Sky Blue) and Actors (Yellow)
 Add commands (sky blue) and actors (yellow) that trigger domain events to the left of the event stickers.
 
 - Label commands in the present tense, representing human interactions such as ordering and canceling an order.
@@ -43,7 +42,7 @@ Add commands (sky blue) and actors (yellow) that trigger domain events to the le
 
 ![image](https://github.com/acmexii/demo/assets/35618409/05681759-4115-42f8-8710-ca0f8f2e1e91)
 
-### Step 3. Policy (Lilac Color)
+### Step 3. Policy (Lilac)
 Add reactive tasks related to events as policies (domain policies) to the right of events.
 
 - Describe tasks to be performed sequentially according to the event.
@@ -55,18 +54,18 @@ Add reactive tasks related to events as policies (domain policies) to the right 
 ### Step 4. Aggregates (Yellow)
 Add aggregates with appropriate names between commands and events, representing the repository that triggers domain state changes.
 
-Name aggregates after the information repository of the respective service.
+- Name aggregates after the information repository of the respective service.
 
-Model aggregates to overlap similar state change stickers.
+- Model aggregates to overlap similar state change stickers.
 
 ![image](https://github.com/acmexii/demo/assets/35618409/6b66213a-f2de-48be-b3f2-5604507238bf)
 
 ### Step 5. Bounded Context
 Group stickers by team or submodule to delineate boundaries.
 
-Click on the 'dashed circle' icon in the palette to wrap stickers for each team.
+- Click on the 'dashed circle' icon in the palette to wrap stickers for each team.
 
-The model with bounded contexts for each team looks like this:
+- The model with bounded contexts for each team looks like this:
 
 ![image](https://github.com/acmexii/demo/assets/35618409/eac4d230-0ec0-4afc-a414-39e4adbc85e3)
 

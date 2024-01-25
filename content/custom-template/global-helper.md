@@ -2,6 +2,8 @@
 description: ''
 sidebar: 'started'
 ---
+# Global Helper
+
 Global Helpers in MSAEZ are pre-defined helper functions embedded by the platform, accessible globally within templates. 
 
 ## 1. Attribute Evaluation

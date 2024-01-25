@@ -28,7 +28,7 @@
           <a v-if="settings.github" :href="settings.github" class="sm:ml-3" target="_blank" rel="noopener noreferrer" title="Github" name="Github">
             <GithubIcon size="1.5x" />
           </a>
-          <div class=".clearfix" style="min-width:260px;">
+          <div class=".clearfix" style="min-width:280px;">
             <a style="display:block; width:50px; height:50px; line-height:50px; float:left; padding-top: 13px;"
               href="https://github.com/msa-ez/platform?tab=readme-ov-file#running-on-docker-compose-with-github" target="_blank"
             >
@@ -50,7 +50,7 @@
                 to="http://labs.msaez.io/"
                 class="px-4 py-2 ml-auto font-bold leading-none text-white rounded-lg shadow-lg bg-ui-primary"
               >
-                실습하기
+                Try MSAEZ
               </g-link>
             </div>
           </div>
@@ -178,9 +178,9 @@ export default {
       me.currentPathTwo = me.currentUrl.split("/")[2];
       
       if(me.currentPath != null && me.currentPathTwo != null) {
-        window.location.href="https://intro.msaez.io/" + me.currentPath + "/" + me.currentPathTwo;
+        window.location.href="https://intro-kor.msaez.io/" + me.currentPath + "/" + me.currentPathTwo;
       }else {
-        window.location.href="https://intro.msaez.io/";
+        window.location.href="https://intro-kor.msaez.io/";
       }
     }
   }

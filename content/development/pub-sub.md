@@ -7,14 +7,19 @@ next: ''
 
 # Pub/Sub Integration
 
+<div style = "height:400px; object-fit: cover;">
+<iframe style = "width:100%; height:100%;" src="https://www.youtube.com/embed/QvRiuKCZUmM" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+</div><br>
+
 In this hands-on exercise, we will practice the Pub/Sub pattern for event messaging between microservices. Specifically, when an order event (OrderPlaced) is triggered in the Order service, the Inventory service will subscribe to this event and adjust (decrease) the inventory level accordingly.
 
 ### Event Storming Model Preparation
 
 - Load the model from the following link in a new tab:
-[Model Link](https://www.msaez.io/#/storming/labshoppubsub-2:2023-pubsub2)
-- If the model doesn't load in the browser, click the avatar icon in the upper right corner, log in with your GitHub account, and reload.
+**[Model Link](https://www.msaez.io/#/storming/labshoppubsub-2:2023-pubsub2)**
+- If the model doesn't load in the browser, click the avatar icon in the upper right corner, log in with your **GitHub** account, and reload.
 - Confirm that the required Event Storming basic model is displayed.
+
 ![image](https://github.com/acmexii/demo/assets/35618409/39ccf71e-3977-4093-9bae-7c2a1254d710)
 
 
@@ -30,18 +35,21 @@ mvn spring-boot:run
 ```
 
 - Make a request to the running order service to place an order.
- ```
+```
 http localhost:8081/orders productId=1 productName=TV qty=3
 ```
 - Add a new terminal in GitPod.
+
 - Enter the Kafka utility with Docker to get a shell in the Kafka location:
+
 ```
 cd kafka
 docker-compose exec -it kafka /bin/bash
 cd /bin
 ```
 
-- kafka Consumer에서 이벤트 확인한다
+- Check the Event from kafka Consumer.
+
 ``` 
 ./kafka-console-consumer --bootstrap-server localhost:9092 --topic labshoppubsub  --from-beginning
 ```
@@ -52,16 +60,13 @@ cd /bin
 - PolicyHandler.java calls the Port method (decreaseStock) of Inventory.java (Aggregate).
 - The logic we need to implement in decreaseStock is as follows:
 ```
-        
-               
-        repository().findById(Long.valueOf(orderPlaced.getProductId())).ifPresent(inventory->{
-            
-            inventory.setStock(inventory.getStock() - orderPlaced.getQty()); // do something
-            repository().save(inventory);
+repository().findById(Long.valueOf(orderPlaced.getProductId())).ifPresent(inventory->{
+    
+    inventory.setStock(inventory.getStock() - orderPlaced.getQty()); // do something
+    repository().save(inventory);
 
 
-         });
-      
+    });
 ```
 
 - Run the inventory service.

@@ -16,10 +16,11 @@ We'll explore the operational structure using a debugger and extend the service 
 
 ## EventStorming Model Preparation
 
-- Open the model in a new tab using the link below:
-[Model Link](https://www.msaez.io/#/storming/7b59c53f12e372251cc3c83da8b2fd09)
-- If the model doesn't load, click on the avatar icon (person shape) in the upper right, log in with your Github account, and then reload.
+- Open the model in a new tab using the link :
+**[Model Link](https://www.msaez.io/#/storming/7b59c53f12e372251cc3c83da8b2fd09)**
+- If the model doesn't load, click on the avatar icon (person shape) in the upper right, log in with your **Github** account, and then reload.
 - Verify that the model, as needed for the level, is displayed. 
+
 ![image](https://github.com/acmexii/demo/assets/35618409/277a434c-c6fa-49aa-a05e-3a7249865ca4)
 
 ## Running Microservices

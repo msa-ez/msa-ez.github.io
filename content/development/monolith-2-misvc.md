@@ -7,14 +7,19 @@ next: ''
 
 # Request/Response Communication in MSA Integration
 
+<div style = "height:400px; object-fit: cover;">
+<iframe style = "width:100%; height:100%;" src="https://www.youtube.com/embed/jL_i3o0IEbY" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+</div><br>
+
 In this guide, we will follow the steps to separate a specific part from a monolithic service and have the monolith and microservices communicate using a Req/Res (Request/Response) approach.
 
 ## EventStorming Model Preparation
 
-- Open the model in a new tab using the link below:
-[Model Link](https://www.msaez.io/#/storming/labshopmonolith-230822)
-- If the model doesn't load, click on the avatar icon (person shape) in the upper right, log in with your Github account, and then reload.
+- Open the model in a new tab using the link :
+**[Model Link](https://www.msaez.io/#/storming/labshopmonolith-230822)**
+- If the model doesn't load, click on the avatar icon (person shape) in the upper right, log in with your **Github** account, and then reload.
 - Verify that the model, as needed for the level, is displayed.
+
 ![image](https://github.com/acmexii/demo/assets/35618409/7950c0df-eee8-44e3-a79f-7448a4caa30e)
 - Ensure that the model is loaded, and if not, fork it using the Fork icon.
 
@@ -25,31 +30,34 @@ Utilize the given model to guide you through the process of modeling, separating
 ### EventStorming
 
 - Limit the monolith's bounded context to the order domain sticker only.
-- Add a new bounded context and name it "inventory."
+- Add a new bounded context and name it **inventory.**
 - Select and move the aggregate objects of the inventory bounded context.
+
 <img width="874" alt="image" src="https://user-images.githubusercontent.com/487999/190896320-72973cf1-c1dc-44f4-a46a-9be87d072284.png">
 
-- Add a command to decrease the stock: Add the "decrease stock" command sticker to the inventory BC, and copy the command name below:
+- Add a command to decrease the stock: Add the **decrease stock** command sticker to the inventory BC, and copy the command name below:
 ```
 decrease stock
 ```
 - Attach the Command sticker to the left of the Inventory Aggregate sticker.
-- Configure the "decrease stock" command: Double-click on the "decrease stock" command sticker, choose "Extend Verb URI" for Method Type, and add an attribute with type: Integer and name: qty.
-- After adding the attribute, click 'Add Attribute' or press Enter to confirm.
+- Configure the **decrease stock** command: Double-click on the **decrease stock** command sticker, choose **Extend Verb URI** for Method Type, and add an attribute with type: Integer and name: qty.
+- After adding the attribute, click **Add Attribute** or press Enter to confirm.
+
 <img width="784" alt="image" src="https://user-images.githubusercontent.com/487999/190896393-30889e96-6cbc-4e7f-9631-25c0d004635d.png">
 
-- Connect the OrderPlaced Event sticker in the monolith to the "decrease stock" Command sticker in the inventory. The connection should indicate Req/Res.
+- Connect the OrderPlaced Event sticker in the monolith to the **decrease stock** Command sticker in the inventory. The connection should indicate Req/Res.
+
 <img width="859" alt="image" src="https://user-images.githubusercontent.com/487999/190896427-f91962cd-f8ab-4113-bd85-5abe1ada3bcd.png">
 
 ## Code Generation and Push to Git Repository
-- Click on 'CODE' > 'Code Preview' in the modeling menu.
-- In the dialog that appears, select 'Create New Repository,' and click 'CREATE.'
+- Click on **CODE** > **Code Preview** in the modeling menu.
+- In the dialog that appears, select **Create New Repository**, and click **CREATE**.
 
-> Since you logged in with your Github account initially, your Git information is automatically displayed.
+> Since you logged in with your **Github** account initially, your Git information is automatically displayed.
 ![image](https://github.com/acmexii/demo/assets/35618409/dcb1966e-e0d1-43f3-9920-457660923259)
 - The model-based code is pushed to your Github.
 ![image](https://github.com/acmexii/demo/assets/35618409/6581f400-adb8-4963-bf03-511d459c5e32)
-- Click on 'IDE' in the left menu, and then click 'Open GitPod' in the Cloud IDE list.
+- Click on **IDE** in the left menu, and then click **Open GitPod** in the Cloud IDE list.
 
 ### Check the Source Code on the Calling Side
 - Check the generated sample code in monolith/../Order.java within the @PostPersist section:

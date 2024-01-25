@@ -2,17 +2,19 @@
 description: ''
 sidebar: 'started'
 ---
+# Creating Custom Templates in MSAEZ
+Here is a step-by-step guide on developing custom templates based on the MSAEZ model:
 
 ## 1. Creating a Repository
-We will explain the process of developing a custom template based on the MSAEZ model.
+To develop custom templates, you need to create a repository.
 
-First, let's create a repository for the custom template work.
+Go to https://github.com/.
 
-Navigate to https://github.com/ and create a new repository for the template files.
+Create a new repository for your template files. 
 
 ![](https://github.com/msa-ez/platform/assets/123912988/b6f49e7b-4674-47a5-8ed9-69caf94fac64)
 
-In this example, the repository is created with the title 'custom-spring-boot,' incorporating the template language to be used.
+In this example, the repository is named 'custom-spring-boot' to include the template language used.
 
 ## 2. Template Selection
 

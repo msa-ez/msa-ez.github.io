@@ -4,6 +4,10 @@ sidebar: 'started'
 ---
 # Google Drive Examples
 
+<div style = "height:400px; object-fit: cover;">
+<iframe style = "width:100%; height:100%;" src="https://www.youtube.com/embed/MUN0iS3cJV8" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+</div><br>
+
 <h2>Developing Microservice-based Google Drive Service</h2>
 
 ## Move on to practicing tool
@@ -242,7 +246,7 @@ Click the orange colored button 'CODE' to open the Code Preview window and we ca
 
 Now let's open IDE tool to run the service. We are going to use Gitpod IDE, provided by Github and based on VSCode.
 
-To use Gitpod, first we should create a repository at our Github account and interlock it with Gitpod.
+To use Gitpod, first we should create a repository at our **Github** account and interlock it with Gitpod.
 
 Click the git icon placed on the upper-left side of the Code Preview area and then create a repository of our project.
 

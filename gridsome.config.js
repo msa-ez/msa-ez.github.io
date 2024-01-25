@@ -6,9 +6,14 @@
 
 module.exports = {
   siteName: 'msaez',
+  configureServer(app) {
+    app.get('/', (req, res) => {
+      res.redirect(301, '/started/'); // 홈페이지로 접근 시 '/new-home'으로 리다이렉트
+    });
+  },
   icon: {
-    favicon: './src/img/logo.png',
-    touchicon: './src/img/logo.png',
+    favicon: './src/img/favicon.png',
+    touchicon: './src/img/favicon.png',
   },
   siteUrl: (process.env.SITE_URL ? process.env.SITE_URL : 'https://example.com'),
   settings: {
@@ -98,10 +103,6 @@ module.exports = {
                 secondItem: '/development/dp-cqrs/'
               },
             ]
-          },
-          {
-            firstTitle: 'K8s Deployment Modeling',
-            firstItem: '/tool/k8s-modeling/'
           },
           {
             firstTitle: 'Deployment Modeling Practice',
@@ -201,6 +202,23 @@ module.exports = {
             ]
           },
           {
+            firstTitle: 'Business Info',
+            name:[
+              {
+                secondTitle: 'Cases',
+                secondItem: '/info/company/'
+              },
+              {
+                secondTitle: 'Pricing',
+                secondItem: '/info/pricing/'
+              },
+              {
+                secondTitle: 'Partnerships',
+                secondItem: '/info/partnership/'
+              }
+            ]
+          },
+          {
             firstTitle: 'Support',
             name:[
               // {
@@ -270,136 +288,3 @@ module.exports = {
 
   ]
 }
-
-
-
-// // This is where project configuration and plugin options are located. 
-// // Learn more: https://gridsome.org/docs/config
-
-// // Changes here require a server restart.
-// // To restart press CTRL + C in terminal and run `gridsome develop`
-
-// module.exports = {
-//   siteName: 'msaez',
-//   icon: {
-//     favicon: './src/assets/favicon.png',
-//     touchicon: './src/assets/favicon.png'
-//   },
-//   siteUrl: (process.env.SITE_URL ? process.env.SITE_URL : 'https://example.com'),
-//   settings: {
-//     web: process.env.URL_WEB || false,
-//     twitter: process.env.URL_TWITTER || false,
-//     github: process.env.URL_GITHUB || false,
-//     nav: {
-//       links: [
-//         { path: '/started/', title: 'Docs' }
-//       ]
-//     },
-//     sidebar: [
-//       {
-//         name: 'started',
-//         sections: [
-//           {
-//             title: 'Getting Started',
-//             items: [
-//               '/started/',
-//               '/started/domain-driven/',
-//               '/started/event-storming-learning/',
-//             ]
-//           },
-//           {
-//             title: 'How to use the tool',
-//             items: [
-//               '/tool/google-drive-examples/',
-//               '/tool/chat-gpt/',
-//               '/tool/market-place/',
-//               '/tool/event-storming-tool/',
-//               '/tool/cloud-ide-tool/',
-//               '/tool/infrastructure-modeling/',
-//               '/tool/development-practice/',
-//               '/tool/on-prem-inst/',
-//             ]
-//           },
-//           {
-//             title: 'Language-specific templates',
-//             items: [
-//               '/templates-language/python-template/',
-//               '/templates-language/springboot-java-template/',
-//               '/templates-language/go-template/',
-//             ]
-//           },
-//           {
-//             title: 'Custom templates',
-//             items: [
-//               '/custom-template/tutorial/',
-//               '/custom-template/designing-template/',
-//               '/custom-template/custom-template/',
-//               '/custom-template/mock-server/',
-//               '/custom-template/unit-test/',
-//             ]
-//           },
-//           {
-//             title: 'Example scenario',
-//             items: [
-//               '/example-scenario/accommodation-reservation/',
-//               '/example-scenario/food-delivery/',
-//               '/example-scenario/library-system/',
-//               '/example-scenario/animal-hospital/',
-//               '/example-scenario/online-lecture/',
-//             ]
-//           },
-//           {
-//             title: 'Contact',
-//             items: [
-//               '/contact/question/'
-//             ]
-//           },
-//         ]
-//       }
-//     ]
-//   },
-//   plugins: [
-//     {
-//       use: '@gridsome/source-filesystem',
-//       options: {
-//         baseDir: './content',
-//         path: '**/*.md',
-//         typeName: 'MarkdownPage',
-//         remark: {
-//           externalLinksTarget: '_blank',
-//           externalLinksRel: ['noopener', 'noreferrer'],
-//           plugins: [
-//             '@gridsome/remark-prismjs'
-//           ]
-//         }
-//       }
-//     },
-
-//     {
-//       use: 'gridsome-plugin-tailwindcss',
-//       options: {
-//         tailwindConfig: './tailwind.config.js',
-//         purgeConfig: {
-//           // Prevent purging of prism classes.
-//           whitelistPatternsChildren: [
-//             /token$/
-//           ]
-//         }
-//       }
-//     },
-
-//     {
-//       use: '@gridsome/plugin-google-analytics',
-//       options: {
-//         id: 'UA-153107610-3'
-//       }
-//     },
-
-//     {
-//       use: '@gridsome/plugin-sitemap',
-//       options: {  
-//       }
-//     }
-
-//   ]
-// }

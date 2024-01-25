@@ -3,12 +3,22 @@
 import DefaultLayout from '~/layouts/Default.vue'
 import Vue from 'vue'
 import VueAnalytics from 'vue-analytics'
+import Meta from 'vue-meta';
+
+
+Vue.use(Meta, {
+  keyName: 'metaInfo',
+  attribute: 'data-vue-meta',
+  ssrAttribute: 'data-vue-meta-server-rendered',
+  tagIDKeyName: 'vmid',  // 변화시키는 구분 값
+  refreshOnceOnNavigation: true
+})
+require('./global.css');
+
 
 Vue.use(VueAnalytics, {
   id: 'UA-153107610-3',
 })
-
-require('./global.css');
 
 export default function (Vue, { router, head, isClient }) {
   // Set default layout as a global component
