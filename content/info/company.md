@@ -8,8 +8,8 @@ sidebar: 'started'
 Introducing companies that have experienced MSAEZ.
 
 |  |  |  |
-| --- | --- | --- |
-| ![](../../src/img/logo/logo-28.png) | ![](../../src/img/logo/logo-21.png) | ![](../../src/img/logo/logo-22.png) |
-| ![](../../src/img/logo/logo-23.png) | ![](../../src/img/logo/logo-20.png) | ![](../../src/img/logo/logo-19.png) |
-| ![](../../src/img/logo/logo-26.png) | ![](../../src/img/logo/logo-27.png) | ![](../../src/img/logo/logo-24.png) |
-|![](../../src/img/logo/logo-17.png) | ![](../../src/img/logo/logo-25.png) |  |
+| --- | --- | --- | --- |
+| ![](../../src/img/logo/clients-logo-msa-01.png) | ![](../../src/img/logo/clients-logo-msa-03.png) | ![](../../src/img/logo/clients-logo-msa-04.png) | ![](../../src/img/logo/clients-logo-msa-02.png) |
+| ![](../../src/img/logo/clients-logo-msa-05.png) | ![](../../src/img/logo/clients-logo-msa-06.png) | ![](../../src/img/logo/clients-logo-msa-07.png) | ![](../../src/img/logo/clients-logo-msa-08.png) |
+| ![](../../src/img/logo/clients-logo-msa-09.png) | ![](../../src/img/logo/clients-logo-msa-10.png) | ![](../../src/img/logo/clients-logo-msa-11.png) | ![](../../src/img/logo/clients-logo-msa-12.png) |
+| ![](../../src/img/logo/clients-logo-msa-13.png) |  |  |  |

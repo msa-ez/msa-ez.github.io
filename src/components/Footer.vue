@@ -9,8 +9,8 @@
             <div style = "width:100%; text-align:center; font-size:14px; color:white; font-weight:300; line-height:1.5; padding-top:20px;">
                 <div>
                     <div>
-                        <div class="footer-top-div">© MSA-Ez Authors 2023.&nbsp;&nbsp;</div>
-                        <div class="footer-top-div">© 2023 uEngine All rights reserved.</div>
+                        <div class="footer-top-div">© MSA-Ez Authors 2024.&nbsp;&nbsp;</div>
+                        <div class="footer-top-div">© 2024 uEngine All rights reserved.</div>
                     </div>
                     <div>
                         uEngine has registered trademarks and uses trademarks. and MSA-Ez is licensed under the GNU General Public License version 3.0.
