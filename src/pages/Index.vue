@@ -125,6 +125,9 @@ export default {
         }
       ]
     }
+  },
+  created(){
+    this.$router.push('/started/');
   }
 }
 </script>

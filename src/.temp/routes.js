@@ -1,6 +1,6 @@
-const c1 = () => import(/* webpackChunkName: "page--src--templates--markdown-page-vue" */ "/Users/kibumpark/Desktop/uEngine-project/msa-ez.github.io/src/templates/MarkdownPage.vue")
-const c2 = () => import(/* webpackChunkName: "page--src--pages--404-vue" */ "/Users/kibumpark/Desktop/uEngine-project/msa-ez.github.io/src/pages/404.vue")
-const c3 = () => import(/* webpackChunkName: "page--src--pages--index-vue" */ "/Users/kibumpark/Desktop/uEngine-project/msa-ez.github.io/src/pages/Index.vue")
+const c1 = () => import(/* webpackChunkName: "page--src--templates--markdown-page-vue" */ "/Users/user/Desktop/Intro/msa-ez.github.io/src/templates/MarkdownPage.vue")
+const c2 = () => import(/* webpackChunkName: "page--src--pages--404-vue" */ "/Users/user/Desktop/Intro/msa-ez.github.io/src/pages/404.vue")
+const c3 = () => import(/* webpackChunkName: "page--src--pages--index-vue" */ "/Users/user/Desktop/Intro/msa-ez.github.io/src/pages/Index.vue")
 
 export default [
   {
@@ -65,6 +65,10 @@ export default [
   },
   {
     path: "/tool/google-drive-examples/",
+    component: c1
+  },
+  {
+    path: "/custom-template/template-editor-custom-template/",
     component: c1
   },
   {
@@ -136,6 +140,10 @@ export default [
     component: c1
   },
   {
+    path: "/custom-template/loop-conditional-statement/",
+    component: c1
+  },
+  {
     path: "/custom-template/mock-server/",
     component: c1
   },
@@ -144,11 +152,11 @@ export default [
     component: c1
   },
   {
-    path: "/custom-template/helper/",
+    path: "/custom-template/global-helper/",
     component: c1
   },
   {
-    path: "/custom-template/for-loop/",
+    path: "/custom-template/helper/",
     component: c1
   },
   {
@@ -169,10 +177,6 @@ export default [
   },
   {
     path: "/business/eventstorming-fooddelivery/",
-    component: c1
-  },
-  {
-    path: "/custom-template/conditional-statement/",
     component: c1
   },
   {
