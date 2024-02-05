@@ -13,4 +13,4 @@ next: ''
 - MSA Facebook Group : https://www.facebook.com/groups/cloudswmoding
 
 **MSA/CNA Implementation/Kubernetes Training Application Form**
-- Application for education: https://www.msaschool.io/operation/education/schedule/
+- Application for education: https://www.msaschool.io/operation/education/curriculum/

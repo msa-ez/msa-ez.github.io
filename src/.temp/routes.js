@@ -92,6 +92,14 @@ export default [
     component: c1
   },
   {
+    path: "/info/partnership/",
+    component: c1
+  },
+  {
+    path: "/info/pricing/",
+    component: c1
+  },
+  {
     path: "/tool/cloud-ide-tool/",
     component: c1
   },
@@ -157,6 +165,10 @@ export default [
   },
   {
     path: "/custom-template/helper/",
+    component: c1
+  },
+  {
+    path: "/info/company/",
     component: c1
   },
   {
