@@ -3,7 +3,7 @@
         <div style="width:100%; padding-bottom:30px; background-color:#1E88E5;">
             <div class="flex logo-style">
                 <div>
-                    <g-image src="../img/logo.png"></g-image>
+                    <g-image src="../img/uEngine_logo.png"></g-image>
                 </div>
             </div>
             <div style = "width:100%; text-align:center; font-size:14px; color:white; font-weight:300; line-height:1.5; padding-top:20px;">
