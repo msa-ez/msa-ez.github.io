@@ -11,7 +11,9 @@ next: ''
 <iframe style = "width:100%; height:100%;" src="https://www.youtube.com/embed/QvRiuKCZUmM" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 </div><br>
 
-In this hands-on exercise, we will practice the Pub/Sub pattern for event messaging between microservices. Specifically, when an order event (OrderPlaced) is triggered in the Order service, the Inventory service will subscribe to this event and adjust (decrease) the inventory level accordingly.
+In this hands-on exercise, we will practice the Pub/Sub pattern for event messaging between microservices. 
+
+Specifically, when an order event (OrderPlaced) is triggered in the Order service, the Inventory service will subscribe to this event and adjust (decrease) the inventory level accordingly.
 
 ### Event Storming Model Preparation
 
@@ -20,7 +22,7 @@ In this hands-on exercise, we will practice the Pub/Sub pattern for event messag
 - If the model doesn't load in the browser, click the avatar icon in the upper right corner, log in with your **GitHub** account, and reload.
 - Confirm that the required Event Storming basic model is displayed.
 
-![image](https://github.com/acmexii/demo/assets/35618409/39ccf71e-3977-4093-9bae-7c2a1254d710)
+![image](https://github.com/kykim97/shop-sigpt/assets/113568664/4608619d-005f-4164-9be7-5730fce17f85)
 
 
 ### Order Service Event Publishing
@@ -34,13 +36,11 @@ Open the GitPod IDE by selecting CODE > ProjectIDE from the menu.
 mvn spring-boot:run
 ```
 
-- Make a request to the running order service to place an order.
+- Add a new terminal and make a request to the running order service to place an order.
 ```
 http localhost:8081/orders productId=1 productName=TV qty=3
 ```
-- Add a new terminal in GitPod.
-
-- Enter the Kafka utility with Docker to get a shell in the Kafka location:
+- AAdd a new terminal and enter the Kafka utility with Docker to get a shell in the Kafka location:
 
 ```
 cd kafka
@@ -54,11 +54,15 @@ cd /bin
 ./kafka-console-consumer --bootstrap-server localhost:9092 --topic labshoppubsub  --from-beginning
 ```
 
+- Result of the event :
+``` 
+{"eventType":"OrderPlaced","timestamp":1717047846007,"id":1,"productId":"1","qty":3,"customerId":null}
+```
 
 ### Inventory Service Event Subscription
 - Examine the PolicyHandler.java code in the Inventory service.
 - PolicyHandler.java calls the Port method (decreaseStock) of Inventory.java (Aggregate).
-- The logic we need to implement in decreaseStock is as follows:
+- The logic we need to implement in decreaseStock of Inventory.java is as follows:
 ```
 repository().findById(Long.valueOf(orderPlaced.getProductId())).ifPresent(inventory->{
     
@@ -69,7 +73,7 @@ repository().findById(Long.valueOf(orderPlaced.getProductId())).ifPresent(invent
     });
 ```
 
-- Run the inventory service.
+- Add a new terminal and run the inventory service.
 ```
 mvn spring-boot:run
 ```
