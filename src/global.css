@@ -6,6 +6,11 @@ h4 a::before {
     display:none;
 }
 
+.container {
+    max-width: 100%;
+    padding:0px 5% 0px 5%;
+}
+
 /* Code block 드래그 색상 */
 code[class*="language-"]::selection,
 pre[class*="language-"]::selection,
