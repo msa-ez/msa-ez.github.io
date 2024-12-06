@@ -18,3 +18,60 @@ code[class*="language-"] ::selection,
 pre[class*="language-"] ::selection {
     background-color:saddlebrown !important;
 }
+
+/* 2K 해상도 (2560px) 이상 */
+@media screen and (min-width: 2560px) {
+    h1 {
+        font-size: 3rem !important; /* 더 큰 크기로 조정 */
+    }
+    h2 {
+        font-size: 2.5rem !important;
+    }
+    h3 {
+        font-size: 2.25rem !important;
+    }
+    h4 {
+        font-size: 2rem !important;
+    }
+    p,
+    ol,
+    ul,
+    pre,
+    strong,
+    a div,
+    li a,
+    blockquote,
+    td,
+    .sidebar-title,
+    .btn-pdf a {
+        font-size: 1.25rem !important;
+    }
+}
+/* 4K 해상도 (3840px) 이상 */
+@media screen and (min-width: 3840px) {
+    h1 {
+        font-size: 3.5rem !important; /* 더욱 큰 크기로 조정 */
+    }
+    h2 {
+        font-size: 3rem !important;
+    }
+    h3 {
+        font-size: 2.75rem !important;
+    }
+    h4 {
+        font-size: 2.5rem !important;
+    }
+    p,
+    ol,
+    ul,
+    pre,
+    strong,
+    a div,
+    li a,
+    blockquote,
+    td,
+    .sidebar-title,
+    .btn-pdf a {
+        font-size: 1.5rem !important;
+    }
+}
