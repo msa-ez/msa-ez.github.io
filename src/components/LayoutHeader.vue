@@ -47,7 +47,7 @@
             </div>
             <div style="text-align:center; line-height:50px; float:left;">
               <g-link
-                to="http://labs.msaez.io/"
+                to="http://www.msaez.io/"
                 class="px-4 py-2 ml-auto font-bold leading-none text-white rounded-lg shadow-lg bg-ui-primary"
               >
                 Try MSAEZ
@@ -104,7 +104,7 @@
 
             <div style="text-align:center; line-height:50px; float:left;">
               <g-link
-                to="http://labs.msaez.io/"
+                to="http://www.msaez.io/"
                 class="px-4 py-2 ml-auto font-bold leading-none text-white rounded-lg shadow-lg bg-ui-primary"
               >
                 Try MSAEZ

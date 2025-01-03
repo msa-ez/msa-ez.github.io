@@ -18,7 +18,7 @@
           :style="sidebarStyle"
         >
           <div class="w-full pb-16 bg-ui-background">
-            <Sidebar @navigate="sidebarOpen = false" @closeSidebar="sidebarOpen = false" />
+            <Sidebar class="pb-8" @navigate="sidebarOpen = false" @closeSidebar="sidebarOpen = false" />
           </div>
         </aside>
 

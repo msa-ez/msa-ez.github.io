@@ -19,7 +19,7 @@ Experience the swift and intelligent development of fully open-source AI-based m
                 <span>✓</span> Billing based on monthly usage
             </div>
             <div class="font-bold text-white bg-ui-primary btn-pricing">
-                <a href="http://labs.msaez.io/">Buy MSAEZ</a>
+                <a href="http://www.msaez.io/">Buy MSAEZ</a>
             </div>
         </div>
     </div>
@@ -67,7 +67,7 @@ Experience the swift and intelligent development of fully open-source AI-based m
     </p>
     <p class="lh20">
         <span style="width: 195px;">Check Usage Information</span>
-        <a href="https://labs.msaez.io/#/provision" target="_blank">Privacy processing, cancellation and refund terms</a>
+        <a href="https://www.msaez.io/#/provision" target="_blank">Privacy processing, cancellation and refund terms</a>
     </p>
 </div>
 

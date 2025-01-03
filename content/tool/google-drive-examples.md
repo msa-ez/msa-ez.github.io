@@ -11,7 +11,7 @@ sidebar: 'started'
 <h2>Developing Microservice-based Google Drive Service</h2>
 
 ## Move on to practicing tool
-Get access to [labs.msaez.io](http://labs.msaez.io)
+Get access to [www.msaez.io](http://www.msaez.io)
 <br/>(Chrome browser recommended)
 
 ## Scenario
