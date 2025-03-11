@@ -584,30 +584,30 @@ Each implementation was configured in their own source repository, and the CI/CD
 SA creation
 kubectl apply -f eks-admin-service-account.yml
 ```
-![codebuild(sa)](https://user-images.githubusercontent.com/38099203/119293259-ff52ec80-bc8c-11eb-8671-b9a226811762.PNG)
+![codebuild(sa)](https://user-images.githubusercontent.com/38099203/119293259-ff52ec80-bc8c-11eb-8671-b9a226811762.png)
 ```
 Create Role
 kubectl apply -f eks-admin-cluster-role-binding.yml
 ```
-![codebuild(role)](https://user-images.githubusercontent.com/38099203/119293300-1abdf780-bc8d-11eb-9b07-ad173237efb1.PNG)
+![codebuild(role)](https://user-images.githubusercontent.com/38099203/119293300-1abdf780-bc8d-11eb-9b07-ad173237efb1.png)
 ```
 Token confirmation
 kubectl -n kube-system get secret
 kubectl -n kube-system describe secret eks-admin-token-rjpmq
 ```
-![codebuild(token)](https://user-images.githubusercontent.com/38099203/119293511-84d69c80-bc8d-11eb-99c7-e8929e6a41e4.PNG)
+![codebuild(token)](https://user-images.githubusercontent.com/38099203/119293511-84d69c80-bc8d-11eb-99c7-e8929e6a41e4.png)
 ```
 buildspec.yml file 
 Set to use the yml file of the microservice room
 ```
-![codebuild(buildspec)](https://user-images.githubusercontent.com/38099203/119283849-30292680-bc79-11eb-9f86-cbb715e74846.PNG)
+![codebuild(buildspec)](https://user-images.githubusercontent.com/38099203/119283849-30292680-bc79-11eb-9f86-cbb715e74846.png)
 
 - run codebuild
 ```
 codebuild project and build history
 ```
-![codebuild(프로젝트)](https://user-images.githubusercontent.com/38099203/119283851-315a5380-bc79-11eb-9b2a-b4522d22d009.PNG)
-![codebuild(로그)](https://user-images.githubusercontent.com/38099203/119283850-30c1bd00-bc79-11eb-9547-1ff1f62e48a4.PNG)
+![codebuild(프로젝트)](https://user-images.githubusercontent.com/38099203/119283851-315a5380-bc79-11eb-9b2a-b4522d22d009.png)
+![codebuild(로그)](https://user-images.githubusercontent.com/38099203/119283850-30c1bd00-bc79-11eb-9547-1ff1f62e48a4.png)
 
 - codebuild build history (Message service details)
 
@@ -656,9 +656,9 @@ kubectl get ns -L istio-injection
 kubectl label namespace airbnb istio-injection=enabled 
 ```
 
-![Circuit Breaker(istio-enjection)](https://user-images.githubusercontent.com/38099203/119295450-d6812600-bc91-11eb-8aad-46eeac968a41.PNG)
+![Circuit Breaker(istio-enjection)](https://user-images.githubusercontent.com/38099203/119295450-d6812600-bc91-11eb-8aad-46eeac968a41.png)
 
-![Circuit Breaker(pod)](https://user-images.githubusercontent.com/38099203/119295568-0cbea580-bc92-11eb-9d2b-8580f3576b47.PNG)
+![Circuit Breaker(pod)](https://user-images.githubusercontent.com/38099203/119295568-0cbea580-bc92-11eb-9d2b-8580f3576b47.png)
 
 
 * Check circuit breaker operation with load tester siege tool:
@@ -738,7 +738,7 @@ Shortest transaction:           0.00
 
 - check circuit break on kiali screen
 
-![Circuit Breaker(kiali)](https://user-images.githubusercontent.com/38099203/119298194-7f7e4f80-bc97-11eb-8447-678eece29e5c.PNG)
+![Circuit Breaker(kiali)](https://user-images.githubusercontent.com/38099203/119298194-7f7e4f80-bc97-11eb-8447-678eece29e5c.png)
 
 
 - Check the load again with the minimum connection pool again
@@ -790,13 +790,13 @@ Shortest transaction:           0.00
 CB enabled stable operation of the system, but it did not accept 100% of the user's request, so we want to apply an automated extension function as a complement to this.
 
 - Add resources configuration to room deployment.yml file
-![Autoscale (HPA)](https://user-images.githubusercontent.com/38099203/119283787-0a038680-bc79-11eb-8d9b-d8aed8847fef.PNG)
+![Autoscale (HPA)](https://user-images.githubusercontent.com/38099203/119283787-0a038680-bc79-11eb-8d9b-d8aed8847fef.png)
 
 - Configure HPA to dynamically grow replicas for the room service. The setting increases the number of replicas to 10 when CPU usage exceeds 50%:
 ```
 kubectl autoscale deployment room -n airbnb --cpu-percent=50 --min=1 --max=10
 ```
-![Autoscale (HPA)(kubectl autoscale 명령어)](https://user-images.githubusercontent.com/38099203/119299474-ec92e480-bc99-11eb-9bc3-8c5246b02783.PNG)
+![Autoscale (HPA)(kubectl autoscale 명령어)](https://user-images.githubusercontent.com/38099203/119299474-ec92e480-bc99-11eb-9bc3-8c5246b02783.png)
 
 - Load 100 concurrent users for 1 minute.
 ```
@@ -807,7 +807,7 @@ siege -c100 -t60S -v --content-type "application/json" 'http://room:8080/rooms P
 kubectl get deploy room -w -n airbnb 
 ```
 - After some time (about 30 seconds) you can see the scale out occurs:
-![Autoscale (HPA)(모니터링)](https://user-images.githubusercontent.com/38099203/119299704-6a56f000-bc9a-11eb-9ba8-55e5978f3739.PNG)
+![Autoscale (HPA)(모니터링)](https://user-images.githubusercontent.com/38099203/119299704-6a56f000-bc9a-11eb-9ba8-55e5978f3739.png)
 
 - If you look at the log of siege, you can see that the overall success rate has increased.
 ```
@@ -885,7 +885,7 @@ Shortest transaction:           0.00
 # Configure readiness probe in deployment.yaml:
 ```
 
-![probe설정](https://user-images.githubusercontent.com/38099203/119301424-71333200-bc9d-11eb-9f75-f8c98fce70a3.PNG)
+![probe설정](https://user-images.githubusercontent.com/38099203/119301424-71333200-bc9d-11eb-9f75-f8c98fce70a3.png)
 
 ```
 kubectl apply -f kubernetes/deployment.yml
@@ -919,7 +919,7 @@ After running the container, create a /tmp/healthy file
 Delete after 90 seconds
 Make livenessProbe validate with 'cat /tmp/healthy'
 ```
-![deployment yml tmp healthy](https://user-images.githubusercontent.com/38099203/119318677-8ff0f300-bcb4-11eb-950a-e3c15feed325.PNG)
+![deployment yml tmp healthy](https://user-images.githubusercontent.com/38099203/119318677-8ff0f300-bcb4-11eb-950a-e3c15feed325.png)
 
 - Check by running kubectl describe pod room -n airbnb
 ```
@@ -927,8 +927,8 @@ After 90 seconds of running the container, the driver is normal, but after that,
 If the pod is in a normal state, enter the pod and create a /tmp/healthy file to maintain the normal state.
 ```
 
-![get pod tmp healthy](https://user-images.githubusercontent.com/38099203/119318781-a9923a80-bcb4-11eb-9783-65051ec0d6e8.PNG)
-![touch tmp healthy](https://user-images.githubusercontent.com/38099203/119319050-f118c680-bcb4-11eb-8bca-aa135c1e067e.PNG)
+![get pod tmp healthy](https://user-images.githubusercontent.com/38099203/119318781-a9923a80-bcb4-11eb-9783-65051ec0d6e8.png)
+![touch tmp healthy](https://user-images.githubusercontent.com/38099203/119319050-f118c680-bcb4-11eb-8bca-aa135c1e067e.png)
 
 ## Config Map/ Persistence Volume
 - Persistence Volume
@@ -937,9 +937,9 @@ If the pod is in a normal state, enter the pod and create a /tmp/healthy file to
 ```
 You must select a VPC for your cluster when creating EFS
 ```
-![You must choose a VPC for your cluster](https://user-images.githubusercontent.com/38099203/119364089-85048580-bce9-11eb-8001-1c20a93b8e36.PNG)
+![You must choose a VPC for your cluster](https://user-images.githubusercontent.com/38099203/119364089-85048580-bce9-11eb-8001-1c20a93b8e36.png)
 
-![Create EFS](https://user-images.githubusercontent.com/38099203/119343415-60041880-bcd1-11eb-9c25-1695c858f6aa.PNG)
+![Create EFS](https://user-images.githubusercontent.com/38099203/119343415-60041880-bcd1-11eb-9c25-1695c858f6aa.png)
 
 2. EFS account creation and ROLE binding
 ```
@@ -1121,7 +1121,7 @@ aws-efs   Bound    pvc-43f6fe12-b9f3-400c-ba20-b357c1639f00   6Ki        RWX    
 ```
 kubectl apply -f deployment.yml
 ```
-![pod with pvc](https://user-images.githubusercontent.com/38099203/119349966-bd9c6300-bcd9-11eb-9f6d-08e4a3ec82f0.PNG)
+![pod with pvc](https://user-images.githubusercontent.com/38099203/119349966-bd9c6300-bcd9-11eb-9f6d-08e4a3ec82f0.png)
 
 
 7. Create a file in the mounted path in pod A and check the file in pod B
@@ -1137,7 +1137,7 @@ kubectl exec -it pod/room-5df66d6674-n6b7n room -n airbnb -- /bin/sh
 / # cd /mnt/aws
 /mnt/aws # touch intensive_course_work
 ```
-![Create a file in a pod](https://user-images.githubusercontent.com/38099203/119372712-9736f180-bcf2-11eb-8e57-1d6e3f4273a5.PNG)
+![Create a file in a pod](https://user-images.githubusercontent.com/38099203/119372712-9736f180-bcf2-11eb-8e57-1d6e3f4273a5.png)
 
 ```
 kubectl exec -it pod/room-5df66d6674-pl25l room -n airbnb -- /bin/sh
@@ -1148,7 +1148,7 @@ drwxrws--x    2 root     2000          6144 May 24 15:44 .
 drwxr-xr-x    1 root     root            17 May 24 15:42 ..
 -rw-r--r--    1 root     2000             0 May 24 15:44 intensive_course_work
 ```
-![b Confirm file creation in pod](https://user-images.githubusercontent.com/38099203/119373196-204e2880-bcf3-11eb-88f0-a1e91a89088a.PNG)
+![b Confirm file creation in pod](https://user-images.githubusercontent.com/38099203/119373196-204e2880-bcf3-11eb-88f0-a1e91a89088a.png)
 
 
 - Config Map

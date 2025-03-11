@@ -429,13 +429,13 @@ Check in the console window
 Each implementation was configured in their own source repository, the CI/CD platform used was Azure, and the pipeline build script was included in azure-pipeline.yml under each project folder.
 
 - A pipeline was constructed using devops, and CI CD automation was implemented.
-![image](https://user-images.githubusercontent.com/18453570/79851343-2262fb00-8400-11ea-85e9-b4627f9a6d0d.PNG)
+![image](https://user-images.githubusercontent.com/18453570/79851343-2262fb00-8400-11ea-85e9-b4627f9a6d0d.png)
 
 - It was confirmed that the pod was uploaded normally as shown below. 
-![image](https://user-images.githubusercontent.com/18453570/79851342-21ca6480-8400-11ea-914a-e80e14ea93c7.PNG)
+![image](https://user-images.githubusercontent.com/18453570/79851342-21ca6480-8400-11ea-914a-e80e14ea93c7.png)
 
 - You can see that they are all registered as services in Kubernetes as shown below.
-![image](https://user-images.githubusercontent.com/18453570/79851335-20993780-8400-11ea-988b-33018c526631.PNG)
+![image](https://user-images.githubusercontent.com/18453570/79851335-20993780-8400-11ea-988b-33018c526631.png)
 
 
 ### · Synchronous Call / Circuit Breaking / Fault Isolation
@@ -478,13 +478,13 @@ hystrix:
     - run for 120 seconds
     - Excessive request triggers CB Block request
 
-![image](https://user-images.githubusercontent.com/63028499/79851238-01020f00-8400-11ea-85fb-409dd5f9bfd6.PNG)
+![image](https://user-images.githubusercontent.com/63028499/79851238-01020f00-8400-11ea-85fb-409dd5f9bfd6.png)
 
 * After some requests have been sent back, the previously delayed tasks have been processed, and the circuit is closed to start accepting requests again.
-![image](https://user-images.githubusercontent.com/63028499/79851242-01020f00-8400-11ea-9cc9-fdd639a91ed8.PNG)
+![image](https://user-images.githubusercontent.com/63028499/79851242-01020f00-8400-11ea-9cc9-fdd639a91ed8.png)
 
 * After that, as this pattern continues to repeat, the system operates well without domino effects or runaway resource consumption.
-![image](https://user-images.githubusercontent.com/63028499/79851236-ffd0e200-83ff-11ea-9941-3e6038bbc89f.PNG)
+![image](https://user-images.githubusercontent.com/63028499/79851236-ffd0e200-83ff-11ea-9941-3e6038bbc89f.png)
 
 - The operating system does not die and shows that the resource is protected by properly opening and closing the circuit by CB continuously. However, since 66.62% of successes and 33.38% of failures are not good for customer usability, follow-up processing to expand the system through retry settings and dynamic scale out (automatic addition of replicas, HPA) is necessary.
 
@@ -510,18 +510,18 @@ siege -c100 -t120S -r10 --content-type "application/json" 'http://52.231.118.204
 kubectl get deploy pay -w
 ```
 - After some time (about 30 seconds) you can see the scale out occurs:
-![image](https://user-images.githubusercontent.com/63028499/79851254-02cbd280-8400-11ea-9c75-4d60ce42d54d.PNG)
+![image](https://user-images.githubusercontent.com/63028499/79851254-02cbd280-8400-11ea-9c75-4d60ce42d54d.png)
 
 - If you look at the log of siege, you can see that the overall success rate has increased.
-![image](https://user-images.githubusercontent.com/63028499/79851251-02cbd280-8400-11ea-96e7-ea092375e77d.PNG)
+![image](https://user-images.githubusercontent.com/63028499/79851251-02cbd280-8400-11ea-96e7-ea092375e77d.png)
 
 ### · Uninterrupted redistribution
 
 * First, to check whether non-stop redistribution is 100%, the test is conducted in the presence of Readiness Probe and Autoscaler. As a result, it was confirmed that the uninterrupted redistribution was successful because the availability did not change during the distribution period at 100%.
-![image](https://user-images.githubusercontent.com/18453570/79856578-79b89980-8407-11ea-9daf-697365e0a388.PNG)
+![image](https://user-images.githubusercontent.com/18453570/79856578-79b89980-8407-11ea-9daf-697365e0a388.png)
 
 * After that, the change in availability was confirmed by testing with readiness and autoscaler removed. As a result, it can be seen that it has dropped to the 20% range.
-![image](https://user-images.githubusercontent.com/18453570/79856571-79200300-8407-11ea-84a9-946f3a2a076d.PNG)
+![image](https://user-images.githubusercontent.com/18453570/79856571-79200300-8407-11ea-84a9-946f3a2a076d.png)
 
 
 
