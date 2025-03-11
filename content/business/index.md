@@ -13,12 +13,12 @@ Performing EventStorming based on the given Shopping Mall Scenario.
 
 ![image](https://github.com/msa-ez/msa-ez.github.io/assets/113568664/777c8e0c-1482-4fda-b43a-25eaee26314e)
 ## Basic Scenario - Order and Order Cancellation
-- Customer selects a product and places an order
-- When an order is placed, the delivery of the product begins
-- Upon completion of delivery, the stock quantity of the product decreases
-- The customer can cancel an order
-- When an order is canceled, the delivery is canceled as well
-- When the delivery is picked up, the stock quantity increases
+- Customer selects a product and places an order.
+- When an order is placed, the delivery of the product begins.
+- Upon completion of delivery, the stock quantity of the product decreases.
+- The customer can cancel an order.
+- When an order is canceled, the delivery is canceled as well.
+- When the delivery is picked up, the stock quantity increases.
 
 ## EventStorming
 
