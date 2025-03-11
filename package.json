@@ -6,7 +6,7 @@
     "develop": "gridsome develop",
     "explore": "gridsome explore",
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d dist"
+    "deploy": "gridsome build && echo 'intro.msaez.io' > ./dist/CNAME && gh-pages -d dist"
   },
   "dependencies": {
     "@iconify/vue2": "^2.1.0",

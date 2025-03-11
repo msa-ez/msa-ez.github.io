@@ -1,0 +1,40 @@
+name: Deploy
+
+on:
+  push:
+    branches:
+      - main  # main 브랜치에 푸시될 때 실행
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        # 저장소 코드 가져오기
+
+      - name: Install Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '14'
+        # Node.js 설치
+
+      - name: Install dependencies
+        run: npm install
+        # 의존성 설치
+
+      - name: Build with Gridsome
+        run: npm run build
+        # Gridsome으로 빌드
+
+      - name: Set CNAME
+        run: echo 'intro.msaez.io' > ./dist/CNAME
+        # CNAME 설정 추가
+
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./dist
+        # GitHub Pages에 배포
