@@ -18,9 +18,11 @@ Experience the swift and intelligent development of fully open-source AI-based m
                 <span>✓</span> Agile Modeling: $10 per transaction<br><br>
                 <span>✓</span> Billing based on monthly usage
             </div>
-            <div class="font-bold text-white bg-ui-primary btn-pricing">
-                <a href="http://www.msaez.io/">Buy MSAEZ</a>
-            </div>
+            <a href="http://www.msaez.io/" target="_blank">
+                <div class="font-bold text-white bg-ui-primary btn-pricing">
+                    Buy MSAEZ
+                </div>
+            </a>
         </div>
     </div>
     <div class="w66">
@@ -34,9 +36,11 @@ Experience the swift and intelligent development of fully open-source AI-based m
                     <span>✓</span> Community-Based Support<br><br>
                     <span>✓</span> Self-issue Resolution Required
                 </div>
-                <div class="font-bold text-white bg-ui-primary btn-pricing">
-                    <a href="https://github.com/msa-ez/platform">Get started</a>
-                </div>  
+                <a href="https://github.com/msa-ez/platform" target="_blank">
+                    <div class="font-bold text-white bg-ui-primary btn-pricing">
+                        Get started
+                    </div>
+                </a>
             </div>
             <div class="box-style">
                 <h3>Warranty Purchase</h3>
@@ -46,9 +50,11 @@ Experience the swift and intelligent development of fully open-source AI-based m
                     <span>✓</span> Swift Issue Resolution<br><br>
                     <span>✓</span> Enhanced Stability and Security
                 </div>
-                <div class="font-bold text-white bg-ui-primary btn-pricing">
-                    <a href="mailto:help@uengine.org">Contact us</a>
-                </div>
+                <a href="mailto:help@uengine.org" target="_blank">
+                    <div class="font-bold text-white bg-ui-primary btn-pricing">
+                        Get started
+                    </div>
+                </a>
             </div>
         </div>
     </div>

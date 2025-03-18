@@ -7,13 +7,13 @@ next: ''
 # AirBnB
 
 ![image](https://user-images.githubusercontent.com/15603058/119284989-fefe2580-bc7b-11eb-99ca-7a9e4183c16f.jpg)
-source: https://github.com/msa-ez/airbnb_project
+source : <a href="https://github.com/msa-ez/airbnb_project" target="_blank" class="link-open-text">https://github.com/msa-ez/airbnb_project</a>
 
 <h2>Accommodation reservation(AirBnB)</h2>
 
 This example is configured to cover all stages of analysis/design/implementation/operation including MSA/DDD/Event Storming/EDA. It includes example answers to pass the checkpoints required for the development of cloud-native applications.
 
-- checkpoint : https://workflowy.com/s/assessment-check-po/T5YrzcMewfo4J6LW
+- checkpoint : <a href="https://workflowy.com/s/assessment-check-po/T5YrzcMewfo4J6LW" target="_blank" class="link-open-text">https://workflowy.com/s/assessment-check-po/T5YrzcMewfo4J6LW</a>
 
 ## service scenario
 

@@ -24,12 +24,18 @@ We'll explore the operational structure using a debugger and extend the service 
 ![image](https://github.com/acmexii/demo/assets/35618409/277a434c-c6fa-49aa-a05e-3a7249865ca4)
 
 ## Running Microservices
-
 Compile and run the microservices created with Spring Boot.
 
-- Select CODE > ProjectIDE from the menu to run the connected browser IDE.
-- In the browser IDE, right-click on the monolith folder in the left explorer and click on "Open In Integrated Terminal."
-- Confirm that the terminal opens in the subfolder.
+1. Select CODE > ProjectIDE from the menu to launch the connected browser IDE.
+2. Click on "Continue with gitpod."
+3. Click "Continue."
+![](../../src/img/cna2.png)
+
+- In the browser IDE, right-click on the monolith folder in the left explorer and select "Open In Integrated Terminal."
+![](../../src/img/cna3.png)
+
+- Confirm that the terminal opens within the subfolder.
+![](../../src/img/cna4.png)
 
 ### Starting the Created Services
 Run the microservices in the terminal using mvn.

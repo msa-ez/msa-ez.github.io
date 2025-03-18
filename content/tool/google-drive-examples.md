@@ -11,7 +11,7 @@ sidebar: 'started'
 <h2>Developing Microservice-based Google Drive Service</h2>
 
 ## Move on to practicing tool
-Get access to [www.msaez.io](http://www.msaez.io)
+Get access to <a href="http://www.msaez.io" target="_blank" class="link-open-text">www.msaez.io</a>
 <br/>(Chrome browser recommended)
 
 ## Scenario
@@ -39,6 +39,7 @@ The List of Bounded Contexts:
 <h4>1. Create an EventStorming Model</h4>
 
 > ![](../../src/img/gd-inst/1.png)
+> ![](../../src/img/gd-inst/1-1.png)
 
 Scroll down and move on to MODELING TOOLS.
 

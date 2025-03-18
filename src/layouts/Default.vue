@@ -75,13 +75,55 @@ export default {
   mounted() {
     this.setHeaderHeight();
     window.addEventListener('resize', this.setHeaderHeight);
+    this.addCopyButtons()
   },
   watch: {
     sidebarOpen: function(isOpen) {
       document.body.classList.toggle('overflow-hidden', isOpen);
+    },
+    '$route.path': function(newPath, oldPath) {
+      console.log(`Path changed from ${oldPath} to ${newPath}`);
+      this.addCopyButtons();
     }
   },
   methods: {
+    addCopyButtons() {
+        this.$nextTick(() => {
+            // 기존 복사 버튼 제거
+            const existingButtons = document.querySelectorAll('.copy-button');
+            existingButtons.forEach(button => button.remove());
+
+            // 모든 코드 블록 감지
+            const codeBlocks = document.querySelectorAll('pre');
+            codeBlocks.forEach((pre, index) => {
+                // 부모 요소 생성
+                const wrapper = document.createElement('div');
+                wrapper.classList.add('pre-wrapper');
+                pre.parentNode.insertBefore(wrapper, pre);
+                wrapper.appendChild(pre);
+
+                // 복사 버튼 생성
+                const button = document.createElement('button');
+                button.innerHTML = '<img style="width:22px; height:22px;" src="https://github.com/user-attachments/assets/13d31ea7-d3a6-48ef-86a6-5aacfdd801aa" alt="Copy" />';
+                button.className = 'copy-button';
+                button.style.position = 'absolute';
+                button.style.top = '8px';
+                button.style.right = '8px';
+                button.style.zIndex = '10';
+                button.style.background = 'none';
+                button.style.border = 'none';
+                button.addEventListener('click', () => this.copyCode(pre.querySelector('code')));
+                wrapper.style.position = 'relative';
+                wrapper.appendChild(button);
+            });
+        });
+    },
+    copyCode(block) {
+        const text = block.innerText;
+        navigator.clipboard.writeText(text).then(() => {
+            alert('복사되었습니다. ctrl + v 붙여넣기');
+        });
+    },
     setHeaderHeight() {
       this.$nextTick(() => {
         this.headerHeight = this.$refs.header.offsetHeight;

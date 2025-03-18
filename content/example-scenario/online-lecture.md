@@ -8,11 +8,11 @@ next: ''
 
 ![image](https://user-images.githubusercontent.com/48303857/79727114-d3956280-8326-11ea-8862-e01ca9a0f949.png)
 
-source: https://github.com/msa-ez/example-academy
+source: <a href="https://github.com/msa-ez/example-academy" target="_blank" class="link-open-text">https://github.com/msa-ez/example-academy</a>
 
 <h2> Final group assignment - Internet lecture system</h2>
 
-- Checkpoint : https://workflowy.com/s/assessment-check-po/T5YrzcMewfo4J6LW
+- Checkpoint : <a href="https://workflowy.com/s/assessment-check-po/T5YrzcMewfo4J6LW" target="_blank" class="link-open-text">https://workflowy.com/s/assessment-check-po/T5YrzcMewfo4J6LW</a>
 
 ## service scenario
 
@@ -114,9 +114,6 @@ source: https://github.com/msa-ez/example-academy
 <h3> - TO-BE Organization (Vertically-Aligned)</h3>
 
 ### · Event Storming result
-**[Eventstorming results modeled with MSAEz ](http://msaez.io/#/storming/RYTliHDEOOYT0NAZ6Xoodg4HP3H3/18a58ddb3072e7c25041a1c9361a9635)**
-
-
 **Derivation of organization and requirements**
 ![image](https://user-images.githubusercontent.com/48303857/79729383-5cfa6400-832a-11ea-89b6-53eca4de1ab8.jpeg)
 
@@ -405,12 +402,12 @@ Since the course system is completely separate from registration/payment and is 
 http POST localhost:8081/courseRegistrationSystem lectureId=1   #Success
 http POST localhost:8081/courseRegistrationSystem lectureId=2   #Success
 ```
-![image](https://user-images.githubusercontent.com/48303857/79857884-6d354080-8409-11ea-9307-02288463bb13.png)
+![image](https://user-images.githubusercontent.com/48303857/79857884-6d354080-8409-11ea-9307-02288463bb13.PNG)
 
 ```
 #Check the event progress until the course registration is complete
 ```
-![image](https://user-images.githubusercontent.com/48303857/79857914-79b99900-8409-11ea-8658-030267f42214.png)
+![image](https://user-images.githubusercontent.com/48303857/79857914-79b99900-8409-11ea-8658-030267f42214.PNG)
 ```
 #Lecture service start
 cd lectureSystem
@@ -419,7 +416,7 @@ mvn spring-boot:run
 # Check class attendance update
 Check in the console window
 ```
-![image](https://user-images.githubusercontent.com/48303857/79857956-8f2ec300-8409-11ea-98dd-2dd3667855b5.png)
+![image](https://user-images.githubusercontent.com/48303857/79857956-8f2ec300-8409-11ea-98dd-2dd3667855b5.PNG)
 
 ## operation
 
@@ -429,13 +426,13 @@ Check in the console window
 Each implementation was configured in their own source repository, the CI/CD platform used was Azure, and the pipeline build script was included in azure-pipeline.yml under each project folder.
 
 - A pipeline was constructed using devops, and CI CD automation was implemented.
-![image](https://user-images.githubusercontent.com/18453570/79851343-2262fb00-8400-11ea-85e9-b4627f9a6d0d.png)
+![image](https://user-images.githubusercontent.com/18453570/79851343-2262fb00-8400-11ea-85e9-b4627f9a6d0d.PNG)
 
 - It was confirmed that the pod was uploaded normally as shown below. 
-![image](https://user-images.githubusercontent.com/18453570/79851342-21ca6480-8400-11ea-914a-e80e14ea93c7.png)
+![image](https://user-images.githubusercontent.com/18453570/79851342-21ca6480-8400-11ea-914a-e80e14ea93c7.PNG)
 
 - You can see that they are all registered as services in Kubernetes as shown below.
-![image](https://user-images.githubusercontent.com/18453570/79851335-20993780-8400-11ea-988b-33018c526631.png)
+![image](https://user-images.githubusercontent.com/18453570/79851335-20993780-8400-11ea-988b-33018c526631.PNG)
 
 
 ### · Synchronous Call / Circuit Breaking / Fault Isolation
@@ -478,13 +475,13 @@ hystrix:
     - run for 120 seconds
     - Excessive request triggers CB Block request
 
-![image](https://user-images.githubusercontent.com/63028499/79851238-01020f00-8400-11ea-85fb-409dd5f9bfd6.png)
+![image](https://user-images.githubusercontent.com/63028499/79851238-01020f00-8400-11ea-85fb-409dd5f9bfd6.PNG)
 
 * After some requests have been sent back, the previously delayed tasks have been processed, and the circuit is closed to start accepting requests again.
-![image](https://user-images.githubusercontent.com/63028499/79851242-01020f00-8400-11ea-9cc9-fdd639a91ed8.png)
+![image](https://user-images.githubusercontent.com/63028499/79851242-01020f00-8400-11ea-9cc9-fdd639a91ed8.PNG)
 
 * After that, as this pattern continues to repeat, the system operates well without domino effects or runaway resource consumption.
-![image](https://user-images.githubusercontent.com/63028499/79851236-ffd0e200-83ff-11ea-9941-3e6038bbc89f.png)
+![image](https://user-images.githubusercontent.com/63028499/79851236-ffd0e200-83ff-11ea-9941-3e6038bbc89f.PNG)
 
 - The operating system does not die and shows that the resource is protected by properly opening and closing the circuit by CB continuously. However, since 66.62% of successes and 33.38% of failures are not good for customer usability, follow-up processing to expand the system through retry settings and dynamic scale out (automatic addition of replicas, HPA) is necessary.
 
@@ -510,18 +507,18 @@ siege -c100 -t120S -r10 --content-type "application/json" 'http://52.231.118.204
 kubectl get deploy pay -w
 ```
 - After some time (about 30 seconds) you can see the scale out occurs:
-![image](https://user-images.githubusercontent.com/63028499/79851254-02cbd280-8400-11ea-9c75-4d60ce42d54d.png)
+![image](https://user-images.githubusercontent.com/63028499/79851254-02cbd280-8400-11ea-9c75-4d60ce42d54d.PNG)
 
 - If you look at the log of siege, you can see that the overall success rate has increased.
-![image](https://user-images.githubusercontent.com/63028499/79851251-02cbd280-8400-11ea-96e7-ea092375e77d.png)
+![image](https://user-images.githubusercontent.com/63028499/79851251-02cbd280-8400-11ea-96e7-ea092375e77d.PNG)
 
 ### · Uninterrupted redistribution
 
 * First, to check whether non-stop redistribution is 100%, the test is conducted in the presence of Readiness Probe and Autoscaler. As a result, it was confirmed that the uninterrupted redistribution was successful because the availability did not change during the distribution period at 100%.
-![image](https://user-images.githubusercontent.com/18453570/79856578-79b89980-8407-11ea-9daf-697365e0a388.png)
+![image](https://user-images.githubusercontent.com/18453570/79856578-79b89980-8407-11ea-9daf-697365e0a388.PNG)
 
 * After that, the change in availability was confirmed by testing with readiness and autoscaler removed. As a result, it can be seen that it has dropped to the 20% range.
-![image](https://user-images.githubusercontent.com/18453570/79856571-79200300-8407-11ea-84a9-946f3a2a076d.png)
+![image](https://user-images.githubusercontent.com/18453570/79856571-79200300-8407-11ea-84a9-946f3a2a076d.PNG)
 
 
 

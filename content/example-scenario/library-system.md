@@ -6,19 +6,19 @@ next: ''
 ---
 # library system
 
-Source URL: https://github.com/msa-ez/example-library
+Source URL: <a href="https://github.com/msa-ez/example-library" target="_blank" class="link-open-text">https://github.com/msa-ez/example-library</a>
 
 It is a management system for a library for book rental, reservation, and so on.
-- Checkpoint : https://workflowy.com/s/assessment-check-po/T5YrzcMewfo4J6LW
+- Checkpoint : <a href="https://workflowy.com/s/assessment-check-po/T5YrzcMewfo4J6LW" target="_blank" class="link-open-text">https://workflowy.com/s/assessment-check-po/T5YrzcMewfo4J6LW</a>
 
 ## Repository
 
 5 total<br>
-1. https://github.com/Juyounglee95/bookRental<br>
-2. https://github.com/Juyounglee95/gateway<br>
-3. https://github.com/Juyounglee95/bookManagement<br>
-4. https://github.com/Juyounglee95/point<br>
-5. https://github.com/Juyounglee95/view
+1. <a href="https://github.com/Juyounglee95/bookRental" target="_blank" class="link-open-text">https://github.com/Juyounglee95/bookRental</a><br>
+2. <a href="https://github.com/Juyounglee95/gateway" target="_blank" class="link-open-text">https://github.com/Juyounglee95/gateway</a><br>
+3. <a href="https://github.com/Juyounglee95/bookManagement" target="_blank" class="link-open-text">https://github.com/Juyounglee95/bookManagement</a><br>
+4. <a href="https://github.com/Juyounglee95/point" target="_blank" class="link-open-text">https://github.com/Juyounglee95/point</a><br>
+5. <a href="https://github.com/Juyounglee95/view" target="_blank" class="link-open-text">https://github.com/Juyounglee95/view</a>
 
 
 ## service scenario

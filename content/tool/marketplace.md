@@ -15,6 +15,9 @@ DevOps developers can effortlessly add implementation code to their services by 
 The areas in the Marketplace where languages or specific frameworks are implemented are referred to as 'templates,' while the areas where microservices patterns are implemented are called 'toppings.'
 
 ## Application Method
+Click on the "Code Preview" button.
+![](../../src/img/mp0.png)
+# End Generation Here
 
 ![](../../src/img/mp1.png)
 

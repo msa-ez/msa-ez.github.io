@@ -8,14 +8,14 @@ next: ''
 
 ![image](https://user-images.githubusercontent.com/487999/79708354-29074a80-82fa-11ea-80df-0db3962fb453.png)
 
-Source: https://github.com/msa-ez/example-food-delivery
+Source: <a href="https://github.com/msa-ez/example-food-delivery" target="_blank" class="link-open-text">https://github.com/msa-ez/example-food-delivery</a>
 
 This example is configured to cover all stages of analysis/design/implementation/operation including MSA/DDD/Event Storming/EDA. It includes example answers to pass the checkpoints required for the development of cloud-native applications.
-- Checkpoint : https://workflowy.com/s/assessment-check-po/T5YrzcMewfo4J6LW
+- Checkpoint : <a href="https://workflowy.com/s/assessment-check-po/T5YrzcMewfo4J6LW" target="_blank" class="link-open-text">https://workflowy.com/s/assessment-check-po/T5YrzcMewfo4J6LW</a>
 
 ## service scenario
 
-Covering the nation of delivery - https://1sung.tistory.com/106
+Covering the nation of delivery - <a href="https://1sung.tistory.com/106" target="_blank" class="link-open-text">https://1sung.tistory.com/106</a>
 
 Functional Requirements<br>
 1. The customer selects the menu and places an order<br>
