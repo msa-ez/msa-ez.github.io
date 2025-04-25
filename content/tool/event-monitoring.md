@@ -5,13 +5,13 @@ sidebar: 'started'
 
 # Event Monitoring
 
-<div style="position: relative; padding-bottom: 56.25%; padding-top: 0px; height: 0; overflow: hidden;">
+<!-- <div style="position: relative; padding-bottom: 56.25%; padding-top: 0px; height: 0; overflow: hidden;">
 	<iframe style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;" 
         src="https://www.youtube.com/embed/Y3Si5eMNgTM" 
         frameborder="0" crolling="no" frameborder="none" allowfullscreen="">
     </iframe>
 </div>
-<br>
+<br> -->
 
 The event monitoring feature collects event logs from applications created based on the event storming model, allowing users to monitor the progress of current events.
 

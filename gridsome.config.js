@@ -101,27 +101,6 @@ module.exports = {
             ]
           },
           {
-            firstTitle: 'MSA Code Implementation',
-            name:[
-              {
-                secondTitle: 'Automatic Code Generation',
-                secondItem: '/tool/model-driven/'
-              },
-              {
-                secondTitle: 'Marketplace',
-                secondItem: '/tool/marketplace/'
-              },
-              {
-                secondTitle: 'Test Automation',
-                secondItem: '/custom-template/unit-test/'
-              },
-              {
-                secondTitle: 'Code Implementation with ChatGPT',
-                secondItem: '/tool/si-gpt/'
-              }
-            ]
-          },
-          {
             firstTitle: 'Code Implementation Practice',
             name:[
               {
@@ -205,11 +184,11 @@ module.exports = {
               {
                 secondTitle: 'Global Helper',
                 secondItem: '/custom-template/global-helper/'
-              },
-              {
-                secondTitle: 'Template Editor',
-                secondItem: '/custom-template/template-editor/'
-              },
+              }
+              // {
+              //   secondTitle: 'Template Editor',
+              //   secondItem: '/custom-template/template-editor/'
+              // },
             ]
           },
           // {
@@ -265,6 +244,10 @@ module.exports = {
               {
                 secondTitle: 'Partnerships',
                 secondItem: '/info/partnership/'
+              },
+              {
+                secondTitle: 'Consulting',
+                secondItem: '/info/consulting/'
               }
             ]
           },

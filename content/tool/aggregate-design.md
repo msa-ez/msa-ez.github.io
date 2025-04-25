@@ -3,33 +3,33 @@ description: ''
 sidebar: 'started'
 ---
 
-# 애그리거트(Aggregate) 설계
+# Aggregate Design
 
-**애그리거트 설계** 기능은 기존 시스템 데이터베이스 스키마를 분석하여 애그리거트를 자동으로 설계하고, 개발자들이 도메인 주도 설계(Domain-Driven Design) 원칙을 효율적으로 구현할 수 있도록 지원합니다.
+The **Aggregate Design** feature automatically analyzes existing system database schemas to design aggregates and helps developers efficiently implement Domain-Driven Design (DDD) principles.
 
-이 기능은 시스템 아키텍트, 백엔드 개발자, 도메인 설계자들에게 특히 유용합니다.
-- 시스템 아키텍트: 도메인 주도 설계 원칙에 따라 확장 가능하고 유지보수 가능한 시스템 아키텍처 설계를 지원합니다.
-- 백엔드 개발자: 데이터베이스 스키마에서 엔티티, 값 객체, 애그리거트 경계를 효율적으로 정의할 수 있습니다.
-- 도메인 설계자: 기술 모델과 비즈니스 도메인을 정렬하여 체계적이고 논리적인 모델을 생성합니다.
+This feature is particularly useful for system architects, backend developers, and domain designers:
+- System Architects: Supports designing scalable and maintainable system architectures following domain-driven design principles.
+- Backend Developers: Enables efficient definition of entities, value objects, and aggregate boundaries from database schemas.
+- Domain Designers: Creates systematic and logical models by aligning technical models with business domains.
 
-**애그리거트 설계**는 비즈니스 규칙과 데이터 일관성을 유지하는 데 필수적입니다. 그러나 레거시 시스템의 DDL(Data Definition Language) 스키마에서 애그리거트를 수동으로 설계하는 작업은 노동 집약적이며 오류 발생 가능성이 높습니다. 테이블 구조를 분석하고 관계를 매핑하며, 변경이 있을 때마다 동일한 작업을 반복하는 것은 상당한 시간과 노력을 소모합니다.
+**Aggregate Design** is essential for maintaining business rules and data consistency. However, manually designing aggregates from legacy system DDL (Data Definition Language) schemas is labor-intensive and prone to errors. Analyzing table structures, mapping relationships, and repeating the same tasks whenever changes occur consumes significant time and effort.
 
-## 작동 방식
+## How It Works
 
 <img src="https://github.com/user-attachments/assets/cb633bc6-af94-497e-864b-341e72605ef2">
 
-- DDL 스키마 입력: 사용자는 테이블과 관계를 설명하는 데이터베이스 스키마를 제공합니다.
+- DDL Schema Input: Users provide database schemas describing tables and relationships.
 <br><br>
 
 <img src="https://github.com/user-attachments/assets/74f2e52d-dd5a-4f94-9344-da7983727810">
 
-- 자동 분석: 도구가 스키마를 분석하여 잠재적인 엔티티, 값 객체, 그들의 연결 관계를 식별합니다.
-- 애그리거트 후보 제안: 도메인 주도 설계 원칙을 기반으로 엔티티와 값 객체를 그룹화하여 애그리거트 후보를 생성합니다.
-- 사용자 정의 옵션: 사용자는 제안된 애그리거트를 세부적으로 조정하여 도메인 요구 사항에 맞출 수 있습니다.
+- Automatic Analysis: The tool analyzes schemas to identify potential entities, value objects, and their relationships.
+- Aggregate Candidate Suggestions: Generates aggregate candidates by grouping entities and value objects based on domain-driven design principles.
+- Customization Options: Users can fine-tune suggested aggregates to match domain requirements.
 <br><br>
 
 <img src="https://github.com/user-attachments/assets/c7e967ed-128b-47b3-8683-6f438ca760a4">
 
-- 테스트와 검증 단순화: 도구를 통해 설계의 확장성과 일관성을 손쉽게 검증할 수 있습니다.
+- Simplified Testing and Validation: Easily validate design scalability and consistency through the tool.
 
-이 기능은 여러 접근 방식을 평가하여 주어진 비즈니스 상황에 더 적합한 옵션을 추천합니다. 시스템의 요구사항과 제약 조건을 분석하여 각 옵션의 장단점을 포함한 보고서를 생성하고, 사용자에게 성능 또는 일관성 요구사항에 따라 결정을 내릴 수 있도록 지원합니다.
+This feature evaluates multiple approaches to recommend options better suited for given business situations. It generates reports including pros and cons of each option by analyzing system requirements and constraints, helping users make decisions based on performance or consistency requirements.

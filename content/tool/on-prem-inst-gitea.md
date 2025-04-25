@@ -2,30 +2,30 @@
 description: ''
 sidebar: 'started'
 ---
-# on-prem 설치 설명서
+# On-Premises Installation Guide
 
-# Gitea로 Docker Compose에 MSAEZ 설치
+# Install MSAEZ on Docker Compose with Gitea
 
-## MSAEZ 초기화
+## Initialize MSAEZ
 
 ```sh
 docker compose up -d
 ```
 
-## Gitea 설정
+## Gitea Configuration
 
-### 1. Gitea 초기화
+### 1. Initialize Gitea
 
-1. http://127.0.0.1:3000/ 에 접속합니다.
-2. Gitea 초기 구성(Initial Configuration)을 설정합니다.
+1. Access http://127.0.0.1:3000/
+2. Configure Gitea Initial Configuration
 3. **Administrator Account Setting.**
 4. Install Gitea.
 
 ![alt text](https://github.com/user-attachments/assets/3851af2f-2964-4372-9001-319ab3a2b6de)
 
-### 2. Gitea 구성 설정
+### 2. Gitea Configuration
 
-1. Gitea 설정 파일(Configuration File) 편집
+1. Edit Gitea Configuration File
 
 ```ini
 # ./gitea/gitea/conf/app.ini
@@ -52,22 +52,23 @@ OFFLINE_MODE = true
 ...
 ```
 
-### 3. Gitea로 OAuth2 애플리케이션 설정
+### 3. Configure OAuth2 Application in Gitea
 
-1. Gitea 로그인 (Administrator)
-2. 오른쪽 상단의 **Profile Icon** 클릭
-3. **Settings** - **Applications** 클릭
-4. **Manage OAuth2 Applications** 입력
-   - Application Name : **원하는 이름** 예) acebase
+1. Gitea Login (Administrator)
+2. Click the **Profile Icon** in the upper right corner
+3. Click **Settings** - **Applications**
+4. Enter **Manage OAuth2 Applications**
+5. Click **Create Application**
+   - Application Name : **Desired Name** e.g. acebase
    - Redirect URIs. Please use a new line for every URI.: **http://localhost:5757/oauth2/mydb/signin**
-5. **Create Application** 클릭
-6. MSAEZ 설치에는 애플리케이션 등록 후 발급된 **Client ID & Client Secret**가 필요하므로 저장해줍니다.
+5. Click **Create Application**
+6. MSAEZ Installation requires **Client ID & Client Secret** issued after registering the application. Please save it.
    > ![alt text](https://github.com/user-attachments/assets/5b6c5038-1f29-4bcc-b70f-ed7fe004ee97)
-7. **Save** 클릭
+7. Click **Save**
 
-### 4. Docker Compose 옵션 설정
+### 4. Docker Compose Configuration
 
-1.  Acebase OAuth2 Client ID & Client Secret 설정
+1. Set Acebase OAuth2 Client ID & Client Secret
 
 ```yml
 # ./docker-compose.yaml
@@ -94,7 +95,7 @@ acebase:
     PROTOCOL: http
 ```
 
-### 5. 호스트 파일 추가
+### 5. Add Host File
 
 ```text
 # /etc/hosts
@@ -102,14 +103,14 @@ acebase:
 127.0.0.1 gitea
 ```
 
-### 6. Docker Compose 다시 시작
+### 6. Restart Docker Compose
 
 ```sh
 docker compose down
 docker compose up -d
 ```
 
-### 7. MSAEZ 연결
+### 7. Connect MSAEZ
 
 > http://localhost:8080
 

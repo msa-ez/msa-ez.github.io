@@ -3,7 +3,7 @@ description: ''
 sidebar: 'started'
 ---
 
-# Composable Enterprise Implementation for PBCs(Packaged Business Capabilities)
+# PBCs(Packaged Business Capabilities) for Composable Enterprise Implementation
 
 ## Overview
 
