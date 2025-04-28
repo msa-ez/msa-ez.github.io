@@ -5,7 +5,7 @@ sidebar: 'started'
 
 # Consulting
 
-Are you concerned about MSA? CNA? We'll help solve your concerns.
+Are you concerned about MSA? CNA? We'll help you to solve your concerns.
 
 ![](../../src/img/consulting.png)
 
