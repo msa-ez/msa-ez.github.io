@@ -78,10 +78,10 @@ module.exports = {
                 secondTitle: 'AI-Based Code Implementation',
                 secondItem: '/tool/si-gpt/'
               },
-              {
-                secondTitle: 'Aggregate Design',
-                secondItem: '/tool/aggregate-design/'
-              },
+              // {
+              //   secondTitle: 'Aggregate Design',
+              //   secondItem: '/tool/aggregate-design/'
+              // },
               {
                 secondTitle: 'DDL to Eventstorming',
                 secondItem: '/tool/ddl-to-eventstorming/'
