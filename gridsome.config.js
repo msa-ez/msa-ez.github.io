@@ -30,7 +30,7 @@ module.exports = {
             name: [
               {
                 secondTitle: 'Quick Start',
-                secondItem: '/tool/google-drive-examples/'
+                secondItem: '/started/vibe-coding/'
               },
               {
                 secondTitle: 'MSAEZ On-premise Installation',
