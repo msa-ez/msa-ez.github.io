@@ -70,14 +70,14 @@ module.exports = {
           {
             firstTitle: 'AI-Supported Modeling & Implementation',
             name:[
-              {
-                secondTitle: 'AI-Based Model Generation',
-                secondItem: '/tool/chat-gpt/'
-              },
-              {
-                secondTitle: 'AI-Based Code Implementation',
-                secondItem: '/tool/si-gpt/'
-              },
+              // {
+              //   secondTitle: 'AI-Based Model Generation',
+              //   secondItem: '/tool/chat-gpt/'
+              // },
+              // {
+              //   secondTitle: 'AI-Based Code Implementation',
+              //   secondItem: '/tool/si-gpt/'
+              // },
               // {
               //   secondTitle: 'Aggregate Design',
               //   secondItem: '/tool/aggregate-design/'
