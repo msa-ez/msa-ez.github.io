@@ -82,10 +82,10 @@ module.exports = {
               //   secondTitle: 'Aggregate Design',
               //   secondItem: '/tool/aggregate-design/'
               // },
-              {
-                secondTitle: 'DDL to Eventstorming',
-                secondItem: '/tool/ddl-to-eventstorming/'
-              },
+              // {
+              //   secondTitle: 'DDL to Eventstorming',
+              //   secondItem: '/tool/ddl-to-eventstorming/'
+              // },
               {
                 secondTitle: 'BC & Domain Design AI',
                 secondItem: '/tool/bc-domain-gen/'
