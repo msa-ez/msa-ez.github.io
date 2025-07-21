@@ -10,7 +10,7 @@ The management platform for these containers is called a 'container orchestrator
 
 MSAEZ is built on the foundation of Event Storming models, providing deployment diagramming tools necessary for Kubernetes cluster deployment. The designed deployment model is stored in a Git version control server and is automatically deployed using the Argo stack, which synchronizes Git versioning with the operational environment versioning. **[More Info](https://argoproj.github.io/)**
 
-![image](https://github.com/acmexii/demo/assets/35618409/4a51c1e3-400f-4d5b-8d0a-edb742f12e94)
+![image](../../src/img/k8s/k8s.png)
 
 
 ## Deployment Modeling 
