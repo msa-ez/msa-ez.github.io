@@ -86,10 +86,10 @@ module.exports = {
               //   secondTitle: 'DDL to Eventstorming',
               //   secondItem: '/tool/ddl-to-eventstorming/'
               // },
-              {
-                secondTitle: 'BC & Domain Design AI',
-                secondItem: '/tool/bc-domain-gen/'
-              },
+              // {
+              //   secondTitle: 'BC & Domain Design AI',
+              //   secondItem: '/tool/bc-domain-gen/'
+              // },
               {
                 secondTitle: 'Legacy Modernizer',
                 secondLink:'http://modernizer.uengine.io/started/',
