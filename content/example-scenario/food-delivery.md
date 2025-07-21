@@ -107,35 +107,25 @@ Non-Functional Requirements<br>
 
 ## Analysis/Design
 
+  ![image](../../src/img/example/food-delivery/food-1.png) <br>
+  ![image](../../src/img/example/food-delivery/food-2.png)
 
-**AS-IS Organization (Horizontally-Aligned)**
-  ![image](https://user-images.githubusercontent.com/487999/79684144-2a893200-826a-11ea-9a01-79927d3a0107.png)
-
-**TO-BE Organization (Vertically-Aligned)**
-  ![image](https://user-images.githubusercontent.com/487999/79684159-3543c700-826a-11ea-8d5f-a3fc0c4cad87.png)
-
-**[Eventstorming results modeled with MSAEz](http://www.msaez.io/#/storming/nZJ2QhwVc4NlVJPbtTkZ8x9jclF2/a77281d704710b0c2e6a823b6e6d973a)**
-
-**event derivation**
-![image](https://user-images.githubusercontent.com/487999/79683604-47bc0180-8266-11ea-9212-7e88c9bf9911.png)
-
-**Drop out of an ineligible event**
-![image](https://user-images.githubusercontent.com/487999/79683612-4b4f8880-8266-11ea-9519-7e084524a462.png)
+![image](../../src/img/example/food-delivery/food-3.png) <br>
 
 - Performs the task of filtering out wrong domain events derived during the process
     - When ordering>Menu category selected, When ordering>Menu searched: Excluded because it is an event of the UI and not a business event
 
 **Easy to read by attaching actors and commands**
-![image](https://user-images.githubusercontent.com/487999/79683614-4ee30f80-8266-11ea-9a50-68cdff2dcc46.png)
+![image](../../src/img/example/food-delivery/food-4.png)
 
 **bind with aggregation**
-![image](https://user-images.githubusercontent.com/487999/79683618-52769680-8266-11ea-9c21-48d6812444ba.png)
+![image](../../src/img/example/food-delivery/food-5.png)
 
 - Order of app, order processing of store, and payment history of payment are grouped together as units in which transactions must be maintained by commands and events connected to them.
 
 **Bind to Bounded Context**
 
-![image](https://user-images.githubusercontent.com/487999/79683625-560a1d80-8266-11ea-9790-40d68a36d95d.png)
+![image](../../src/img/example/food-delivery/food-6.png)
 
 - domain sequence separation 
     - Core Domain: app (front), store: It is an indispensable core service, and the annual up-time SLA level is set at 99.999%, and the distribution cycle is less than once a week for apps and less than once a month for stores.
@@ -144,21 +134,21 @@ Non-Functional Requirements<br>
 
 **Attach the policy (parentheses are the subject of execution, and it does not matter if you attach the policy in the second step. The entire linkage is revealed at the beginning)**
 
-![image](https://user-images.githubusercontent.com/487999/79683633-5aced180-8266-11ea-8f42-c769eb88dfb1.png)
+![image](../../src/img/example/food-delivery/food-7.png)
 
 **Policy movement and context mapping (dashed lines are Pub/Sub, solid lines are Req/Resp)**
 
-![image](https://user-images.githubusercontent.com/487999/79683641-5f938580-8266-11ea-9fdb-4e80ff6642fe.png)
+![image](../../src/img/example/food-delivery/food-8.png)
 
 **Completed first model**
 
-![image](https://user-images.githubusercontent.com/487999/79683646-63bfa300-8266-11ea-9bc5-c0b650507ac8.png)
+![image](../../src/img/example/food-delivery/food-9.png)
 
 - Add View Model
 
 **Verification that functional/non-functional requirements for the first complete version are covered**
 
-![image](https://user-images.githubusercontent.com/487999/79684167-3ecd2f00-826a-11ea-806a-957362d197e3.png)
+![image](../../src/img/example/food-delivery/food-10.png)
 
 - The customer selects the menu and places an order (ok)
 - The customer pays (ok)
@@ -166,7 +156,7 @@ Non-Functional Requirements<br>
 - The store owner confirms, cooks and starts delivery (ok)
 
 
-![image](https://user-images.githubusercontent.com/487999/79684170-47256a00-826a-11ea-9777-e16fafff519a.png)
+![image](../../src/img/example/food-delivery/food-11.png)
 
 - Customer can cancel order (ok)
 - If the order is canceled, the delivery is canceled (ok)
@@ -175,21 +165,13 @@ Non-Functional Requirements<br>
 
 
 **Modify the model**
-![image](https://user-images.githubusercontent.com/487999/79684176-4e4c7800-826a-11ea-8deb-b7b053e5d7c6.png)
+![image](../../src/img/example/food-delivery/food-12.png)
 
 - The modified model covers all requirements.
 
-**Verification of non-functional requirements**
+**Verification of non-functional requirements** <br>
 
-![image](https://user-images.githubusercontent.com/487999/79684184-5c9a9400-826a-11ea-8d87-2ed1e44f4562.png)
-
-- Transaction processing for scenarios that cross microservices
-    - Payment processing for customer orders: ACID transaction is applied in accordance with the management's long-standing belief (?) that orders that have not been paid will never be accepted. Request-Response method processing for payment processing at the time of order completion
-    - Store owner connection and delivery processing when payment is completed: In the process of transferring an order request from the App (front) to the Store Microservice, the Store Microservice has a separate distribution cycle, so the transaction is processed in the Eventual Consistency method.
-    - All other inter-microservice transactions: In most cases, the timing of data consistency is not critical, such as processing KakaoTalk for all events such as order status and delivery status, so Eventual Consistency is adopted as the default.
-
-**Hexagonal Architecture Diagram Derivation**
-![image](https://user-images.githubusercontent.com/487999/79684772-eba9ab00-826e-11ea-9405-17e2bf39ec76.png)
+![image](../../src/img/example/food-delivery/food-13.png)
 
 - Distinguish between inbound adapter and outbound adapter by referring to Chris Richardson, MSA Patterns
 - Distinguish between PubSub and Req/Resp in the call relationship
@@ -784,7 +766,7 @@ Uninterrupted redistribution is confirmed to be successful because availability 
 
 ## Addition of new development organizations
 
-  ![image](https://user-images.githubusercontent.com/487999/79684133-1d6c4300-826a-11ea-94a2-602e61814ebf.png)
+  ![image](../../src/img/example/food-delivery/food-14.png)
 
 
 **Addition of Marketing Team**
@@ -794,12 +776,12 @@ Uninterrupted redistribution is confirmed to be successful because availability 
 
 **Event Storming**
 
-![image](https://user-images.githubusercontent.com/487999/79685356-2b729180-8273-11ea-9361-a434065f2249.png)
+![image](../../src/img/example/food-delivery/food-16.png)
 
 
 **Hexagonal Architecture Changes**
 
-![image](https://user-images.githubusercontent.com/487999/79685243-1d704100-8272-11ea-8ef6-f4869c509996.png)
+![image](../../src/img/example/food-delivery/food-15.png)
 
 **avatar**
 
