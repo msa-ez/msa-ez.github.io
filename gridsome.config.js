@@ -224,10 +224,10 @@ module.exports = {
                 secondTitle: 'Animal Hospital System',
                 secondItem: '/example-scenario/animal-hospital/'
               },
-              {
-                secondTitle: 'Online Lecture System',
-                secondItem: '/example-scenario/online-lecture/'
-              },
+              // {
+              //   secondTitle: 'Online Lecture System',
+              //   secondItem: '/example-scenario/online-lecture/'
+              // },
             ]
           },
           {

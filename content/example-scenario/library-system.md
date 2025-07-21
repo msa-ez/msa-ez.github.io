@@ -108,24 +108,23 @@ Users should be able to check the status of the entire book by checking the enti
 
 ## Analysis/Design
 
-**[Eventstorming results modeled with MSAEz](http://msaez.io/#/storming/nZJ2QhwVc4NlVJPbtTkZ8x9jclF2/a77281d704710b0c2e6a823b6e6d973a)**
 <h3>event derivation</h3>
 
-![image](https://user-images.githubusercontent.com/18453570/79930892-9c3cc800-8484-11ea-9076-39259368f131.png)
+![image](../../src/img/example/library/library-1.png)
 
 
 <h3>Attaching actors and commands to be read easily</h3>
 
-![image](https://user-images.githubusercontent.com/18453570/79931004-de660980-8484-11ea-9573-8cf3d8509e9e.png)
+![image](../../src/img/example/library/library-2.png)
 
 <h3>binding into aggregation</h3>
 
-![image](https://user-images.githubusercontent.com/18453570/79931210-6ea44e80-8485-11ea-959b-2f500a9a7c1d.png)
+![image](../../src/img/example/library/library-3.png)
 
 
 <h3>Binding into Bounded Context</h3>
 
-![image](https://user-images.githubusercontent.com/18453570/79931545-32bdb900-8486-11ea-8518-558b5cf02d77.png)
+![image](../../src/img/example/library/library-4.png)
 
 - Separation of domain sequence 
     - Core Domain: bookRental, bookManagement: Core service 
@@ -135,18 +134,18 @@ Users should be able to check the status of the entire book by checking the enti
 
 <h3>Attaching the policy</h3>
 
-![image](https://user-images.githubusercontent.com/18453570/79933209-584cc180-848a-11ea-8289-c59468228c67.png)
+![image](../../src/img/example/library/library-5.png)
 
 
 <h3>Policy movement and context mapping (dashed lines are Pub/Sub, solid lines are Req/Resp)</h3>
 
-![image](https://user-images.githubusercontent.com/18453570/79933604-76ff8800-848b-11ea-8092-bd7510bf5d0b.png)
+![image](../../src/img/example/library/library-6.png)
 
 - Add View Model
 
 <h3>Validate that functional/non-functional requirements are covered</h3>
 
-![image](https://user-images.githubusercontent.com/18453570/79933961-5f74cf00-848c-11ea-9870-cbd05b6348c5.png)
+![image](../../src/img/example/library/library-7.png)
 
 <Verification of functional requirements>
 
@@ -172,7 +171,7 @@ Users should be able to check the status of the entire book by checking the enti
 
 <h3>Hexagonal Architecture Diagram Derivation</h3>  
 
-![image](https://user-images.githubusercontent.com/18453570/80059618-5f95cd00-8567-11ea-9855-6fdc2e51bfd0.png)
+![image](../../src/img/example/library/library-8.png)
 
 - Distinguish between inbound adapters and outbound adapters by referring to Chris Richardson, MSA Patterns
 - Distinguish between PubSub and Req/Resp in the call relationship
