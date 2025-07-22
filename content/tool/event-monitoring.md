@@ -30,21 +30,21 @@ The event monitoring feature collects event logs from applications created based
 #### Order(User's Order Management)
 1. Click the Order registration button to input and register information about order management.
 
-![](../../src/img/monitor-01.jpg)
+![](../../src/img/monitorning/mornitoring-1.png)<br>
 
-![](../../src/img/monitor-02.jpg)
+![](../../src/img/monitorning/mornitoring-2.png)
 
 2. Click the monitor icon at the top of the screen to start the monitoring feature.
 
-![](../../src/img/monitor-03.jpg)
+![](../../src/img/monitorning/mornitoring-3.png)
 
 3. Events filtered based on the unique identifier (Correlation Key) are displayed in the event storming diagram. (The number in the diagram represents the order of the events.)
 
-![](../../src/img/monitor-04.jpg)
+![](../../src/img/monitorning/mornitoring-4.png)
 
 4. In the event list, you can check the event type, event occurrence time, and event details.
 
-![](../../src/img/monitor-05.jpg)
+![](../../src/img/monitorning/mornitoring-5.png)
 
 #### OrderMgmt(Order History Status Management)
 - The same method can be used to track and manage all events registered in the same way.
@@ -56,26 +56,26 @@ The event monitoring feature collects event logs from applications created based
   - When a user orders in Order, the OrderPlaced event is executed, and the order history is registered in OrderMgmt with the Order info transfer policy.
   - Click the **Process Order** button to process the order by executing the process order command, which triggers the OrderAccepted event.
 
-![](../../src/img/monitor-06.jpg)
+![](../../src/img/monitorning/mornitoring-6.png)<br>
 
-![](../../src/img/monitor-07.jpg)
+![](../../src/img/monitorning/mornitoring-7.png)<br>
 
-![](../../src/img/monitor-08.jpg)
+![](../../src/img/monitorning/mornitoring-8.png)
 <br><br>
 
 - **Start Cook**
   - The Start Cook command requests a cooking message for accepted orders and starts cooking the ordered food when the Start Cook button is clicked.
 
-![](../../src/img/monitor-09.jpg)
+![](../../src/img/monitorning/mornitoring-9.png)
 
-![](../../src/img/monitor-10.jpg)
+![](../../src/img/monitorning/mornitoring-10.png)
 
-![](../../src/img/monitor-11.jpg)
+![](../../src/img/monitorning/mornitoring-11.png)
 <br><br>
 
 - **Finish Cook**
   - The Finish Cook command inputs a cooking completion message for cooking orders and executes the CookFinished event when the Finish Cook button is clicked, completing the ordered food.
 
-![](../../src/img/monitor-12.jpg)
+![](../../src/img/monitorning/mornitoring-12.png)
 
-![](../../src/img/monitor-13.jpg)
+![](../../src/img/monitorning/mornitoring-13.png)

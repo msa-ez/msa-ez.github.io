@@ -18,8 +18,8 @@ docker compose up -d
 
 1. Access http://127.0.0.1:3000/
 2. Configure Gitea Initial Configuration
-3. **Administrator Account Setting.**
-4. Install Gitea.
+3. **Administrator Account Settings**
+4. Install Gitea
 
 ![alt text](https://github.com/user-attachments/assets/3851af2f-2964-4372-9001-319ab3a2b6de)
 
@@ -57,18 +57,18 @@ OFFLINE_MODE = true
 1. Gitea Login (Administrator)
 2. Click the **Profile Icon** in the upper right corner
 3. Click **Settings** - **Applications**
-4. Enter **Manage OAuth2 Applications**
+4. Navigate to **Manage OAuth2 Applications**
 5. Click **Create Application**
-   - Application Name : **Desired Name** e.g. acebase
-   - Redirect URIs. Please use a new line for every URI.: **http://localhost:5757/oauth2/mydb/signin**
-5. Click **Create Application**
-6. MSAEZ Installation requires **Client ID & Client Secret** issued after registering the application. Please save it.
+   - Application Name: **Your desired name** (e.g., acebase)
+   - Redirect URIs (use a new line for each URI): **http://localhost:5757/oauth2/mydb/signin**
+6. Click **Create Application**
+7. Save the **Client ID & Client Secret** generated after application registration. These will be required for MSAEZ installation.
    > ![alt text](https://github.com/user-attachments/assets/5b6c5038-1f29-4bcc-b70f-ed7fe004ee97)
-7. Click **Save**
+8. Click **Save**
 
 ### 4. Docker Compose Configuration
 
-1. Set Acebase OAuth2 Client ID & Client Secret
+1. Set the Acebase OAuth2 Client ID & Client Secret
 
 ```yml
 # ./docker-compose.yaml
@@ -95,7 +95,7 @@ acebase:
     PROTOCOL: http
 ```
 
-### 5. Add Host File
+### 5. Add Host Entry
 
 ```text
 # /etc/hosts
