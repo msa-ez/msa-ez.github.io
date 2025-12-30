@@ -205,6 +205,10 @@ module.exports = {
             firstTitle: 'Business Info',
             name:[
               {
+                secondTitle: 'Case Study',
+                secondItem: '/info/case-study-gov24/'
+              },
+              {
                 secondTitle: 'Cases',
                 secondItem: '/info/company/'
               },
