@@ -4,7 +4,7 @@ sidebar: 'started'
 ---
 # Eventstorming - Shopping Mall
 
-Performing EventStorming based on the given Shopping Mall Scenario
+Performing EventStorming based on the given Shopping Mall Scenario.
 
 ## MSAEZ Modeling Tool Access
 - Open the Chrome browser and go to https://www.msaez.io.

@@ -6,7 +6,7 @@ next: ''
 ---
 # Veterinary Practice Management System
 
-Source: https://github.com/msa-ez/example-animal-hospital
+Source: <a href="https://github.com/msa-ez/example-animal-hospital" target="_blank" class="link-open-text">https://github.com/msa-ez/example-animal-hospital</a>
 
 <h3>Article 2 Task - Establishment of veterinary practice management system</h3>
 
@@ -38,8 +38,6 @@ This system is configured to cover all stages of analysis/design/implementation/
 
 ## Analysis/Design
 
-**[Eventstorming results modeled with MSAEz](http://msaez.io/#/storming/0vtSW2vBLoZTFiAsgdwS6H7ODs33/2dac041f4e652d598a042694dfa26b20)**
-
 - Core Domain: Reservation and Diagnosis domain
 - Supporting Domain: Lookup (CQRS) domain
 - General Domain: notice system.
@@ -56,12 +54,12 @@ According to the hexagonal architecture derived from the analysis/design phase, 
 
 The veterinary hospital reservation/treatment system consists of the following 7 microservices.
 
-1. Gateway: [https://github.com/AnimalHospital2/gateway.git](https://github.com/AnimalHospital2/gateway.git)
-2. Oauth system: [https://github.com/AnimalHospital2/ouath.git](https://github.com/AnimalHospital2/ouath.git)
-3. Reservation system: [https://github.com/AnimalHospital2/reservation.git](https://github.com/AnimalHospital2/reservation.git)
-4. Medical system: [https://github.com/AnimalHospital2/diagnosis.git](https://github.com/AnimalHospital2/diagnosis.git)
-5. Accommodation system: [https://github.com/AnimalHospital2/acceptance.git](https://github.com/AnimalHospital2/acceptance.git)
-6. Notification system: [https://github.com/AnimalHospital2/notice.git](https://github.com/AnimalHospital2/notice.git)
+1. Gateway: <a href="https://github.com/AnimalHospital2/gateway.git" target="_blank" class="link-open-text">https://github.com/AnimalHospital2/gateway.git</a>
+2. Oauth system: <a href="https://github.com/AnimalHospital2/ouath.git" target="_blank" class="link-open-text">https://github.com/AnimalHospital2/ouath.git</a>
+3. Reservation system: <a href="https://github.com/AnimalHospital2/reservation.git" target="_blank" class="link-open-text">https://github.com/AnimalHospital2/reservation.git</a>
+4. Medical system: <a href="https://github.com/AnimalHospital2/diagnosis.git" target="_blank" class="link-open-text">https://github.com/AnimalHospital2/diagnosis.git</a>
+5. Accommodation system: <a href="https://github.com/AnimalHospital2/acceptance.git" target="_blank" class="link-open-text">https://github.com/AnimalHospital2/acceptance.git</a>
+6. Notification system: <a href="https://github.com/AnimalHospital2/notice.git" target="_blank" class="link-open-text">https://github.com/AnimalHospital2/notice.git</a>
 
 - The gateway system changed the settings according to the project using the examples used in class.
 - The Oauth system used the example used in class as it is.

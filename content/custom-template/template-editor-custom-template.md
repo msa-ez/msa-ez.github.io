@@ -8,7 +8,7 @@ Here is a step-by-step guide on developing custom templates based on the MSAEZ m
 ## 1. Creating a Repository
 To develop custom templates, you need to create a repository.
 
-Go to https://github.com/.
+<a href="https://github.com/" target="_blank" class="link-open-text">https://github.com/</a>
 
 Create a new repository for your template files. 
 

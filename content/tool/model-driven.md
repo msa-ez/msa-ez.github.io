@@ -12,6 +12,9 @@ Firstly, we will leverage the code generation functionality provided by MSAEZ fo
 
 ## File Structure
 
+In the Event Storming modeling tool, you can check the Code Preview in the image below.
+![](../../src/img/mp0.png)
+
 Projects are created based on the names set in the Bounded Context (Order, Delivery), and they have the following structure:
 
 ![File Structure](../../src/img/code2.png)

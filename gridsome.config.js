@@ -6,11 +6,6 @@
 
 module.exports = {
   siteName: 'msaez',
-  configureServer(app) {
-    app.get('/', (req, res) => {
-      res.redirect(301, '/started/'); // 홈페이지로 접근 시 '/new-home'으로 리다이렉트
-    });
-  },
   icon: {
     favicon: './src/img/favicon.png',
     touchicon: './src/img/favicon.png',
@@ -32,29 +27,26 @@ module.exports = {
           {
             firstTitle: 'Introduction',
             firstItem: '/started/',
+            name: [
+              {
+                secondTitle: 'Quick Start',
+                secondItem: '/started/vibe-coding/'
+              },
+              {
+                secondTitle: 'MSAEZ On-premise Installation',
+                secondItem: '/tool/on-prem-inst-gitea/'
+              }
+            ]
           },
           {
-            firstTitle: 'Quick Start',
-            firstItem: '/tool/google-drive-examples/',
-          },
-          {
-            firstTitle: 'Business Modeling',
+            firstTitle: 'Business Modeling & Implementation',
             name:[
               {
                 secondTitle: 'Eventstorming',
                 secondItem: '/business/'
               },
               {
-                secondTitle: 'Creating Models with ChatGPT',
-                secondItem: '/tool/chat-gpt/'
-              }
-            ]
-          },
-          {
-            firstTitle: 'MSA Code Implementation',
-            name:[
-              {
-                secondTitle: 'Automatic Code Generation',
+                secondTitle: 'Model-Driven Code Generation',
                 secondItem: '/tool/model-driven/'
               },
               {
@@ -66,8 +58,45 @@ module.exports = {
                 secondItem: '/custom-template/unit-test/'
               },
               {
-                secondTitle: 'Code Implementation with ChatGPT',
-                secondItem: '/tool/si-gpt/'
+                secondTitle: 'Event Monitoring',
+                secondItem: '/tool/event-monitoring/'
+              },
+              {
+                secondTitle: 'Composable Enterprise',
+                secondItem: '/tool/pbc-marketplace/'
+              }
+            ]
+          },
+          {
+            firstTitle: 'AI-Supported Modeling & Implementation',
+            name:[
+              // {
+              //   secondTitle: 'AI-Based Model Generation',
+              //   secondItem: '/tool/chat-gpt/'
+              // },
+              // {
+              //   secondTitle: 'AI-Based Code Implementation',
+              //   secondItem: '/tool/si-gpt/'
+              // },
+              // {
+              //   secondTitle: 'Aggregate Design',
+              //   secondItem: '/tool/aggregate-design/'
+              // },
+              // {
+              //   secondTitle: 'DDL to Eventstorming',
+              //   secondItem: '/tool/ddl-to-eventstorming/'
+              // },
+              // {
+              //   secondTitle: 'BC & Domain Design AI',
+              //   secondItem: '/tool/bc-domain-gen/'
+              // },
+              {
+                secondTitle: 'Legacy Modernizer',
+                secondLink:'http://modernizer.uengine.io/started/',
+              },
+              {
+                secondTitle: 'Utilizing DeepSeek Model in MSAEZ',
+                secondItem: '/tool/deepseek-ai/'
               }
             ]
           },
@@ -155,11 +184,11 @@ module.exports = {
               {
                 secondTitle: 'Global Helper',
                 secondItem: '/custom-template/global-helper/'
-              },
-              {
-                secondTitle: 'Template Editor',
-                secondItem: '/custom-template/template-editor/'
-              },
+              }
+              // {
+              //   secondTitle: 'Template Editor',
+              //   secondItem: '/custom-template/template-editor/'
+              // },
             ]
           },
           // {
@@ -195,10 +224,10 @@ module.exports = {
                 secondTitle: 'Animal Hospital System',
                 secondItem: '/example-scenario/animal-hospital/'
               },
-              {
-                secondTitle: 'Online Lecture System',
-                secondItem: '/example-scenario/online-lecture/'
-              },
+              // {
+              //   secondTitle: 'Online Lecture System',
+              //   secondItem: '/example-scenario/online-lecture/'
+              // },
             ]
           },
           {
@@ -219,6 +248,10 @@ module.exports = {
               {
                 secondTitle: 'Partnerships',
                 secondItem: '/info/partnership/'
+              },
+              {
+                secondTitle: 'Consulting',
+                secondItem: '/info/consulting/'
               }
             ]
           },

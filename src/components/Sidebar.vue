@@ -8,7 +8,7 @@
       v-for="(section, index) in sidebar.sections"
       :key="section.title"
     >
-      <div style="font-weight:700; font-size:14px; margin-bottom:5px;" v-if="section.firstTitle && !section.firstItem && !section.firstLink">
+      <div class="sidebar-title" style="font-weight:700; font-size:14px; margin-bottom:5px;" v-if="section.firstTitle && !section.firstItem && !section.firstLink">
         {{ section.firstTitle }}
       </div>
       <g-link

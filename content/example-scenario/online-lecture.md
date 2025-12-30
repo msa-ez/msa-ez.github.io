@@ -8,11 +8,11 @@ next: ''
 
 ![image](https://user-images.githubusercontent.com/48303857/79727114-d3956280-8326-11ea-8862-e01ca9a0f949.png)
 
-source: https://github.com/msa-ez/example-academy
+source: <a href="https://github.com/msa-ez/example-academy" target="_blank" class="link-open-text">https://github.com/msa-ez/example-academy</a>
 
 <h2> Final group assignment - Internet lecture system</h2>
 
-- Checkpoint : https://workflowy.com/s/assessment-check-po/T5YrzcMewfo4J6LW
+- Checkpoint : <a href="https://workflowy.com/s/assessment-check-po/T5YrzcMewfo4J6LW" target="_blank" class="link-open-text">https://workflowy.com/s/assessment-check-po/T5YrzcMewfo4J6LW</a>
 
 ## service scenario
 
@@ -114,9 +114,6 @@ source: https://github.com/msa-ez/example-academy
 <h3> - TO-BE Organization (Vertically-Aligned)</h3>
 
 ### · Event Storming result
-**[Eventstorming results modeled with MSAEz ](http://msaez.io/#/storming/RYTliHDEOOYT0NAZ6Xoodg4HP3H3/18a58ddb3072e7c25041a1c9361a9635)**
-
-
 **Derivation of organization and requirements**
 ![image](https://user-images.githubusercontent.com/48303857/79729383-5cfa6400-832a-11ea-89b6-53eca4de1ab8.jpeg)
 
@@ -405,12 +402,12 @@ Since the course system is completely separate from registration/payment and is 
 http POST localhost:8081/courseRegistrationSystem lectureId=1   #Success
 http POST localhost:8081/courseRegistrationSystem lectureId=2   #Success
 ```
-![image](https://user-images.githubusercontent.com/48303857/79857884-6d354080-8409-11ea-9307-02288463bb13.png)
+![image](https://user-images.githubusercontent.com/48303857/79857884-6d354080-8409-11ea-9307-02288463bb13.PNG)
 
 ```
 #Check the event progress until the course registration is complete
 ```
-![image](https://user-images.githubusercontent.com/48303857/79857914-79b99900-8409-11ea-8658-030267f42214.png)
+![image](https://user-images.githubusercontent.com/48303857/79857914-79b99900-8409-11ea-8658-030267f42214.PNG)
 ```
 #Lecture service start
 cd lectureSystem
@@ -419,7 +416,7 @@ mvn spring-boot:run
 # Check class attendance update
 Check in the console window
 ```
-![image](https://user-images.githubusercontent.com/48303857/79857956-8f2ec300-8409-11ea-98dd-2dd3667855b5.png)
+![image](https://user-images.githubusercontent.com/48303857/79857956-8f2ec300-8409-11ea-98dd-2dd3667855b5.PNG)
 
 ## operation
 

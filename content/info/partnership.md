@@ -46,9 +46,11 @@ sidebar: 'started'
     <span>✓</span> Companies with a sustainable business model and available resources.
 </div>
 
-<div class="font-bold text-white bg-ui-primary btn-partners">
-    <a href="https://forms.gle/RSqeg4k3LC69EDKZA" target="_blank">Partner Sign-Up</a>
-</div>
+<a style="text-decoration:none;" href="https://forms.gle/RSqeg4k3LC69EDKZA" target="_blank">
+    <div class="font-bold text-white bg-ui-primary btn-partners">
+        Partner Sign-Up
+    </div>
+</a>
 
 <style type='text/css'>
 .txt-box {
